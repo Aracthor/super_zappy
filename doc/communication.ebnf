@@ -1,0 +1,91 @@
+(*
+** communication.ebnf for super_zappy in /home/aracthor/programs/projects/hub/super_zappy/doc
+** 
+** Made by 
+** Login   <aracthor@epitech.net>
+** 
+** Started on  Sat Oct  4 15:57:56 2014 
+** Last Update Sat Oct  4 19:03:12 2014 
+*)
+
+
+(* Maccros *)
+Maccros	=
+GROUNDS_NUMBER	= 0 ;
+OBJECTS_NUMBER	= 0 ;
+ITEMS_NUMBER	= 0 ;
+
+
+(* Numeric values *)
+Numerics values	=
+
+pos_x		= integer ;
+pos_y		= integer ;
+height		= integer
+player_id	= integer ;
+team_id		= integer ;
+ground_enum	= '0' | '1' | '..' | GROUNDS_NUMBER ;
+object_enum	= '0' | '1' | '..' | OBJECTS_NUMBER ;
+item_enum	= '0' | '1' | '..' | ITEMS_NUMBER ;
+time_unit	= integer ;
+equipement	= item_enum ;
+
+
+(* Strings values *)
+Strings values	=
+
+team_name	= string ;
+
+
+(* Group values *)
+Group values	=
+
+inventory	= { ' ', item_enum, ' ', number } ;
+
+
+(* Server to graphical clients *)
+Server to graphical clients =
+
+chunk_description	= "CHK ", pos_x, ' ', pos_y, '\n' ;
+case_description	= "CAS ", pos_x, ' ', pos_y, ' ', ground_enum, ' ', height, ' ', object_enum, inventory, '\n' ;
+player_description	= "PDC ", player_id, ' ', pos_x, ' ', pos_y, ' ', team_id, ' ', equipement, inventory, '\n' ;
+player_equipement	= "PEQ ", player_id, ' ', equipement, '\n' ;
+player_taking		= "PTK ", player_id, '\n' ;
+player_putting		= "PPT ", player_id, '\n' ;
+new_description		= "TDC ", team_id, ' ', team_name, '\n' ;
+
+
+(* Graphical client questions *)
+Graphical client questions =
+
+chunk_ask	= "CHK ", pos_x, ' ', pos_y, '\n' ;
+case_ask	= "CAS ", pos_x, ' ', pos_y, '\n' ;
+player_ask	= "PDC ", player_id, '\n' ;
+team_ask	= "TDC ", player_id, '\n' ;
+
+
+(* Graphical client answers *)
+Graphical client answers =
+
+chunk_ans	= chunk_description ;
+case_ans	= case_description ;
+player_ans	= player_description ;
+team_ans	= team_description ;
+
+
+
+(* Connections *)
+Connections =
+
+welcome_message	= "WELCOME\n" ;
+graphic_message	= "GRAPHIC\n" ;
+ia_message	= "IA ", team_name, '\n' ;
+server_kick	= "GET THE FUCK OUT\n" ;
+
+
+(* Graphical init *)
+Graphical init =
+
+island_parameters	= time_unit, ' ', chunk_size, ' ', chunk_number, '\n' ;
+team_presentation	= team_description, { player_description } ;
+graphical_init		= island_parameters, { team_presentation } ;
