@@ -5,10 +5,34 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 19:19:52 2014 
-** Last Update Sat Oct  4 19:19:58 2014 
+** Last Update Sun Oct  5 05:06:31 2014 
 */
 
-int	main()
+#include "exception.h"
+#include "server.h"
+
+static int	execution(int argc, char** argv)
 {
+  s_configs	configs;
+  s_server	server;
+
+  read_configs(argc, argv, &configs);
+  server_init(&server, &configs);
+  {
+    server_start(&server);
+  }
+  server_delete(&server);
   return (0);
+}
+
+int		main(int argc, char** argv)
+{
+  t_exception	exception;
+  int		return_value;
+
+  try (exception)
+    return_value = execution(argc, argv);
+  catch (exception)
+    return_value = exception_handle(exception);
+  return (return_value);
 }
