@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sun Oct  5 01:31:59 2014 
-** Last Update Sun Oct  5 07:07:07 2014 
+** Last Update Tue Oct  7 08:46:35 2014 
 */
 
 #ifndef EXCEPTION_SYSCALL_H_
@@ -23,6 +23,7 @@ typedef enum	exception_syscall
   exception_syscall_listen,
   exception_syscall_select,
   exception_syscall_socket,
+  exception_syscall_write,
   exceptions_syscall_number
 }		e_exception_syscall;
 

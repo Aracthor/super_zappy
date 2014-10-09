@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 19:19:52 2014 
-** Last Update Sun Oct  5 05:06:31 2014 
+** Last Update Wed Oct  8 11:04:40 2014 
 */
 
 #include "exception.h"
@@ -33,6 +33,6 @@ int		main(int argc, char** argv)
   try (exception)
     return_value = execution(argc, argv);
   catch (exception)
-    return_value = exception_handle(exception);
+    return_value = exception_handle(exception, argv[0]);
   return (return_value);
 }

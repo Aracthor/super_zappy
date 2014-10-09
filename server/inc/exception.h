@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 20:02:07 2014 
-** Last Update Sun Oct  5 04:27:40 2014 
+** Last Update Wed Oct  8 11:18:09 2014 
 */
 
 #ifndef EXCEPTION_H_
@@ -31,6 +31,7 @@ typedef enum	exception_id
   exception_mutex,
   exception_cond_var,
   exception_thread,
+  exception_container,
   exceptions_number
 }		e_exception_id;
 
@@ -39,11 +40,12 @@ typedef int	(*t_exception_function)(unsigned short arg);
 typedef int	t_exception;
 
 /* handle.c */
-int	exception_handle(t_exception exception);
+int	exception_handle(t_exception exception, char* argv0);
 int	exception_problem();
 
 # include "exception/allocs.h"
 # include "exception/cond_var.h"
+# include "exception/containers.h"
 # include "exception/keywords.h"
 # include "exception/mutex.h"
 # include "exception/param.h"

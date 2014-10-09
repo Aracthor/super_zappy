@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sun Oct  5 08:43:31 2014 
-** Last Update Sun Oct  5 14:23:39 2014 
+** Last Update Wed Oct  8 17:45:24 2014 
 */
 
 #include "server.h"
@@ -31,18 +31,26 @@ static void	check_who_told_something(s_server* server, fd_set* fd_sets)
 
 static void	check_for_deads(s_server* server)
 {
-  s_list*	elem;
+  s_list*	client;
+  void*		client_to_delete;
 
-  for (elem = server->network.clients.data; elem != NULL; elem = elem->next)
-    if (((s_client*)elem->data)->type == dead)
-      {
-	mutex_lock(&server->network.clients.mutex);
+  client = server->network.clients.data;
+  while (client != NULL)
+    {
+      if (((s_client*)client->data)->type == dead)
 	{
-	  pop_cond(&server->network.clients.data, elem->data,
-		   &is_elem, &client_delete_from_list);
+	  mutex_lock(&server->network.clients.mutex);
+	  {
+	    client_to_delete = client->data;
+	    client = client->next;
+	    pop_cond(&server->network.clients.data, client_to_delete,
+		     &is_elem, &client_delete_from_list);
+	  }
+	  mutex_unlock(&server->network.clients.mutex);
 	}
-	mutex_unlock(&server->network.clients.mutex);
-      }
+      else
+	client = client->next;
+    }
 	
 }
 

@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 15:57:56 2014 
-** Last Update Mon Oct  6 15:47:31 2014 
+** Last Update Tue Oct  7 16:04:23 2014 
 *)
 
 
@@ -46,8 +46,8 @@ chunk_description	= "CHK ", pos_x, ' ', pos_y, '\n' ;
 case_description	= "CAS ", pos_x, ' ', pos_y, ' ', ground_enum, ' ', height, ' ', object_enum, inventory, '\n' ;
 player_description	= "PDC ", player_id, ' ', pos_x, ' ', pos_y, ' ', team_id, ' ', equipement, inventory, '\n' ;
 player_equipement	= "PEQ ", player_id, ' ', equipement, '\n' ;
-player_taking		= "PTK ", player_id, '\n' ;
-player_putting		= "PPT ", player_id, '\n' ;
+player_taking		= "PTK ", player_id, ' ', item_enum, '\n' ;
+player_putting		= "PPT ", player_id, ' ', item_enum, '\n' ;
 new_description		= "TDC ", team_id, ' ', team_name, '\n' ;
 
 
@@ -56,7 +56,7 @@ Graphical client questions =
 chunk_ask	= "CHK ", pos_x, ' ', pos_y, '\n' ;
 case_ask	= "CAS ", pos_x, ' ', pos_y, '\n' ;
 player_ask	= "PDC ", player_id, '\n' ;
-team_ask	= "TDC ", player_id, '\n' ;
+team_ask	= "TDC ", team_id, '\n' ;
 
 
 (* Graphical client answers *)

@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sun Oct  5 00:49:33 2014 
-** Last Update Sun Oct  5 07:07:19 2014 
+** Last Update Tue Oct  7 08:46:45 2014 
 */
 
 #include <errno.h>
@@ -23,6 +23,7 @@ static void	empl_syscalls_tab(char** syscalls)
   syscalls[exception_syscall_listen]	= "listen";
   syscalls[exception_syscall_select]	= "select";
   syscalls[exception_syscall_socket]	= "socket";
+  syscalls[exception_syscall_write]	= "write";
 }
 
 static char*	get_syscall(e_exception_syscall id)

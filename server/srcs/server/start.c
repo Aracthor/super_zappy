@@ -5,29 +5,33 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sun Oct  5 05:07:04 2014 
-** Last Update Sun Oct  5 08:43:21 2014 
+** Last Update Wed Oct  8 17:32:31 2014 
 */
 
+#include <string.h>
+#include <sys/time.h>
 #include <unistd.h>
 
 #include "exception.h"
 #include "server.h"
 
-static void	server_calc_timeout(s_server* server, struct timeval* timeout)
+static void	server_calc_timeout(s_server* server, struct timeval* elapsed_time,
+				    struct timeval* timeout)
 {
-  (void)(server);
-  timeout->tv_sec = 10000;
-  timeout->tv_usec = 10000;
+  timeout->tv_sec = server->speed / 1000000 - elapsed_time->tv_sec;
+  timeout->tv_usec = server->speed % 1000000 - elapsed_time->tv_usec;
+  if (timeout->tv_usec < 0)
+    timeout->tv_usec = 0;
 }
 
-static bool		server_loop(s_server* server)
+static bool		server_loop(s_server* server, struct timeval* elapsed_time)
 {
   struct timeval	timeout;
   fd_set		fd_sets[2];
   bool			continue_loop;
 
   /* Prepare select args */
-  server_calc_timeout(server, &timeout);
+  server_calc_timeout(server, elapsed_time, &timeout);
   network_prepare_fds(&server->network, fd_sets);
 
   /* THAT syscall */
@@ -42,11 +46,36 @@ static bool		server_loop(s_server* server)
   return (continue_loop);
 }
 
-void	server_start(s_server* server)
+static void	calc_elapsed_time(struct timeval* before,
+				  struct timeval* after,
+				  struct timeval* elapsed_time,
+				  unsigned int speed)
 {
-  bool	loop;
+  elapsed_time->tv_sec = after->tv_sec - before->tv_sec - speed / 1000000;
+  elapsed_time->tv_usec = after->tv_usec - before->tv_usec - speed % 1000000;
+
+  if ((int)after->tv_usec < (int)before->tv_usec)
+    {
+      elapsed_time->tv_sec -= 1;
+      elapsed_time->tv_usec += 1000000;
+    }
+}
+
+void			server_start(s_server* server)
+{
+  struct timeval	before;
+  struct timeval	after;
+  struct timeval	elapsed_time;
+  bool			loop;
 
   loop = true;
+  memset(&elapsed_time, 0, sizeof(elapsed_time));
+
   while (loop)
-    loop = server_loop(server);
+    {
+      gettimeofday(&before, NULL);
+      loop = server_loop(server, &elapsed_time);
+      gettimeofday(&after, NULL);
+      calc_elapsed_time(&before, &after, &elapsed_time, server->speed);
+    }
 }

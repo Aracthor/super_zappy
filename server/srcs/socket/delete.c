@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sun Oct  5 03:53:44 2014 
-** Last Update Sun Oct  5 03:55:26 2014 
+** Last Update Tue Oct  7 13:05:10 2014 
 */
 
 #include <unistd.h>
@@ -24,6 +24,5 @@ void		socket_delete(t_socket* socket)
 {
   if (close(*socket) == -1)
     throw (SYSCALL_EXCEPTION(exception_syscall_close));
-
 }
 #endif /* (SYSTEM == WINDOWS) */

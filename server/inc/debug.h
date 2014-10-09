@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sun Oct  5 00:14:50 2014 
-** Last Update Sun Oct  5 00:27:12 2014 
+** Last Update Wed Oct  8 14:24:18 2014 
 */
 
 #ifndef DEBUG_H_
@@ -26,5 +26,15 @@
 # elif IS_NOT_BOOLEAN(_PRINT_GRAPHICAL_PACKETS)
 #  error "_PRINT_IA_PACKETS have to be a boolean."
 # endif /* !_PRINT_IA_PACKETS */
+
+# ifndef _SECURE_CONTAINERS
+#  define _SECURE_CONTAINERS	(DEBUG_ENABLED)
+# elif IS_NOT_BOOLEAN(_SECURE_CONTAINERS)
+#  error "_SECURE_CONTAINERS have to be a boolean."
+# endif /* !_SECURE_CONTAINERS */
+
+
+# define IS_AT_LEAST_ONE_PACKET_DEBUG	(_PRINT_IA_PACKETS || _PRINT_GRAPHICAL_PACKETS)
+
 
 #endif /* !DEBUG_H_ */

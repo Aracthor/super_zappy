@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sun Oct  5 01:33:41 2014 
-** Last Update Sun Oct  5 01:34:02 2014 
+** Last Update Wed Oct  8 11:00:06 2014 
 */
 
 #ifndef EXCEPTION_PARAM_H_

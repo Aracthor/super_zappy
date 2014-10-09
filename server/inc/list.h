@@ -5,24 +5,19 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sun Oct  5 01:38:19 2014 
-** Last Update Sun Oct  5 09:18:12 2014 
+** Last Update Wed Oct  8 11:20:30 2014 
 */
 
 #ifndef LIST_H_
 # define LIST_H_
 
-# include <sys/types.h>
-
-# include "boolean.h"
+# include "containers.h"
 
 typedef struct	list
 {
   void*		data;
   struct list*	next;
 }		s_list;
-
-typedef void	(*t_delete_fun)(void* data);
-typedef bool	(*t_cond_fun)(void* data, void* ref);
 
 /* access.c */
 void*	front(const s_list* list);

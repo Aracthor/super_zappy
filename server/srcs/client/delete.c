@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sun Oct  5 02:23:38 2014 
-** Last Update Sun Oct  5 08:55:41 2014 
+** Last Update Wed Oct  8 10:34:30 2014 
 */
 
 #include <unistd.h>
@@ -24,4 +24,12 @@ void	client_delete(s_client* client)
 void	client_delete_from_list(void* client)
 {
   client_delete((s_client*)client);
+}
+
+
+void	client_kill(s_client* client)
+{
+  if (client->type == ia)
+    player_delete(&client->player);
+  client->type = dead;
 }

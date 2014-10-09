@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 19:51:15 2014 
-** Last Update Sun Oct  5 02:31:42 2014 
+** Last Update Wed Oct  8 14:00:50 2014 
 */
 
 #ifndef CONFIGS_H_
@@ -14,7 +14,7 @@
 # include "teams.h"
 
 # define CONFIGS_DEFAULT_PORT	(4242)
-# define CONFIGS_DEFAULT_SPEED	(500000)
+# define CONFIGS_DEFAULT_SPEED	(100000)
 # define CONFIGS_DEFAULT_LONGER	(16)
 # define CONFIGS_DEFAULT_LARGER	(16)
 

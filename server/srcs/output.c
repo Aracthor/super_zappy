@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 23:54:48 2014 
-** Last Update Sun Oct  5 02:21:57 2014 
+** Last Update Wed Oct  8 14:49:39 2014 
 */
 
 #include <stdio.h>
@@ -55,24 +55,24 @@ void		connection_message(const char* message, ...)
 
 void	receive_graphical_packet_message(int id, const char* packet)
 {
-  printf("%smessage from %d : %s%s",
+  printf("%smessage from %d\t: %s%s",
 	 RECEIVE_GRAPHICAL_PACKET_OUTPUT, id, packet, NORMAL_OUTPUT);
 }
 
 void    send_graphical_packet_message(int id, const char* packet)
 {
-  printf("%smessage to %d : %s%s",
+  printf("%smessage to %d\t: %s%s",
 	 SEND_GRAPHICAL_PACKET_OUTPUT, id, packet, NORMAL_OUTPUT);
 }
 
 void	receive_ia_packet_message(int id, const char* packet)
 {
-  printf("%smessage from %d : %s%s",
+  printf("%smessage from %d\t: %s%s",
 	 RECEIVE_IA_PACKET_OUTPUT, id, packet, NORMAL_OUTPUT);
 }
 
 void    send_ia_packet_message(int id, const char* packet)
 {
-  printf("%smessage to %d : %s%s",
+  printf("%smessage to %d\t: %s%s",
 	 SEND_IA_PACKET_OUTPUT, id, packet, NORMAL_OUTPUT);
 }

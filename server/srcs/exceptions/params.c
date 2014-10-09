@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 20:44:20 2014 
-** Last Update Sun Oct  5 00:12:51 2014 
+** Last Update Wed Oct  8 11:03:41 2014 
 */
 
 #include "configs.h"
@@ -40,7 +40,7 @@ int	exception_bad_param_arg_handling(unsigned short arg)
   int	return_value;
   char*	params[exceptions_param_number];
 
-  if (arg > exceptions_param_number)
+  if (arg >= exceptions_param_number)
     return_value = exception_problem();
   else
     {
