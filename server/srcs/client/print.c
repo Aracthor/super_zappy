@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Wed Oct  8 14:15:05 2014 
-** Last Update Wed Oct  8 17:34:36 2014 
+** Last Update Thu Oct  9 18:19:07 2014 
 */
 
 #include <string.h>
@@ -25,6 +25,10 @@ void	client_print_received(s_client* client, const char* line)
 	{
 	  RECEIVE_IA_PACKET_MESSAGE(client->socket, line);
 	}
+      else
+	{
+	  RECEIVE_UNKNOWN_PACKET_MESSAGE(client->socket, line);
+	}
     }
 }
 
@@ -43,6 +47,10 @@ void	client_print_sent(s_client* client, const char* line, unsigned int size)
       else if (client->type == ia)
 	{
 	  SEND_IA_PACKET_MESSAGE(client->socket, buffer);
+	}
+      else
+	{
+	  SEND_UNKNOWN_PACKET_MESSAGE(client->socket, buffer);
 	}
     }
 }

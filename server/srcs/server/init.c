@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 23:49:27 2014 
-** Last Update Wed Oct  8 13:59:00 2014 
+** Last Update Thu Oct  9 18:21:31 2014 
 */
 
 #include <string.h>
@@ -59,6 +59,8 @@ void	server_init(s_server* server, s_configs* configs)
 
   memcpy(&server->teams, &configs->teams, sizeof(s_teams));
   server->speed = configs->speed;
+
+  map_init(&server->map, &configs->map);
 
   empl_commands_tables(server);
 

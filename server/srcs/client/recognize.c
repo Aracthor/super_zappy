@@ -5,17 +5,27 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Tue Oct  7 08:29:20 2014 
-** Last Update Wed Oct  8 10:43:09 2014 
+** Last Update Thu Oct  9 18:11:43 2014 
 */
 
+#include <stdio.h>
 #include <string.h>
 
 #include "client.h"
+#include "output.h"
 #include "server.h"
 
-static bool	make_graphical(s_client* client)
+static bool		make_graphical(s_client* client)
 {
+  const s_server*	server = g_server;
+  char			islands_parameters[BUFFER_SIZE];
+
   client->type = graphical;
+  connection_message("Client %d is now a graphical client.\n", client->socket);
+
+  snprintf(islands_parameters, BUFFER_SIZE, "ISL %d %d %d",
+	   server->speed, server->map.longer, server->map.larger);
+  client_add_to_send(client, islands_parameters);
 
   return (true);
 }
@@ -31,6 +41,8 @@ static bool	make_ia(s_client* client, char* team_name)
   if (client_is_correct)
     {
       client->type = ia;
+      connection_message("Client %d is now a member of team %s.\n",
+			 client->socket, team_name);
       player_init(&client->player, team_id);
     }
 

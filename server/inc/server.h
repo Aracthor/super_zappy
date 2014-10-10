@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 23:45:31 2014 
-** Last Update Wed Oct  8 12:18:23 2014 
+** Last Update Thu Oct  9 18:07:59 2014 
 */
 
 #ifndef SERVER_H_
@@ -14,6 +14,7 @@
 # include "command.h"
 # include "configs.h"
 # include "graphical_thread.h"
+# include "map.h"
 # include "network.h"
 
 typedef struct		server
@@ -25,6 +26,9 @@ typedef struct		server
   /* Config part */
   s_teams		teams;
   unsigned int		speed;
+
+  /* Big data */
+  s_map			map;
 
   /* Array to get */
   s_order		graphical_orders[GRAPHICAL_ORDERS_NUMBER + 1];

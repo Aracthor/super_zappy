@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 23:54:48 2014 
-** Last Update Wed Oct  8 14:49:39 2014 
+** Last Update Thu Oct  9 16:47:50 2014 
 */
 
 #include <stdio.h>
@@ -75,4 +75,16 @@ void    send_ia_packet_message(int id, const char* packet)
 {
   printf("%smessage to %d\t: %s%s",
 	 SEND_IA_PACKET_OUTPUT, id, packet, NORMAL_OUTPUT);
+}
+
+void	receive_unknown_packet_message(int id, const char* packet)
+{
+  printf("%smessage from %d\t: %s%s",
+	 RECEIVE_UNKNOWN_PACKET_OUTPUT, id, packet, NORMAL_OUTPUT);
+}
+
+void    send_unknown_packet_message(int id, const char* packet)
+{
+  printf("%smessage to %d\t: %s%s",
+	 SEND_UNKNOWN_PACKET_OUTPUT, id, packet, NORMAL_OUTPUT);
 }

@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Tue Oct  7 16:57:12 2014 
-** Last Update Tue Oct  7 16:58:41 2014 
+** Last Update Thu Oct  9 18:17:48 2014 
 */
 
 #include <stdio.h>
@@ -23,7 +23,7 @@ bool		get_graphical_team_description(const s_server* server,
   correct = (id < server->teams.number);
 
   if (correct)
-    snprintf(buffer, BUFFER_SIZE, "TDC %d %s\n", id, server->teams.names[id]);
+    snprintf(buffer, BUFFER_SIZE, "TDC %d %s", id, server->teams.names[id]);
 
   return (correct);
 }

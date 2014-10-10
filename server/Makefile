@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Wed Oct  8 14:18:31 2014 
+## Last Update Thu Oct  9 18:26:28 2014 
 ##
 
 CC=		gcc
@@ -32,6 +32,7 @@ GRAPHICAL_COMMANDS_DIR=	graphical_commands/
 GRAPHICAL_THREAD_DIR=	graphical_thread/
 IA_COMMANDS_DIR=	ia_commands/
 LIST_DIR=		list/
+MAP_DIR=		map/
 MUTEX_DIR=		mutex/
 MUTEXED_LIST_DIR=	mutexed_list/
 NETWORK_DIR=		network/
@@ -84,6 +85,8 @@ SRCS=		$(SRCS_DIR)$(ACTION_DIR)create.c		\
 		$(SRCS_DIR)$(LIST_DIR)conditions.c		\
 		$(SRCS_DIR)$(LIST_DIR)delete.c			\
 		$(SRCS_DIR)$(LIST_DIR)edit.c			\
+		$(SRCS_DIR)$(MAP_DIR)delete.c			\
+		$(SRCS_DIR)$(MAP_DIR)init.c			\
 		$(SRCS_DIR)$(MUTEX_DIR)delete.c			\
 		$(SRCS_DIR)$(MUTEX_DIR)lock.c			\
 		$(SRCS_DIR)$(MUTEX_DIR)trylock.c		\

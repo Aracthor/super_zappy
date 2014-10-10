@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sun Oct  5 01:42:43 2014 
-** Last Update Sun Oct  5 01:43:37 2014 
+** Last Update Thu Oct  9 18:27:27 2014 
 */
 
 #ifndef EXCEPTION_ALLOCS_H_

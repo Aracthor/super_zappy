@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sun Oct  5 02:33:56 2014 
-** Last Update Sun Oct  5 06:18:01 2014 
+** Last Update Thu Oct  9 18:21:17 2014 
 */
 
 #include "exception.h"
@@ -16,6 +16,8 @@ void	server_delete(s_server* server)
   graphical_thread_delete(&server->graphical_thread);
 
   network_delete(&server->network);
+
+  map_delete(&server->map);
 
   FREE(server->teams.names);
 }

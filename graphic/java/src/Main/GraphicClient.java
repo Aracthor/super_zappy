@@ -1,7 +1,7 @@
 package Main;
 
-import Engine.IApplication;
 import Core.Application;
+import Core.IApplication;
 
 public class GraphicClient
 {
@@ -11,8 +11,9 @@ public class GraphicClient
 		
 		try
 		{
-			app = new Application(args[0], args[1]);
+			app = new Application(args[1], args[2]);
 			app.run();
+			app.exit();
 		}
 		catch (RuntimeException exception)
 		{

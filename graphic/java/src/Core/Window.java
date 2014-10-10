@@ -5,13 +5,28 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.PixelFormat;
 
+import Exceptions.LaunchException;
+
 public class	Window
 {
-	private final static int	DEFAULT_WIDTH = 800;
-	private final static int	DEFAULT_HEIGHT = 600;
-	private final static int	DEFAULT_BPP = org.lwjgl.opengl.Display.getDisplayMode().getBitsPerPixel();
-	private final static int	DEFAULT_FPS = 60;
-	private final static String	DEFAULT_TITLE = "Graphic client";
+	public final static int		DEFAULT_WIDTH = 800;
+	public final static int		DEFAULT_HEIGHT = 600;
+	public final static int		DEFAULT_BPP = org.lwjgl.opengl.Display.getDisplayMode().getBitsPerPixel();
+	public final static int		DEFAULT_FPS = 60;
+	public final static String	DEFAULT_TITLE = "Graphic client";
+	
+	private static	Window		s_currentWindow = null;
+	
+	public static Window		getCurrentWindow()
+	{
+		return (s_currentWindow);
+	}
+	
+	public static void			setCurrentWindow(Window window)
+	{
+		s_currentWindow = window;
+	}
+	
 	
 	private int		width;
 	private int		height;
@@ -26,6 +41,8 @@ public class	Window
 		this.bpp = Window.DEFAULT_BPP;
 		this.framerateLimit = Window.DEFAULT_FPS;
 		this.title = Window.DEFAULT_TITLE;
+		
+		Window.setCurrentWindow(this);
 	}
 	
 	public		Window(int width, int height)

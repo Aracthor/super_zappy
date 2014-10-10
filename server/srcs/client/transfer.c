@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sun Oct  5 14:05:30 2014 
-** Last Update Thu Oct  9 09:55:11 2014 
+** Last Update Thu Oct  9 16:50:35 2014 
 */
 
 #include <errno.h>
@@ -38,12 +38,13 @@ void		client_recv(s_client* client)
   /* Nothing got */
   if (recv_len == 0 && client->iminent_abort == true)
     client_lose_connection(client);
-  else
+  else if (recv_len == 0)
     client->iminent_abort = true;
 
   /* Something got */
   if (recv_len > 0)
     {
+      client->input_buffer.data[client->input_buffer.full + recv_len] = '\0';
       client_print_received(client, &client->input_buffer.data[client->input_buffer.full]);
       client->input_buffer.full += recv_len;
       client->iminent_abort = false;

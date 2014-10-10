@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 15:57:56 2014 
-** Last Update Tue Oct  7 16:04:23 2014 
+** Last Update Thu Oct  9 17:58:38 2014 
 *)
 
 
@@ -20,7 +20,7 @@ ITEMS_NUMBER	= 0 ;
 Numerics values	=
 pos_x		= integer ;
 pos_y		= integer ;
-height		= integer
+height		= integer ;
 player_id	= integer ;
 team_id		= integer ;
 ground_enum	= '0' | '1' | '..' | GROUNDS_NUMBER ;
@@ -33,6 +33,7 @@ equipement	= item_enum ;
 (* Strings values *)
 Strings values	=
 team_name	= string ;
+player_name	= string ;
 
 
 (* Group values *)
@@ -44,7 +45,7 @@ inventory	= { ' ', item_enum, ' ', number } ;
 Server to graphical clients =
 chunk_description	= "CHK ", pos_x, ' ', pos_y, '\n' ;
 case_description	= "CAS ", pos_x, ' ', pos_y, ' ', ground_enum, ' ', height, ' ', object_enum, inventory, '\n' ;
-player_description	= "PDC ", player_id, ' ', pos_x, ' ', pos_y, ' ', team_id, ' ', equipement, inventory, '\n' ;
+player_description	= "PDC ", player_id, ' ', player_name, ' ', pos_x, ' ', pos_y, ' ', team_id, ' ', equipement, inventory, '\n' ;
 player_equipement	= "PEQ ", player_id, ' ', equipement, '\n' ;
 player_taking		= "PTK ", player_id, ' ', item_enum, '\n' ;
 player_putting		= "PPT ", player_id, ' ', item_enum, '\n' ;
@@ -78,6 +79,6 @@ server_kick	= "GET THE FUCK OUT\n" ;
 
 (* Graphical init *)
 Graphical init =
-island_parameters	= time_unit, ' ', chunk_size, ' ', chunk_number, '\n' ;
+island_parameters	= "ISL ", time_unit, ' ', map_longer, ' ', map_larger, '\n' ;
 team_presentation	= team_description, { player_description } ;
 graphical_init		= island_parameters, { team_presentation } ;

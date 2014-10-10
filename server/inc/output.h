@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 23:54:56 2014 
-** Last Update Sun Oct  5 02:22:09 2014 
+** Last Update Thu Oct  9 16:47:10 2014 
 */
 
 #ifndef OUTPUT_H_
@@ -25,6 +25,8 @@
 # define SEND_GRAPHICAL_PACKET_OUTPUT		"\033[00;35m"
 # define RECEIVE_IA_PACKET_OUTPUT		"\033[01;32m"
 # define SEND_IA_PACKET_OUTPUT			"\033[00;32m"
+# define RECEIVE_UNKNOWN_PACKET_OUTPUT		"\033[01;34m"
+# define SEND_UNKNOWN_PACKET_OUTPUT		"\033[00;34m"
 
 # define BUFFER_OUTPUT_SIZE	(0x1000)
 
@@ -36,6 +38,8 @@ void	receive_graphical_packet_message(int id, const char* packet);
 void    send_graphical_packet_message(int id, const char* packet);
 void	receive_ia_packet_message(int id, const char* packet);
 void    send_ia_packet_message(int id, const char* packet);
+void	receive_unknown_packet_message(int id, const char* packet);
+void    send_unknown_packet_message(int id, const char* packet);
 
 # define RECEIVE_GRAPHICAL_PACKET_MESSAGE(id, packet)	{	\
     if (_PRINT_GRAPHICAL_PACKETS)				\
@@ -53,6 +57,15 @@ void    send_ia_packet_message(int id, const char* packet);
 # define SEND_IA_PACKET_MESSAGE(id, packet)	{	\
     if (_PRINT_IA_PACKETS)				\
       send_ia_packet_message(id, packet);		\
+  }
+
+# define RECEIVE_UNKNOWN_PACKET_MESSAGE(id, packet)	{	\
+    if (_PRINT_UNKNOWN_PACKETS)					\
+      receive_unknown_packet_message(id, packet);		\
+  }
+# define SEND_UNKNOWN_PACKET_MESSAGE(id, packet)	{	\
+    if (_PRINT_UNKNOWN_PACKETS)					\
+      send_unknown_packet_message(id, packet);		\
   }
 
 #endif /* !OUTPUT_H_ */

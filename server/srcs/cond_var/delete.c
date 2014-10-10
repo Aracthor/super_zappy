@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sun Oct  5 04:21:27 2014 
-** Last Update Sun Oct  5 05:12:24 2014 
+** Last Update Thu Oct  9 19:00:00 2014 
 */
 
 #include "exception.h"
@@ -21,8 +21,6 @@
 void	        cond_var_delete(s_cond_var* cond_var)
 {
   s_exception	exception;
-  
-  mutex_delete(&cond_var->mutex);
 
   if (pthread_cond_destroy(&cond_var->pthread_cond_var))
     {
