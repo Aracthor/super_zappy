@@ -1,11 +1,11 @@
-package Graphics;
+package Engine;
 
 import org.lwjgl.opengl.GL11;
 
 import Core.Window;
 import Engine.ACamera;
 
-public class GlControlPanel
+public class GlControlPanel extends ShaderControlPanel
 {
 	private static GlControlPanel	s_instance = null;
 	
@@ -31,29 +31,6 @@ public class GlControlPanel
 	
 	private	void	initGl()
 	{
-		Window		window;
-		int			width;
-		int			height;
-		
-		window = Window.getCurrentWindow();
-		if (window == null)
-		{
-			width = Window.DEFAULT_WIDTH;
-			height = Window.DEFAULT_HEIGHT;
-		}
-		else
-		{
-			width = window.getWidth();
-			height = window.getHeight();
-		}
-		
-		/*
-		GL11.glMatrixMode(GL11.GL_PROJECTION);
-		GL11.glLoadIdentity();
-		GL11.glOrtho(0, width, 0, height, 1, -1);
-		GL11.glMatrixMode(GL11.GL_MODELVIEW);
-		*/
-		GL11.glViewport(0, 0, width, height);
 	}
 	
 	
@@ -73,5 +50,15 @@ public class GlControlPanel
 		}
 		
 		GL11.glClear(clearMask);
+		
+		this.bindCurrentShader();
+		camera.perspective();
+		camera.lookAt();
 	}
+
+	public void	endFrame()
+	{
+		this.unbindCurrentShader();
+	}
+
 }

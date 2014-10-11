@@ -1,5 +1,6 @@
 package Graphics;
 
+import Engine.GlControlPanel;
 import Events.EventsHandler;
 
 
@@ -15,9 +16,8 @@ public class ReliefView extends AView
 		GlControlPanel.getInstance().setDepthMask(true);
 	}
 	
-	public	void	display()
+	public	void	display(long elapsedTime)
 	{
-		
 	}
 
 	private void prepareEventsHandler()

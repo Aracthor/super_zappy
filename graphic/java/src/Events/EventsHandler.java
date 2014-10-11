@@ -29,14 +29,14 @@ public class EventsHandler
 	}
 	
 	
-	public boolean	listen()
+	public boolean	listen(long elapsedTime)
 	{
 		boolean	running = true;
 		
 		// Close event
 		if (closeEvent != null && Display.isCloseRequested())
 		{
-			running = closeEvent.hear();
+			running = closeEvent.hear(elapsedTime);
 		}
 		
 		// Keyboard Event
@@ -44,10 +44,15 @@ public class EventsHandler
 		{
 			if (running == true && Keyboard.isKeyDown(listener.getKey()))
 			{
-				running = listener.getValue().hear();
+				running = listener.getValue().hear(elapsedTime);
 			}
 		}
 		
 		return (running);
+	}
+	
+	public boolean	listen()
+	{
+		return (this.listen(0L));
 	}
 }

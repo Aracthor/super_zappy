@@ -2,6 +2,10 @@ package Core;
 
 import org.lwjgl.input.Keyboard;
 
+import Engine.Clock;
+import Engine.GlControlPanel;
+import Engine.GlException;
+import Engine.ShaderControlPanel;
 import Events.EventsHandler;
 import Events.QuitListener;
 import Exceptions.ExitException;
@@ -13,6 +17,7 @@ import Network.NetworkThread;
 
 public class Application implements IApplication
 {
+	private Clock			clock;
 	private	Window			window;
 	private	NetworkThread	network;
 	private EventsHandler	eventsHandler;
@@ -23,17 +28,40 @@ public class Application implements IApplication
 	
 	public Application(String host, String port) throws LaunchException
 	{
+		clock = new Clock();
 		network = new NetworkThread(host, port);
 		window = new Window();
 		window.open();
+		this.compileShaders();
+		this.initGraphicsModes();
+		this.prepareEventsHandler();
+	}
+	
+	private void			compileShaders()
+	{
+		ShaderControlPanel	shaderControlPanel;
+		
+		try
+		{
+			shaderControlPanel = GlControlPanel.getInstance();
+			shaderControlPanel.addShader("basic", "ressources/shaders/basic");
+			shaderControlPanel.selectShader("basic");
+		}
+		catch (GlException exception)
+		{
+			throw new LaunchException("GL error : " + exception.getMessage());
+		}
+	}
+	
+	private void	initGraphicsModes()
+	{
 		graphics = new AView[AView.VIEWS_NUMBER];
 		graphics[0] = new StrategicView();
 		graphics[1] = new ReliefView();
 
 		selectedView = 0;
 		graphics[selectedView].select();
-		
-		this.prepareEventsHandler();
+
 	}
 	
 	private void	prepareEventsHandler()
@@ -52,9 +80,15 @@ public class Application implements IApplication
 		running = true;
 		while (running)
 		{
+			this.manageData();
 			this.handleEvents();
 			this.display();
 		}
+	}
+	
+	private void	manageData()
+	{
+		clock.update();
 	}
 	
 	private	void	handleEvents()
@@ -62,13 +96,13 @@ public class Application implements IApplication
 		running = eventsHandler.listen();
 		if (running)
 		{
-			graphics[selectedView].handleEvents();
+			graphics[selectedView].handleEvents(clock.getElapsedTime());
 		}
 	}
 	
 	private void	display()
 	{
-		graphics[selectedView].display();
+		graphics[selectedView].display(clock.getElapsedTime());
 		window.display();
 	}
 	

@@ -1,4 +1,4 @@
-package Graphics;
+package Engine;
 
 import java.nio.FloatBuffer;
 
@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 
-public class VertexBufferObject
+public class VertexBufferObject implements IBindable
 {
 	private	int	id;
 	private int	verticesNumber;
@@ -17,12 +17,12 @@ public class VertexBufferObject
 		id = GL15.glGenBuffers();
 	}
 	
-	private void	bind()
+	public void	bind()
 	{
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, id);
 	}
 
-	private void	unbind()
+	public void	unbind()
 	{
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 	}

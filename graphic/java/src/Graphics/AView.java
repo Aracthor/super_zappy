@@ -14,11 +14,11 @@ public abstract class AView
 	}
 	
 	
-	public void	handleEvents()
+	public void	handleEvents(long elapsedTime)
 	{
-		eventsHandler.listen();
+		eventsHandler.listen(elapsedTime);
 	}
 	
 	public	abstract void	select();
-	public	abstract void	display();
+	public	abstract void	display(long elapsedTime);
 }

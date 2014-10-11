@@ -2,5 +2,5 @@ package Events;
 
 public interface IListener
 {
-	public boolean	hear();
+	public boolean	hear(long elapsedTime);
 }

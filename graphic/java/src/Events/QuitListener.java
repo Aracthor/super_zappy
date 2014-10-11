@@ -3,7 +3,7 @@ package Events;
 public class QuitListener implements IListener
 {
 	@Override
-	public boolean hear()
+	public boolean hear(long elapsedTime)
 	{
 		return false;
 	}

@@ -1,10 +1,10 @@
-package Graphics;
+package Engine;
 
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL30;
 
-public class VertexArrayObject
+public class VertexArrayObject implements IBindable
 {
 	private	int	id;
 	private ArrayList<VertexBufferObject>	vbos;
@@ -16,18 +16,18 @@ public class VertexArrayObject
 	}
 	
 	
-	private void	bind()
+	public void	bind()
 	{
 		GL30.glBindVertexArray(id);
 	}
 
-	private void	unbind()
+	public void	unbind()
 	{
 		GL30.glBindVertexArray(0);
 	}
 	
 	
-	public void	addMesh(float[] vertices)
+	public void	addVertices(float[] vertices)
 	{
 		VertexBufferObject	vbo;
 		

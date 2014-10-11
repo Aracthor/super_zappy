@@ -9,15 +9,22 @@ public class GraphicClient
 	{
 		IApplication	app;
 		
-		try
+		if (args.length != 3)
 		{
-			app = new Application(args[1], args[2]);
-			app.run();
-			app.exit();
+			System.err.println("USAGE : " + args[0] + " host port");
 		}
-		catch (RuntimeException exception)
+		else
 		{
-			System.err.println("Fatal error : " + exception.toString());
+			try
+			{
+				app = new Application(args[1], args[2]);
+				app.run();
+				app.exit();
+			}
+			catch (RuntimeException exception)
+			{
+				exception.printStackTrace();
+			}
 		}
 	}
 }

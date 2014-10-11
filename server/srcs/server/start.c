@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sun Oct  5 05:07:04 2014 
-** Last Update Wed Oct  8 17:32:31 2014 
+** Last Update Fri Oct 10 21:19:28 2014 
 */
 
 #include <string.h>
@@ -13,6 +13,7 @@
 #include <unistd.h>
 
 #include "exception.h"
+#include "output.h" /* DEBUG */
 #include "server.h"
 
 static void	server_calc_timeout(s_server* server, struct timeval* elapsed_time,
@@ -36,7 +37,10 @@ static bool		server_loop(s_server* server, struct timeval* elapsed_time)
 
   /* THAT syscall */
   if (select(server->network.max_fd + 1, &fd_sets[0], &fd_sets[1], NULL, &timeout) == -1)
-    throw (SYSCALL_EXCEPTION(exception_syscall_select));
+    {
+      error_message("%d.%d\n", timeout.tv_sec, timeout.tv_usec);
+      throw (SYSCALL_EXCEPTION(exception_syscall_select));
+    }
 
   /* Check standart input for manual abort */
   continue_loop = !FD_ISSET(STDIN_FILENO, &fd_sets[0]);
