@@ -25,4 +25,15 @@ public class NetworkThread extends Thread
 		running = false;
 		client.disconnect();
 	}
+	
+	
+	public void	askForChunks()
+	{
+		client.askForChunks();
+	}
+	
+	public boolean	isRunning()
+	{
+		return (running);
+	}
 }

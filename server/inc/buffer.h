@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sun Oct  5 06:01:44 2014 
-** Last Update Tue Oct  7 15:51:51 2014 
+** Last Update Sun Oct 12 00:35:55 2014 
 */
 
 #ifndef BUFFER_H_
@@ -13,7 +13,7 @@
 
 # include "boolean.h"
 
-# define BUFFER_SIZE	(0x10000)
+# define BUFFER_SIZE	(0x100000)
 
 typedef struct	buffer
 {

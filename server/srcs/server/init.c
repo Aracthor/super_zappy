@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 23:49:27 2014 
-** Last Update Thu Oct  9 18:21:31 2014 
+** Last Update Sun Oct 12 00:41:45 2014 
 */
 
 #include <string.h>
@@ -15,7 +15,7 @@
 
 static void	empl_graphical_commands_table(t_graphical_command* commands)
 {
-  commands[chunk_description]	= NULL;
+  commands[chunk_description]	= (t_graphical_command)&get_graphical_chunk;
   commands[case_description]	= NULL;
   commands[player_description]	= NULL;
   commands[player_equipement]	= NULL;

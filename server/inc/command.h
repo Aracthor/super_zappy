@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Tue Oct  7 09:32:33 2014 
-** Last Update Wed Oct  8 14:05:50 2014 
+** Last Update Sun Oct 12 02:48:55 2014 
 */
 
 #ifndef COMMAND_H_
@@ -26,7 +26,7 @@
 # define SERVER_WELCOME		("WELCOME")
 # define GRAPHICAL_MESSAGE	("GRAPHICAL")
 # define IA_MESSAGE		("IA")
-# define SERVER_KICK		("GET THE FUCK OUT")
+# define SERVER_KICK		("GET THE FUCK OUT\n")
 
 # define IA_BAD_ORDER		("YOU CAN'T BITCH")
 

@@ -5,20 +5,20 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Thu Oct  9 18:03:35 2014 
-** Last Update Thu Oct  9 18:22:33 2014 
+** Last Update Sat Oct 11 23:04:05 2014 
 */
 
 #ifndef MAP_H_
 # define MAP_H_
 
+# include "chunk.h"
 # include "configs.h"
-# include "hoopla.h"
 
 typedef struct	map
 {
   unsigned int	longer;
   unsigned int	larger;
-  s_hoopla*	hooplas;
+  s_chunk*      chunks;
 }		s_map;
 
 /* init.c */

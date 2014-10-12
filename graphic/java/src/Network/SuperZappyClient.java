@@ -3,8 +3,12 @@ package Network;
 import java.util.HashMap;
 
 import Commands.ACommand;
+import Commands.CASCommand;
+import Commands.CHKCommand;
 import Commands.ISLCommand;
 import Commands.TDCCommand;
+import Data.DataManager;
+import Data.Map;
 import Debug.DebugLog;
 
 public class SuperZappyClient extends AClient
@@ -18,6 +22,8 @@ public class SuperZappyClient extends AClient
 		commands = new HashMap<String, ACommand>();
 		commands.put("ISL", new ISLCommand());
 		commands.put("TDC", new TDCCommand());
+		commands.put("CHK", new CHKCommand());
+		commands.put("CAS", new CASCommand());
 		
 		this.send("GRAPHICAL");
 	}
@@ -42,4 +48,18 @@ public class SuperZappyClient extends AClient
 		}
 	}
 
+	
+	public void	askForChunks()
+	{
+		Map	map = DataManager.getInstance().getMap();
+		int	x, y;
+		
+		for (x = 0; x < map.getLonger(); ++x)
+		{
+			for (y = 0; y < map.getLarger(); ++y)
+			{
+				this.send("CHK " + x + " " + y);
+			}
+		}
+	}
 }

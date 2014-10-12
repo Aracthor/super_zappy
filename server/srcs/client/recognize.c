@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Tue Oct  7 08:29:20 2014 
-** Last Update Thu Oct  9 18:11:43 2014 
+** Last Update Sun Oct 12 00:44:06 2014 
 */
 
 #include <stdio.h>
@@ -18,6 +18,7 @@
 static bool		make_graphical(s_client* client)
 {
   const s_server*	server = g_server;
+  unsigned int		i;
   char			islands_parameters[BUFFER_SIZE];
 
   client->type = graphical;
@@ -26,6 +27,12 @@ static bool		make_graphical(s_client* client)
   snprintf(islands_parameters, BUFFER_SIZE, "ISL %d %d %d",
 	   server->speed, server->map.longer, server->map.larger);
   client_add_to_send(client, islands_parameters);
+  for (i = 0; i < server->teams.number; ++i)
+    {
+      snprintf(islands_parameters, BUFFER_SIZE, "TDC %d %s",
+	       i, server->teams.names[i]);
+      client_add_to_send(client, islands_parameters);
+    }
 
   return (true);
 }

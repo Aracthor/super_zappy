@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Thu Oct  9 18:26:28 2014 
+## Last Update Sun Oct 12 00:39:35 2014 
 ##
 
 CC=		gcc
@@ -22,6 +22,7 @@ BIN_DIR=	bin/
 
 ACTION_DIR=		action/
 BUFFER_DIR=		buffer/
+CHUNK_DIR=		chunk/
 CLIENT_DIR=		client/
 CLIENT_THREAD_DIR=	client_thread/
 COMMAND_DIR=		command/
@@ -48,6 +49,7 @@ NAME=		server
 SRCS=		$(SRCS_DIR)$(ACTION_DIR)create.c		\
 		$(SRCS_DIR)$(BUFFER_DIR)edit.c			\
 		$(SRCS_DIR)$(BUFFER_DIR)read.c			\
+		$(SRCS_DIR)$(CHUNK_DIR)init.c			\
 		$(SRCS_DIR)$(CLIENT_DIR)delete.c		\
 		$(SRCS_DIR)$(CLIENT_DIR)init.c			\
 		$(SRCS_DIR)$(CLIENT_DIR)interprete.c		\
@@ -76,6 +78,7 @@ SRCS=		$(SRCS_DIR)$(ACTION_DIR)create.c		\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)params.c		\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)syscall.c		\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)thread.c		\
+		$(SRCS_DIR)$(GRAPHICAL_COMMANDS_DIR)chunks.c	\
 		$(SRCS_DIR)$(GRAPHICAL_COMMANDS_DIR)teams.c	\
 		$(SRCS_DIR)$(GRAPHICAL_THREAD_DIR)delete.c	\
 		$(SRCS_DIR)$(GRAPHICAL_THREAD_DIR)init.c	\

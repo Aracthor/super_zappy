@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 15:57:56 2014 
-** Last Update Thu Oct  9 17:58:38 2014 
+** Last Update Sun Oct 12 00:24:04 2014 
 *)
 
 
@@ -26,6 +26,7 @@ team_id		= integer ;
 ground_enum	= '0' | '1' | '..' | GROUNDS_NUMBER ;
 object_enum	= '0' | '1' | '..' | OBJECTS_NUMBER ;
 item_enum	= '0' | '1' | '..' | ITEMS_NUMBER ;
+item_number	= integer ;
 time_unit	= integer ;
 equipement	= item_enum ;
 
@@ -43,8 +44,8 @@ inventory	= { ' ', item_enum, ' ', number } ;
 
 (* Server to graphical clients *)
 Server to graphical clients =
-chunk_description	= "CHK ", pos_x, ' ', pos_y, '\n' ;
-case_description	= "CAS ", pos_x, ' ', pos_y, ' ', ground_enum, ' ', height, ' ', object_enum, inventory, '\n' ;
+chunk_description	= "CHK ", pos_x, ' ', pos_y, '\n', { case_description };
+case_description	= "CAS ", pos_x, ' ', pos_y, ' ', ground_enum, ' ', height, ' ', item_enum, ' ', item_number, ' ', object_enum, ' ', player_id, '\n' ;
 player_description	= "PDC ", player_id, ' ', player_name, ' ', pos_x, ' ', pos_y, ' ', team_id, ' ', equipement, inventory, '\n' ;
 player_equipement	= "PEQ ", player_id, ' ', equipement, '\n' ;
 player_taking		= "PTK ", player_id, ' ', item_enum, '\n' ;

@@ -43,9 +43,9 @@ public class Mesh extends VertexArrayObject
 	
 	public void	translate(Vector3f vector)
 	{
-		translation.x += vector.x * 0.001f;
-		translation.y += vector.y * 0.001f;
-		translation.z += vector.z * 0.001f;
+		translation.x += vector.x;
+		translation.y += vector.y;
+		translation.z += vector.z;
 	}
 	
 	public void	rotate(Vector3f vector)

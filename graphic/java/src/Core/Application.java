@@ -2,6 +2,8 @@ package Core;
 
 import org.lwjgl.input.Keyboard;
 
+import Data.DataManager;
+import Data.Map;
 import Engine.Clock;
 import Engine.GlControlPanel;
 import Engine.GlException;
@@ -25,6 +27,7 @@ public class Application implements IApplication
 	
 	private	int				selectedView;
 	private boolean			running;
+	private boolean			waitingForChunks;
 	
 	public Application(String host, String port) throws LaunchException
 	{
@@ -35,6 +38,7 @@ public class Application implements IApplication
 		this.compileShaders();
 		this.initGraphicsModes();
 		this.prepareEventsHandler();
+		waitingForChunks = false;
 	}
 	
 	private void			compileShaders()
@@ -88,7 +92,25 @@ public class Application implements IApplication
 	
 	private void	manageData()
 	{
+		Map			map;
+		
+		map = DataManager.getInstance().getMap();
+		
+		if (waitingForChunks == false)
+		{
+			if (map != null && map.isReady() == false)
+			{
+				network.askForChunks();
+				waitingForChunks = true;
+			}
+		}
+		else if (map.isReady())
+		{
+			waitingForChunks = false;
+		}
+		
 		clock.update();
+		graphics[selectedView].manageData(clock.getElapsedTime());
 	}
 	
 	private	void	handleEvents()

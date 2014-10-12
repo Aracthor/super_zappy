@@ -127,6 +127,11 @@ public class Shader implements IBindable
 		return (location);
 	}
 	
+	public void	setUniform(String name, boolean value)
+	{
+		ARBShaderObjects.glUniform1iARB(this.getUniformLocation(name), value ? 1 : 0);
+	}
+	
 	public void	setUniform(String name, float value)
 	{
 		ARBShaderObjects.glUniform1fARB(this.getUniformLocation(name), value);

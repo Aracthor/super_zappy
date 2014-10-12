@@ -5,13 +5,13 @@
 ** Login   <bonnet_v@epitech.net>
 ** 
 ** Started on  Wed May 21 12:28:26 2014 Bonnet Vivien
-** Last Update Sat Oct 11 22:53:34 2014 
+** Last Update Sun Oct 12 04:17:19 2014 
 */
 
 #version 330 core
 
 layout (location = 0) in vec3	inPosition;
-layout (location = 1) in vec4	inColor;
+layout (location = 1) in vec3	inColor;
 layout (location = 2) in vec2	inTexCoord0;
 layout (location = 3) in vec3	inNormal;
 
@@ -22,7 +22,7 @@ uniform mat4	viewMatrix;
 
 
 out vec3        position;
-out vec4	in_color;
+out vec3	in_color;
 out vec2	tex_coord;
 smooth out vec3	normal;
 

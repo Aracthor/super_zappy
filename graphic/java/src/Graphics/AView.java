@@ -20,5 +20,6 @@ public abstract class AView
 	}
 	
 	public	abstract void	select();
+	public	abstract void	manageData(long elapsedTime);
 	public	abstract void	display(long elapsedTime);
 }

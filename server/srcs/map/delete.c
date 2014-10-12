@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Thu Oct  9 18:24:26 2014 
-** Last Update Thu Oct  9 18:26:02 2014 
+** Last Update Sun Oct 12 00:17:41 2014 
 */
 
 #include "exception.h"
@@ -13,5 +13,5 @@
 
 void	map_delete(s_map* map)
 {
-  FREE(map->hooplas);
+  FREE(map->chunks);
 }

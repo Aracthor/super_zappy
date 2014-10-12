@@ -5,8 +5,12 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 19:19:52 2014 
-** Last Update Wed Oct  8 11:04:40 2014 
+** Last Update Sun Oct 12 00:10:36 2014 
 */
+
+#include <stdlib.h>
+#include <time.h>
+#include <unistd.h>
 
 #include "exception.h"
 #include "server.h"
@@ -30,6 +34,7 @@ int		main(int argc, char** argv)
   t_exception	exception;
   int		return_value;
 
+  srandom(time(NULL) * getpid());
   try (exception)
     return_value = execution(argc, argv);
   catch (exception)

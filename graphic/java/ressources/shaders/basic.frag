@@ -5,12 +5,12 @@
 ** Login   <bonnet_v@epitech.net>
 ** 
 ** Started on  Wed May 21 11:24:03 2014 Bonnet Vivien
-** Last Update Fri Oct 10 22:30:54 2014 
+** Last Update Sun Oct 12 04:17:02 2014 
 */
 
 #version 330 core
 
-in vec4		in_color;
+in vec3		in_color;
 in vec2		tex_coord;
 
 
@@ -28,9 +28,7 @@ void		main()
 
   fragColor = vec4(1.0f, 1.0f, 1.0f, 1.0f);
   if (use_color)
-    fragColor *= in_color;
+    fragColor *= vec4(in_color, 1.0f);
   if (use_texture)
     fragColor *= texture2D(texture, tex_coord);
-
-  fragColor = vec4(1.0f, 1.0f, 1.0f, 1.0f); // DEBUG
 }

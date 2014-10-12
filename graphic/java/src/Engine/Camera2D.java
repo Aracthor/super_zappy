@@ -3,7 +3,7 @@ package Engine;
 
 public class Camera2D extends ACamera
 {
-	private float	speed = 0.01f;
+	private float	speed = 0.001f;
 	
 	public Camera2D()
 	{
@@ -18,12 +18,17 @@ public class Camera2D extends ACamera
 	
 	public void	move(float x, float y)
 	{
-		x *= speed;
-		y *= speed;
+		x *= speed * -this.position.z;
+		y *= speed * -this.position.z;
 		
 		this.position.x += x;
 		this.position.y += y;
 		this.target.x += x;
 		this.target.y += y;
+	}
+	
+	public void	zoom(float zoom)
+	{
+		this.position.z *= zoom;
 	}
 }

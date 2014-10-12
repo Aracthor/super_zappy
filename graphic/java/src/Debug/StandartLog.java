@@ -2,13 +2,23 @@ package Debug;
 
 public class StandartLog implements ILog
 {
+	private	boolean	active;
+	
+	public	StandartLog()
+	{
+		active = false;
+	}
+	
 	@Override
 	public void print(String message)
 	{
-		if (message.charAt(message.length() - 1) == '\n')
+		if (active)
 		{
-			message.substring(0, message.length() - 1);
+			if (message.charAt(message.length() - 1) == '\n')
+			{
+				message.substring(0, message.length() - 1);
+			}
+			System.out.println(message);
 		}
-		System.out.println(message);
 	}
 }

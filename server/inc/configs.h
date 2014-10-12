@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 19:51:15 2014 
-** Last Update Wed Oct  8 14:00:50 2014 
+** Last Update Sun Oct 12 00:22:31 2014 
 */
 
 #ifndef CONFIGS_H_
@@ -15,8 +15,8 @@
 
 # define CONFIGS_DEFAULT_PORT	(4242)
 # define CONFIGS_DEFAULT_SPEED	(100000)
-# define CONFIGS_DEFAULT_LONGER	(16)
-# define CONFIGS_DEFAULT_LARGER	(16)
+# define CONFIGS_DEFAULT_LONGER	(4)
+# define CONFIGS_DEFAULT_LARGER	(4)
 
 # define PORT_MIN		(0x401)
 # define PORT_MAX		(0xFFFF)
