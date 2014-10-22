@@ -20,10 +20,12 @@ public abstract class ACamera
 	private		Matrix4f	projectionMatrix;
 	private		Matrix4f	viewMatrix;
 
+	/*
 	private Vector3f	axisX;
 	private Vector3f	axisY;
 	private Vector3f	axisZ;
 	private Vector3f	axisDot;
+	*/
 	
 	public	ACamera()
 	{
@@ -33,10 +35,12 @@ public abstract class ACamera
 		projectionMatrix = new Matrix4f();
 		viewMatrix = new Matrix4f();
 		
+		/*
 		axisX = new Vector3f();
 		axisY = new Vector3f();
 		axisZ = new Vector3f();
 		axisDot = new Vector3f();
+		*/
 	}
 	
 	public	ACamera(float angle, float aspectRatio, float znear, float zfar)

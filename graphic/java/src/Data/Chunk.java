@@ -37,8 +37,6 @@ public class Chunk
 	
 	public	void	setHoopla(Hoopla hoopla, int x, int y)
 	{
-		boolean		nowIsReady;
-		
 		hooplas[y][x] = hoopla;
 		if (x == SIZE - 1 && y == SIZE - 1 && ready == false)
 		{

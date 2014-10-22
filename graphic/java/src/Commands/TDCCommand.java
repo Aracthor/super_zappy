@@ -19,5 +19,4 @@ public class TDCCommand extends APreciseCommand
 		new_team = new Team(args[2]);
 		dataManager.addTeam(new_team);
 	}
-
 }

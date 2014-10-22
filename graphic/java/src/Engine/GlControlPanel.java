@@ -2,7 +2,6 @@ package Engine;
 
 import org.lwjgl.opengl.GL11;
 
-import Core.Window;
 import Engine.ACamera;
 
 public class GlControlPanel extends ShaderControlPanel

@@ -6,7 +6,7 @@ public class StandartLog implements ILog
 	
 	public	StandartLog()
 	{
-		active = false;
+		active = true;
 	}
 	
 	@Override

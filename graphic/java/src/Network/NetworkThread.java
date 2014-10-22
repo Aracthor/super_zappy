@@ -1,5 +1,7 @@
 package Network;
 
+import Debug.DebugLog;
+
 public class NetworkThread extends Thread
 {
 	private SuperZappyClient	client;
@@ -9,20 +11,19 @@ public class NetworkThread extends Thread
 	{
 		super();
 		client = new SuperZappyClient(host, port);
-		running = true;
 	}
 	
 	public void	run()
 	{
-		while (running)
-		{
-			client.recv();
-		}
+		running = true;
+		client.recv();
+		running = false;
 	}
 	
+	@Override
 	public void	interrupt()
 	{
-		running = false;
+		super.interrupt();
 		client.disconnect();
 	}
 	
@@ -34,6 +35,11 @@ public class NetworkThread extends Thread
 	
 	public boolean	isRunning()
 	{
+		if (running == false)
+		{
+			DebugLog.getInstance().err.print("Connection lost.");
+		}
+		
 		return (running);
 	}
 }

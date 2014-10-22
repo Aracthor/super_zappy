@@ -21,4 +21,24 @@ public class Hoopla
 	{
 		return (ground);
 	}
+	
+	public int		getHeight()
+	{
+		return (height);
+	}
+	
+	public EItem	getItemType()
+	{
+		return (item);
+	}
+	
+	public int		getItemsNumber()
+	{
+		return (itemNumber);
+	}
+	
+	public EObject	getObjectType()
+	{
+		return (object);
+	}
 }

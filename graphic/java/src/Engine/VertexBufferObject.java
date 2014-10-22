@@ -13,8 +13,6 @@ public class VertexBufferObject implements IBindable
 	private int		verticesNumber;
 	private boolean	useColor;
 	private boolean	useTexture;
-	private int		colorIndex;
-	private int		textureIndex;
 	
 	public	VertexBufferObject()
 	{

@@ -30,7 +30,6 @@ public class DataManager
 	
 	public void	prepare(int speed, int map_longer, int map_larger)
 	{
-		System.out.println("yolo");
 		this.speed = speed;
 		this.map = new Map(map_longer, map_larger);
 	}

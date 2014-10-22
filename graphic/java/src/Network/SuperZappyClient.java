@@ -5,6 +5,7 @@ import java.util.HashMap;
 import Commands.ACommand;
 import Commands.CASCommand;
 import Commands.CHKCommand;
+import Commands.EmptyCommand;
 import Commands.ISLCommand;
 import Commands.TDCCommand;
 import Data.DataManager;
@@ -20,12 +21,13 @@ public class SuperZappyClient extends AClient
 		super(host, port);
 		
 		commands = new HashMap<String, ACommand>();
+		commands.put("WELCOME", new EmptyCommand());
 		commands.put("ISL", new ISLCommand());
 		commands.put("TDC", new TDCCommand());
 		commands.put("CHK", new CHKCommand());
 		commands.put("CAS", new CASCommand());
 		
-		this.send("GRAPHICAL");
+		this.send("GRAPHIC");
 	}
 	
 	@Override

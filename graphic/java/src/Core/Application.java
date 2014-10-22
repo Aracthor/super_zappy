@@ -87,6 +87,10 @@ public class Application implements IApplication
 			this.manageData();
 			this.handleEvents();
 			this.display();
+			if (running)
+			{
+				running = network.isRunning();
+			}
 		}
 	}
 	
