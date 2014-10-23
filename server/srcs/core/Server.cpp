@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:42:16 2014 
-// Last Update Wed Oct 22 11:21:49 2014 
+// Last Update Wed Oct 22 13:29:51 2014 
 //
 
 #include "core/Server.hh"
@@ -18,11 +18,10 @@ Server::s_server = NULL;
 
 
 Server::Server(const Configs& configs) :
+  GameData(configs),
   Map(configs.getMapConfigs()),
   Network(configs.getPort()),
-  ThreadManager(),
-  m_teams(configs.getTeams()),
-  m_speed(configs.getSpeed())
+  ThreadManager()
 {
   s_server = this;
 }

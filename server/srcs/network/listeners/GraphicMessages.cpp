@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 11:38:46 2014 
-// Last Update Wed Oct 22 12:59:37 2014 
+// Last Update Wed Oct 22 13:54:51 2014 
 //
 
 #include "core/Server.hh"
@@ -26,7 +26,7 @@ GraphicMessages::~GraphicMessages()
 
 
 const Server*
-GraphicMessages::getServer()
+GraphicMessages::getData()
 {
   if (m_server == NULL)
     m_server = Server::accessServer();
@@ -38,7 +38,7 @@ void
 GraphicMessages::sendHooplaData(Client* client, const Hoopla& hoopla,
 				unsigned int x, unsigned int y)
 {
-  char		buffer[0x1000];
+  char	buffer[0x1000];
 
   sprintf(buffer, "CAS %d %d %d %d %d %d %d %d",
 	  x, y,
@@ -48,11 +48,20 @@ GraphicMessages::sendHooplaData(Client* client, const Hoopla& hoopla,
   *client << buffer;
 }
 
+void
+GraphicMessages::sendTeamData(Client* client, const char* team, unsigned int id)
+{
+  char	buffer[0x1000];
+
+  sprintf(buffer, "TDC %d %s", id, team);
+  *client << buffer;
+}
+
 
 bool
 GraphicMessages::sendChunkData(Client* client, char* const* args)
 {
-  const Server*	server = this->getServer();
+  const Map*	map = this->getData();
   const Chunk*	chunk;
   char		buffer[0x1000];
   unsigned int	x;
@@ -64,13 +73,13 @@ GraphicMessages::sendChunkData(Client* client, char* const* args)
   x = atoi(args[1]);
   y = atoi(args[2]);
 
-  valid = IS_GOOD_CHUNK_POS(x, y, server);
+  valid = IS_GOOD_CHUNK_POS(x, y, map);
   if (valid == false)
     LogManagerSingleton::access()->error.print("Trying to get an invalid chunk : %d/%d.",
 					       x, y);
   else
     {
-      chunk = &server->getChunk(x, y);
+      chunk = &map->getChunk(x, y);
       sprintf(buffer, "CHK %d %d", x, y);
       *client << buffer;
       for (hx = 0; hx < CHUNK_SIZE; ++hx)
@@ -85,7 +94,7 @@ GraphicMessages::sendChunkData(Client* client, char* const* args)
 bool
 GraphicMessages::sendHooplaData(Client* client, char* const* args)
 {
-  const Server*	server = this->getServer();
+  const Map*	map = this->getData();
   unsigned int	x;
   unsigned int	y;
   bool		valid;
@@ -93,15 +102,40 @@ GraphicMessages::sendHooplaData(Client* client, char* const* args)
   x = atoi(args[1]);
   y = atoi(args[2]);
 
-  valid = IS_GOOD_HOOPLA_POS(x, y, server);
+  valid = IS_GOOD_HOOPLA_POS(x, y, map);
   if (valid == false)
     LogManagerSingleton::access()->error.print("Trying to get an invalid hoopla : %d/%d.",
 					       x, y);
   else
     this->sendHooplaData(client,
-			 server->getChunk(x / CHUNK_SIZE, y / CHUNK_SIZE)
+			 map->getChunk(x / CHUNK_SIZE, y / CHUNK_SIZE)
 			 .getHoopla(x % CHUNK_SIZE, y % CHUNK_SIZE),
 			 x, y);
+
+  return (valid);
+}
+
+bool
+GraphicMessages::sendPlayerData(Client* client, char* const* args)
+{
+  (void)(client);
+  (void)(args);
+  return (true);
+}
+
+bool
+GraphicMessages::sendTeamData(Client* client, char* const* args)
+{
+  const GameData*       gameData = this->getData();
+  unsigned int		id;
+  bool			valid;
+
+  id = atoi(args[1]);
+  valid = (id >= gameData->getTeams().getNumber());
+  if (valid == false)
+    LogManagerSingleton::access()->error.print("Invalid team id %d.", id);
+  else
+    this->sendTeamData(client, gameData->getTeams().getName(id), id);
 
   return (valid);
 }

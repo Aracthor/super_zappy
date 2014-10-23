@@ -5,15 +5,17 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:20:41 2014 
-// Last Update Tue Oct 21 10:07:32 2014 
+// Last Update Wed Oct 22 13:48:26 2014 
 //
 
 #ifndef AUTHENTIFICATION_LISTENER_HH_
 # define AUTHENTIFICATION_LISTENER_HH_
 
+# include "GraphicMessages.hh"
 # include "IListener.hh"
 
-class	AuthentificationListener : public IListener
+class	AuthentificationListener : public IListener,
+				   public GraphicMessages
 {
 public:
   AuthentificationListener();

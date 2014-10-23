@@ -26,8 +26,8 @@ public class StrategicView extends AView
 	public	StrategicView()
 	{
 		super();
-		camera = new Camera2D(60.0f, 800.0f / 600.0f, 0.1f, 1000.0f);
-		camera.setPosition(new Vector3f(0.0f, 0.0f, -50.0f));
+		camera = new Camera2D();
+		camera.setPosition(new Vector3f(50.0f, 0.0f, 0.0f));
 		camera.setTarget(new Vector3f(0.0f, 0.0f, 0.0f));
 		map = new Mesh();
 		this.prepareEventsHandler();
@@ -55,13 +55,13 @@ public class StrategicView extends AView
 				hoopla = chunk.getHoopla(x, y);
 				color = hoopla.getGroundType().getColor();
 				
-				vertices[index +  0] = chunkX + x + 0;	vertices[index +  1] = chunkY + y + 0;	vertices[index +  2] = 0;
-				vertices[index +  3] = chunkX + x + 1;	vertices[index +  4] = chunkY + y + 0;	vertices[index +  5] = 0;
-				vertices[index +  6] = chunkX + x + 0;	vertices[index +  7] = chunkY + y + 1;	vertices[index +  8] = 0;
+				vertices[index +  0] = 0;	vertices[index +  1] = chunkY + y + 0;	vertices[index +  2] = chunkX + x + 0;
+				vertices[index +  3] = 0;	vertices[index +  4] = chunkY + y + 0;	vertices[index +  5] = chunkX + x + 1;
+				vertices[index +  6] = 0;	vertices[index +  7] = chunkY + y + 1;	vertices[index +  8] = chunkX + x + 0;
 
-				vertices[index +  9] = chunkX + x + 1;	vertices[index + 10] = chunkY + y + 1;	vertices[index + 11] = 0;
-				vertices[index + 12] = chunkX + x + 1;	vertices[index + 13] = chunkY + y + 0;	vertices[index + 14] = 0;
-				vertices[index + 15] = chunkX + x + 0;	vertices[index + 16] = chunkY + y + 1;	vertices[index + 17] = 0;
+				vertices[index +  9] = 0;	vertices[index + 10] = chunkY + y + 1;	vertices[index + 11] = chunkX + x + 1;
+				vertices[index + 12] = 0;	vertices[index + 13] = chunkY + y + 0;	vertices[index + 14] = chunkX + x + 1;
+				vertices[index + 15] = 0;	vertices[index + 16] = chunkY + y + 1;	vertices[index + 17] = chunkX + x + 0;
 
 				for (i = 0; i < 18; i += 3)
 				{
@@ -94,7 +94,7 @@ public class StrategicView extends AView
 		map.addVertices(vertices);
 		map.addColors(colors);
 		map.build();
-		map.translate(new Vector3f(-mapData.getLonger() / 2 * Chunk.SIZE, -mapData.getLarger() / 2 * Chunk.SIZE, 0));
+		map.translate(new Vector3f(0, -mapData.getLarger() / 2 * Chunk.SIZE, -mapData.getLonger() / 2 * Chunk.SIZE));
 	}
 	
 	public	void	manageData(long elapsedTime)

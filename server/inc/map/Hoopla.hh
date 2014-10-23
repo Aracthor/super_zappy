@@ -5,13 +5,16 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:28:24 2014 
-// Last Update Sun Oct 12 08:30:38 2014 
+// Last Update Wed Oct 22 14:49:06 2014 
 //
 
 #ifndef HOOPLA_HH_
 # define HOOPLA_HH_
 
 # define MAX_ITEMS_BY_HOOPLA	(5)
+
+# define MAX_HEIGHT		(10)
+# define MAX_MOISTURE		(10)
 
 class	Hoopla
 {
@@ -22,7 +25,7 @@ public:
     bare,
     tundra,
     taiga,
-    shrubland,
+    shurbland,
     rocky_desert,
     temperate_jungle,
     temperate_forest,
@@ -32,7 +35,7 @@ public:
     desert,
     tropical_jungle,
     tropical_forest,
-    breach,
+    beach,
     ocean,
     grounds_number
   };

@@ -30,4 +30,19 @@ public class MathsHelper
 	{
 		return (angle * 180.0f / this.PI);
 	}
+	
+	public float	cos(float angle)
+	{
+		return ((float)Math.cos((double)this.toRadians(angle)));
+	}
+	
+	public float	sin(float angle)
+	{
+		return ((float)Math.sin((double)this.toRadians(angle)));
+	}
+	
+	public float	tan(float angle)
+	{
+		return ((float)Math.tan((double)this.toRadians(angle)));
+	}
 }

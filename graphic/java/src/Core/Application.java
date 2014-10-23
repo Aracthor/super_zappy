@@ -9,6 +9,8 @@ import Engine.GlControlPanel;
 import Engine.GlException;
 import Engine.ShaderControlPanel;
 import Events.EventsHandler;
+import Events.IncrementListener;
+import Events.IncrementableEnum;
 import Events.QuitListener;
 import Exceptions.ExitException;
 import Exceptions.LaunchException;
@@ -25,9 +27,10 @@ public class Application implements IApplication
 	private EventsHandler	eventsHandler;
 	private	AView[]			graphics;
 	
-	private	int				selectedView;
-	private boolean			running;
-	private boolean			waitingForChunks;
+	private	IncrementableEnum	selectedView;
+	private int					lastView;
+	private boolean				running;
+	private boolean				waitingForChunks;
 	
 	public Application(String host, String port) throws LaunchException
 	{
@@ -63,8 +66,8 @@ public class Application implements IApplication
 		graphics[0] = new StrategicView();
 		graphics[1] = new ReliefView();
 
-		selectedView = 0;
-		graphics[selectedView].select();
+		selectedView = new IncrementableEnum(graphics.length);
+		graphics[selectedView.getId()].select();
 
 	}
 	
@@ -75,6 +78,7 @@ public class Application implements IApplication
 		eventsHandler.setCloseEvent(new QuitListener());
 		
 		eventsHandler.addKeyboardEvent(Keyboard.KEY_ESCAPE, new QuitListener());
+		eventsHandler.addKeyboardEvent(Keyboard.KEY_F4, new IncrementListener(selectedView));
 	}
 
 
@@ -114,7 +118,12 @@ public class Application implements IApplication
 		}
 		
 		clock.update();
-		graphics[selectedView].manageData(clock.getElapsedTime());
+		if (lastView != selectedView.getId())
+		{
+			graphics[selectedView.getId()].select();
+		}
+		graphics[selectedView.getId()].manageData(clock.getElapsedTime());
+		lastView = selectedView.getId();
 	}
 	
 	private	void	handleEvents()
@@ -122,13 +131,13 @@ public class Application implements IApplication
 		running = eventsHandler.listen();
 		if (running)
 		{
-			graphics[selectedView].handleEvents(clock.getElapsedTime());
+			graphics[selectedView.getId()].handleEvents(clock.getElapsedTime());
 		}
 	}
 	
 	private void	display()
 	{
-		graphics[selectedView].display(clock.getElapsedTime());
+		graphics[selectedView.getId()].display(clock.getElapsedTime());
 		window.display();
 	}
 	

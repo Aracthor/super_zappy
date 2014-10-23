@@ -7,7 +7,7 @@ public class Camera2D extends ACamera
 	
 	public Camera2D()
 	{
-		super();
+		super(60.0f, 800.0f / 600.0f, 0.1f, 1000.0f);
 	}
 
 	public Camera2D(float angle, float aspectRatio, float znear, float zfar)
@@ -18,17 +18,17 @@ public class Camera2D extends ACamera
 	
 	public void	move(float x, float y)
 	{
-		x *= speed * -this.position.z;
-		y *= speed * -this.position.z;
+		x *= speed * -this.position.x;
+		y *= speed * -this.position.x;
 		
-		this.position.x += x;
-		this.position.y += y;
-		this.target.x += x;
-		this.target.y += y;
+		this.position.y += x;
+		this.position.z += y;
+		this.target.y += x;
+		this.target.z += y;
 	}
 	
 	public void	zoom(float zoom)
 	{
-		this.position.z *= zoom;
+		this.position.x *= zoom;
 	}
 }

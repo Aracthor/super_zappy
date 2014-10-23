@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Wed Oct 22 12:22:03 2014 
+## Last Update Wed Oct 22 14:37:51 2014 
 ##
 
 CC=		g++
@@ -34,6 +34,7 @@ LISTENERS_DIR=	$(NETWORK_DIR)listeners/
 NAME=		server
 
 SRCS=		$(SRCS_DIR)$(ABSTRACT_DIR)Random.cpp			\
+		$(SRCS_DIR)$(CORE_DIR)GameData.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)Server.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)SingletonManager.cpp		\
 		$(SRCS_DIR)$(DEBUG_DIR)Log.cpp				\
@@ -50,7 +51,9 @@ SRCS=		$(SRCS_DIR)$(ABSTRACT_DIR)Random.cpp			\
 		$(SRCS_DIR)$(LISTENERS_DIR)GraphicListener.cpp		\
 		$(SRCS_DIR)$(LISTENERS_DIR)GraphicMessages.cpp		\
 		$(SRCS_DIR)$(LISTENERS_DIR)IAListener.cpp		\
+		$(SRCS_DIR)$(MAP_DIR)ATerraformer.cpp			\
 		$(SRCS_DIR)$(MAP_DIR)Chunk.cpp				\
+		$(SRCS_DIR)$(MAP_DIR)GroundGenerator.cpp		\
 		$(SRCS_DIR)$(MAP_DIR)Hoopla.cpp				\
 		$(SRCS_DIR)$(MAP_DIR)Map.cpp				\
 		$(SRCS_DIR)$(MAP_DIR)Terraformer.cpp			\

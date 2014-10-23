@@ -20,12 +20,12 @@ public abstract class ACamera
 	private		Matrix4f	projectionMatrix;
 	private		Matrix4f	viewMatrix;
 
-	/*
+	
 	private Vector3f	axisX;
 	private Vector3f	axisY;
 	private Vector3f	axisZ;
 	private Vector3f	axisDot;
-	*/
+	
 	
 	public	ACamera()
 	{
@@ -35,12 +35,12 @@ public abstract class ACamera
 		projectionMatrix = new Matrix4f();
 		viewMatrix = new Matrix4f();
 		
-		/*
+		
 		axisX = new Vector3f();
 		axisY = new Vector3f();
 		axisZ = new Vector3f();
 		axisDot = new Vector3f();
-		*/
+		
 	}
 	
 	public	ACamera(float angle, float aspectRatio, float znear, float zfar)
@@ -52,9 +52,19 @@ public abstract class ACamera
 		this.zfar = zfar;
 	}
 	
+	public	void	setPosition(float x, float y, float z)
+	{
+		this.position.set(x, y, z);
+	}
+	
 	public	void	setPosition(Vector3f position)
 	{
 		this.position = position;
+	}
+	
+	public	void	setTarget(float x, float y, float z)
+	{
+		this.target.set(x, y, z);
 	}
 	
 	public	void	setTarget(Vector3f target)
@@ -76,8 +86,7 @@ public abstract class ACamera
 	
 	private void	createViewMatrix()
 	{
-		/*
-		Vector3f.sub(target, position, axisZ);
+		Vector3f.sub(position, target, axisZ);
 		axisZ.normalise();
 		Vector3f.cross(up, axisZ, axisX);
 		axisX.normalise();
@@ -91,9 +100,9 @@ public abstract class ACamera
 		viewMatrix.m10 = axisX.y;	viewMatrix.m11 = axisY.y;	viewMatrix.m12 = axisZ.y;	viewMatrix.m13 = 0.0f;
 		viewMatrix.m20 = axisX.z;	viewMatrix.m21 = axisY.z;	viewMatrix.m22 = axisZ.z;	viewMatrix.m23 = 0.0f;
 		viewMatrix.m30 = axisDot.x;	viewMatrix.m31 = axisDot.y;	viewMatrix.m32 = axisDot.z;	viewMatrix.m33 = 1.0f;
-		*/
-		viewMatrix.setIdentity();
-		viewMatrix.translate(position);
+		
+//		viewMatrix.setIdentity();
+//		viewMatrix.translate(position);
 	}
 	
 	public void	perspective()

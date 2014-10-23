@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:27:00 2014 
-// Last Update Wed Oct 22 12:40:18 2014 
+// Last Update Wed Oct 22 13:07:41 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -17,8 +17,8 @@ GraphicListener::GraphicListener()
 {
   this->initCommand( 0, "CHK", 3, &GraphicMessages::sendChunkData);
   this->initCommand( 1, "CAS", 3, &GraphicMessages::sendHooplaData);
-  this->initCommand( 2, "PDC", 2, NULL);
-  this->initCommand( 3, "TDC", 2, NULL);
+  this->initCommand( 2, "PDC", 2, &GraphicMessages::sendPlayerData);
+  this->initCommand( 3, "TDC", 2, &GraphicMessages::sendTeamData);
 }
 
 GraphicListener::~GraphicListener()

@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 
 import Debug.DebugLog;
+import Exceptions.ConnectionException;
 import Exceptions.ExitException;
 import Exceptions.LaunchException;
 
@@ -31,7 +32,7 @@ public abstract class AClient
 		}
 		catch (Exception exception)
 		{
-			throw new LaunchException("Cannot connect to " + host + ":" + port + " : " + exception.getMessage());
+			throw new ConnectionException();
 		}
 	}
 	

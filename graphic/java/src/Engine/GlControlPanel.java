@@ -35,6 +35,14 @@ public class GlControlPanel extends ShaderControlPanel
 	
 	public void	setDepthMask(boolean mask)
 	{
+		if (mask == true)
+		{
+			GL11.glEnable(GL11.GL_DEPTH_TEST);
+		}
+		else
+		{
+			GL11.glDisable(GL11.GL_DEPTH_TEST);
+		}
 		this.depthMask = mask;
 	}
 	
