@@ -52,6 +52,11 @@ public abstract class ACamera
 		this.zfar = zfar;
 	}
 	
+	public	void	setPosition(float x, float y)
+	{
+		this.position.set(x, y);
+	}
+	
 	public	void	setPosition(float x, float y, float z)
 	{
 		this.position.set(x, y, z);

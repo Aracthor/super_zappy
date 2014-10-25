@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 10:12:16 2014 
-// Last Update Mon Oct 20 13:38:42 2014 
+// Last Update Fri Oct 24 17:05:30 2014 
 //
 
 #ifndef ALOG_HH_
@@ -34,9 +34,10 @@ private:
   FILE*		m_stream;
   EColor	m_color;
   bool		m_bold;
+  bool		m_active;
 
 public:
-  Log(FILE* stream, EColor color, bool bold);
+  Log(FILE* stream, EColor color, bool bold, bool active);
   virtual ~Log();
 
 public:

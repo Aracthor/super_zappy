@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:28:24 2014 
-// Last Update Wed Oct 22 14:49:06 2014 
+// Last Update Fri Oct 24 09:25:20 2014 
 //
 
 #ifndef HOOPLA_HH_
@@ -13,8 +13,13 @@
 
 # define MAX_ITEMS_BY_HOOPLA	(5)
 
-# define MAX_HEIGHT		(10)
-# define MAX_MOISTURE		(10)
+# define MAX_HEIGHT		(9)
+# define MIN_HEIGHT		(0)
+# define MAX_MOISTURE		(9)
+# define MIN_MOISTURE		(0)
+
+# define LOW_GROUND		(Hoopla::ocean)
+# define HIGH_GROUND		(Hoopla::snow)
 
 class	Hoopla
 {
@@ -56,7 +61,8 @@ public:
 
 public:
   EGround	ground;
-  unsigned int	height;
+  int		moisture;
+  int		height;
   EItem		item;
   unsigned int	itemNumber;
   EObject	object;

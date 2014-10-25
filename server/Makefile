@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Wed Oct 22 14:37:51 2014 
+## Last Update Fri Oct 24 17:21:11 2014 
 ##
 
 CC=		g++
@@ -29,6 +29,7 @@ MAP_DIR=	map/
 NETWORK_DIR=	network/
 THREADING_DIR=	threading/
 
+GENERATORS_DIR=	$(MAP_DIR)generators/
 LISTENERS_DIR=	$(NETWORK_DIR)listeners/
 
 NAME=		server
@@ -44,6 +45,13 @@ SRCS=		$(SRCS_DIR)$(ABSTRACT_DIR)Random.cpp			\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)SyscallException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ThreadingException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ZappyException.cpp		\
+		$(SRCS_DIR)$(GENERATORS_DIR)ATerraformer.cpp		\
+		$(SRCS_DIR)$(GENERATORS_DIR)GroundGenerator.cpp		\
+		$(SRCS_DIR)$(GENERATORS_DIR)HeightMap.cpp		\
+		$(SRCS_DIR)$(GENERATORS_DIR)MountainMap.cpp		\
+		$(SRCS_DIR)$(GENERATORS_DIR)PerlinMap.cpp		\
+		$(SRCS_DIR)$(GENERATORS_DIR)RandomMap.cpp		\
+		$(SRCS_DIR)$(GENERATORS_DIR)Terraformer.cpp		\
 		$(SRCS_DIR)$(INIT_DIR)Configs.cpp			\
 		$(SRCS_DIR)$(INIT_DIR)Teams.cpp				\
 		$(SRCS_DIR)$(LISTENERS_DIR)AuthentificationListener.cpp	\
@@ -51,12 +59,9 @@ SRCS=		$(SRCS_DIR)$(ABSTRACT_DIR)Random.cpp			\
 		$(SRCS_DIR)$(LISTENERS_DIR)GraphicListener.cpp		\
 		$(SRCS_DIR)$(LISTENERS_DIR)GraphicMessages.cpp		\
 		$(SRCS_DIR)$(LISTENERS_DIR)IAListener.cpp		\
-		$(SRCS_DIR)$(MAP_DIR)ATerraformer.cpp			\
 		$(SRCS_DIR)$(MAP_DIR)Chunk.cpp				\
-		$(SRCS_DIR)$(MAP_DIR)GroundGenerator.cpp		\
 		$(SRCS_DIR)$(MAP_DIR)Hoopla.cpp				\
 		$(SRCS_DIR)$(MAP_DIR)Map.cpp				\
-		$(SRCS_DIR)$(MAP_DIR)Terraformer.cpp			\
 		$(SRCS_DIR)$(NETWORK_DIR)Client.cpp			\
 		$(SRCS_DIR)$(NETWORK_DIR)ListenThread.cpp		\
 		$(SRCS_DIR)$(NETWORK_DIR)Network.cpp			\

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 17:07:49 2014 
-// Last Update Wed Oct 22 10:41:01 2014 
+// Last Update Fri Oct 24 17:00:55 2014 
 //
 
 #ifndef CLIENT_HH_
@@ -14,7 +14,7 @@
 # include "containers/Buffer.hh"
 # include "Socket.hh"
 
-# define CLIENT_BUFFER_SIZE	(0x20000)
+# define CLIENT_BUFFER_SIZE	(0x100000)
 
 class		Client
 {

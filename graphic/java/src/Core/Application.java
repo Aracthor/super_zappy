@@ -86,6 +86,7 @@ public class Application implements IApplication
 	{
 		network.start();
 		running = true;
+		
 		while (running)
 		{
 			this.manageData();

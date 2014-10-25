@@ -12,8 +12,8 @@ public class HelicopterCamera extends AAngledCamera
 		super(70.0f, 800.0f / 600.0f, 0.1f, 1000.0f);
 		angleX = 0.0f;
 		angleY = -45.0f;
-		sensitivity = 0.1f;
-		speed = 0.01f;
+		sensitivity = 0.3f;
+		speed = 0.05f;
 	}
 	
 	

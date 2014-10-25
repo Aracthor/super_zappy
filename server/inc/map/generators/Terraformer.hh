@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 08:10:48 2014 
-// Last Update Wed Oct 22 14:22:12 2014 
+// Last Update Fri Oct 24 17:16:34 2014 
 //
 
 #ifndef TERRAFORMER_HH_
@@ -20,7 +20,7 @@ public:
   ~Terraformer();
 
 public:
-  void	createMap(unsigned long seed = time(NULL));
+  void	createMap();
 };
 
 #endif // !TERRAFORMER_HH_

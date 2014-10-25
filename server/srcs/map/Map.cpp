@@ -5,12 +5,12 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:48:32 2014 
-// Last Update Wed Oct 22 14:16:18 2014 
+// Last Update Fri Oct 24 10:09:37 2014 
 //
 
 #include "abstractions/allocs.hh"
 #include "map/Map.hh"
-#include "map/Terraformer.hh"
+#include "map/generators/Terraformer.hh"
 
 Map::Map(const Configs::Map& configs) :
   m_longer(configs.longer),

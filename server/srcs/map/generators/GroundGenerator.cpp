@@ -5,10 +5,10 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 14:29:09 2014 
-// Last Update Wed Oct 22 14:49:28 2014 
+// Last Update Fri Oct 24 10:09:07 2014 
 //
 
-#include "map/GroundGenerator.hh"
+#include "map/generators/GroundGenerator.hh"
 
 GroundGenerator::GroundGenerator()
 {
@@ -17,6 +17,56 @@ GroundGenerator::GroundGenerator()
 
 GroundGenerator::~GroundGenerator()
 {
+}
+
+
+int
+GroundGenerator::getHeightLevel(int height) const
+{
+  return (height / 10);
+}
+
+int
+GroundGenerator::getMoistureLevel(int moisture) const
+{
+  moisture /= 10;
+  if (moisture > MAX_MOISTURE)
+    moisture = MAX_MOISTURE;
+  else if (moisture < MIN_MOISTURE)
+    moisture = MIN_MOISTURE;
+
+  return (moisture);
+}
+
+Hoopla::EGround
+GroundGenerator::getGround(int heightLevel, int moistureLevel) const
+{
+  Hoopla::EGround	ground;
+
+  if (heightLevel < MIN_HEIGHT)
+    ground = LOW_GROUND;
+  else if (heightLevel > MAX_HEIGHT)
+    ground = HIGH_GROUND;
+  else
+    ground = m_grounds[heightLevel][moistureLevel];
+
+  return (ground);
+}
+
+
+void
+GroundGenerator::setGrounds(Hoopla* hooplas, unsigned int number) const
+{
+  unsigned int	i;
+  int		heightLevel;
+  int		moistureLevel;
+
+  for (i = 0; i < number; ++i)
+    {
+      heightLevel = this->getHeightLevel(hooplas[i].height);
+      moistureLevel = this->getMoistureLevel(hooplas[i].moisture);
+      hooplas[i].ground = this->getGround(heightLevel, moistureLevel);
+    }
 }
 
 

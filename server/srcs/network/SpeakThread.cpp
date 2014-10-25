@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 21 10:59:36 2014 
-// Last Update Tue Oct 21 11:56:55 2014 
+// Last Update Fri Oct 24 17:58:52 2014 
 //
 
 #include "core/Server.hh"
@@ -69,6 +69,6 @@ SpeakThread::loopCycle()
 void
 SpeakThread::interrupt()
 {
-  m_server->getSpeakRing().signal();
   AZappyThread::interrupt();
+  m_server->getSpeakRing().signal();
 }

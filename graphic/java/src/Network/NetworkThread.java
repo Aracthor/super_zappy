@@ -16,8 +16,18 @@ public class NetworkThread extends Thread
 	public void	run()
 	{
 		running = true;
-		client.recv();
-		running = false;
+		
+		try
+		{
+			client.recv();
+		}
+		catch (Exception exception)
+		{
+		}
+		finally
+		{
+			running = false;
+		}
 	}
 	
 	@Override

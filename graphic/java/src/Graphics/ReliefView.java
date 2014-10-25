@@ -41,8 +41,8 @@ public class ReliefView extends AView
 	{
 		Hoopla		hoopla;
 		Vector3f	color;
+		float		height;
 		int			x, y;
-		int			i;
 		
 		chunkX *= Chunk.SIZE;
 		chunkY *= Chunk.SIZE;
@@ -53,21 +53,57 @@ public class ReliefView extends AView
 			{
 				hoopla = chunk.getHoopla(x, y);
 				color = hoopla.getGroundType().getColor();
-				
-				vertices[index +  0] = chunkX + x + 0;	vertices[index +  1] = chunkY + y + 0;	vertices[index +  2] = hoopla.getHeight() / 10.0f;
-				vertices[index +  3] = chunkX + x + 1;	vertices[index +  4] = chunkY + y + 0;	vertices[index +  5] = hoopla.getHeight() / 10.0f;
-				vertices[index +  6] = chunkX + x + 0;	vertices[index +  7] = chunkY + y + 1;	vertices[index +  8] = hoopla.getHeight() / 10.0f;
-
-				vertices[index +  9] = chunkX + x + 1;	vertices[index + 10] = chunkY + y + 1;	vertices[index + 11] = hoopla.getHeight() / 10.0f;
-				vertices[index + 12] = chunkX + x + 1;	vertices[index + 13] = chunkY + y + 0;	vertices[index + 14] = hoopla.getHeight() / 10.0f;
-				vertices[index + 15] = chunkX + x + 0;	vertices[index + 16] = chunkY + y + 1;	vertices[index + 17] = hoopla.getHeight() / 10.0f;
-
-				for (i = 0; i < 18; i += 3)
+				height = hoopla.getHeight() / 10.0f;
+				if (height < 0.0f)
 				{
-					colors[index +  i + 0] = color.x;	colors[index + i + 1] = color.y;	colors[index + i + 2] = color.z;
+					height = 0.0f;
 				}
 				
-				index += 18;
+				vertices[index +  0] = chunkX + x;
+				vertices[index +  1] = chunkY + y;
+				vertices[index +  2] = height;
+
+				colors[index + 0] = color.x;
+				colors[index + 1] = color.y;
+				colors[index + 2] = color.z;
+				
+				index += 3;
+			}
+		}
+	}
+	
+	
+	private void	addChunkToIndices(int[] indices, Chunk chunk, int index, int chunkx, int chunky, int longer, int larger)
+	{
+		int			x, y;
+		
+		for (x = 0; x < Chunk.SIZE; ++x)
+		{
+			for (y = 0; y < Chunk.SIZE; ++y)
+			{
+				if ((chunkx != longer - 1 || x != Chunk.SIZE - 1) && (y != Chunk.SIZE - 1))
+				{
+					indices[index + 0] = 0 + index / 6;
+					indices[index + 1] = 1 + index / 6;
+					indices[index + 2] = Chunk.SIZE + index / 6;
+					indices[index + 3] = Chunk.SIZE + 1 + index / 6;
+					indices[index + 4] = 1 + index / 6;
+					indices[index + 5] = Chunk.SIZE + index / 6;
+				}
+				else if (chunkx != longer - 1 || x != Chunk.SIZE - 1)
+				{
+					/*
+					int toAdd = -Chunk.SIZE * Chunk.SIZE * larger - Chunk.SIZE;
+					indices[index + 0] = 0 + index / 6;
+					indices[index + 1] = 1 + index / 6;
+					indices[index + 2] = 0 + index / 6 + toAdd;
+					indices[index + 3] = 1 + index / 6 + toAdd;
+					indices[index + 4] = 1 + index / 6;
+					indices[index + 5] = 0 + index / 6 + toAdd;
+					*/					
+				}
+				
+				index += 6;
 			}
 		}
 	}
@@ -76,22 +112,28 @@ public class ReliefView extends AView
 	{
 		float		vertices[];
 		float		colors[];
+		int			indices[];
 		int			x, y;
-		int			index;
+		int			verticesIndex;
+		int			indicesIndex;
 		
-		vertices = new float[mapData.getChunksNumber() * Chunk.SIZE * Chunk.SIZE * 6 * 3];
-		colors = new float[mapData.getChunksNumber() * Chunk.SIZE * Chunk.SIZE * 6 * 3];
+		vertices = new float[mapData.getChunksNumber() * Chunk.SIZE * Chunk.SIZE * 3];
+		colors = new float[mapData.getChunksNumber() * Chunk.SIZE * Chunk.SIZE * 3];
+		indices = new int[mapData.getChunksNumber() * Chunk.SIZE * Chunk.SIZE * 6];
 		for (y = 0; y < mapData.getLarger(); ++y)
 		{
 			for (x = 0; x < mapData.getLonger(); ++x)
 			{
-				index = ((y * mapData.getLonger() + x) * Chunk.SIZE * Chunk.SIZE) * 6 * 3;
-				this.addChunkToVertices(vertices, colors, mapData.getChunk(x, y), index, x, y);
+				verticesIndex = ((y * mapData.getLonger() + x) * Chunk.SIZE * Chunk.SIZE) * 3;
+				indicesIndex = ((y * mapData.getLonger() + x) * Chunk.SIZE * Chunk.SIZE) * 6;
+				this.addChunkToVertices(vertices, colors, mapData.getChunk(x, y), verticesIndex, x, y);
+				this.addChunkToIndices(indices, mapData.getChunk(x, y), indicesIndex, x, y, mapData.getLonger(), mapData.getLarger());
 			}
 		}
 		
 		map.addVertices(vertices);
 		map.addColors(colors);
+		map.addElements(indices);
 		map.build();
 	}
 		
@@ -102,6 +144,7 @@ public class ReliefView extends AView
 		if (mapData != null && mapData.isReady() && map.isEmpty())
 		{
 			this.prepareMapMesh(mapData);
+			camera.setPosition(mapData.getLonger() / 2 * Chunk.SIZE, mapData.getLarger() / 2 * Chunk.SIZE);
 		}
 	}
 	

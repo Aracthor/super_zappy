@@ -6,6 +6,7 @@ public class VertexArrayObject implements IBindable
 {
 	private	int					id;
 	private float[]				data;
+	private int[]				elements;
 	private VertexBufferObject	vbo;
 	private int					colorIndex;
 	private int					textureIndex;
@@ -13,6 +14,7 @@ public class VertexArrayObject implements IBindable
 	public VertexArrayObject()
 	{
 		id = GL30.glGenVertexArrays();
+		elements = null;
 	}
 	
 	public boolean	isEmpty()
@@ -47,6 +49,11 @@ public class VertexArrayObject implements IBindable
 		System.arraycopy(colors, 0, data, oldData.length, colors.length);
 	}
 	
+	public void	addElements(int[] elements)
+	{
+		this.elements = elements;
+	}
+	
 	public void	build()
 	{
 		boolean	useColor;
@@ -57,8 +64,12 @@ public class VertexArrayObject implements IBindable
 		
 		this.bind();
 		{
-			vbo = new VertexBufferObject();
+			vbo = new VertexBufferObject((elements != null));
 			vbo.setData(data, useColor, useTexture, colorIndex, textureIndex);
+			if (elements != null)
+			{
+				vbo.setElements(elements);
+			}
 		}
 		this.unbind();
 	}

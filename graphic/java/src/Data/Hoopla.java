@@ -1,5 +1,7 @@
 package Data;
 
+import Exceptions.HooplaException;
+
 public class Hoopla
 {
 	private EGround	ground;
@@ -15,6 +17,11 @@ public class Hoopla
 		this.item = EItem.getFromId(item_id);
 		this.itemNumber = itemNumber;
 		this.object = EObject.getFromId(object_id);
+		
+		if (this.ground == null || this.item == null || this.object == null)
+		{
+			throw HooplaException.create(this);
+		}
 	}
 	
 	public EGround	getGroundType()

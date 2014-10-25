@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:42:16 2014 
-// Last Update Wed Oct 22 13:29:51 2014 
+// Last Update Fri Oct 24 09:31:50 2014 
 //
 
 #include "core/Server.hh"
@@ -18,6 +18,7 @@ Server::s_server = NULL;
 
 
 Server::Server(const Configs& configs) :
+  SingletonManager(),
   GameData(configs),
   Map(configs.getMapConfigs()),
   Network(configs.getPort()),

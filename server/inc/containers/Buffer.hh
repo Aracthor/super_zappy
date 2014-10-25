@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:33:16 2014 
-// Last Update Wed Oct 22 10:37:25 2014 
+// Last Update Fri Oct 24 16:59:38 2014 
 //
 
 #ifndef BUFFER_HH_
@@ -15,12 +15,14 @@ template <unsigned int SIZE>
 class		Buffer
 {
 private:
-  char		m_data[SIZE];
+  char*		m_data;
   unsigned int	m_size;
+  mutable bool	m_copy;
 
 public:
   Buffer();
   Buffer(const char* data);
+  Buffer(const Buffer<SIZE>& copy);
   ~Buffer();
 
 public:
@@ -38,6 +40,9 @@ public:
   inline const char*	getData() const;
   inline char*		getData();
   inline char*		getEnd();
+
+public:
+  Buffer<SIZE>&		operator=(const Buffer<SIZE>& copy);
 };
 
 # include "Buffer.hpp"

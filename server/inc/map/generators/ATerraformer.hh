@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 14:16:39 2014 
-// Last Update Wed Oct 22 14:31:19 2014 
+// Last Update Fri Oct 24 17:16:21 2014 
 //
 
 #ifndef ATERRAFORMER_HH_
@@ -14,8 +14,6 @@
 # include "GroundGenerator.hh"
 # include "init/Configs.hh"
 
-# include <ctime>
-
 class	ATerraformer : public GroundGenerator
 {
 protected:
@@ -23,13 +21,14 @@ protected:
 
 protected:
   Hoopla*	m_hooplas;
+  unsigned int	m_hooplasNumber;
 
 public:
   ATerraformer(const Configs::Map& configs);
   virtual ~ATerraformer();
 
 public:
-  virtual void	createMap(unsigned long seed = time(NULL)) = 0;
+  virtual void	createMap() = 0;
 
 public:
   inline const Hoopla&	getHoopla(unsigned int x, unsigned int y) const;

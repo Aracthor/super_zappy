@@ -5,13 +5,17 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:27:44 2014 
-// Last Update Sun Oct 12 08:15:07 2014 
+// Last Update Fri Oct 24 17:17:17 2014 
 //
 
 #include <iostream>
 
 #include "core/Server.hh"
 #include "exceptions/ConfigsException.hh"
+
+#include <cstdlib>
+#include <ctime>
+#include <unistd.h>
 
 static void	print_usage(char* name)
 {
@@ -20,7 +24,7 @@ static void	print_usage(char* name)
 	    << "\t[-y larger]" << std::endl
 	    << "\t[-p port]" << std::endl
 	    << "\t[-s speed]" << std::endl
-	    << "\t-n team1 team2 {teamn}" << std::endl;
+	    << "\t-n team1 team2 {teams}" << std::endl;
 }
 
 int		main(int argc, char** argv)
@@ -28,6 +32,8 @@ int		main(int argc, char** argv)
   Configs	configs;
   Server*	server;
   int		return_value;
+
+  srandom(time(NULL) * getpid());
 
   try
     {

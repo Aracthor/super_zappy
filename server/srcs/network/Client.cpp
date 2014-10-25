@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 14 13:07:56 2014 
-// Last Update Wed Oct 22 10:39:00 2014 
+// Last Update Fri Oct 24 16:51:02 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -30,8 +30,8 @@ Client::Client(const Socket& serverSocket) :
 
 Client::Client(const Client& copy) :
   m_socket(copy.m_socket),
-  m_input(),
-  m_output(WELCOME_MESSAGE),
+  m_input(copy.m_input),
+  m_output(copy.m_output),
   m_isPlayer(copy.m_isPlayer),
   m_isGraphic(copy.m_isGraphic),
   m_endIminent(false)
