@@ -16,5 +16,6 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/home/aracthor/programs/tests/lwgl/libs/lwjgl-2.9.1/jar"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/aracthor/programs/projects/hub/super_zappy/graphic/java/libs/PNGDecoder/PNGDecoder.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

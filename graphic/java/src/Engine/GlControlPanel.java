@@ -2,7 +2,7 @@ package Engine;
 
 import org.lwjgl.opengl.GL11;
 
-import Engine.ACamera;
+import Engine.Camera.ACamera;
 
 public class GlControlPanel extends ShaderControlPanel
 {
@@ -44,6 +44,23 @@ public class GlControlPanel extends ShaderControlPanel
 			GL11.glDisable(GL11.GL_DEPTH_TEST);
 		}
 		this.depthMask = mask;
+	}
+	
+	public void	setTexture2D(boolean texture2D)
+	{
+		if (texture2D == true)
+		{
+			GL11.glEnable(GL11.GL_TEXTURE_2D);
+		}
+		else
+		{
+			GL11.glDisable(GL11.GL_TEXTURE_2D);
+		}
+	}
+	
+	public void	setPolygonMode(int mode)
+	{
+		GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, mode);
 	}
 	
 	public void	initFrame(ACamera camera)

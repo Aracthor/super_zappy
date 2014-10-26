@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 14:31:07 2014 
-// Last Update Fri Oct 24 10:09:22 2014 
+// Last Update Sun Oct 26 01:18:12 2014 
 //
 
 #ifndef GROUND_GENERATOR_HH_
@@ -13,7 +13,7 @@
 
 # include "map/Hoopla.hh"
 
-class	GroundGenerator
+class			GroundGenerator
 {
 private:
   Hoopla::EGround	m_grounds[MAX_HEIGHT + 1][MAX_MOISTURE + 1];

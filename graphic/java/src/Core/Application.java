@@ -6,17 +6,18 @@ import Data.DataManager;
 import Data.Map;
 import Engine.Clock;
 import Engine.GlControlPanel;
-import Engine.GlException;
 import Engine.ShaderControlPanel;
 import Events.EventsHandler;
 import Events.IncrementListener;
 import Events.IncrementableEnum;
 import Events.QuitListener;
 import Exceptions.ExitException;
+import Exceptions.GlException;
 import Exceptions.LaunchException;
 import Graphics.AView;
-import Graphics.ReliefView;
-import Graphics.StrategicView;
+import Graphics.GraphicWarehouse;
+import Graphics.Relief.ReliefView;
+import Graphics.Strategic.StrategicView;
 import Network.NetworkThread;
 
 public class Application implements IApplication
@@ -30,7 +31,7 @@ public class Application implements IApplication
 	private	IncrementableEnum	selectedView;
 	private int					lastView;
 	private boolean				running;
-	private boolean				waitingForChunks;
+	private boolean				mapReceived;
 	
 	public Application(String host, String port) throws LaunchException
 	{
@@ -38,10 +39,11 @@ public class Application implements IApplication
 		network = new NetworkThread(host, port);
 		window = new Window();
 		window.open();
+		GraphicWarehouse.createWarehouse();
 		this.compileShaders();
 		this.initGraphicsModes();
 		this.prepareEventsHandler();
-		waitingForChunks = false;
+		mapReceived = false;
 	}
 	
 	private void			compileShaders()
@@ -99,24 +101,26 @@ public class Application implements IApplication
 		}
 	}
 	
-	private void	manageData()
+	private void	checkMapStatus()
 	{
 		Map			map;
+		int			i;
 		
 		map = DataManager.getInstance().getMap();
 		
-		if (waitingForChunks == false)
+		if (map != null && mapReceived == false)
 		{
-			if (map != null && map.isReady() == false)
+			for (i = 0; i < AView.VIEWS_NUMBER; ++i)
 			{
-				network.askForChunks();
-				waitingForChunks = true;
+				graphics[i].initData(map.getLonger(), map.getLarger());
 			}
+			mapReceived = true;
 		}
-		else if (map.isReady())
-		{
-			waitingForChunks = false;
-		}
+	}
+	
+	private void	manageData()
+	{
+		this.checkMapStatus();
 		
 		clock.update();
 		if (lastView != selectedView.getId())

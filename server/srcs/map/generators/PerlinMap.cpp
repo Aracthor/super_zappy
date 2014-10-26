@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 24 17:14:09 2014 
-// Last Update Fri Oct 24 17:56:52 2014 
+// Last Update Sat Oct 25 21:39:54 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -39,7 +39,7 @@ PerlinMap::randomiseNumbers()
   unsigned int	i;
 
   for (i = 0; i < m_maxLonger * m_maxLarger; ++i)
-    m_numbers[i] = random() % 100 - 50;
+    m_numbers[i] = random() % (PERLIN_AMPLITUDE * 2) - PERLIN_AMPLITUDE;
 }
 
 
@@ -103,5 +103,5 @@ PerlinMap::calcHeight(unsigned int x, unsigned int y)
       power *= 2;
     }
 
-  return ((int)sum);
+  return ((int)sum + 10);
 }

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 08:21:23 2014 
-// Last Update Fri Oct 24 17:34:22 2014 
+// Last Update Sun Oct 26 01:22:13 2014 
 //
 
 #include "abstractions/Random.hh"
@@ -47,4 +47,5 @@ Terraformer::createMap()
   delete (perlin);
 
   this->setGrounds(m_hooplas, m_hooplasNumber);
+  this->setObjects(m_hooplas, m_hooplasNumber);
 }

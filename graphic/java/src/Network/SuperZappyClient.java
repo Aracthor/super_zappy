@@ -8,8 +8,6 @@ import Commands.CHKCommand;
 import Commands.EmptyCommand;
 import Commands.ISLCommand;
 import Commands.TDCCommand;
-import Data.DataManager;
-import Data.Map;
 import Debug.DebugLog;
 
 public class SuperZappyClient extends AClient
@@ -51,17 +49,8 @@ public class SuperZappyClient extends AClient
 	}
 
 	
-	public void	askForChunks()
+	public void	askForChunk(int x, int y)
 	{
-		Map	map = DataManager.getInstance().getMap();
-		int	x, y;
-		
-		for (x = 0; x < map.getLonger(); ++x)
-		{
-			for (y = 0; y < map.getLarger(); ++y)
-			{
-				this.send("CHK " + x + " " + y);
-			}
-		}
+		this.send("CHK " + x + " " + y);
 	}
 }

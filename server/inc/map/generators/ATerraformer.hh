@@ -5,16 +5,18 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 14:16:39 2014 
-// Last Update Fri Oct 24 17:16:21 2014 
+// Last Update Sun Oct 26 01:21:56 2014 
 //
 
 #ifndef ATERRAFORMER_HH_
 # define ATERRAFORMER_HH_
 
 # include "GroundGenerator.hh"
+# include "ObjectGenerator.hh"
 # include "init/Configs.hh"
 
-class	ATerraformer : public GroundGenerator
+class	ATerraformer : public GroundGenerator,
+		       public ObjectGenerator
 {
 protected:
   Configs::Map	m_configs;

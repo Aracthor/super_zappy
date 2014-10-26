@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 14:29:09 2014 
-// Last Update Fri Oct 24 10:09:07 2014 
+// Last Update Sun Oct 26 01:31:39 2014 
 //
 
 #include "map/generators/GroundGenerator.hh"
@@ -85,15 +85,15 @@ GroundGenerator::readGroundsConfigs()
   m_grounds[0][9] = Hoopla::beach;
 
   m_grounds[1][0] = Hoopla::desert;
-  m_grounds[1][1] = Hoopla::desert;
+  m_grounds[1][1] = Hoopla::plain;
   m_grounds[1][2] = Hoopla::plain;
-  m_grounds[1][3] = Hoopla::plain;
+  m_grounds[1][3] = Hoopla::grassland;
   m_grounds[1][4] = Hoopla::grassland;
   m_grounds[1][5] = Hoopla::grassland;
-  m_grounds[1][6] = Hoopla::grassland;
-  m_grounds[1][7] = Hoopla::grassland;
-  m_grounds[1][8] = Hoopla::tallgrass;
-  m_grounds[1][9] = Hoopla::tallgrass;
+  m_grounds[1][6] = Hoopla::tallgrass;
+  m_grounds[1][7] = Hoopla::tallgrass;
+  m_grounds[1][8] = Hoopla::marsh;
+  m_grounds[1][9] = Hoopla::marsh;
 
   m_grounds[2][0] = Hoopla::desert;
   m_grounds[2][1] = Hoopla::plain;
@@ -104,7 +104,7 @@ GroundGenerator::readGroundsConfigs()
   m_grounds[2][6] = Hoopla::tropical_forest;
   m_grounds[2][7] = Hoopla::tropical_jungle;
   m_grounds[2][8] = Hoopla::tropical_jungle;
-  m_grounds[2][9] = Hoopla::tropical_jungle;
+  m_grounds[2][9] = Hoopla::marsh;
 
   m_grounds[3][0] = Hoopla::desert;
   m_grounds[3][1] = Hoopla::plain;
@@ -142,8 +142,8 @@ GroundGenerator::readGroundsConfigs()
   m_grounds[6][0] = Hoopla::rocky_desert;
   m_grounds[6][1] = Hoopla::tundra;
   m_grounds[6][2] = Hoopla::tundra;
-  m_grounds[6][3] = Hoopla::shurbland;
-  m_grounds[6][4] = Hoopla::shurbland;
+  m_grounds[6][3] = Hoopla::shrubland;
+  m_grounds[6][4] = Hoopla::shrubland;
   m_grounds[6][5] = Hoopla::taiga;
   m_grounds[6][6] = Hoopla::taiga;
   m_grounds[6][7] = Hoopla::taiga;
@@ -154,8 +154,8 @@ GroundGenerator::readGroundsConfigs()
   m_grounds[7][1] = Hoopla::rocky_desert;
   m_grounds[7][2] = Hoopla::tundra;
   m_grounds[7][3] = Hoopla::tundra;
-  m_grounds[7][4] = Hoopla::shurbland;
-  m_grounds[7][5] = Hoopla::shurbland;
+  m_grounds[7][4] = Hoopla::shrubland;
+  m_grounds[7][5] = Hoopla::shrubland;
   m_grounds[7][6] = Hoopla::taiga;
   m_grounds[7][7] = Hoopla::taiga;
   m_grounds[7][8] = Hoopla::taiga;

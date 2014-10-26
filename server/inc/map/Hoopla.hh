@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:28:24 2014 
-// Last Update Fri Oct 24 09:25:20 2014 
+// Last Update Sun Oct 26 01:31:27 2014 
 //
 
 #ifndef HOOPLA_HH_
@@ -30,7 +30,7 @@ public:
     bare,
     tundra,
     taiga,
-    shurbland,
+    shrubland,
     rocky_desert,
     temperate_jungle,
     temperate_forest,
@@ -40,6 +40,7 @@ public:
     desert,
     tropical_jungle,
     tropical_forest,
+    marsh,
     beach,
     ocean,
     grounds_number
@@ -56,6 +57,12 @@ public:
   enum	EObject
   {
     nothing,
+    bush,
+    shrub,
+    oak,
+    ash,
+    saplin,
+    maple,
     objects_number
   };
 

@@ -6,7 +6,7 @@ public class DataManager
 {
 	private static	DataManager	s_instance = null;
 	
-	public static	DataManager	getInstance()
+	public static synchronized	DataManager	getInstance()
 	{
 		if (s_instance == null)
 			s_instance = new DataManager();

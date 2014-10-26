@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 14 13:07:56 2014 
-// Last Update Fri Oct 24 16:51:02 2014 
+// Last Update Sat Oct 25 19:25:12 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -75,6 +75,7 @@ Client::addRecvToInput(int size)
 {
   if (size > 0)
     {
+      m_input.getEnd()[size] = '\0';
       LogManagerSingleton::access()->input.print("Data from client %d :\t'%s'",
 						 m_socket.getFd(), m_input.getEnd());
       m_input.addToSize(size);

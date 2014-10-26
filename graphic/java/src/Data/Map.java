@@ -38,6 +38,7 @@ public class Map
 		return (chunksNumber);
 	}
 	
+	
 	public boolean	isReady()
 	{
 		return (chunksNumber == longer * larger);

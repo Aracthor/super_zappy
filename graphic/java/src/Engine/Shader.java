@@ -14,6 +14,8 @@ import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
+import Exceptions.GlException;
+
 public class Shader implements IBindable
 {
 	private int			programId;

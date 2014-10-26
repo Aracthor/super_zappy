@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Fri Oct 24 17:21:11 2014 
+## Last Update Sun Oct 26 01:22:37 2014 
 ##
 
 CC=		g++
@@ -49,6 +49,7 @@ SRCS=		$(SRCS_DIR)$(ABSTRACT_DIR)Random.cpp			\
 		$(SRCS_DIR)$(GENERATORS_DIR)GroundGenerator.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)HeightMap.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)MountainMap.cpp		\
+		$(SRCS_DIR)$(GENERATORS_DIR)ObjectGenerator.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)PerlinMap.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)RandomMap.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)Terraformer.cpp		\
