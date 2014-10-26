@@ -22,7 +22,9 @@ public enum EGround
 	TROPICAL_FOREST(13,	new Vector3f(0.0f, 0.6f, 0.0f)),
 	MARSH(14,			new Vector3f(0.0f, 0.8f, 0.4f)),
 	BEACH(15,			new Vector3f(1.0f, 1.0f, 0.0f)),
-	OCEAN(16,			new Vector3f(0.0f, 0.0f, 1.0f));
+	RIVER(16,			new Vector3f(0.2f, 0.4f, 1.0f)),
+	LAKE(17,			new Vector3f(0.1f, 0.2f, 1.0f)),
+	OCEAN(18,			new Vector3f(0.0f, 0.0f, 1.0f));
 	
 	private final int		id;
 	private final Vector3f	color;

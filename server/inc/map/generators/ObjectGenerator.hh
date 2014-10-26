@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 26 00:57:15 2014 
-// Last Update Sun Oct 26 01:29:38 2014 
+// Last Update Sun Oct 26 07:41:28 2014 
 //
 
 #ifndef OBJECT_GENERATOR_HH_
@@ -26,7 +26,7 @@ public:
   virtual ~ObjectGenerator();
 
 private:
-  Hoopla::EObject	getObject(Hoopla::EGround ground) const;
+  Hoopla::EObject	getObject(unsigned char) const;
 
 public:
   void	setObjects(Hoopla* hooplas, unsigned int number) const;

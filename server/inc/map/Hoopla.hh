@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:28:24 2014 
-// Last Update Sun Oct 26 01:31:27 2014 
+// Last Update Sun Oct 26 07:46:06 2014 
 //
 
 #ifndef HOOPLA_HH_
@@ -42,6 +42,8 @@ public:
     tropical_forest,
     marsh,
     beach,
+    river,
+    lake,
     ocean,
     grounds_number
   };
@@ -67,13 +69,13 @@ public:
   };
 
 public:
-  EGround	ground;
-  int		moisture;
-  int		height;
-  EItem		item;
-  unsigned int	itemNumber;
-  EObject	object;
-  unsigned int	player_id;
+  unsigned char		ground;
+  short			moisture;
+  short			height;
+  unsigned char		item;
+  unsigned char		itemNumber;
+  unsigned char		object;
+  unsigned short	player_id;
 
 public:
   Hoopla();

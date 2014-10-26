@@ -15,19 +15,32 @@ public abstract class AGraphicChunk
 		this.y = y;
 	}
 	
-	public void	display(long elapsedTime)
+	public void	display(long elapsedTime, boolean showDetails)
 	{
 		int		x, y;
 		
 		this.drawGround();
 		
-		for (x = 0; x < Chunk.SIZE; ++x)
+		if (showDetails)
 		{
-			for (y = 0; y < Chunk.SIZE; ++y)
+			for (x = 0; x < Chunk.SIZE; ++x)
 			{
-				this.drawHoopla(data.getHoopla(x, y), x, y, elapsedTime);
+				for (y = 0; y < Chunk.SIZE; ++y)
+				{
+					this.drawHoopla(data.getHoopla(x, y), x, y, elapsedTime);
+				}
 			}
 		}
+	}
+	
+	public int	getPosX()
+	{
+		return (x);
+	}
+	
+	public int	getPosY()
+	{
+		return (y);
 	}
 	
 	protected abstract void	drawGround();

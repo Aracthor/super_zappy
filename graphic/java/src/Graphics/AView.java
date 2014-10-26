@@ -66,7 +66,22 @@ public abstract class AView
 			chunk = it.next();
 			if (chunk != null)
 			{
-				chunk.display(elapsedTime);
+				chunk.display(elapsedTime, false);
+			}
+		}
+	}
+	
+	protected void	displaySomeChunks(long elapsedTime, IChunkSorter sorter)
+	{
+		Iterator<AGraphicChunk>	it;
+		AGraphicChunk			chunk;
+		
+		for (it = chunks.iterator(); it.hasNext();)
+		{
+			chunk = it.next();
+			if (chunk != null && sorter.judgeChunk(chunk) == true)
+			{
+				chunk.display(elapsedTime, true);
 			}
 		}
 	}

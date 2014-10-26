@@ -61,7 +61,7 @@ public class ReliefView extends AView
 	{
 		GlControlPanel.getInstance().initFrame(camera);
 		{
-			this.displayAllChunks(elapsedTime);
+			this.displaySomeChunks(elapsedTime, new ReliefChunkSorter(camera));
 			if (chunksBorders != null)
 			{
 				chunksBorders.draw();

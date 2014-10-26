@@ -48,5 +48,19 @@ public class HelicopterCamera extends AAngledCamera
 	public void	rotate(float amplitude)
 	{
 		angleX += amplitude * sensitivity;
+		if (angleX < 0.0f)
+		{
+			angleX += 360.0f;
+		}
+		else if (angleX > 360.0f)
+		{
+			angleX -= 360.0f;
+		}
+	}
+	
+	
+	public float	getAngleX()
+	{
+		return (angleX);
 	}
 }

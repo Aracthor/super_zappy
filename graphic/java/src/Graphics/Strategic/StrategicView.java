@@ -59,7 +59,14 @@ public class StrategicView extends AView
 	{
 		GlControlPanel.getInstance().initFrame(camera);
 		{
-			this.displayAllChunks(elapsedTime);
+			if (camera.getZoom() > 100.0f)
+			{
+				this.displayAllChunks(elapsedTime);
+			}
+			else
+			{
+				this.displaySomeChunks(elapsedTime, new StrategicChunkSorter(camera.getPosition().z, camera.getPosition().y));
+			}
 		}
 		GlControlPanel.getInstance().endFrame();
 	}

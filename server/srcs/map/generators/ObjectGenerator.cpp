@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 26 01:01:28 2014 
-// Last Update Sun Oct 26 05:02:05 2014 
+// Last Update Sun Oct 26 07:41:14 2014 
 //
 
 #include "map/generators/ObjectGenerator.hh"
@@ -49,7 +49,7 @@ ObjectGenerator::~ObjectGenerator()
 
 
 Hoopla::EObject
-ObjectGenerator::getObject(Hoopla::EGround ground) const
+ObjectGenerator::getObject(unsigned char ground) const
 {
   return (m_object[ground][random() % 100]);
 }
@@ -61,7 +61,7 @@ ObjectGenerator::setObjects(Hoopla* hooplas, unsigned int number) const
   unsigned int	i;
 
   for (i = 0; i < number; ++i)
-    hooplas[i].object = this->getObject(hooplas[i].ground);
+    hooplas[i].object = static_cast<unsigned char>(this->getObject(hooplas[i].ground));
 }
 
 

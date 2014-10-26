@@ -31,4 +31,9 @@ public class Camera2D extends ACamera
 	{
 		this.position.x *= zoom;
 	}
+	
+	public float	getZoom()
+	{
+		return (this.position.x);
+	}
 }
