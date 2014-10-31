@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 26 00:57:15 2014 
-// Last Update Sun Oct 26 07:41:28 2014 
+// Last Update Tue Oct 28 14:01:07 2014 
 //
 
 #ifndef OBJECT_GENERATOR_HH_

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 24 13:28:15 2014 
-// Last Update Sat Oct 25 21:39:51 2014 
+// Last Update Mon Oct 27 13:36:10 2014 
 //
 
 #ifndef PERLIN_MAP_HH_
@@ -18,7 +18,7 @@
 # define PERLIN_PERSISTANCE	(0.9f)
 # define PERLIN_AMPLITUDE	(40)
 
-class	PerlinMap : public HeightMap
+class		PerlinMap : public HeightMap
 {
 private:
   float*	m_numbers;
@@ -42,7 +42,7 @@ private:
   float	getNoise(unsigned int x, unsigned int y) const;
 
 protected:
-  int	calcHeight(unsigned int x, unsigned int y);
+  float	calcHeight(unsigned int x, unsigned int y);
 };
 
 #endif // !PERLIN_MAP_HH_

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 24 13:28:15 2014 
-// Last Update Fri Oct 24 17:20:53 2014 
+// Last Update Mon Oct 27 13:36:18 2014 
 //
 
 #ifndef RANDOM_MAP_HH_
@@ -20,7 +20,7 @@ public:
   ~RandomMap();
 
 protected:
-  int	calcHeight(unsigned int x, unsigned int y);
+  float	calcHeight(unsigned int x, unsigned int y);
 };
 
 #endif // !RANDOM_MAP_HH_

@@ -5,18 +5,22 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 14:16:39 2014 
-// Last Update Sun Oct 26 01:21:56 2014 
+// Last Update Tue Oct 28 13:59:23 2014 
 //
 
 #ifndef ATERRAFORMER_HH_
 # define ATERRAFORMER_HH_
 
 # include "GroundGenerator.hh"
+# include "MoistureCalculator.hh"
 # include "ObjectGenerator.hh"
+# include "WaterGenerator.hh"
 # include "init/Configs.hh"
 
 class	ATerraformer : public GroundGenerator,
-		       public ObjectGenerator
+		       public MoistureCalculator,
+		       public ObjectGenerator,
+		       public WaterGenerator
 {
 protected:
   Configs::Map	m_configs;

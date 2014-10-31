@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 14:29:09 2014 
-// Last Update Sun Oct 26 01:31:39 2014 
+// Last Update Tue Oct 28 15:24:48 2014 
 //
 
 #include "map/generators/GroundGenerator.hh"
@@ -20,16 +20,16 @@ GroundGenerator::~GroundGenerator()
 }
 
 
-int
-GroundGenerator::getHeightLevel(int height) const
+float
+GroundGenerator::getHeightLevel(float height) const
 {
-  return (height / 10);
+  return (height / 10.0f);
 }
 
-int
-GroundGenerator::getMoistureLevel(int moisture) const
+float
+GroundGenerator::getMoistureLevel(float moisture) const
 {
-  moisture /= 10;
+  moisture /= 10.0f;
   if (moisture > MAX_MOISTURE)
     moisture = MAX_MOISTURE;
   else if (moisture < MIN_MOISTURE)
@@ -39,7 +39,7 @@ GroundGenerator::getMoistureLevel(int moisture) const
 }
 
 Hoopla::EGround
-GroundGenerator::getGround(int heightLevel, int moistureLevel) const
+GroundGenerator::getGround(float heightLevel, float moistureLevel) const
 {
   Hoopla::EGround	ground;
 
@@ -48,25 +48,35 @@ GroundGenerator::getGround(int heightLevel, int moistureLevel) const
   else if (heightLevel > MAX_HEIGHT)
     ground = HIGH_GROUND;
   else
-    ground = m_grounds[heightLevel][moistureLevel];
+    ground = m_grounds[(int)heightLevel][(int)moistureLevel];
 
   return (ground);
 }
 
 
 void
-GroundGenerator::setGrounds(Hoopla* hooplas, unsigned int number) const
+GroundGenerator::setDefaultGrounds(Hoopla* hooplas, unsigned int number) const
 {
   unsigned int	i;
-  int		heightLevel;
-  int		moistureLevel;
 
   for (i = 0; i < number; ++i)
-    {
-      heightLevel = this->getHeightLevel(hooplas[i].height);
-      moistureLevel = this->getMoistureLevel(hooplas[i].moisture);
-      hooplas[i].ground = this->getGround(heightLevel, moistureLevel);
-    }
+    hooplas[i].ground = Hoopla::ocean;
+}
+
+void
+GroundGenerator::setGrounds(Hoopla* hooplas, float* moistures, unsigned int number) const
+{
+  unsigned int	i;
+  float		heightLevel;
+  float		moistureLevel;
+
+  for (i = 0; i < number; ++i)
+    if (hooplas[i].ground == Hoopla::ocean)
+      {
+	heightLevel = this->getHeightLevel(hooplas[i].height);
+	moistureLevel = this->getMoistureLevel(moistures[i]);
+	hooplas[i].ground = this->getGround(heightLevel, moistureLevel);
+      }
 }
 
 
@@ -81,8 +91,8 @@ GroundGenerator::readGroundsConfigs()
   m_grounds[0][5] = Hoopla::beach;
   m_grounds[0][6] = Hoopla::beach;
   m_grounds[0][7] = Hoopla::beach;
-  m_grounds[0][8] = Hoopla::beach;
-  m_grounds[0][9] = Hoopla::beach;
+  m_grounds[0][8] = Hoopla::sludge;
+  m_grounds[0][9] = Hoopla::sludge;
 
   m_grounds[1][0] = Hoopla::desert;
   m_grounds[1][1] = Hoopla::plain;
@@ -90,16 +100,16 @@ GroundGenerator::readGroundsConfigs()
   m_grounds[1][3] = Hoopla::grassland;
   m_grounds[1][4] = Hoopla::grassland;
   m_grounds[1][5] = Hoopla::grassland;
-  m_grounds[1][6] = Hoopla::tallgrass;
-  m_grounds[1][7] = Hoopla::tallgrass;
+  m_grounds[1][6] = Hoopla::grassland;
+  m_grounds[1][7] = Hoopla::grassland;
   m_grounds[1][8] = Hoopla::marsh;
   m_grounds[1][9] = Hoopla::marsh;
 
   m_grounds[2][0] = Hoopla::desert;
   m_grounds[2][1] = Hoopla::plain;
-  m_grounds[2][2] = Hoopla::grassland;
+  m_grounds[2][2] = Hoopla::plain;
   m_grounds[2][3] = Hoopla::grassland;
-  m_grounds[2][4] = Hoopla::tallgrass;
+  m_grounds[2][4] = Hoopla::grassland;
   m_grounds[2][5] = Hoopla::tropical_forest;
   m_grounds[2][6] = Hoopla::tropical_forest;
   m_grounds[2][7] = Hoopla::tropical_jungle;
@@ -111,7 +121,7 @@ GroundGenerator::readGroundsConfigs()
   m_grounds[3][2] = Hoopla::plain;
   m_grounds[3][3] = Hoopla::grassland;
   m_grounds[3][4] = Hoopla::grassland;
-  m_grounds[3][5] = Hoopla::tallgrass;
+  m_grounds[3][5] = Hoopla::grassland;
   m_grounds[3][6] = Hoopla::tropical_forest;
   m_grounds[3][7] = Hoopla::tropical_forest;
   m_grounds[3][8] = Hoopla::tropical_jungle;
@@ -119,10 +129,10 @@ GroundGenerator::readGroundsConfigs()
 
   m_grounds[4][0] = Hoopla::desert;
   m_grounds[4][1] = Hoopla::plain;
-  m_grounds[4][2] = Hoopla::grassland;
+  m_grounds[4][2] = Hoopla::plain;
   m_grounds[4][3] = Hoopla::grassland;
-  m_grounds[4][4] = Hoopla::tallgrass;
-  m_grounds[4][5] = Hoopla::temperate_forest;
+  m_grounds[4][4] = Hoopla::grassland;
+  m_grounds[4][5] = Hoopla::grassland;
   m_grounds[4][6] = Hoopla::temperate_forest;
   m_grounds[4][7] = Hoopla::temperate_forest;
   m_grounds[4][8] = Hoopla::tropical_forest;
@@ -130,16 +140,16 @@ GroundGenerator::readGroundsConfigs()
 
   m_grounds[5][0] = Hoopla::desert;
   m_grounds[5][1] = Hoopla::plain;
-  m_grounds[5][2] = Hoopla::grassland;
+  m_grounds[5][2] = Hoopla::plain;
   m_grounds[5][3] = Hoopla::grassland;
-  m_grounds[5][4] = Hoopla::tallgrass;
-  m_grounds[5][5] = Hoopla::tallgrass;
+  m_grounds[5][4] = Hoopla::grassland;
+  m_grounds[5][5] = Hoopla::grassland;
   m_grounds[5][6] = Hoopla::temperate_forest;
   m_grounds[5][7] = Hoopla::temperate_forest;
   m_grounds[5][8] = Hoopla::tropical_forest;
   m_grounds[5][9] = Hoopla::tropical_forest;
 
-  m_grounds[6][0] = Hoopla::rocky_desert;
+  m_grounds[6][0] = Hoopla::tundra;
   m_grounds[6][1] = Hoopla::tundra;
   m_grounds[6][2] = Hoopla::tundra;
   m_grounds[6][3] = Hoopla::shrubland;
@@ -150,12 +160,12 @@ GroundGenerator::readGroundsConfigs()
   m_grounds[6][8] = Hoopla::taiga;
   m_grounds[6][9] = Hoopla::taiga;
 
-  m_grounds[7][0] = Hoopla::rocky_desert;
-  m_grounds[7][1] = Hoopla::rocky_desert;
+  m_grounds[7][0] = Hoopla::tundra;
+  m_grounds[7][1] = Hoopla::tundra;
   m_grounds[7][2] = Hoopla::tundra;
-  m_grounds[7][3] = Hoopla::tundra;
+  m_grounds[7][3] = Hoopla::shrubland;
   m_grounds[7][4] = Hoopla::shrubland;
-  m_grounds[7][5] = Hoopla::shrubland;
+  m_grounds[7][5] = Hoopla::taiga;
   m_grounds[7][6] = Hoopla::taiga;
   m_grounds[7][7] = Hoopla::taiga;
   m_grounds[7][8] = Hoopla::taiga;

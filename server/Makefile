@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Sun Oct 26 01:22:37 2014 
+## Last Update Thu Oct 30 17:25:53 2014 
 ##
 
 CC=		g++
@@ -34,8 +34,7 @@ LISTENERS_DIR=	$(NETWORK_DIR)listeners/
 
 NAME=		server
 
-SRCS=		$(SRCS_DIR)$(ABSTRACT_DIR)Random.cpp			\
-		$(SRCS_DIR)$(CORE_DIR)GameData.cpp			\
+SRCS=		$(SRCS_DIR)$(CORE_DIR)GameData.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)Server.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)SingletonManager.cpp		\
 		$(SRCS_DIR)$(DEBUG_DIR)Log.cpp				\
@@ -45,14 +44,20 @@ SRCS=		$(SRCS_DIR)$(ABSTRACT_DIR)Random.cpp			\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)SyscallException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ThreadingException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ZappyException.cpp		\
+		$(SRCS_DIR)$(GENERATORS_DIR)AGenerator.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)ATerraformer.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)GroundGenerator.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)HeightMap.cpp		\
+		$(SRCS_DIR)$(GENERATORS_DIR)LowLakeGenerator.cpp	\
+		$(SRCS_DIR)$(GENERATORS_DIR)MoistureCalculator.cpp	\
 		$(SRCS_DIR)$(GENERATORS_DIR)MountainMap.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)ObjectGenerator.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)PerlinMap.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)RandomMap.cpp		\
+		$(SRCS_DIR)$(GENERATORS_DIR)RingMap.cpp			\
+		$(SRCS_DIR)$(GENERATORS_DIR)RiverGenerator.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)Terraformer.cpp		\
+		$(SRCS_DIR)$(GENERATORS_DIR)WaterGenerator.cpp		\
 		$(SRCS_DIR)$(INIT_DIR)Configs.cpp			\
 		$(SRCS_DIR)$(INIT_DIR)Teams.cpp				\
 		$(SRCS_DIR)$(LISTENERS_DIR)AuthentificationListener.cpp	\

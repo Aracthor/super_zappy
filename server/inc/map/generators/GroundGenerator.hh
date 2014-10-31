@@ -5,13 +5,15 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 14:31:07 2014 
-// Last Update Sun Oct 26 01:18:12 2014 
+// Last Update Tue Oct 28 14:01:24 2014 
 //
 
 #ifndef GROUND_GENERATOR_HH_
 # define GROUND_GENERATOR_HH_
 
 # include "map/Hoopla.hh"
+
+# define LAKE_GROUND(height)	(height / 10.0f < COLD_HEIGHT ? Hoopla::lake : Hoopla::ice)
 
 class			GroundGenerator
 {
@@ -23,12 +25,13 @@ public:
   virtual ~GroundGenerator();
 
 private:
-  int			getHeightLevel(int height) const;
-  int			getMoistureLevel(int moisture) const;
-  Hoopla::EGround	getGround(int heightLevel, int moistureLevel) const;
+  float			getHeightLevel(float height) const;
+  float			getMoistureLevel(float moisture) const;
+  Hoopla::EGround	getGround(float heightLevel, float moistureLevel) const;
 
 public:
-  void	setGrounds(Hoopla* hooplas, unsigned int number) const;
+  void	setDefaultGrounds(Hoopla* hooplas, unsigned int number) const;
+  void	setGrounds(Hoopla* hooplas, float* moistures, unsigned int number) const;
 
 private:
   void  readGroundsConfigs();

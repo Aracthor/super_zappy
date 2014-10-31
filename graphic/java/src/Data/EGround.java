@@ -11,20 +11,21 @@ public enum EGround
 	TUNDRA(2,			new Vector3f(0.7f, 0.7f, 0.7f)),
 	TAIGA(3,			new Vector3f(0.4f, 1.0f, 0.4f)),
 	SHRUBLAND(4,		new Vector3f(0.6f, 1.0f, 0.6f)),
-	ROCKY_DESERT(5,		new Vector3f(0.8f, 0.6f, 0.0f)),
+	SLUDGE(5,			new Vector3f(0.8f, 0.6f, 0.0f)),
 	TEMPERATE_JUNGLE(6, new Vector3f(0.0f, 0.8f, 0.0f)),
 	TEMPERATE_FOREST(7, new Vector3f(0.4f, 0.8f, 0.0f)),
-	TALLGRASS(8,		new Vector3f(0.4f, 1.0f, 0.0f)),
-	GRASSLAND(9,		new Vector3f(0.6f, 1.0f, 0.3f)),
+//	TALLGRASS(8,		new Vector3f(0.4f, 1.0f, 0.0f)),
+	GRASSLAND(9,		new Vector3f(0.4f, 1.0f, 0.0f)),
 	PLAIN(10,			new Vector3f(0.8f, 1.0f, 0.0f)),
 	DESERT(11,			new Vector3f(1.0f, 1.0f, 0.4f)),
 	TROPICAL_JUNGLE(12,	new Vector3f(0.0f, 0.4f, 0.0f)),
 	TROPICAL_FOREST(13,	new Vector3f(0.0f, 0.6f, 0.0f)),
 	MARSH(14,			new Vector3f(0.0f, 0.8f, 0.4f)),
 	BEACH(15,			new Vector3f(1.0f, 1.0f, 0.0f)),
-	RIVER(16,			new Vector3f(0.2f, 0.4f, 1.0f)),
-	LAKE(17,			new Vector3f(0.1f, 0.2f, 1.0f)),
-	OCEAN(18,			new Vector3f(0.0f, 0.0f, 1.0f));
+	RIVER(16,			new Vector3f(0.3f, 0.6f, 1.0f)),
+	LAKE(17,			new Vector3f(0.15f, 0.3f, 1.0f)),
+	ICE(18,				new Vector3f(0.5f, 1.0f, 1.0f)),
+	OCEAN(19,			new Vector3f(0.0f, 0.0f, 1.0f));
 	
 	private final int		id;
 	private final Vector3f	color;

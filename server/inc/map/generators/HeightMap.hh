@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 24 10:10:02 2014 
-// Last Update Fri Oct 24 17:23:02 2014 
+// Last Update Mon Oct 27 13:35:54 2014 
 //
 
 #ifndef HEIGHT_MAP_HH_
@@ -16,7 +16,7 @@
 class		HeightMap
 {
 private:
-  int*		m_heights;
+  float*	m_heights;
 
 protected:
   unsigned int	m_size;
@@ -28,7 +28,7 @@ public:
   virtual ~HeightMap();
 
 protected:
-  virtual int	calcHeight(unsigned int x, unsigned int y);
+  virtual float	calcHeight(unsigned int x, unsigned int y);
 
 public:
   void	initHeights();

@@ -1,28 +1,28 @@
 //
-// MountainMap.cpp for super_zappy in /home/aracthor/programs/projects/hub/super_zappy/server
+// RingMap.cpp for super_zappy in /home/aracthor/programs/projects/hub/super_zappy/server
 // 
 // Made by 
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 24 13:29:12 2014 
-// Last Update Mon Oct 27 13:36:37 2014 
+// Last Update Thu Oct 30 17:28:53 2014 
 //
 
 #include "abstractions/maths.hh"
-#include "map/generators/MountainMap.hh"
+#include "map/generators/RingMap.hh"
 
-MountainMap::MountainMap(unsigned int longer, unsigned int larger) :
+RingMap::RingMap(unsigned int longer, unsigned int larger) :
   HeightMap(longer, larger)
 {
 }
 
-MountainMap::~MountainMap()
+RingMap::~RingMap()
 {
 }
 
 
 float
-MountainMap::calcHeight(unsigned int x, unsigned int y)
+RingMap::calcHeight(unsigned int x, unsigned int y)
 {
   float	height;
   float	longer;
@@ -35,7 +35,7 @@ MountainMap::calcHeight(unsigned int x, unsigned int y)
 
   height = 100.0f - distance;
   if (height > 50.0f)
-    height = 50.0f;
+    height = 100.0f - (height + (height - 50.0f) * 2);
 
   return (height);
 }

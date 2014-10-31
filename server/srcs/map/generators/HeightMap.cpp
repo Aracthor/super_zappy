@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 24 10:12:00 2014 
-// Last Update Fri Oct 24 17:25:11 2014 
+// Last Update Mon Oct 27 13:38:06 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -16,7 +16,7 @@ HeightMap::HeightMap(unsigned int longer, unsigned int larger) :
   m_longer(longer),
   m_larger(larger)
 {
-  MALLOC(m_heights, m_size, int);
+  MALLOC(m_heights, m_size, float);
 }
 
 HeightMap::~HeightMap()
@@ -25,12 +25,12 @@ HeightMap::~HeightMap()
 }
 
 
-int
+float
 HeightMap::calcHeight(unsigned int x, unsigned int y)
 {
   (void)(x);
   (void)(y);
-  return (0);
+  return (0.0f);
 }
 
 

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 24 17:14:09 2014 
-// Last Update Fri Oct 24 17:21:03 2014 
+// Last Update Mon Oct 27 13:37:20 2014 
 //
 
 #include "map/generators/RandomMap.hh"
@@ -22,10 +22,10 @@ RandomMap::~RandomMap()
 }
 
 
-int
+float
 RandomMap::calcHeight(unsigned int x, unsigned int y)
 {
   (void)(x);
   (void)(y);
-  return (random() % 100 - 50);
+  return ((float)(random() % 10000 - 5000) / 100.0f);
 }

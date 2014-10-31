@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 24 17:14:09 2014 
-// Last Update Sat Oct 25 21:39:54 2014 
+// Last Update Mon Oct 27 13:37:39 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -85,7 +85,7 @@ PerlinMap::getNoise(unsigned int x, unsigned int y) const
 }
 
 
-int
+float
 PerlinMap::calcHeight(unsigned int x, unsigned int y)
 {
   float		sum;
@@ -103,5 +103,5 @@ PerlinMap::calcHeight(unsigned int x, unsigned int y)
       power *= 2;
     }
 
-  return ((int)sum + 10);
+  return (sum + 10.0f);
 }

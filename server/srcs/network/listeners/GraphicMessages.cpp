@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 11:38:46 2014 
-// Last Update Wed Oct 22 13:54:51 2014 
+// Last Update Mon Oct 27 13:33:51 2014 
 //
 
 #include "core/Server.hh"
@@ -42,7 +42,7 @@ GraphicMessages::sendHooplaData(Client* client, const Hoopla& hoopla,
 
   sprintf(buffer, "CAS %d %d %d %d %d %d %d %d",
 	  x, y,
-	  hoopla.ground, hoopla.height,
+	  hoopla.ground, (int)hoopla.height,
 	  hoopla.item, hoopla.itemNumber,
 	  hoopla.object, hoopla.player_id);
   *client << buffer;

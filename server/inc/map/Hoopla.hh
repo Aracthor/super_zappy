@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:28:24 2014 
-// Last Update Sun Oct 26 07:46:06 2014 
+// Last Update Tue Oct 28 14:53:12 2014 
 //
 
 #ifndef HOOPLA_HH_
@@ -14,9 +14,13 @@
 # define MAX_ITEMS_BY_HOOPLA	(5)
 
 # define MAX_HEIGHT		(9)
-# define MIN_HEIGHT		(0)
+# define MIN_HEIGHT		(0.2f)
 # define MAX_MOISTURE		(9)
 # define MIN_MOISTURE		(0)
+
+# define COLD_HEIGHT		(7.0f)
+# define INTERMEDIATE_HEIGHT	(5.0f)
+# define HOT_HEIGHT		(3.0f)
 
 # define LOW_GROUND		(Hoopla::ocean)
 # define HIGH_GROUND		(Hoopla::snow)
@@ -31,7 +35,7 @@ public:
     tundra,
     taiga,
     shrubland,
-    rocky_desert,
+    sludge,
     temperate_jungle,
     temperate_forest,
     tallgrass,
@@ -44,6 +48,7 @@ public:
     beach,
     river,
     lake,
+    ice,
     ocean,
     grounds_number
   };
@@ -70,8 +75,7 @@ public:
 
 public:
   unsigned char		ground;
-  short			moisture;
-  short			height;
+  float			height;
   unsigned char		item;
   unsigned char		itemNumber;
   unsigned char		object;
