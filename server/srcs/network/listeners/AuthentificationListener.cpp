@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:27:00 2014 
-// Last Update Wed Oct 22 13:55:11 2014 
+// Last Update Wed Nov  5 13:19:00 2014 
 //
 
 #include "core/Server.hh"
@@ -26,24 +26,42 @@ AuthentificationListener::~AuthentificationListener()
 
 
 void
+AuthentificationListener::sendTeamData(Client* client, const Team& team, unsigned int id)
+{
+  char	buffer[0x1000];
+
+  sprintf(buffer, "TDC %d %s %d", id, team.getName(), team.isDiscalified());
+  *client << buffer;
+}
+
+
+void
 AuthentificationListener::graphicAuthentification(Client* client)
 {
-  const Server*	server = Server::accessServer();
+  const Server*	server = this->getServerData();
+  const Team*	teams = server->getTeams();
   unsigned int	i;
   char		buffer[0x1000];
 
   client->setGraphic();
 
   sprintf(buffer, "ISL %d %d %d",
-	  server->getSpeed(), server->getLonger(), server->getLarger());
+	  server->getSpeed(), server->getWidth(), server->getHeight());
   *client << buffer;
 
-  for (i = 0; i < server->getTeams().getNumber(); ++i)
-    {
-      this->sendTeamData(client, server->getTeams().getName(i), i);
-    }
+  for (i = 0; i < server->getTeamsNumber(); ++i)
+    this->sendTeamData(client, teams[i], i);
 
   LogManagerSingleton::access()->connection.print("Client %d authentified as graphic.",
+						  client->getFd());
+}
+
+void
+AuthentificationListener::teamAuthentification(Client* client)
+{
+  client->setTeam();
+
+  LogManagerSingleton::access()->connection.print("Client %d authentified as team.",
 						  client->getFd());
 }
 
@@ -55,8 +73,14 @@ AuthentificationListener::listenFromClient(Client* client, char* message)
   authentified = true;
   if (!strcmp(message, AUTHENTIFICATION_GRAPHICAL))
     this->graphicAuthentification(client);
+  else if (!strcmp(message, AUTHENTIFICATION_IA))
+    this->teamAuthentification(client);
   else
     authentified = false;
+
+  if (authentified == false)
+    LogManagerSingleton::access()->error.print("Client %d authentified as sucker.",
+					       client->getFd());
 
   return (authentified);
 }

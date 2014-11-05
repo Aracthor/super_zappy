@@ -10,7 +10,7 @@ public class CHKCommand extends APreciseCommand
 	}
 
 	@Override
-	protected void execute(String[] args)
+	protected boolean	execute(String[] args)
 	{
 		DataManager	dataManager = DataManager.getInstance();
 		int	x, y;
@@ -18,5 +18,7 @@ public class CHKCommand extends APreciseCommand
 		x = Integer.parseInt(args[1]);
 		y = Integer.parseInt(args[2]);
 		dataManager.getMap().addChunk(x, y);
+		
+		return (true);
 	}
 }

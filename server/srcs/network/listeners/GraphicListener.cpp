@@ -5,20 +5,21 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:27:00 2014 
-// Last Update Wed Oct 22 13:07:41 2014 
+// Last Update Wed Nov  5 13:21:29 2014 
 //
 
+#include "core/Server.hh"
 #include "debug/LogManager.hh"
 #include "network/listeners/GraphicListener.hh"
 
-#include <cstring>
+#include <cstdlib>
 
 GraphicListener::GraphicListener()
 {
-  this->initCommand( 0, "CHK", 3, &GraphicMessages::sendChunkData);
-  this->initCommand( 1, "CAS", 3, &GraphicMessages::sendHooplaData);
-  this->initCommand( 2, "PDC", 2, &GraphicMessages::sendPlayerData);
-  this->initCommand( 3, "TDC", 2, &GraphicMessages::sendTeamData);
+  this->initCommand("CHK", 3, &GraphicListener::sendChunkData);
+  this->initCommand("CAS", 3, &GraphicListener::sendHooplaData);
+  this->initCommand("PDC", 2, &GraphicListener::sendPlayerData);
+  this->initCommand("TDC", 2, &GraphicListener::sendTeamData);
 }
 
 GraphicListener::~GraphicListener()
@@ -27,69 +28,107 @@ GraphicListener::~GraphicListener()
 
 
 void
-GraphicListener::initCommand(unsigned int id,
-			     const char* name, unsigned int argsNumber,
-			     GraphicListener::CommandExecution execution)
+GraphicListener::sendHooplaData(Client* client, const Hoopla& hoopla,
+				unsigned int x, unsigned int y) const
 {
-  m_commands[id].name = name;
-  m_commands[id].argsNumber = argsNumber;
-  m_commands[id].execution = execution;
+  char	buffer[0x1000];
+
+  sprintf(buffer, "CAS %d %d %d %d %d %d %d %d",
+	  x, y,
+	  hoopla.ground, (int)hoopla.height,
+	  hoopla.item, hoopla.itemNumber,
+	  hoopla.object, hoopla.player_id);
+  *client << buffer;
+}
+
+void
+GraphicListener::sendTeamData(Client* client, const Team& team, unsigned int id) const
+{
+  char	buffer[0x1000];
+
+  sprintf(buffer, "TDC %d %s %d", id, team.getName(), team.isDiscalified());
+  *client << buffer;
 }
 
 
 bool
-GraphicListener::executeCommand(Client* client,
-				const CommandCutter::CuttedLine& cuttedCommand,
-				const GraphicListener::Command& command)
+GraphicListener::sendChunkData(Client* client, char* const* args) const
 {
-  bool	valid;
-
-  valid = (command.argsNumber == cuttedCommand.argsNumber);
-  if (valid == true)
-    valid = (this->*command.execution)(client, cuttedCommand.args);
-  else
-    LogManagerSingleton::access()->error.print("Bad args number for command %s.",
-					       command.name);
-
-  return (valid);
-}
-
-bool
-GraphicListener::searchAndExecuteCommand(Client* client,
-					 const CommandCutter::CuttedLine& command)
-{
-  unsigned int	i;
-  bool		found;
+  const Map*	map = this->getServerData();
+  const Chunk*	chunk;
+  char		buffer[0x1000];
+  unsigned int	x;
+  unsigned int	y;
+  unsigned int	hx;
+  unsigned int	hy;
   bool		valid;
 
-  found = false;
-  valid = false;
+  x = atoi(args[1]);
+  y = atoi(args[2]);
 
-  for (i = 0; found == false && i < GRAPHIC_COMMANDS_NUMBER; ++i)
+  valid = IS_GOOD_CHUNK_POS(x, y, map);
+  if (valid == false)
+    LogManagerSingleton::access()->error.print("Trying to get an invalid chunk : %d/%d.",
+					       x, y);
+  else
     {
-      if (!strcmp(m_commands[i].name, command.args[0]))
-	{
-	  found = true;
-	  valid = this->executeCommand(client, command, m_commands[i]);
-	}
+      chunk = &map->getChunk(x, y);
+      sprintf(buffer, "CHK %d %d", x, y);
+      *client << buffer;
+      for (hx = 0; hx < CHUNK_SIZE; ++hx)
+	for (hy = 0; hy < CHUNK_SIZE; ++hy)
+	  this->sendHooplaData(client, chunk->getHoopla(hx, hy),
+			       x * CHUNK_SIZE + hx, y * CHUNK_SIZE + hy);
     }
-
-  if (found == false)
-    LogManagerSingleton::access()->error.print("Command %s doesn't exist !", command.args[0]);
 
   return (valid);
 }
 
+bool
+GraphicListener::sendHooplaData(Client* client, char* const* args) const
+{
+  const Map*	map = this->getServerData();
+  unsigned int	x;
+  unsigned int	y;
+  bool		valid;
+
+  x = atoi(args[1]);
+  y = atoi(args[2]);
+
+  valid = IS_GOOD_HOOPLA_POS(x, y, map);
+  if (valid == false)
+    LogManagerSingleton::access()->error.print("Trying to get an invalid hoopla : %d/%d.",
+					       x, y);
+  else
+    this->sendHooplaData(client,
+			 map->getChunk(x / CHUNK_SIZE, y / CHUNK_SIZE)
+			 .getHoopla(x % CHUNK_SIZE, y % CHUNK_SIZE),
+			 x, y);
+
+  return (valid);
+}
 
 bool
-GraphicListener::listenFromClient(Client* client, char* message)
+GraphicListener::sendPlayerData(Client* client, char* const* args) const
 {
-  CommandCutter::CuttedLine	command;
-  bool				valid;
+  (void)(client);
+  (void)(args);
+  return (true);
+}
 
-  valid = this->cutInArgs(command, message);
-  if (valid)
-    valid = this->searchAndExecuteCommand(client, command);
+bool
+GraphicListener::sendTeamData(Client* client, char* const* args) const
+{
+  const GameData*       gameData = this->getServerData();
+  unsigned int		id;
+  bool			valid;
+
+  id = atoi(args[1]);
+  valid = (id >= gameData->getTeamsNumber());
+  if (valid == false)
+    LogManagerSingleton::access()->error.print("Invalid team id %d.", id);
+  else
+    this->sendTeamData(client, gameData->getTeams()[id], id);
 
   return (valid);
 }

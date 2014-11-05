@@ -6,10 +6,10 @@ public abstract class ACommand
 	{
 	}
 	
-	public void	tryToExecute(String[] args)
+	public boolean	tryToExecute(String[] args)
 	{
-		this.execute(args);
+		return (this.execute(args));
 	}
 	
-	protected abstract void	execute(String[] args);
+	protected abstract boolean execute(String[] args);
 }

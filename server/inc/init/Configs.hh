@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:32:05 2014 
-// Last Update Sun Oct 12 08:40:19 2014 
+// Last Update Mon Nov  3 16:23:21 2014 
 //
 
 #ifndef CONFIGS_HH_
@@ -15,8 +15,8 @@
 
 # define DEFAULT_PORT		(4242)
 # define DEFAULT_SPEED		(100000)
-# define DEFAULT_MAP_LONGER	(4)
-# define DEFAULT_MAP_LARGER	(4)
+# define DEFAULT_MAP_WIDTH	(4)
+# define DEFAULT_MAP_HEIGHT	(4)
 
 # define PORT_MIN		(0x401)
 # define PORT_MAX		(0xFFFF)
@@ -33,10 +33,10 @@ class	Configs
 public:
   struct		Map
   {
-    Map(unsigned int longer, unsigned int larger);
+    Map(unsigned int width, unsigned int height);
 
-    unsigned int	longer;
-    unsigned int	larger;
+    unsigned int	width;
+    unsigned int	height;
   };
 
 private:
@@ -56,8 +56,8 @@ public:
 private:
   void	changePort(char* port);
   void	changeSpeed(char* speed);
-  void	changeMapLonger(char* longer);
-  void	changeMapLarger(char* larger);
+  void	changeMapWidth(char* width);
+  void	changeMapHeight(char* height);
   void	addTeam(char* team);
 
 private:

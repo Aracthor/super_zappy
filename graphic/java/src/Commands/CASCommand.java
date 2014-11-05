@@ -11,7 +11,7 @@ public class CASCommand extends APreciseCommand
 	}
 
 	@Override
-	protected void execute(String[] args)
+	protected boolean	execute(String[] args)
 	{
 		DataManager	dataManager = DataManager.getInstance();
 		Hoopla	hoopla;
@@ -21,5 +21,7 @@ public class CASCommand extends APreciseCommand
 		y = Integer.parseInt(args[2]);
 		hoopla = new Hoopla(Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5]), Integer.parseInt(args[6]), Integer.parseInt(args[7]));
 		dataManager.getMap().addHoopla(hoopla, x, y);
+		
+		return (true);
 	}
 }

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:16:40 2014 
-// Last Update Sun Oct 12 08:07:01 2014 
+// Last Update Mon Nov  3 16:02:40 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -18,17 +18,6 @@ Teams::Teams() :
   m_names(NULL),
   m_number(0)
 {
-}
-
-Teams::Teams(const Teams& teams) :
-  m_names(NULL),
-  m_number(teams.getNumber())
-{
-  unsigned int	i;
-
-  MALLOC(m_names, m_number, const char*);
-  for (i = 0; i < m_number; ++i)
-    m_names[i] = teams.getName(i);
 }
 
 Teams::~Teams()

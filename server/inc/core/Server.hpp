@@ -5,11 +5,5 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 21 10:11:17 2014 
-// Last Update Wed Oct 22 13:24:41 2014 
+// Last Update Mon Nov  3 13:15:31 2014 
 //
-
-Server*
-Server::accessServer()
-{
-  return (s_server);
-}

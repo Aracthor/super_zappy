@@ -5,14 +5,14 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 21 10:59:36 2014 
-// Last Update Fri Oct 24 17:58:52 2014 
+// Last Update Mon Nov  3 16:48:04 2014 
 //
 
 #include "core/Server.hh"
 #include "network/SpeakThread.hh"
 
 SpeakThread::SpeakThread() :
-  AZappyThread("Speak thread")
+  AZappyThread("Speaker")
 {
 }
 

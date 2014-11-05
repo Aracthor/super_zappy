@@ -5,46 +5,32 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:20:41 2014 
-// Last Update Wed Oct 22 13:48:17 2014 
+// Last Update Wed Nov  5 13:21:47 2014 
 //
 
 #ifndef GRAPHIC_LISTENER_HH_
 # define GRAPHIC_LISTENER_HH_
 
-# include "CommandCutter.hh"
-# include "GraphicMessages.hh"
-# include "IListener.hh"
+# include "CommandListener.hh"
+# include "data/Team.hh"
+# include "map/Hoopla.hh"
 
-class			GraphicListener : public IListener,
-					  public CommandCutter,
-					  public GraphicMessages
+class			GraphicListener : public CommandListener
 {
-private:
-  struct		Command
-  {
-    const char*		name;
-    unsigned int	argsNumber;
-    CommandExecution	execution;
-  };
-
-private:
-  Command	m_commands[GRAPHIC_COMMANDS_NUMBER];
-
 public:
   GraphicListener();
   ~GraphicListener();
 
 private:
-  void	initCommand(unsigned int id,
-		    const char* name, unsigned int argsNumber, CommandExecution execution);
+  void	sendHooplaData(Client* client, const Hoopla& hoopla,
+		       unsigned int x, unsigned int y) const;
+  void	sendTeamData(Client* client, const Team& team, unsigned int id) const;
 
 private:
-  bool	executeCommand(Client* client, const CommandCutter::CuttedLine& cuttedCommand,
-		       const Command& command);
-  bool	searchAndExecuteCommand(Client* client, const CommandCutter::CuttedLine& command);
-
-public:
-  bool	listenFromClient(Client* client, char* message);
+  bool	sendChunkData(Client* client, char* const* args) const;
+  bool	sendHooplaData(Client* client, char* const* args) const;
+  bool	sendPlayerData(Client* client, char* const* args) const;
+  bool	sendTeamData(Client* client, char* const* args) const;
 };
 
 #endif // !GRAPHIC_LISTENER_HH_

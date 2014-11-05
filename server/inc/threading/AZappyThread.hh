@@ -5,17 +5,19 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 15:18:03 2014 
-// Last Update Tue Oct 21 10:27:46 2014 
+// Last Update Mon Nov  3 13:30:11 2014 
 //
 
 #ifndef AZAPPY_THREAD_HH_
 # define AZAPPY_THREAD_HH_
 
 # include "AThread.hh"
+# include "core/LinkedToServer.hh"
 
 class		Server;
 
-class		AZappyThread : public AThread
+class		AZappyThread : public AThread,
+			       private LinkedToServer
 {
 private:
   const char*	m_name;

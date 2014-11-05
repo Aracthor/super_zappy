@@ -5,9 +5,10 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:55:13 2014 
-// Last Update Tue Oct 21 13:56:43 2014 
+// Last Update Wed Nov  5 13:29:34 2014 
 //
 
+#include "debug/LogManager.hh"
 #include "network/Network.hh"
 #include "network/Protocol.hh"
 
@@ -30,6 +31,13 @@ void
 Network::kickClient(Client* client, bool disconnected)
 {
   if (disconnected == false)
-    client->send(KICK_MESSAGE "\n");
+    {
+      LogManagerSingleton::access()->error.print("Kicking client %d.",
+						 client->getFd());
+      client->send(KICK_MESSAGE "\n");
+    }
+  if (client->getTeam() != NULL)
+    client->getTeam()->discalify();
+
   m_clients.popElem(client);
 }

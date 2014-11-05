@@ -5,14 +5,14 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 15:57:56 2014 
-** Last Update Sun Oct 12 00:24:04 2014 
+** Last Update Wed Nov  5 13:17:26 2014 
 *)
 
 
 (* Maccros *)
 Maccros	=
-GROUNDS_NUMBER	= 0 ;
-OBJECTS_NUMBER	= 0 ;
+GROUNDS_NUMBER	= 18 ;
+OBJECTS_NUMBER	= 6 ;
 ITEMS_NUMBER	= 0 ;
 
 
@@ -27,6 +27,7 @@ ground_enum	= '0' | '1' | '..' | GROUNDS_NUMBER ;
 object_enum	= '0' | '1' | '..' | OBJECTS_NUMBER ;
 item_enum	= '0' | '1' | '..' | ITEMS_NUMBER ;
 item_number	= integer ;
+item_discalified= boolean ;
 time_unit	= integer ;
 equipement	= item_enum ;
 
@@ -50,7 +51,7 @@ player_description	= "PDC ", player_id, ' ', player_name, ' ', pos_x, ' ', pos_y
 player_equipement	= "PEQ ", player_id, ' ', equipement, '\n' ;
 player_taking		= "PTK ", player_id, ' ', item_enum, '\n' ;
 player_putting		= "PPT ", player_id, ' ', item_enum, '\n' ;
-new_description		= "TDC ", team_id, ' ', team_name, '\n' ;
+team_description	= "TDC ", team_id, ' ', team_name, ' ', team_discalified, '\n' ;
 
 
 (* Graphical client questions *)
@@ -74,7 +75,7 @@ team_ans	= team_description ;
 Connections =
 welcome_message	= "WELCOME\n" ;
 graphic_message	= "GRAPHIC\n" ;
-ia_message	= "IA ", team_name, '\n' ;
+ia_message	= "TEAM\n" ;
 server_kick	= "GET THE FUCK OUT\n" ;
 
 
@@ -83,3 +84,10 @@ Graphical init =
 island_parameters	= "ISL ", time_unit, ' ', map_longer, ' ', map_larger, '\n' ;
 team_presentation	= team_description, { player_description } ;
 graphical_init		= island_parameters, { team_presentation } ;
+
+(* Team init *)
+Team init =
+team_config		= "PRE ", team_name, ' ', population, ' ', wealth, ' ', versatility, ' ', genetic_hardening, ' ', skill_capacity, '\n' ;
+class_presentation	= "CLD ", class_name, '\n';
+player_presentation	= "PLD ", player_name, ' ', class_name, '\n' ;
+team_init		= team_config, { class_presentation }, { player_presentation } ;

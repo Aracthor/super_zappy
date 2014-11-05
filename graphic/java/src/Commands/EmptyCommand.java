@@ -3,8 +3,9 @@ package Commands;
 public class EmptyCommand extends ACommand
 {
 	@Override
-	protected void execute(String[] args)
+	protected boolean	execute(String[] args)
 	{
+		return (true);
 	}
 
 }

@@ -5,14 +5,15 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:36:11 2014 
-// Last Update Wed Oct 22 13:25:57 2014 
+// Last Update Mon Nov  3 15:57:27 2014 
 //
 
 #ifndef SERVER_HH_
 # define SERVER_HH_
 
-# include "core/GameData.hh"
+# include "core/LinkedToServer.hh"
 # include "core/SingletonManager.hh"
+# include "data/GameData.hh"
 # include "map/Map.hh"
 # include "network/Network.hh"
 # include "threading/ThreadManager.hh"
@@ -26,9 +27,6 @@ class		Server : public SingletonManager,
 private:
   static Server*		s_server;
 
-public:
-  static inline Server*		accessServer();
-
 
 public:
   Server(const Configs& configs);
@@ -39,8 +37,8 @@ private:
 
 public:
   void	start();
-};
 
-#include "Server.hpp"
+  friend class	LinkedToServer;
+};
 
 #endif // !SERVER_HH_

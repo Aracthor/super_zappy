@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 14 13:02:33 2014 
-// Last Update Tue Oct 21 11:09:41 2014 
+// Last Update Tue Nov  4 09:44:03 2014 
 //
 
 Client::ClientBuffer&
@@ -44,9 +44,27 @@ Client::wantToSpeak() const
   return (!m_output.isEmpty());
 }
 
+const Team*
+Client::getTeam() const
+{
+  return (m_team);
+}
+
+Team*
+Client::getTeam()
+{
+  return (m_team);
+}
+
 
 void
-Client::setPlayer()
+Client::giveTeam(Team* team)
+{
+  m_team = team;
+}
+
+void
+Client::setTeam()
 {
   m_isPlayer = true;
 }

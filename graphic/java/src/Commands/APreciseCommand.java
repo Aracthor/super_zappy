@@ -12,16 +12,21 @@ public abstract class APreciseCommand extends ACommand
 	}
 	
 	@Override
-	public void tryToExecute(String[] args)
+	public boolean	tryToExecute(String[] args)
 	{
+		boolean		executed;
+		
 		if (args.length != argsNumber)
 		{
 			DebugLog.getInstance().err.print("Bad args number for command " + args[0]);
+			executed = false;
 		}
 		else
 		{
-			this.execute(args);
+			executed = this.execute(args);
 		}
+		
+		return (executed);
 	}
 
 }

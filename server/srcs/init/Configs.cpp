@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:44:42 2014 
-// Last Update Sun Oct 12 08:07:30 2014 
+// Last Update Mon Nov  3 10:27:05 2014 
 //
 
 #include "exceptions/ConfigsException.hh"
@@ -14,15 +14,15 @@
 #include <cstdio>
 #include <cstdlib>
 
-Configs::Map::Map(unsigned int longer, unsigned int larger) :
-  longer(longer),
-  larger(larger)
+Configs::Map::Map(unsigned int width, unsigned int height) :
+  width(width),
+  height(height)
 {
 }
 
 
 Configs::Configs() :
-  m_map(DEFAULT_MAP_LONGER, DEFAULT_MAP_LARGER),
+  m_map(DEFAULT_MAP_WIDTH, DEFAULT_MAP_HEIGHT),
   m_port(DEFAULT_PORT),
   m_speed(DEFAULT_SPEED)
 {
@@ -50,19 +50,19 @@ Configs::changeSpeed(char* arg)
 }
 
 void
-Configs::changeMapLonger(char* arg)
+Configs::changeMapWidth(char* arg)
 {
-  m_map.longer = atoi(arg);
-  if (m_map.longer < MAP_SIZE_MIN || m_map.longer > MAP_SIZE_MAX)
-    throw ConfigsException("Invalid map longer.");
+  m_map.width = atoi(arg);
+  if (m_map.width < MAP_SIZE_MIN || m_map.width > MAP_SIZE_MAX)
+    throw ConfigsException("Invalid map width.");
 }
 
 void
-Configs::changeMapLarger(char* arg)
+Configs::changeMapHeight(char* arg)
 {
-  m_map.larger = atoi(arg);
-  if (m_map.larger < MAP_SIZE_MIN || m_map.larger > MAP_SIZE_MAX)
-    throw ConfigsException("Invalid map larger.");
+  m_map.height = atoi(arg);
+  if (m_map.height < MAP_SIZE_MIN || m_map.height > MAP_SIZE_MAX)
+    throw ConfigsException("Invalid map height.");
 }
 
 void
@@ -77,8 +77,8 @@ Configs::emplFlagsTabs(ParamReader* readers, char* flags)
 {
   readers[0] = &Configs::changePort;
   readers[1] = &Configs::changeSpeed;
-  readers[2] = &Configs::changeMapLonger;
-  readers[3] = &Configs::changeMapLarger;
+  readers[2] = &Configs::changeMapWidth;
+  readers[3] = &Configs::changeMapHeight;
   readers[4] = &Configs::addTeam;
 
   flags[0] = 'p';

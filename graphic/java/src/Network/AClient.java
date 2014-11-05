@@ -20,6 +20,8 @@ public abstract class AClient
 	private BufferedReader		buffer;
 	private InputStreamReader	isr;
 	
+	protected boolean			loop;
+	
 	public	AClient(String host, String port) throws LaunchException
 	{
 		try
@@ -34,6 +36,8 @@ public abstract class AClient
 		{
 			throw new ConnectionException();
 		}
+		
+		loop = true;
 	}
 	
 	
@@ -64,7 +68,7 @@ public abstract class AClient
 		
 		try
 		{
-			while ((line = buffer.readLine()) != null)
+			while (loop == true && (line = buffer.readLine()) != null)
 			{
 				this.recvPacket(line);
 			}

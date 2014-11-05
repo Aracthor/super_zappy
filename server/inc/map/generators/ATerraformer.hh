@@ -5,19 +5,21 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 14:16:39 2014 
-// Last Update Tue Oct 28 13:59:23 2014 
+// Last Update Mon Nov  3 15:46:33 2014 
 //
 
 #ifndef ATERRAFORMER_HH_
 # define ATERRAFORMER_HH_
 
 # include "GroundGenerator.hh"
+# include "HeightGenerator.hh"
 # include "MoistureCalculator.hh"
 # include "ObjectGenerator.hh"
 # include "WaterGenerator.hh"
 # include "init/Configs.hh"
 
 class	ATerraformer : public GroundGenerator,
+		       public HeightGenerator,
 		       public MoistureCalculator,
 		       public ObjectGenerator,
 		       public WaterGenerator

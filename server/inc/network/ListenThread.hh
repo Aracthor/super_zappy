@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 16:46:26 2014 
-// Last Update Tue Oct 21 10:32:48 2014 
+// Last Update Mon Nov  3 13:27:58 2014 
 //
 
 #ifndef LISTEN_THREAD_HH_
@@ -14,7 +14,7 @@
 # include "network/Client.hh"
 # include "network/listeners/AuthentificationListener.hh"
 # include "network/listeners/GraphicListener.hh"
-# include "network/listeners/IAListener.hh"
+# include "network/listeners/TeamListener.hh"
 # include "threading/AZappyThread.hh"
 
 # include <sys/time.h>
@@ -25,7 +25,7 @@ class				ListenThread : public AZappyThread
 private:
   AuthentificationListener	m_authentificationListener;
   GraphicListener		m_graphicListener;
-  IAListener			m_iaListener;
+  TeamListener			m_iaListener;
 
 public:
   ListenThread();

@@ -7,7 +7,6 @@ import Data.Chunk;
 import Data.DataManager;
 import Data.Map;
 import Events.EventsHandler;
-import Network.NetworkThread;
 
 public abstract class AView
 {
@@ -16,7 +15,6 @@ public abstract class AView
 	protected Vector<AGraphicChunk>		chunks;
 	protected int						longer, larger;
 	protected boolean[][]				chunksPos;
-	protected boolean					waitingAChunk;
 	protected boolean					inited;
 	
 	
@@ -26,7 +24,6 @@ public abstract class AView
 	{
 		chunks = new Vector<AGraphicChunk>();
 		chunksPos = null;
-		waitingAChunk = false;
 		inited = false;
 	}
 	
@@ -112,29 +109,6 @@ public abstract class AView
 		
 		return (found);
 	}
-	
-	private void	askForChunk()
-	{
-		int			x, y;
-		
-		for (x = 0, y = 0; chunksPos[y][x] == true && (x != longer - 1 || y != larger - 1);)
-		{
-			if (x == longer - 1)
-			{
-				x = 0;
-				++y;
-			}
-			else
-			{
-				++x;
-			}
-		}
-		
-		if (x != longer - 1 || y != larger - 1 || chunksPos[y][x] == false)
-		{
-			NetworkThread.getInstance().askForChunk(x, y);
-		}
-	}
 
 	public void	manageData(long elapsedTime)
 	{
@@ -142,15 +116,7 @@ public abstract class AView
 		
 		if (map != null)
 		{
-			if (waitingAChunk == true)
-			{
-				waitingAChunk = !this.checkForNewChunks(map);
-			}
-			else
-			{
-				this.askForChunk();
-				waitingAChunk = true;
-			}
+			this.checkForNewChunks(map);
 		}
 	}
 	
@@ -160,7 +126,7 @@ public abstract class AView
 		
 		if (map != null)
 		{
-			waitingAChunk = !this.checkForNewChunks(map);
+			this.checkForNewChunks(map);
 		}
 	}
 

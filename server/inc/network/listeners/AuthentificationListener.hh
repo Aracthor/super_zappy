@@ -5,25 +5,27 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:20:41 2014 
-// Last Update Wed Oct 22 13:48:26 2014 
+// Last Update Wed Nov  5 13:18:51 2014 
 //
 
 #ifndef AUTHENTIFICATION_LISTENER_HH_
 # define AUTHENTIFICATION_LISTENER_HH_
 
-# include "GraphicMessages.hh"
 # include "IListener.hh"
+# include "data/Team.hh"
 
-class	AuthentificationListener : public IListener,
-				   public GraphicMessages
+class	AuthentificationListener : public IListener
 {
 public:
   AuthentificationListener();
   ~AuthentificationListener();
 
 private:
+  void	sendTeamData(Client* client, const Team& team, unsigned int id);
+
+private:
   void	graphicAuthentification(Client* client);
-  void	playerAuthentification(Client* client, char* team);
+  void	teamAuthentification(Client* client);
 
 public:
   bool	listenFromClient(Client* client, char* message);

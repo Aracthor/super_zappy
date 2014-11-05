@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 16:40:27 2014 
-// Last Update Wed Oct 22 12:36:45 2014 
+// Last Update Mon Nov  3 16:48:09 2014 
 //
 
 #include "abstractions/maths.hh"
@@ -19,7 +19,7 @@
 #include <unistd.h>
 
 ListenThread::ListenThread() :
-  AZappyThread("Listen thread")
+  AZappyThread("Listener")
 {
 }
 

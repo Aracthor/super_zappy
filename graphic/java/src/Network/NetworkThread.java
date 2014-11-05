@@ -12,14 +12,14 @@ public class NetworkThread extends Thread
 	}
 	
 	
-	private SuperZappyClient	client;
-	private	boolean				running;
+	private SuperZappyGraphicClient	client;
+	private	boolean					running;
 	
 	public	NetworkThread(String host, String port)
 	{
 		super();
 		s_instance = this;
-		client = new SuperZappyClient(host, port);
+		client = new SuperZappyGraphicClient(host, port);
 	}
 	
 	public void	run()
@@ -54,7 +54,7 @@ public class NetworkThread extends Thread
 	
 	public boolean	isRunning()
 	{
-		if (running == false)
+		if (running == false && client.isLooping() == true)
 		{
 			DebugLog.getInstance().err.print("Connection lost.");
 		}

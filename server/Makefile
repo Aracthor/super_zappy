@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Thu Oct 30 17:25:53 2014 
+## Last Update Tue Nov  4 15:56:41 2014 
 ##
 
 CC=		g++
@@ -22,11 +22,13 @@ BIN_DIR=	bin/
 
 ABSTRACT_DIR=	abstractions/
 CORE_DIR=	core/
+DATA_DIR=	data/
 DEBUG_DIR=	debug/
 EXCEPTIONS_DIR=	exceptions/
 INIT_DIR=	init/
 MAP_DIR=	map/
 NETWORK_DIR=	network/
+SECURITY_DIR=	security/
 THREADING_DIR=	threading/
 
 GENERATORS_DIR=	$(MAP_DIR)generators/
@@ -34,9 +36,14 @@ LISTENERS_DIR=	$(NETWORK_DIR)listeners/
 
 NAME=		server
 
-SRCS=		$(SRCS_DIR)$(CORE_DIR)GameData.cpp			\
+SRCS=		$(SRCS_DIR)$(CORE_DIR)LinkedToServer.cpp		\
 		$(SRCS_DIR)$(CORE_DIR)Server.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)SingletonManager.cpp		\
+		$(SRCS_DIR)$(DATA_DIR)Class.cpp				\
+		$(SRCS_DIR)$(DATA_DIR)GameData.cpp			\
+		$(SRCS_DIR)$(DATA_DIR)Namable.cpp			\
+		$(SRCS_DIR)$(DATA_DIR)Player.cpp			\
+		$(SRCS_DIR)$(DATA_DIR)Team.cpp				\
 		$(SRCS_DIR)$(DEBUG_DIR)Log.cpp				\
 		$(SRCS_DIR)$(DEBUG_DIR)LogManager.cpp			\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ConfigsException.cpp	\
@@ -47,6 +54,7 @@ SRCS=		$(SRCS_DIR)$(CORE_DIR)GameData.cpp			\
 		$(SRCS_DIR)$(GENERATORS_DIR)AGenerator.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)ATerraformer.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)GroundGenerator.cpp		\
+		$(SRCS_DIR)$(GENERATORS_DIR)HeightGenerator.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)HeightMap.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)LowLakeGenerator.cpp	\
 		$(SRCS_DIR)$(GENERATORS_DIR)MoistureCalculator.cpp	\
@@ -62,9 +70,9 @@ SRCS=		$(SRCS_DIR)$(CORE_DIR)GameData.cpp			\
 		$(SRCS_DIR)$(INIT_DIR)Teams.cpp				\
 		$(SRCS_DIR)$(LISTENERS_DIR)AuthentificationListener.cpp	\
 		$(SRCS_DIR)$(LISTENERS_DIR)CommandCutter.cpp		\
+		$(SRCS_DIR)$(LISTENERS_DIR)CommandListener.cpp		\
 		$(SRCS_DIR)$(LISTENERS_DIR)GraphicListener.cpp		\
-		$(SRCS_DIR)$(LISTENERS_DIR)GraphicMessages.cpp		\
-		$(SRCS_DIR)$(LISTENERS_DIR)IAListener.cpp		\
+		$(SRCS_DIR)$(LISTENERS_DIR)TeamListener.cpp		\
 		$(SRCS_DIR)$(MAP_DIR)Chunk.cpp				\
 		$(SRCS_DIR)$(MAP_DIR)Hoopla.cpp				\
 		$(SRCS_DIR)$(MAP_DIR)Map.cpp				\
@@ -73,6 +81,9 @@ SRCS=		$(SRCS_DIR)$(CORE_DIR)GameData.cpp			\
 		$(SRCS_DIR)$(NETWORK_DIR)Network.cpp			\
 		$(SRCS_DIR)$(NETWORK_DIR)Socket.cpp			\
 		$(SRCS_DIR)$(NETWORK_DIR)SpeakThread.cpp		\
+		$(SRCS_DIR)$(SECURITY_DIR)CheatChecker.cpp		\
+		$(SRCS_DIR)$(SECURITY_DIR)SkillChecker.cpp		\
+		$(SRCS_DIR)$(SECURITY_DIR)StatChecker.cpp		\
 		$(SRCS_DIR)$(THREADING_DIR)AZappyThread.cpp		\
 		$(SRCS_DIR)$(THREADING_DIR)AThread.cpp			\
 		$(SRCS_DIR)$(THREADING_DIR)CondVar.cpp			\
@@ -108,6 +119,6 @@ clean:
 		$(RM) $(OBJS)
 
 fclean:		clean
-		$(RM) $(NAME)
+		$(RM) $(BINARY)
 
 re:		fclean all

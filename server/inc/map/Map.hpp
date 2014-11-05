@@ -5,23 +5,23 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:48:07 2014 
-// Last Update Wed Oct 22 12:43:40 2014 
+// Last Update Mon Nov  3 10:28:18 2014 
 //
 
 const Chunk&
 Map::getChunk(unsigned int x, unsigned int y) const
 {
-  return (m_chunks[y * m_longer + x]);
+  return (m_chunks[y * m_width + x]);
 }
 
 unsigned int
-Map::getLonger() const
+Map::getWidth() const
 {
-  return (m_longer);
+  return (m_width);
 }
 
 unsigned int
-Map::getLarger() const
+Map::getHeight() const
 {
-  return (m_larger);
+  return (m_height);
 }

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 15:21:08 2014 
-// Last Update Tue Oct 21 10:27:24 2014 
+// Last Update Mon Nov  3 13:30:18 2014 
 //
 
 #include <exception>
@@ -28,7 +28,7 @@ AZappyThread::~AZappyThread()
 void
 AZappyThread::start()
 {
-  m_server = Server::accessServer();
+  m_server = this->getServerData();
   AThread::start();
 }
 

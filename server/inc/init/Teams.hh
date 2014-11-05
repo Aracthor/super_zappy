@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:33:47 2014 
-// Last Update Sun Oct 12 07:14:05 2014 
+// Last Update Mon Nov  3 16:02:33 2014 
 //
 
 #ifndef TEAMS_HH_
@@ -19,7 +19,6 @@ private:
 
 public:
   Teams();
-  Teams(const Teams& teams);
   ~Teams();
 
 public:
