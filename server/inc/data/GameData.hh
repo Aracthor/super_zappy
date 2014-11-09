@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:24:52 2014 
-// Last Update Tue Nov  4 10:49:04 2014 
+// Last Update Sun Nov  9 03:29:45 2014 
 //
 
 #ifndef GAME_DATA_HH_
@@ -13,6 +13,7 @@
 
 # include "Team.hh"
 # include "containers/Array.hh"
+# include "map/Map.hh"
 # include "init/Configs.hh"
 
 class		GameData
@@ -20,19 +21,31 @@ class		GameData
 protected:
   Array<Team>	m_teams;
   unsigned int	m_teamsNumber;
-  unsigned int  m_speed;
+  bool		m_started;
 
 protected:
   GameData(const Configs& configs);
   virtual ~GameData();
 
 public:
-  Team*	getTeamFromName(const char* name);
+  const Team*	getTeam(const char* name) const;
+  const Player*	getPlayer(const char* name) const;
+
+public:
+  void		preparePlayers();
+
+protected:
+  void		setSpawnPoints(const Map& map);
 
 public:
   inline const Team*	getTeams() const;
+  inline Team*		getTeamFromName(const char* name);
   inline unsigned int	getTeamsNumber() const;
-  inline unsigned int	getSpeed() const;
+  inline bool		isStarted() const;
+  inline Player*	getPlayerFromName(const char* name);
+
+public:
+  inline void		startGame();
 };
 
 # include "GameData.hpp"

@@ -5,22 +5,36 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:48:32 2014 
-// Last Update Mon Nov  3 16:12:13 2014 
+// Last Update Sun Nov  9 04:10:18 2014 
 //
 
 #include "abstractions/allocs.hh"
+#include "abstractions/maths.hh"
 #include "map/Map.hh"
 #include "map/generators/Terraformer.hh"
 
-Map::Map(const Configs::Map& configs) :
-  m_width(configs.width),
-  m_height(configs.height)
+Map::Map(const Configs& configs) :
+  m_chunks(NULL),
+  m_width(configs.getMapConfigs().width),
+  m_height(configs.getMapConfigs().height)
+{
+  this->terraform(configs.getMapConfigs());
+}
+
+Map::~Map()
+{
+  free(m_chunks);
+}
+
+
+void
+Map::terraform(const Configs::Map& configs)
 {
   Terraformer	terraformer(configs);
   Chunk*	chunk;
   unsigned int	x, y;
 
-  MALLOC(m_chunks, m_width * m_height, Chunk);
+  REALLOC(m_chunks, m_width * m_height, Chunk);
 
   terraformer.createMap();
   for (x = 0; x < m_width * CHUNK_SIZE; ++x)
@@ -32,7 +46,67 @@ Map::Map(const Configs::Map& configs) :
       }
 }
 
-Map::~Map()
+
+bool
+Map::tryToSpawn(const sf::Vector2u& origin, sf::Vector2u& pos, unsigned int depth) const
 {
-  free(m_chunks);
+  bool		spawned;
+
+  spawned = (IS_EMPTY(this->getHoopla(origin + sf::Vector2u( 1,  1))) &&
+	     IS_EMPTY(this->getHoopla(origin + sf::Vector2u( 0,  1))) &&
+	     IS_EMPTY(this->getHoopla(origin + sf::Vector2u(-1,  1))) &&
+	     IS_EMPTY(this->getHoopla(origin + sf::Vector2u(-1,  0))) &&
+	     IS_EMPTY(this->getHoopla(origin + sf::Vector2u(-1, -1))) &&
+	     IS_EMPTY(this->getHoopla(origin + sf::Vector2u( 0, -1))) &&
+	     IS_EMPTY(this->getHoopla(origin + sf::Vector2u( 1, -1))) &&
+	     IS_EMPTY(this->getHoopla(origin + sf::Vector2u( 1,  0))) &&
+	     IS_EMPTY(this->getHoopla(origin)));
+
+  if (spawned)
+    pos = origin;
+  else if (depth > 0)
+    {
+      spawned = (this->tryToSpawn(origin + sf::Vector2u( 0,  1), pos, depth - 1) ||
+		 this->tryToSpawn(origin + sf::Vector2u( 0, -1), pos, depth - 1) ||
+		 this->tryToSpawn(origin + sf::Vector2u( 1,  0), pos, depth - 1) ||
+		 this->tryToSpawn(origin + sf::Vector2u(-1,  0), pos, depth - 1));
+    }
+
+  return (spawned);
+}
+
+
+sf::Vector2u
+Map::createSpawnPoint(unsigned int angle) const
+{
+  sf::Vector2f	pos;
+  sf::Vector2f	movement;
+
+  pos.x = (m_width / 2 + cos(RAD(angle)) * m_width / 2) * CHUNK_SIZE;
+  pos.y = (m_height / 2 + sin(RAD(angle)) * m_height / 2) * CHUNK_SIZE;
+
+  movement.x = -cos(RAD(angle));
+  movement.y = -sin(RAD(angle));
+
+  while (this->getHoopla(pos).ground == Hoopla::ocean)
+    pos += movement;
+
+  return (sf::Vector2u(pos.x, pos.y));
+}
+
+sf::Vector2u
+Map::getSpawnPoint(const sf::Vector2u& origin)
+{
+  sf::Vector2u	point;
+  unsigned int	i;
+  bool		spawned;
+
+  for (i = 0, spawned = false;
+       spawned == false;
+       ++i)
+    spawned = this->tryToSpawn(origin, point, i);
+
+  this->getHoopla(point).hasPlayer = true;
+
+  return (point);
 }

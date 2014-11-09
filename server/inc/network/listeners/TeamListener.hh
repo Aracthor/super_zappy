@@ -5,16 +5,18 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:20:41 2014 
-// Last Update Tue Nov  4 14:52:00 2014 
+// Last Update Sat Nov  8 23:44:08 2014 
 //
 
 #ifndef TEAM_LISTENER_HH_
 # define TEAM_LISTENER_HH_
 
 # include "CommandListener.hh"
+# include "actions/ActionFactory.hh"
 # include "data/Team.hh"
 
-class	TeamListener : public CommandListener
+class	TeamListener : public CommandListener,
+		       private ActionFactory
 {
 private:
   typedef bool	(TeamListener::*TeamCommandExecution)(Client* client,
@@ -32,7 +34,11 @@ private:
   bool	getPlayerPresentation(Client* client, char* const* args, Team* team);
 
 private:
-  bool	executeTeamCommand(Client* client, char* const* args, TeamCommandExecution execution);
+  bool	executeTeamCommand(Client* client, char* const* args,TeamCommandExecution execution);
+
+private:
+  bool	unknowCommand(Client* client,
+		      const CommandCutter::CuttedLine& cuttedCommand);
 
 private:
   bool	getTeamPresentation(Client* client, char* const* args);

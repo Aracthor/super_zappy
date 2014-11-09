@@ -1,10 +1,10 @@
 package Events.Camera2D;
 
-import Engine.Camera.Camera2D;
+import Engine.Camera.ACamera;
 
 public class Camera2DMoveUpListener extends ACamera2DListener
 {
-	public	Camera2DMoveUpListener(Camera2D camera)
+	public	Camera2DMoveUpListener(ACamera camera)
 	{
 		super(camera);
 	}

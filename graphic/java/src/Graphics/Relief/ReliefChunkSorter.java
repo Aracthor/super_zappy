@@ -1,6 +1,7 @@
 package Graphics.Relief;
 
 import Data.Chunk;
+import Engine.Camera.ACamera;
 import Engine.Camera.HelicopterCamera;
 import Graphics.AGraphicChunk;
 import Graphics.IChunkSorter;
@@ -9,9 +10,9 @@ public class						ReliefChunkSorter implements IChunkSorter
 {
 	private final HelicopterCamera	camera;
 	
-	public		ReliefChunkSorter(HelicopterCamera camera)
+	public		ReliefChunkSorter(ACamera camera)
 	{
-		this.camera = camera;
+		this.camera = (HelicopterCamera)camera;
 	}
 	
 	private boolean	isInRange(AGraphicChunk chunk, float distanceX, float distanceY)

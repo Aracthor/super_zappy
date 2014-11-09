@@ -1,27 +1,34 @@
 package Graphics;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
 
 import Data.Chunk;
 import Data.DataManager;
 import Data.Map;
+import Data.Player;
+import Engine.GlControlPanel;
+import Engine.Camera.ACamera;
 import Events.EventsHandler;
 
 public abstract class AView
 {
 	public static int	VIEWS_NUMBER = 2;
 	
-	protected Vector<AGraphicChunk>		chunks;
-	protected int						longer, larger;
-	protected boolean[][]				chunksPos;
-	protected boolean					inited;
+	protected ACamera							camera;
+	protected HashMap<Player, AGraphicPlayer>	players;
+	protected Vector<AGraphicChunk>				chunks;
+	protected int								longer, larger;
+	protected boolean[][]						chunksPos;
+	protected boolean							inited;
 	
 	
 	protected	EventsHandler	eventsHandler;
 	
 	public	AView()
 	{
+		players = new HashMap<Player, AGraphicPlayer>();
 		chunks = new Vector<AGraphicChunk>();
 		chunksPos = null;
 		inited = false;
@@ -129,7 +136,48 @@ public abstract class AView
 			this.checkForNewChunks(map);
 		}
 	}
+	
+	private void			displayPlayer(Player player, long elapsedTime)
+	{
+		AGraphicPlayer		graphicPlayer = players.get(player);
+		
+		if (graphicPlayer == null)
+		{
+			graphicPlayer = this.createGraphicPlayer(player);
+			players.put(player, graphicPlayer);
+		}
+		else
+		{
+			graphicPlayer.update(player);
+		}
+		graphicPlayer.display();
+	}
+	
+	public void				display(long elapsedTime)
+	{
+		DataManager			dataManager;
+		Vector<Player>		players;
+		Iterator<Player>	playerIt;
+		
+		dataManager = DataManager.getInstance();
+		players = dataManager.getPlayers();
+		
+		GlControlPanel.getInstance().initFrame(camera);
+		{
+			this.displayChunks(elapsedTime);
+			DataManager.getInstance().getLock().lock();
+			{
+				for (playerIt = players.iterator(); playerIt.hasNext();)
+				{
+					this.displayPlayer(playerIt.next(), elapsedTime);
+				}
+			}
+			DataManager.getInstance().getLock().unlock();
+		}
+		GlControlPanel.getInstance().endFrame();
+	}
 
+	protected abstract AGraphicPlayer	createGraphicPlayer(Player player);
 	protected abstract AGraphicChunk	createGraphicChunk(int x, int y, Chunk chunk);
-	public abstract void				display(long elapsedTime);
+	protected abstract void				displayChunks(long elapsedTime);
 }

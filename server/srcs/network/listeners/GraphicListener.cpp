@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:27:00 2014 
-// Last Update Wed Nov  5 13:21:29 2014 
+// Last Update Sat Nov  8 18:00:00 2014 
 //
 
 #include "core/Server.hh"
@@ -31,23 +31,15 @@ void
 GraphicListener::sendHooplaData(Client* client, const Hoopla& hoopla,
 				unsigned int x, unsigned int y) const
 {
-  char	buffer[0x1000];
-
-  sprintf(buffer, "CAS %d %d %d %d %d %d %d %d",
-	  x, y,
-	  hoopla.ground, (int)hoopla.height,
-	  hoopla.item, hoopla.itemNumber,
-	  hoopla.object, hoopla.player_id);
-  *client << buffer;
-}
-
-void
-GraphicListener::sendTeamData(Client* client, const Team& team, unsigned int id) const
-{
-  char	buffer[0x1000];
-
-  sprintf(buffer, "TDC %d %s %d", id, team.getName(), team.isDiscalified());
-  *client << buffer;
+  *client << "CAS "
+	  << x << ' '
+	  << y << ' '
+	  << hoopla.ground << ' '
+	  << static_cast<int>(hoopla.height) << ' '
+	  << hoopla.item << ' '
+	  << hoopla.itemNumber << ' '
+	  << hoopla.object
+	  << LINE_SEPARATOR;
 }
 
 
@@ -73,7 +65,7 @@ GraphicListener::sendChunkData(Client* client, char* const* args) const
   else
     {
       chunk = &map->getChunk(x, y);
-      sprintf(buffer, "CHK %d %d", x, y);
+      sprintf(buffer, "CHK %d %d\n", x, y);
       *client << buffer;
       for (hx = 0; hx < CHUNK_SIZE; ++hx)
 	for (hy = 0; hy < CHUNK_SIZE; ++hy)
@@ -111,24 +103,35 @@ GraphicListener::sendHooplaData(Client* client, char* const* args) const
 bool
 GraphicListener::sendPlayerData(Client* client, char* const* args) const
 {
-  (void)(client);
-  (void)(args);
-  return (true);
+  const GameData*       gameData = this->getServerData();
+  const Player*	        player;
+  bool			valid;
+
+  player = gameData->getPlayer(args[1]);
+  valid = (player != NULL);
+
+  if (valid == false)
+    LogManagerSingleton::access()->error.print("Invalid player %s.", args[1]);
+  else
+    *client << *player;
+
+  return (valid);
 }
 
 bool
 GraphicListener::sendTeamData(Client* client, char* const* args) const
 {
   const GameData*       gameData = this->getServerData();
-  unsigned int		id;
+  const Team*		team;
   bool			valid;
 
-  id = atoi(args[1]);
-  valid = (id >= gameData->getTeamsNumber());
+  team = gameData->getTeam(args[1]);
+  valid = (team != NULL);
+
   if (valid == false)
-    LogManagerSingleton::access()->error.print("Invalid team id %d.", id);
+    LogManagerSingleton::access()->error.print("Invalid team %s.", args[1]);
   else
-    this->sendTeamData(client, gameData->getTeams()[id], id);
+    *client << *team;
 
   return (valid);
 }

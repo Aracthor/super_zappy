@@ -7,19 +7,20 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
+import org.lwjgl.util.vector.Vector3f;
 
 import Engine.GlControlPanel;
 import Engine.IBindable;
 
 public class VertexBufferObject implements IBindable
 {
-	private	int		arrayId;
-	private	int		elementsId;
-	private int		verticesNumber;
-	private int		elementsNumber;
-	private boolean	useElements;
-	private boolean	useColor;
-	private boolean	useTexture;
+	private	int			arrayId;
+	private	int			elementsId;
+	private int			verticesNumber;
+	private int			elementsNumber;
+	private boolean		useElements;
+	private boolean		useColor;
+	private boolean		useTexture;
 	
 	public	VertexBufferObject(boolean elements)
 	{

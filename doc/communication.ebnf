@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 15:57:56 2014 
-** Last Update Wed Nov  5 13:17:26 2014 
+** Last Update Fri Nov  7 13:03:59 2014 
 *)
 
 
@@ -23,6 +23,7 @@ pos_y		= integer ;
 height		= integer ;
 player_id	= integer ;
 team_id		= integer ;
+orientation	= '0' | '1' | '2' | '3' ;
 ground_enum	= '0' | '1' | '..' | GROUNDS_NUMBER ;
 object_enum	= '0' | '1' | '..' | OBJECTS_NUMBER ;
 item_enum	= '0' | '1' | '..' | ITEMS_NUMBER ;
@@ -47,11 +48,12 @@ inventory	= { ' ', item_enum, ' ', number } ;
 Server to graphical clients =
 chunk_description	= "CHK ", pos_x, ' ', pos_y, '\n', { case_description };
 case_description	= "CAS ", pos_x, ' ', pos_y, ' ', ground_enum, ' ', height, ' ', item_enum, ' ', item_number, ' ', object_enum, ' ', player_id, '\n' ;
-player_description	= "PDC ", player_id, ' ', player_name, ' ', pos_x, ' ', pos_y, ' ', team_id, ' ', equipement, inventory, '\n' ;
-player_equipement	= "PEQ ", player_id, ' ', equipement, '\n' ;
-player_taking		= "PTK ", player_id, ' ', item_enum, '\n' ;
-player_putting		= "PPT ", player_id, ' ', item_enum, '\n' ;
-team_description	= "TDC ", team_id, ' ', team_name, ' ', team_discalified, '\n' ;
+player_description	= "PDC ", player_name, ' ', pos_x, ' ', pos_y, ' ', orientation, ' ', team_name, ' ', class_name, ' ', equipement, inventory, '\n' ;
+player_position		= "PPO ", player_name, ' ', pos_x, ' ', pos_y, ' ', orientation, '\n' ;
+player_equipement	= "PEQ ", player_name, ' ', equipement, '\n' ;
+player_taking		= "PTK ", player_name, ' ', item_enum, '\n' ;
+player_putting		= "PPT ", player_name, ' ', item_enum, '\n' ;
+team_description	= "TDC ", team_name, ' ', team_discalified, '\n' ;
 
 
 (* Graphical client questions *)
@@ -59,7 +61,7 @@ Graphical client questions =
 chunk_ask	= "CHK ", pos_x, ' ', pos_y, '\n' ;
 case_ask	= "CAS ", pos_x, ' ', pos_y, '\n' ;
 player_ask	= "PDC ", player_id, '\n' ;
-team_ask	= "TDC ", team_id, '\n' ;
+team_ask	= "TDC ", team_name, '\n' ;
 
 
 (* Graphical client answers *)

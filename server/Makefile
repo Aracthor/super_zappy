@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Tue Nov  4 15:56:41 2014 
+## Last Update Sun Nov  9 08:19:53 2014 
 ##
 
 CC=		g++
@@ -20,23 +20,31 @@ INC_DIR=	inc/
 OBJS_DIR=	objs/
 BIN_DIR=	bin/
 
-ABSTRACT_DIR=	abstractions/
+ABSTRACTION_DIR=abstractions/
+ACTIONS_DIR=	actions/
 CORE_DIR=	core/
 DATA_DIR=	data/
 DEBUG_DIR=	debug/
 EXCEPTIONS_DIR=	exceptions/
+EXECUTORS_DIR=	executors/
 INIT_DIR=	init/
 MAP_DIR=	map/
 NETWORK_DIR=	network/
 SECURITY_DIR=	security/
 THREADING_DIR=	threading/
 
+DISPLACERS_DIR=	$(EXECUTORS_DIR)displacers/
 GENERATORS_DIR=	$(MAP_DIR)generators/
 LISTENERS_DIR=	$(NETWORK_DIR)listeners/
 
 NAME=		server
 
-SRCS=		$(SRCS_DIR)$(CORE_DIR)LinkedToServer.cpp		\
+SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
+		$(SRCS_DIR)$(ACTIONS_DIR)Action.cpp			\
+		$(SRCS_DIR)$(ACTIONS_DIR)ActionFactory.cpp		\
+		$(SRCS_DIR)$(ACTIONS_DIR)ActionsManager.cpp		\
+		$(SRCS_DIR)$(ACTIONS_DIR)ExecuterThread.cpp		\
+		$(SRCS_DIR)$(CORE_DIR)LinkedToServer.cpp		\
 		$(SRCS_DIR)$(CORE_DIR)Server.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)SingletonManager.cpp		\
 		$(SRCS_DIR)$(DATA_DIR)Class.cpp				\
@@ -44,6 +52,11 @@ SRCS=		$(SRCS_DIR)$(CORE_DIR)LinkedToServer.cpp		\
 		$(SRCS_DIR)$(DATA_DIR)Namable.cpp			\
 		$(SRCS_DIR)$(DATA_DIR)Player.cpp			\
 		$(SRCS_DIR)$(DATA_DIR)Team.cpp				\
+		$(SRCS_DIR)$(DISPLACERS_DIR)AdeptDisplacer.cpp		\
+		$(SRCS_DIR)$(DISPLACERS_DIR)ApprenticeDisplacer.cpp	\
+		$(SRCS_DIR)$(DISPLACERS_DIR)DisplacerMethod.cpp		\
+		$(SRCS_DIR)$(DISPLACERS_DIR)ExpertDisplacer.cpp		\
+		$(SRCS_DIR)$(DISPLACERS_DIR)MasterDisplacer.cpp		\
 		$(SRCS_DIR)$(DEBUG_DIR)Log.cpp				\
 		$(SRCS_DIR)$(DEBUG_DIR)LogManager.cpp			\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ConfigsException.cpp	\
@@ -51,6 +64,12 @@ SRCS=		$(SRCS_DIR)$(CORE_DIR)LinkedToServer.cpp		\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)SyscallException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ThreadingException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ZappyException.cpp		\
+		$(SRCS_DIR)$(EXECUTORS_DIR)Displacer.cpp		\
+		$(SRCS_DIR)$(EXECUTORS_DIR)Mover.cpp			\
+		$(SRCS_DIR)$(EXECUTORS_DIR)Movements.cpp		\
+		$(SRCS_DIR)$(EXECUTORS_DIR)Rotater.cpp			\
+		$(SRCS_DIR)$(EXECUTORS_DIR)Searcher.cpp			\
+		$(SRCS_DIR)$(EXECUTORS_DIR)SpeedCalculator.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)AGenerator.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)ATerraformer.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)GroundGenerator.cpp		\

@@ -5,8 +5,20 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 14 12:58:45 2014 
-// Last Update Tue Oct 21 11:53:41 2014 
+// Last Update Sun Nov  9 04:26:41 2014 
 //
+
+template <typename T>
+void
+Network::sayToGraphicClients(const T& message)
+{
+  unsigned int	i;
+
+  FOREACH_OF_POOL(m_clients, i)
+    if (m_clients[i].isGraphic())
+      m_clients[i] << message;
+}
+
 
 const Socket&
 Network::getSocket() const

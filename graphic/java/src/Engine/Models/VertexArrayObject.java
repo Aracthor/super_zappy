@@ -1,7 +1,9 @@
 package Engine.Models;
 
 import org.lwjgl.opengl.GL30;
+import org.lwjgl.util.vector.Vector3f;
 
+import Engine.GlControlPanel;
 import Engine.IBindable;
 
 public class VertexArrayObject implements IBindable
@@ -12,11 +14,13 @@ public class VertexArrayObject implements IBindable
 	private VertexBufferObject	vbo;
 	private int					colorIndex;
 	private int					textureIndex;
+	private Vector3f			baseColor;
 	
 	public VertexArrayObject()
 	{
 		id = GL30.glGenVertexArrays();
 		elements = null;
+		baseColor = new Vector3f(1.0f, 1.0f, 1.0f);
 	}
 	
 	public boolean	isEmpty()
@@ -86,8 +90,15 @@ public class VertexArrayObject implements IBindable
 		this.unbind();
 	}
 	
+	public void	setBaseColor(Vector3f color)
+	{
+		this.baseColor = color;
+	}
+	
 	public void	draw()
 	{
+		GlControlPanel.getInstance().getCurrentShader().setUniform("base_color", baseColor);
+		
 		this.bind();
 		{
 			vbo.draw();

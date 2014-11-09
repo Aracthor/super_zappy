@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:32:05 2014 
-// Last Update Mon Nov  3 16:23:21 2014 
+// Last Update Sun Nov  9 04:59:05 2014 
 //
 
 #ifndef CONFIGS_HH_
@@ -14,7 +14,7 @@
 # include "Teams.hh"
 
 # define DEFAULT_PORT		(4242)
-# define DEFAULT_SPEED		(100000)
+# define DEFAULT_SPEED		(10000)
 # define DEFAULT_MAP_WIDTH	(4)
 # define DEFAULT_MAP_HEIGHT	(4)
 

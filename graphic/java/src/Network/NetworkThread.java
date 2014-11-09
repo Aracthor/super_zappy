@@ -32,6 +32,8 @@ public class NetworkThread extends Thread
 		}
 		catch (Exception exception)
 		{
+			DebugLog.getInstance().err.print("Fatal error in network thread : ");
+			exception.printStackTrace();
 		}
 		finally
 		{

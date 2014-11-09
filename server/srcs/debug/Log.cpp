@@ -5,10 +5,8 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 10:15:01 2014 
-// Last Update Fri Oct 24 17:05:45 2014 
+// Last Update Thu Nov  6 08:19:58 2014 
 //
-
-#include <stdarg.h>
 
 #include "debug/Log.hh"
 
@@ -34,10 +32,19 @@ Log::print(const char* message, ...)
 
       va_start(list, message);
       {
-	fprintf(m_stream, "\033[0%d;3%dm", m_bold, m_color);
-	vfprintf(m_stream, message, list);
-	fprintf(m_stream, "\033[0m\n");
+	this->print(message, list);
       }
       va_end(list);
+    }
+}
+
+void
+Log::print(const char* message, va_list list)
+{
+  if (m_active)
+    {
+      fprintf(m_stream, "\033[0%d;3%dm", m_bold, m_color);
+      vfprintf(m_stream, message, list);
+      fprintf(m_stream, "\033[0m\n");
     }
 }

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:20:41 2014 
-// Last Update Wed Nov  5 13:18:51 2014 
+// Last Update Sat Nov  8 22:19:21 2014 
 //
 
 #ifndef AUTHENTIFICATION_LISTENER_HH_
@@ -19,9 +19,6 @@ class	AuthentificationListener : public IListener
 public:
   AuthentificationListener();
   ~AuthentificationListener();
-
-private:
-  void	sendTeamData(Client* client, const Team& team, unsigned int id);
 
 private:
   void	graphicAuthentification(Client* client);

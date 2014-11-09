@@ -12,12 +12,16 @@ public class DebugLog
 	}
 	
 	
-	public	ILog	std;
-	public	ILog	err;
+	public final	ILog	std;
+	public final	ILog	events;
+	public final	ILog	init;
+	public final	ILog	err;
 	
 	private	DebugLog()
 	{
 		std = new StandartLog();
+		events = new EventsLog();
+		init = new InitLog();
 		err = new ErrorLog();
 	}
 }

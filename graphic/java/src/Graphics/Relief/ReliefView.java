@@ -7,6 +7,7 @@ import Data.Chunk;
 import Data.DataManager;
 import Data.Hoopla;
 import Data.Map;
+import Data.Player;
 import Engine.GlControlPanel;
 import Engine.Camera.HelicopterCamera;
 import Engine.Models.Mesh;
@@ -17,13 +18,13 @@ import Events.HelicopterCamera.HelicopterCameraMoveFrontListener;
 import Events.HelicopterCamera.HelicopterCameraRotateLeftListener;
 import Events.HelicopterCamera.HelicopterCameraRotateRightListener;
 import Graphics.AGraphicChunk;
+import Graphics.AGraphicPlayer;
 import Graphics.AView;
 import Usefull.Pointer;
 
 
 public class ReliefView extends AView
 {
-	private HelicopterCamera	camera;
 	private Mesh				chunksBorders;
 	private Pointer<Boolean>	grid;
 	
@@ -52,22 +53,26 @@ public class ReliefView extends AView
 	}
 	
 	
+	@Override
 	protected AGraphicChunk	createGraphicChunk(int x, int y, Chunk chunk)
 	{
 		return (new ReliefGraphicChunk(x, y, chunk));
 	}
 	
-	public	void	display(long elapsedTime)
+	@Override
+	protected AGraphicPlayer	createGraphicPlayer(Player player)
 	{
-		GlControlPanel.getInstance().initFrame(camera);
+		return (new ReliefGraphicPlayer(player));
+	}
+	
+	@Override
+	public	void	displayChunks(long elapsedTime)
+	{
+		this.displaySomeChunks(elapsedTime, new ReliefChunkSorter(camera));
+		if (chunksBorders != null)
 		{
-			this.displaySomeChunks(elapsedTime, new ReliefChunkSorter(camera));
-			if (chunksBorders != null)
-			{
-				chunksBorders.draw();
-			}
+			chunksBorders.draw();
 		}
-		GlControlPanel.getInstance().endFrame();
 	}
 	
 	private void	addHooplaToBrodersMeshVertices(float vertices[], float colors[], Hoopla hoopla, int x, int y, int index)

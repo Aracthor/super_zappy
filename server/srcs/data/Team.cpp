@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 15:59:55 2014 
-// Last Update Wed Nov  5 13:22:19 2014 
+// Last Update Sat Nov  8 18:24:32 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -89,7 +89,7 @@ Team::addPlayer(const char* name, const char* className)
   valid = (classRef != NULL);
 
   if (valid)
-    valid = m_players.securePush(Player(name, classRef));
+    valid = m_players.securePush(Player(name, this, classRef));
 
   return (valid);
 }

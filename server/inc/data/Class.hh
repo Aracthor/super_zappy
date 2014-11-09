@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 08:39:45 2014 
-// Last Update Tue Nov  4 14:03:07 2014 
+// Last Update Sun Nov  9 01:23:56 2014 
 //
 
 #ifndef CLASS_HH_
@@ -15,6 +15,7 @@
 
 # define CHARACTERISTICS_NUMBER	(5)
 # define SKILLS_NUMBER		(2)
+# define SKILL_LEVEL_MAX	(4)
 
 class		Class : public Namable
 {
@@ -27,6 +28,15 @@ public:
     toughness,
     intuition,
     characteristics_number
+  };
+
+  enum		ESkillLevel
+  {
+    apprentice,
+    adept,
+    expert,
+    master,
+    skill_level_max
   };
 
   enum		ESkill

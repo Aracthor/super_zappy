@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:38:52 2014 
-// Last Update Tue Oct 21 11:53:15 2014 
+// Last Update Sun Nov  9 04:23:31 2014 
 //
 
 #ifndef NETWORK_HH_
@@ -14,6 +14,7 @@
 # include "Client.hh"
 # include "Socket.hh"
 # include "containers/Pool.hh"
+# include "data/Team.hh"
 # include "threading/CondVar.hh"
 
 class		Network
@@ -32,7 +33,13 @@ public:
   virtual ~Network();
 
 public:
+  void	discalifyTeam(Team* team);
   void	kickClient(Client* client, bool disconnected);
+  void	vsayToGraphicClients(const char* message, ...);
+
+public:
+  template <typename T>
+  void	sayToGraphicClients(const T& message);
 
 public:
   inline const Socket&		getSocket() const;

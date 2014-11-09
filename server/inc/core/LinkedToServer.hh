@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 13:15:18 2014 
-// Last Update Mon Nov  3 13:30:45 2014 
+// Last Update Sat Nov  8 22:10:51 2014 
 //
 
 #ifndef LINKED_TO_SERVER_HH_
@@ -15,7 +15,7 @@ class	Server;
 
 class	LinkedToServer
 {
-public:
+protected:
   LinkedToServer();
   virtual ~LinkedToServer();
 

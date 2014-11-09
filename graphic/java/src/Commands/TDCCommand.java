@@ -7,17 +7,28 @@ public class TDCCommand extends APreciseCommand
 {
 	public	TDCCommand()
 	{
-		super(4);
+		super(3);
 	}
 
 	@Override
 	protected boolean	execute(String[] args)
 	{
 		DataManager	dataManager = DataManager.getInstance();
-		Team		new_team;
+		Team		team;
+		boolean		discalified;
 		
-		new_team = new Team(args[2], Boolean.parseBoolean(args[3]));
-		dataManager.addTeam(new_team);
+		discalified = Boolean.parseBoolean(args[2]);
+		
+		team = dataManager.getTeam(args[1]);
+		if (team == null)
+		{
+			team = new Team(args[1], discalified);
+			dataManager.addTeam(team);
+		}
+		else if (discalified)
+		{
+			team.discalify();
+		}
 		
 		return (true);
 	}

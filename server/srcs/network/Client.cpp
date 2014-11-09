@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 14 13:07:56 2014 
-// Last Update Tue Nov  4 09:44:19 2014 
+// Last Update Sat Nov  8 17:50:20 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -48,6 +48,35 @@ Client::~Client()
 }
 
 
+void
+Client::printInput(const char* packet, int id) const
+{
+  if (m_isGraphic)
+    LogManagerSingleton::access()->graphicInput.print("Data from client %d :\t'%s'",
+						      id, packet);
+  else if (m_isPlayer)
+    LogManagerSingleton::access()->iaInput.print("Data from client %d :\t'%s'",
+						 id, packet);
+  else
+    LogManagerSingleton::access()->input.print("Data from client %d :\t'%s'",
+					       id, packet);
+}
+
+void
+Client::printOutput(const char* packet, int id) const
+{
+  if (m_isGraphic)
+    LogManagerSingleton::access()->graphicOutput.print("Data to client %d :\t'%s'",
+						       id, packet);
+  else if (m_isPlayer)
+    LogManagerSingleton::access()->iaOutput.print("Data to client %d :\t'%s'",
+						  id, packet);
+  else
+    LogManagerSingleton::access()->output.print("Data to client %d :\t'%s'",
+					        id, packet);
+}
+
+
 bool
 Client::checkError(int size, const char* word)
 {
@@ -78,8 +107,7 @@ Client::addRecvToInput(int size)
   if (size > 0)
     {
       m_input.getEnd()[size] = '\0';
-      LogManagerSingleton::access()->input.print("Data from client %d :\t'%s'",
-						 m_socket.getFd(), m_input.getEnd());
+      this->printInput(m_input.getEnd(), m_socket.getFd());
       m_input.addToSize(size);
       m_endIminent = false;
     }
@@ -94,8 +122,7 @@ Client::subSentFromOutput(int size)
     {
       strncpy(buffer, m_output.getData(), size);
       buffer[size] = '\0';
-      LogManagerSingleton::access()->output.print("Data to client %d :\t'%s'",
-						  m_socket.getFd(), buffer);
+      this->printOutput(buffer, m_socket.getFd());
       m_output.popFront(size);
       m_endIminent = false;
     }
@@ -163,7 +190,8 @@ Client::operator=(const Client& copy)
   return (*this);
 }
 
-void
+
+Client&
 Client::operator<<(const char* data)
 {
   unsigned int	size;
@@ -174,8 +202,62 @@ Client::operator<<(const char* data)
     LogManagerSingleton::access()->error.print("Client %d has a full output buffer !",
 					       m_socket.getFd());
   else
-    {
-      m_output.pushBack(data, size);
-      m_output.pushBack('\n');
-    }
+    m_output.pushBack(data, size);
+
+  return *this;
+}
+
+Client&
+Client::operator<<(char* data)
+{
+  *this << const_cast<const char*>(data);
+  return *this;
+}
+
+Client&
+Client::operator<<(char data)
+{
+  if (m_output.getSize() + 1 >= CLIENT_BUFFER_SIZE)
+    LogManagerSingleton::access()->error.print("Client %d has a full output buffer !",
+					       m_socket.getFd());
+  else
+    m_output.pushBack(data);
+
+  return *this;
+}
+
+Client&
+Client::operator<<(bool data)
+{
+  *this << (data ? "true" : "false");
+
+  return *this;
+}
+
+void
+Client::operator<<(const Player& player)
+{
+  *this << "PDC "
+	<< player.getName() << ' '
+	<< player.getPosition().x << ' '
+	<< player.getPosition().y << ' '
+	<< player.getOrientation() << ' '
+	<< player.getTeam()->getName() << ' '
+	<< player.getClass()->getName() << ' '
+	<< player.getEquipement()
+	<< LINE_SEPARATOR;
+}
+
+void
+Client::operator<<(const Team& team)
+{
+  unsigned int	i;
+
+  *this << "TDC "
+	<< team.getName() << ' '
+	<< team.isDiscalified()
+	<< LINE_SEPARATOR;
+
+  for (i = 0; i < team.getPlayers().getSize(); ++i)
+    *this << team.getPlayers()[i];
 }

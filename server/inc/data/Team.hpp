@@ -5,13 +5,43 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 15:59:35 2014 
-// Last Update Wed Nov  5 13:29:30 2014 
+// Last Update Sun Nov  9 04:04:43 2014 
 //
+
+Client*
+Team::getClient() const
+{
+  return (m_client);
+}
 
 const Array<Class>&
 Team::getClasses() const
 {
   return (m_classes);
+}
+
+const Array<Player>&
+Team::getPlayers() const
+{
+  return (m_players);
+}
+
+Array<Player>&
+Team::getPlayers()
+{
+  return (m_players);
+}
+
+const Player&
+Team::getLastPlayer() const
+{
+  return (m_players[m_players.getSize() - 1]);
+}
+
+const sf::Vector2u&
+Team::getSpawnPoint() const
+{
+  return (m_spawnPoint);
 }
 
 bool
@@ -34,7 +64,19 @@ Team::isDiscalified() const
 
 
 void
+Team::setClient(Client* client)
+{
+  m_client = client;
+}
+
+void
 Team::discalify()
 {
   m_discalified = true;
+}
+
+void
+Team::setSpawnPoint(const sf::Vector2u& pos)
+{
+  m_spawnPoint = pos;
 }

@@ -5,12 +5,14 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:36:11 2014 
-// Last Update Mon Nov  3 15:57:27 2014 
+// Last Update Sat Nov  8 20:41:23 2014 
 //
 
 #ifndef SERVER_HH_
 # define SERVER_HH_
 
+# include "actions/ActionsManager.hh"
+# include "containers/Pool.hh"
 # include "core/LinkedToServer.hh"
 # include "core/SingletonManager.hh"
 # include "data/GameData.hh"
@@ -19,6 +21,7 @@
 # include "threading/ThreadManager.hh"
 
 class		Server : public SingletonManager,
+			 public ActionsManager,
 			 public GameData,
 			 public Map,
 			 public Network,
@@ -33,7 +36,7 @@ public:
   ~Server();
 
 private:
-  void	loop();
+  void	wait() const;
 
 public:
   void	start();

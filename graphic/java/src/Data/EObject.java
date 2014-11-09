@@ -12,7 +12,8 @@ public enum EObject
 	OAK(3, "oak"),
 	ASH(4, "ash"),
 	SAPLIN(5, "saplin"),
-	MAPLE(6, "maple");
+	MAPLE(6, "maple"),
+	PLAYER(7, null);
 	
 	private int		id;
 	private String	name;

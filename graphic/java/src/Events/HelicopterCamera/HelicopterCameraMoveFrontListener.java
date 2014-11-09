@@ -1,10 +1,10 @@
 package Events.HelicopterCamera;
 
-import Engine.Camera.HelicopterCamera;
+import Engine.Camera.ACamera;
 
 public class HelicopterCameraMoveFrontListener extends AHelicopterCameraListener
 {
-	public HelicopterCameraMoveFrontListener(HelicopterCamera camera)
+public HelicopterCameraMoveFrontListener(ACamera camera)
 	{
 		super(camera);
 	}

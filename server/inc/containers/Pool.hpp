@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 17:33:17 2014 
-// Last Update Mon Nov  3 16:12:35 2014 
+// Last Update Sun Nov  9 03:42:31 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -24,12 +24,7 @@ Pool<T>::Pool(unsigned int maxSize) :
 template <typename T>
 Pool<T>::~Pool()
 {
-  unsigned int	i;
-
-  FOREACH_IN_POOL(i)
-  {
-    m_data[i].~T();
-  }
+  this->clear();
 
   free(m_data);
 }
@@ -57,6 +52,22 @@ Pool<T>::pushFront(const T& elem)
 
 template <typename T>
 void
+Pool<T>::pushAt(const T& elem, unsigned int pos)
+{
+  if (pos >= m_size)
+    this->pushBack(elem);
+  else
+    {
+      this->tryToPush();
+
+      memmove(&m_data[pos + 1], &m_data[pos], (m_size - pos) * sizeof(T));
+      m_data[pos] = elem;
+      ++m_size;
+    }
+}
+
+template <typename T>
+void
 Pool<T>::pushBack(const T& elem)
 {
   this->tryToPush();
@@ -65,6 +76,30 @@ Pool<T>::pushBack(const T& elem)
   ++m_size;
 }
 
+
+template <typename T>
+void
+Pool<T>::popFront()
+{
+  if (this->isEmpty())
+    throw ZappyException("popFront in an empty pool.");
+
+  m_data[0].~T();
+  memmove(&m_data[0], &m_data[1], (m_size - 1) * sizeof(T));
+  --m_size;
+}
+
+template <typename T>
+void
+Pool<T>::popAt(unsigned int pos)
+{
+  if (pos >= m_size)
+    throw ZappyException("popAt too far.");
+
+  m_data[pos].~T();
+  memmove(&m_data[pos], &m_data[pos + 1], (m_size - pos - 1) * sizeof(T));
+  --m_size;
+}
 
 template <typename T>
 void
@@ -77,10 +112,55 @@ Pool<T>::popElem(const T* elem)
     throw ZappyException("Invalid pool popElem.");
 
   m_data[pos].~T();
-  memmove(&m_data[pos], &m_data[pos + 1], m_size - pos);
+  memmove(&m_data[pos], &m_data[pos + 1], (m_size - pos - 1) * sizeof(T));
   --m_size;
 }
 
+template <typename T>
+void
+Pool<T>::popBack()
+{
+  if (this->isEmpty())
+    throw ZappyException("popBack in an empty pool.");
+
+  m_data[m_size - 1].~T();
+  --m_size;
+}
+
+
+template <typename T>
+void
+Pool<T>::clear()
+{
+  unsigned int	i;
+
+  FOREACH_IN_POOL(i)
+  {
+    m_data[i].~T();
+  }
+  m_size = 0;
+}
+
+
+template <typename T>
+void
+Pool<T>::forEach(void (T::*method)())
+{
+  unsigned int	i;
+
+  FOREACH_IN_POOL(i)
+  {
+    (m_data[i].*method)();
+  }
+}
+
+
+template <typename T>
+bool
+Pool<T>::isEmpty() const
+{
+  return (m_size == 0);
+}
 
 template <typename T>
 unsigned int
@@ -94,6 +174,34 @@ unsigned int
 Pool<T>::getMaxSize() const
 {
   return (m_maxSize);
+}
+
+template <typename T>
+const T&
+Pool<T>::front() const
+{
+  return (m_data[0]);
+}
+
+template <typename T>
+T&
+Pool<T>::front()
+{
+  return (m_data[0]);
+}
+
+template <typename T>
+const T&
+Pool<T>::back() const
+{
+  return (m_data[m_size - 1]);
+}
+
+template <typename T>
+T&
+Pool<T>::back()
+{
+  return (m_data[m_size - 1]);
 }
 
 

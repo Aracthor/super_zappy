@@ -4,6 +4,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector3f;
 
 import Data.Chunk;
+import Data.Player;
 import Engine.GlControlPanel;
 import Engine.Camera.Camera2D;
 import Events.EventsHandler;
@@ -14,12 +15,11 @@ import Events.Camera2D.Camera2DMoveUpListener;
 import Events.Camera2D.Camera2DZoomBackListener;
 import Events.Camera2D.Camera2DZoomFrontListener;
 import Graphics.AGraphicChunk;
+import Graphics.AGraphicPlayer;
 import Graphics.AView;
 
 public class StrategicView extends AView
 {
-	private Camera2D	camera;
-	
 	public	StrategicView()
 	{
 		super();
@@ -44,9 +44,16 @@ public class StrategicView extends AView
 		GlControlPanel.getInstance().setTexture2D(true);
 	}
 	
+	@Override
 	protected AGraphicChunk	createGraphicChunk(int x, int y, Chunk chunk)
 	{
 		return (new StrategicGraphicChunk(x, y, chunk));
+	}
+	
+	@Override
+	protected AGraphicPlayer	createGraphicPlayer(Player player)
+	{
+		return (new StrategicGraphicPlayer(player));
 	}
 	
 	@Override
@@ -55,20 +62,17 @@ public class StrategicView extends AView
 		super.manageData(elapsedTime);
 	}
 	
-	public	void	display(long elapsedTime)
+	@Override
+	public	void	displayChunks(long elapsedTime)
 	{
-		GlControlPanel.getInstance().initFrame(camera);
+		if (((Camera2D)camera).getZoom() > 100.0f)
 		{
-			if (camera.getZoom() > 100.0f)
-			{
-				this.displayAllChunks(elapsedTime);
-			}
-			else
-			{
-				this.displaySomeChunks(elapsedTime, new StrategicChunkSorter(camera.getPosition().z, camera.getPosition().y));
-			}
+			this.displayAllChunks(elapsedTime);
 		}
-		GlControlPanel.getInstance().endFrame();
+		else
+		{
+			this.displaySomeChunks(elapsedTime, new StrategicChunkSorter(camera.getPosition().z, camera.getPosition().y));
+		}
 	}
 
 	private void prepareEventsHandler()

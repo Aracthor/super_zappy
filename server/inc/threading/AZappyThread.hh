@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 15:18:03 2014 
-// Last Update Mon Nov  3 13:30:11 2014 
+// Last Update Sat Nov  8 21:00:21 2014 
 //
 
 #ifndef AZAPPY_THREAD_HH_
@@ -17,7 +17,7 @@
 class		Server;
 
 class		AZappyThread : public AThread,
-			       private LinkedToServer
+			       protected LinkedToServer
 {
 private:
   const char*	m_name;
@@ -31,7 +31,7 @@ protected:
   Server*	m_server;
 
 public:
-  void	start();
+  void		start();
 
 protected:
   void		run();

@@ -7,7 +7,7 @@ public class CASCommand extends APreciseCommand
 {
 	public	CASCommand()
 	{
-		super(9);
+		super(8);
 	}
 
 	@Override

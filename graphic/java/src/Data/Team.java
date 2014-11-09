@@ -1,5 +1,7 @@
 package Data;
 
+import Debug.DebugLog;
+
 public class Team
 {
 	private final	String	name;
@@ -19,5 +21,12 @@ public class Team
 	public boolean	isDiscalified()
 	{
 		return (discalified);
+	}
+	
+	
+	public void		discalify()
+	{
+		discalified = true;
+		DebugLog.getInstance().events.print("Team " + name + " is discalified !");
 	}
 }

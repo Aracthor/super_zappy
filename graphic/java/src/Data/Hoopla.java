@@ -13,7 +13,7 @@ public class Hoopla
 	public	Hoopla(int ground_id, int height, int item_id, int itemNumber, int object_id)
 	{
 		this.ground = EGround.getFromId(ground_id);
-		this.height = height;
+		this.height = height > 0 ? height : 0;
 		this.item = EItem.getFromId(item_id);
 		this.itemNumber = itemNumber;
 		this.object = EObject.getFromId(object_id);

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 16:40:27 2014 
-// Last Update Mon Nov  3 16:48:09 2014 
+// Last Update Sun Nov  9 04:34:12 2014 
 //
 
 #include "abstractions/maths.hh"
@@ -99,6 +99,7 @@ ListenThread::listClients(fd_set* clients) const
 
   maxfd = m_server->getFd();
   FD_ZERO(clients);
+  FD_SET(STDIN_FILENO, clients);
   FD_SET(m_server->getFd(), clients);
 
   FOREACH_OF_POOL(m_server->getClients(), i)
@@ -133,9 +134,8 @@ ListenThread::listenClients(fd_set* clients)
 bool
 ListenThread::loopCycle()
 {
-  fd_set		clientsToListen;
-  struct timeval	timeout;
-  int			maxfd;
+  fd_set	clientsToListen;
+  int		maxfd;
 
   m_server->lockClients();
   {
@@ -143,18 +143,18 @@ ListenThread::loopCycle()
   }
   m_server->unlockClients();
 
-  timeout.tv_sec = 0;
-  timeout.tv_usec = 100000;
-  if (select(maxfd + 1, &clientsToListen, NULL, NULL, &timeout) == -1)
+  if (select(maxfd + 1, &clientsToListen, NULL, NULL, NULL) == -1)
     throw SyscallException("Select failed in the listen thread : ");
 
   m_server->lockClients();
+  m_server->lockActions();
   {
     this->listenClients(&clientsToListen);
   }
+  m_server->unlockActions();
   m_server->unlockClients();
 
   m_server->getSpeakRing().signal();
 
-  return (true);
+  return (!FD_ISSET(STDIN_FILENO, &clientsToListen));
 }

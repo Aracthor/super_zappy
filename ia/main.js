@@ -5,20 +5,23 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 31 12:25:22 2014 
-// Last Update Mon Nov  3 17:27:57 2014 
+// Last Update Sat Nov  8 19:13:13 2014 
 //
 
 load("Client.js");
 load("Configs.js");
 load("Team.js");
 
+var		client;
+
 function	main(argc, argv)
 {
     var		configs = new Configs(argc, argv);
-    var		team = new Team(configs.name);
-    var		client = new Client(configs.host, configs.port);
+    var		team = new Team(configs.script);
 
-    client.sendTeamDetails(team);
+    client = new Client(configs.host, configs.port);
+
+    client.sendTeamDetails(team, configs.name);
     client.listenServer();
     client.disconnect();
 

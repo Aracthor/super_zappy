@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:20:41 2014 
-// Last Update Wed Nov  5 13:21:47 2014 
+// Last Update Sat Nov  8 22:19:18 2014 
 //
 
 #ifndef GRAPHIC_LISTENER_HH_
@@ -24,7 +24,6 @@ public:
 private:
   void	sendHooplaData(Client* client, const Hoopla& hoopla,
 		       unsigned int x, unsigned int y) const;
-  void	sendTeamData(Client* client, const Team& team, unsigned int id) const;
 
 private:
   bool	sendChunkData(Client* client, char* const* args) const;

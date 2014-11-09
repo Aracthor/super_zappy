@@ -60,10 +60,6 @@ public class						ReliefGraphicChunk extends AGraphicChunk
 		
 		color = hoopla.getGroundType().getColor();
 		height = hoopla.getHeight() / 10.0f;
-		if (height < 0.0f)
-		{
-			height = 0.0f;
-		}
 		
 		vertices[index +  0] = x;
 		vertices[index +  1] = y;

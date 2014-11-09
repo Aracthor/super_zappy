@@ -33,6 +33,16 @@ public class Map
 		return (chunks[y][x]);
 	}
 	
+	public Hoopla	getHoopla(int x, int y)
+	{
+		return (chunks[y / Chunk.SIZE][x / Chunk.SIZE].getHoopla(x % Chunk.SIZE, y % Chunk.SIZE));
+	}
+	
+	public Hoopla	getHoopla(float x, float y)
+	{
+		return (this.getHoopla((int)x, (int)y));
+	}
+	
 	public int		getChunksNumber()
 	{
 		return (chunksNumber);

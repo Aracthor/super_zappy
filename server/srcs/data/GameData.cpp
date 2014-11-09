@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:29:09 2014 
-// Last Update Tue Nov  4 15:37:56 2014 
+// Last Update Sun Nov  9 03:38:15 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -16,7 +16,7 @@
 
 GameData::GameData(const Configs& configs) :
   m_teamsNumber(configs.getTeams().getNumber()),
-  m_speed(configs.getSpeed())
+  m_started(false)
 {
   unsigned int	i;
 
@@ -36,10 +36,10 @@ GameData::~GameData()
 }
 
 
-Team*
-GameData::getTeamFromName(const char* name)
+const Team*
+GameData::getTeam(const char* name) const
 {
-  Team*		team;
+  const Team*	team;
   unsigned int	i;
 
   team = NULL;
@@ -49,4 +49,48 @@ GameData::getTeamFromName(const char* name)
       team = &m_teams[i];
 
   return (team);
+}
+
+const Player*
+GameData::getPlayer(const char* name) const
+{
+  const Player*	player;
+  unsigned int	t;
+  unsigned int	i;
+
+  player = NULL;
+
+  for (t = 0; player == NULL && t < m_teamsNumber; ++t)
+    {
+      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
+	if (!strcmp(m_teams[t].getPlayers()[i].getName(), name))
+	  player = &m_teams[t].getPlayers()[i];
+    }
+
+  return (player);
+}
+
+
+void
+GameData::preparePlayers()
+{
+  unsigned int	t;
+  unsigned int	i;
+
+  for (t = 0; t < m_teamsNumber; ++t)
+    {
+      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
+	m_teams[t].getPlayers()[i].setDecremented(false);
+    }
+}
+
+
+
+void
+GameData::setSpawnPoints(const Map& map)
+{
+  unsigned int	i;
+
+  for (i = 0; i < m_teamsNumber; ++i)
+    m_teams[i].setSpawnPoint(map.createSpawnPoint(360 * i / m_teamsNumber));
 }

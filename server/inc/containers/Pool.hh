@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 17:23:02 2014 
-// Last Update Mon Oct 20 14:58:47 2014 
+// Last Update Sun Nov  9 03:41:26 2014 
 //
 
 #ifndef POOL_HH_
@@ -31,14 +31,29 @@ private:
 
 public:
   void	pushFront(const T& elem);
+  void	pushAt(const T& elem, unsigned int pos);
   void	pushBack(const T& elem);
 
 public:
+  void	popFront();
+  void	popAt(unsigned int pos);
   void	popElem(const T* elem);
+  void	popBack();
 
 public:
+  void	clear();
+
+public:
+  void	forEach(void (T::*method)());
+
+public:
+  inline bool		isEmpty() const;
   inline unsigned int	getSize() const;
   inline unsigned int	getMaxSize() const;
+  inline const T&	front() const;
+  inline T&		front();
+  inline const T&	back() const;
+  inline T&		back();
 
 public:
   inline const T&	operator[](unsigned int index) const;

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 15:52:49 2014 
-// Last Update Tue Oct 21 11:19:47 2014 
+// Last Update Sat Nov  8 20:22:31 2014 
 //
 
 #ifndef THREAD_MANAGER_HH_
@@ -22,6 +22,7 @@ private:
   {
     listen,
     speak,
+    execute,
     threads_number
   };
 

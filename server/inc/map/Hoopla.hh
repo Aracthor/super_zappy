@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:28:24 2014 
-// Last Update Tue Oct 28 14:53:12 2014 
+// Last Update Sun Nov  9 07:14:22 2014 
 //
 
 #ifndef HOOPLA_HH_
@@ -25,9 +25,10 @@
 # define LOW_GROUND		(Hoopla::ocean)
 # define HIGH_GROUND		(Hoopla::snow)
 
-class	Hoopla
+# define IS_EMPTY(hoopla)	((hoopla).hasPlayer == false && (hoopla).object == Hoopla::nothing)
+
+struct	Hoopla
 {
-public:
   enum	EGround
   {
     snow,
@@ -53,14 +54,12 @@ public:
     grounds_number
   };
 
-public:
   enum	EItem
   {
     none,
     items_number
   };
 
-public:
   enum	EObject
   {
     nothing,
@@ -70,18 +69,17 @@ public:
     ash,
     saplin,
     maple,
+    player,
     objects_number
   };
 
-public:
   unsigned char		ground;
   float			height;
   unsigned char		item;
   unsigned char		itemNumber;
   unsigned char		object;
-  unsigned short	player_id;
+  bool		        hasPlayer;
 
-public:
   Hoopla();
   ~Hoopla();
 };

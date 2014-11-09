@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 10:12:16 2014 
-// Last Update Fri Oct 24 17:05:30 2014 
+// Last Update Thu Nov  6 08:18:54 2014 
 //
 
 #ifndef ALOG_HH_
@@ -14,6 +14,7 @@
 # include <ostream>
 
 # include <cstdio>
+# include <cstdarg>
 
 class		Log
 {
@@ -42,6 +43,7 @@ public:
 
 public:
   virtual void	print(const char* message, ...);
+  virtual void	print(const char* message, va_list list);
 };
 
 #endif // !ALOG_HH_

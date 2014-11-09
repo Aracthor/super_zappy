@@ -1,10 +1,10 @@
 package Events.HelicopterCamera;
 
-import Engine.Camera.HelicopterCamera;
+import Engine.Camera.ACamera;
 
 public class HelicopterCameraMoveBackListener extends AHelicopterCameraListener
 {
-	public HelicopterCameraMoveBackListener(HelicopterCamera camera)
+	public HelicopterCameraMoveBackListener(ACamera camera)
 	{
 		super(camera);
 	}

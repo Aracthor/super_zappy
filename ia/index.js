@@ -5,14 +5,13 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 31 10:37:17 2014 
-// Last Update Mon Nov  3 18:05:09 2014 
+// Last Update Thu Nov  6 14:52:42 2014 
 //
-
-load("main.js");
 
 try
 {
     arguments.unshift("rhino index.js");
+    load("main.js");
     main(arguments.length, arguments);
 }
 catch (error)

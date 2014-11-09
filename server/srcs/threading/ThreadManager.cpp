@@ -5,9 +5,10 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 15:57:32 2014 
-// Last Update Tue Oct 21 11:19:56 2014 
+// Last Update Sat Nov  8 20:22:38 2014 
 //
 
+#include "actions/ExecuterThread.hh"
 #include "network/ListenThread.hh"
 #include "network/SpeakThread.hh"
 #include "threading/ThreadManager.hh"
@@ -16,6 +17,7 @@ ThreadManager::ThreadManager()
 {
   m_threads[listen]	= new ListenThread;
   m_threads[speak]	= new SpeakThread;
+  m_threads[execute]	= new ExecuterThread;
 }
 
 ThreadManager::~ThreadManager()

@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import Debug.DebugLog;
 import Exceptions.GlException;
 import Exceptions.ParsingException;
 
@@ -124,7 +125,10 @@ public class	ObjParser
 		
 		mesh = new Mesh();
 		mesh.addVertices(vertices);
-		mesh.addColors(colors);
+		if (colors.length > 0)
+		{
+			mesh.addColors(colors);
+		}
 		mesh.addIndices(indices);
 		mesh.build();
 		
@@ -137,6 +141,8 @@ public class	ObjParser
 		BufferedReader	reader;
 		String			line;
 		Mesh			mesh;
+		
+		DebugLog.getInstance().init.print("Parsing file " + fileName + "...");
 		
 		this.reset(fileName);
 		

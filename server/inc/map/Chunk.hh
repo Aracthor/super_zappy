@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:42:30 2014 
-// Last Update Wed Oct 22 12:46:38 2014 
+// Last Update Sat Nov  8 18:46:45 2014 
 //
 
 #ifndef CHUNK_HH_
@@ -29,6 +29,7 @@ public:
 
 public:
   inline const Hoopla&	getHoopla(unsigned int x, unsigned int y) const;
+  inline Hoopla&	getHoopla(unsigned int x, unsigned int y);
 };
 
 # include "Chunk.hpp"

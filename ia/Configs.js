@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 31 13:29:59 2014 
-// Last Update Tue Nov  4 14:07:32 2014 
+// Last Update Sat Nov  8 19:12:11 2014 
 //
 
 DEFAULT_HOST	= "127.0.0.1";
@@ -15,6 +15,7 @@ function	Configs(argc, argv)
 {
     this.host = DEFAULT_HOST;
     this.port = DEFAULT_PORT;
+    this.script = null;
     this.name = null;
 
     this.reader = null;
@@ -24,9 +25,13 @@ function	Configs(argc, argv)
 	this.readArg(argv[i]);
     }
 
+    if (this.script == null)
+    {
+	throw new SyntaxException("Please give a script. (with -f)");
+    }
     if (this.name == null)
     {
-	throw new SyntaxError("Please give a team name. (with -f)");
+	throw new SyntaxException("Please give a name. (with -n)");
     }
 }
 
@@ -43,11 +48,12 @@ Configs.prototype.changeHost = function(host)
 
 Configs.prototype.changeTeamName = function(name)
 {
-    if (this.name != null)
-    {
-	throw new SyntaxError("Please give only one team name.");
-    }
     this.name = name;
+}
+
+Configs.prototype.changeScript = function(script)
+{
+    this.script = script;
 }
 
 
@@ -59,7 +65,7 @@ Configs.prototype.readArg = function(arg)
     }
     else if (this.reader == null)
     {
-	throw new SyntaxError("Syntax error : missing flag before arg");
+	throw new SyntaxException("Syntax error : missing flag before arg");
     }
     else
     {
@@ -77,12 +83,16 @@ Configs.prototype.changeReader = function(flag)
     {
 	this.reader = this.changeHost;
     }
-    else if (flag == 'f')
+    else if (flag == 'n')
     {
 	this.reader = this.changeTeamName;
     }
+    else if (flag == 'f')
+    {
+	this.reader = this.changeScript;
+    }
     else
     {
-	throw new SyntaxError("Syntax error : unknow flag " + flag);
+	throw new SyntaxException("Syntax error : unknow flag " + flag);
     }
 }

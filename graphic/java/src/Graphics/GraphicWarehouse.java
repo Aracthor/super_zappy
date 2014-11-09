@@ -52,6 +52,7 @@ public class		GraphicWarehouse
 		this.addModel("oak", parser);
 		this.addModel("saplin", parser);
 		this.addModel("maple", parser);
+		this.addModel("pawn", parser);
 	}
 	
 	private void	createTextureSquares()

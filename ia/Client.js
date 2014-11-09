@@ -5,12 +5,11 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 31 13:20:02 2014 
-// Last Update Tue Nov  4 15:01:53 2014 
+// Last Update Sat Nov  8 19:13:27 2014 
 //
 
 load("EAction.js");
 load("ECommand.js");
-load("Interpretor.js");
 
 WELCOME_MESSAGE=	"WELCOME";
 KICK_MESSAGE=		"GET THE FUCK OUT";
@@ -22,36 +21,27 @@ function	Client(host, port)
     this.output = this.socket.getOutputStream();
     this.isr = new java.io.InputStreamReader(this.input);
     this.buffer = new java.io.BufferedReader(this.isr);
-
-    this.interpretor = new Interpretor;
-
-    this.commands = [];
-    this.commands[ECommand.presentation] = this.interpretor.readServerPresentation;
 };
 
 
-Client.prototype.sendTeamDetails = function(team)
+Client.prototype.sendTeamDetails = function(team, name)
 {
-    var teamPresentation = (EAction.presentation + ' ' +
-			    team.name + ' ' +
-			    team.population + ' ' +
-			    team.wealth + ' ' +
-			    team.versatility + ' ' +
-			    team.genetic_hardening + ' ' +
-			    team.skill_capacity + ' ');
     var i;
 
     this.send("TEAM");
-    this.send(teamPresentation);
+    this.send(team.presentationMessage(name));
 
     for (i = 0; i < team.classes.length; ++i)
     {
 	this.send(team.classes[i].presentationMessage());
     }
+
     for (i = 0; i < team.players.length; ++i)
     {
-	this.send(team.players[i].presentationMessage());
+    	team.players[i].play(team.players[i]);
     }
+
+    this.team = team;
 }
 
 
@@ -68,30 +58,39 @@ Client.prototype.send = sync(function(message)
     this.output.flush();
 });
 
+Client.prototype.interprete = function(packet)
+{
+    var	interpretation;
+    var	args;
+
+    interpretation = false;
+    args = packet.split(' ');
+    player = this.team.getPlayer(args[0]);
+    if (player != null)
+    {
+	args.shift();
+	player.script.sendMessage(args);
+    }
+    else
+    {
+	throw new Error("Unknow packet recipient player " + args[0]);
+    }
+}
+
 Client.prototype.recvPacket = function(packet)
 {
-    var	args;
-    var	interpretation;
-
     if (packet == WELCOME_MESSAGE)
     {
 	print("Connection established.");
     }
     else if (packet == KICK_MESSAGE)
     {
-	print("\033[01;31mServer kicked me :(\033[0m");
+	throw new Error("Server kicked me :(");
 	this.loop = false;
     }
     else
     {
-	args = packet.split(' ');
-
-	interpretation = this.commands[args[0]];
-	if (interpretation == null)
-	{
-	    throw new Error("Invalid command " + args[0]);
-	}
-	interpretation(this, args);
+	this.interprete(packet);
     }
 };
 

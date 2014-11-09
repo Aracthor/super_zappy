@@ -5,12 +5,13 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 31 13:31:13 2014 
-// Last Update Tue Nov  4 14:14:11 2014 
+// Last Update Sat Nov  8 20:39:39 2014 
 //
 
 load("Class.js");
 load("Exceptions.js");
 load("Player.js");
+load("ZappyScript.js");
 
 function	Team(name)
 {
@@ -32,8 +33,7 @@ function	Team(name)
 
 Team.prototype.checkStats = function()
 {
-    if (this.name == null ||
-	this.players == null ||
+    if (this.players == null ||
 	this.wealth == null ||
 	this.classes == null ||
 	this.genetic_hardening == null ||
@@ -46,26 +46,63 @@ Team.prototype.checkStats = function()
 Team.prototype.classExist = function(name)
 {
     var i;
-    var	exist;
+    var	classRef;
 
-    exist = false;
-    for (i = 0; exist == false && i < this.classes.length; ++i)
+    classRef = null;
+    for (i = 0; classRef == null && i < this.classes.length; ++i)
     {
-	exist = (this.classes[i].name == name)
+	if (this.classes[i].name == name)
+	{
+	    classRef = this.classes[i];
+	}
     }
 
-    return (exist);
+    return (classRef);
 }
 
 Team.prototype.checkPlayer = function(element)
 {
-    if (this.classExist(element.type) == false)
+    var classRef = this.classExist(element.type);
+    if (classRef == null)
     {
 	throw new ConfigException("Invalid player class : '" + element.type + "'");
+    }
+    else
+    {
+	element.setScript(classRef.script);
     }
 }
 
 Team.prototype.checkNames = function()
 {
     this.players.forEach(this.checkPlayer, this);
+}
+
+Team.prototype.getPlayer = function(name)
+{
+    var i;
+    var	player;
+
+    player = null;
+    for (i = 0; player == null && i < this.players.length; ++i)
+    {
+	if (this.players[i].name == name)
+	{
+	    player = this.players[i];
+	}
+    }
+
+    return (player);
+}
+
+
+Team.prototype.presentationMessage = function(name)
+{
+    return (EAction.presentation + ' ' +
+	    name + ' ' +
+	    this.population + ' ' +
+	    this.wealth + ' ' +
+	    this.versatility + ' ' +
+	    this.genetic_hardening + ' ' +
+	    this.skill_capacity + ' ');
 }

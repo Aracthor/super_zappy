@@ -1,10 +1,10 @@
 package Events.HelicopterCamera;
 
-import Engine.Camera.HelicopterCamera;
+import Engine.Camera.ACamera;
 
 public class HelicopterCameraRotateRightListener extends AHelicopterCameraListener
 {
-	public HelicopterCameraRotateRightListener(HelicopterCamera camera)
+	public HelicopterCameraRotateRightListener(ACamera camera)
 	{
 		super(camera);
 	}
