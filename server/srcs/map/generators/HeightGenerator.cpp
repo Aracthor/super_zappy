@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 14:47:18 2014 
-// Last Update Mon Nov  3 15:47:14 2014 
+// Last Update Wed Nov 12 10:22:58 2014 
 //
 
 #include "map/Chunk.hh"
@@ -33,8 +33,6 @@ HeightGenerator::calcHeights(Hoopla* hooplas, unsigned int width, unsigned int h
 
   width *= CHUNK_SIZE;
   height *= CHUNK_SIZE;
-
-  memset(hooplas, 0, width * height * sizeof(Hoopla));
 
   map = new MountainMap(width, height);
   map->initHeights();

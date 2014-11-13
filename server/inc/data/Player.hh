@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 08:37:23 2014 
-// Last Update Sun Nov  9 08:20:39 2014 
+// Last Update Thu Nov 13 08:16:56 2014 
 //
 
 #ifndef PLAYER_HH_
@@ -14,9 +14,9 @@
 # include <SFML/System/Vector2.hpp>
 
 # include "Class.hh"
+# include "Inventory.hh"
 # include "Namable.hh"
 # include "core/LinkedToServer.hh"
-# include "map/Hoopla.hh"
 
 class		Team;
 
@@ -38,6 +38,7 @@ private:
   sf::Vector2u	m_position;
   EOrientation	m_orientation;
   Hoopla::EItem	m_equipement;
+  Inventory	m_inventory;
   bool		m_decremented; // Used by ExecuterThread for decrementing
 
 public:
@@ -56,10 +57,13 @@ public:
   inline const sf::Vector2u&	getPosition() const;
   inline EOrientation		getOrientation() const;
   inline Hoopla::EItem		getEquipement() const;
+  inline const Inventory&	getInventory() const;
+  inline Inventory&		getInventory();
   inline bool			isDecremented() const;
 
   inline unsigned int		getSpeedCoef() const;
 
+  inline void			setEquipement(Hoopla::EItem item);
   inline void		        setDecremented(bool decremented);
 };
 

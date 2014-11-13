@@ -5,9 +5,10 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Thu Nov  6 14:27:41 2014 
-// Last Update Sun Nov  9 09:00:18 2014 
+// Last Update Wed Nov 12 17:39:01 2014 
 //
 
+load("Items.js");
 load("Objects.js");
 load("Vector.js");
 
@@ -101,15 +102,37 @@ ZappyScript.prototype.waitForAnswer = function(wanted)
     return (answer);
 }
 
-
-ZappyScript.prototype.displace = function(x, y)
+ZappyScript.prototype.waitConfirmation = function()
 {
     var	answer;
 
-    client.send("DIS " + this.player.name + ' ' + x + ' ' + y);
     answer = this.waitForAnswer("END");
 
     return (answer[0] == "true");
+}
+
+ZappyScript.prototype.waitItems = function()
+{
+    var answer = this.waitForAnswer("ITEMS");
+    var	items;
+
+    if (answer[0] == "NULL")
+    {
+	items = null;
+    }
+    else
+    {
+	items = new Items(parseInt(answer[0]), parseInt(answer[1]));
+    }
+
+    return (items);
+}
+
+
+ZappyScript.prototype.displace = function(x, y)
+{
+    client.send("DIS " + this.player.name + ' ' + x + ' ' + y);
+    return (this.waitConfirmation());
 }
 
 ZappyScript.prototype.search = function(object)
@@ -132,4 +155,39 @@ ZappyScript.prototype.search = function(object)
     }
 
     return (found);
+}
+
+ZappyScript.prototype.destroy = function(x, y)
+{
+    client.send("DES " + this.player.name + ' ' + x + ' ' + y);
+    return (this.waitConfirmation());
+}
+
+ZappyScript.prototype.take = function()
+{
+    client.send("TAK " + this.player.name);
+    return (this.waitItems());
+}
+
+ZappyScript.prototype.put = function(id, number)
+{
+    client.send("PUT " + this.player.name + ' ' + id + ' ' + number);
+    return (this.waitConfirmation());
+}
+
+ZappyScript.prototype.equip = function(item)
+{
+    var	id;
+
+    if (isInt(item))
+    {
+	id = item;
+    }
+    else
+    {
+	id = item.id;
+    }
+
+    client.send("EQU " + this.player.name + ' ' + id);
+    return (this.waitConfirmation());
 }

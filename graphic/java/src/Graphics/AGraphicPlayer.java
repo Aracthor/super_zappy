@@ -9,5 +9,5 @@ public abstract class AGraphicPlayer
 	}
 	
 	public abstract void	update(Player data);
-	public abstract void	display();
+	public abstract void	display(long elapsedTime);
 }

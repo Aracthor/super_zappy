@@ -5,14 +5,14 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov  9 00:50:24 2014 
-// Last Update Sun Nov  9 00:58:45 2014 
+// Last Update Wed Nov 12 09:31:07 2014 
 //
 
 #ifndef IEXECUTOR_HH_
 # define IEXECUTOR_HH_
 
 # include "actions/Action.hh"
-# include "core/LinkedToServer.hh"
+# include "core/Server.hh"
 # include "data/Player.hh"
 
 class	IExecutor : protected LinkedToServer
@@ -22,6 +22,11 @@ public:
 
 public:
   virtual void	execute(Player* player, const Action::UData& data) = 0;
+
+protected:
+  inline void	insertAction(const Action& action);
 };
+
+# include "IExecutor.hpp"
 
 #endif // !IEXECUTOR_HH_

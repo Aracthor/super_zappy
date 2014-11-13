@@ -3,6 +3,7 @@ package Graphics.Relief;
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
+import Core.Application;
 import Data.DataManager;
 import Data.Player;
 import Data.Team;
@@ -13,6 +14,7 @@ import Graphics.GraphicWarehouse;
 public class ReliefGraphicPlayer extends AGraphicPlayer
 {
 	private	Mesh		mesh;
+	private	Mesh		equipementMesh;
 	private Vector3f	color;
 	
 	public ReliefGraphicPlayer(Player data)
@@ -50,12 +52,24 @@ public class ReliefGraphicPlayer extends AGraphicPlayer
 		
 		mesh.setPosition(position.x, position.y, z / 10.0f);
 		mesh.setRotation(0.0f, 0.0f, data.getOrientation() * 90.0f);
+		
+		equipementMesh = data.getEquipement().get3DModel();
+		if (equipementMesh != null)
+		{
+			equipementMesh.setPosition(position.x, position.y, z / 10.0f + 4.0f);
+			equipementMesh.setRotation(30.0f, 0.0f, Application.getTotalElapsedTime() / 2.0f);
+		}
 	}
 	
 	@Override
-	public void display()
+	public void display(long elapsedTime)
 	{
 		mesh.setBaseColor(color);
 		mesh.draw();
+		
+		if (equipementMesh != null)
+		{
+			equipementMesh.draw();
+		}
 	}
 }

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 24 13:28:15 2014 
-// Last Update Mon Oct 27 13:36:10 2014 
+// Last Update Wed Nov 12 14:05:00 2014 
 //
 
 #ifndef PERLIN_MAP_HH_
@@ -13,7 +13,7 @@
 
 # include "HeightMap.hh"
 
-# define PERLIN_STEP		(20)
+# define PERLIN_STEP		(10)
 # define PERLIN_OCTAVES		(3)
 # define PERLIN_PERSISTANCE	(0.9f)
 # define PERLIN_AMPLITUDE	(40)

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 23:00:05 2014 
-// Last Update Sun Nov  9 08:10:20 2014 
+// Last Update Wed Nov 12 16:37:00 2014 
 //
 
 #ifndef ACTION_FACTORY_HH_
@@ -32,6 +32,7 @@ public:
 private:
   bool	readPositionData(Action::UData& data, const CommandCutter::CuttedLine& args) const;
   bool	readIdData(Action::UData& data, const CommandCutter::CuttedLine& args) const;
+  bool	readItemData(Action::UData& data, const CommandCutter::CuttedLine& args) const;
 
 public:
   bool	createAction(Action& action, const char* actionName, Player* player,

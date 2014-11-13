@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:55:13 2014 
-// Last Update Sun Nov  9 04:34:42 2014 
+// Last Update Wed Nov 12 14:01:47 2014 
 //
 
 #include "debug/LogManager.hh"

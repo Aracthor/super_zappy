@@ -16,5 +16,4 @@ public class PPOCommand extends APlayerCommand
 		player.setOrientation(Integer.parseInt(args[4]));
 		return true;
 	}
-
 }

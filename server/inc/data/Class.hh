@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 08:39:45 2014 
-// Last Update Sun Nov  9 01:23:56 2014 
+// Last Update Wed Nov 12 15:43:36 2014 
 //
 
 #ifndef CLASS_HH_
@@ -59,6 +59,8 @@ public:
 public:
   inline unsigned int	getCharacteristicLevel(ECharacteristic characteristic) const;
   inline unsigned int	getSkillLevel(ESkill skill) const;
+
+  inline unsigned int	getInventorySize() const;
 };
 
 # include "Class.hpp"

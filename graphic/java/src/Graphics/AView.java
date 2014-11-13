@@ -150,7 +150,7 @@ public abstract class AView
 		{
 			graphicPlayer.update(player);
 		}
-		graphicPlayer.display();
+		graphicPlayer.display(elapsedTime);
 	}
 	
 	public void				display(long elapsedTime)

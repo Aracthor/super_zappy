@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Thu Nov  6 18:16:49 2014 
-// Last Update Sun Nov  9 05:17:01 2014 
+// Last Update Thu Nov 13 08:17:22 2014 
 //
 
 #include "map/Map.hh"
@@ -40,6 +40,18 @@ Player::getEquipement() const
   return (m_equipement);
 }
 
+const Inventory&
+Player::getInventory() const
+{
+  return (m_inventory);
+}
+
+Inventory&
+Player::getInventory()
+{
+  return (m_inventory);
+}
+
 bool
 Player::isDecremented() const
 {
@@ -55,6 +67,12 @@ Player::getSpeedCoef() const
 	  m_class->getSkillLevel(Class::speed) == 3 ? 10 : 8);
 }
 
+
+void
+Player::setEquipement(Hoopla::EItem item)
+{
+  m_equipement = item;
+}
 
 void
 Player::setDecremented(bool decremented)

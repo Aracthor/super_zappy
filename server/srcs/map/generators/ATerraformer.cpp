@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 14:19:07 2014 
-// Last Update Sat Nov  8 18:22:22 2014 
+// Last Update Wed Nov 12 10:27:49 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -21,9 +21,25 @@ ATerraformer::ATerraformer(const Configs::Map& configs) :
 {
   MALLOC(m_hooplas, m_hooplasNumber, Hoopla);
   memset(m_hooplas, 0, m_hooplasNumber * sizeof(Hoopla));
+  this->copyPositions();
 }
 
 ATerraformer::~ATerraformer()
 {
   free(m_hooplas);
+}
+
+
+void
+ATerraformer::copyPositions()
+{
+  unsigned int	x;
+  unsigned int	y;
+
+  for (x = 0; x < m_configs.width * CHUNK_SIZE; ++x)
+    for (y = 0; y < m_configs.height * CHUNK_SIZE; ++y)
+      {
+	m_hooplas[y * m_configs.width * CHUNK_SIZE + x].x = x;
+	m_hooplas[y * m_configs.width * CHUNK_SIZE + x].y = y;
+      }
 }

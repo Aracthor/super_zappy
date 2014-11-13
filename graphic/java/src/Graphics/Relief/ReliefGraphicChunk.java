@@ -2,6 +2,7 @@ package Graphics.Relief;
 
 import org.lwjgl.util.vector.Vector3f;
 
+import Core.Application;
 import Data.Chunk;
 import Data.Hoopla;
 import Engine.Models.Mesh;
@@ -105,16 +106,36 @@ public class						ReliefGraphicChunk extends AGraphicChunk
 		ground.build();
 	}
 	
-	protected void	drawHoopla(Hoopla hoopla, int x, int y, long elapsedTime)
+	
+	private void	drawObjectModel(float x, float y, float z, Mesh model)
 	{
-		Mesh		model;
-		
-		model = hoopla.getObjectType().get3DModel();
 		if (model != null)
 		{
-			model.setPosition(x + this.x * Chunk.SIZE, y + this.y * Chunk.SIZE, hoopla.getHeight() / 10.0f);
+			model.setPosition(x, y, z);
 			model.draw();
 		}
+	}
+	
+	private void	drawItemModel(float x, float y, float z, Mesh model)
+	{
+		if (model != null)
+		{
+			model.setRotation(30.0f, 0.0f, Application.getTotalElapsedTime() / 2.0f);
+			model.setPosition(x, y, z);
+			model.draw();
+		}
+	}
+	
+	protected void	drawHoopla(Hoopla hoopla, int x, int y, long elapsedTime)
+	{
+		float		posx, posy, posz;
+		
+		posx = x + this.x * Chunk.SIZE;
+		posy = y + this.y * Chunk.SIZE;
+		posz = hoopla.getHeight() / 10.0f;
+		
+		this.drawObjectModel(posx, posy, posz, hoopla.getObjectType().get3DModel());
+		this.drawItemModel(posx, posy, posz + 1.0f, hoopla.getItemType().get3DModel());
 	}
 	
 	public void drawGround()

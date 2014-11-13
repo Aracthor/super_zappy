@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:27:00 2014 
-// Last Update Sat Nov  8 18:00:00 2014 
+// Last Update Wed Nov 12 10:25:49 2014 
 //
 
 #include "core/Server.hh"
@@ -24,22 +24,6 @@ GraphicListener::GraphicListener()
 
 GraphicListener::~GraphicListener()
 {
-}
-
-
-void
-GraphicListener::sendHooplaData(Client* client, const Hoopla& hoopla,
-				unsigned int x, unsigned int y) const
-{
-  *client << "CAS "
-	  << x << ' '
-	  << y << ' '
-	  << hoopla.ground << ' '
-	  << static_cast<int>(hoopla.height) << ' '
-	  << hoopla.item << ' '
-	  << hoopla.itemNumber << ' '
-	  << hoopla.object
-	  << LINE_SEPARATOR;
 }
 
 
@@ -69,8 +53,7 @@ GraphicListener::sendChunkData(Client* client, char* const* args) const
       *client << buffer;
       for (hx = 0; hx < CHUNK_SIZE; ++hx)
 	for (hy = 0; hy < CHUNK_SIZE; ++hy)
-	  this->sendHooplaData(client, chunk->getHoopla(hx, hy),
-			       x * CHUNK_SIZE + hx, y * CHUNK_SIZE + hy);
+	  *client << chunk->getHoopla(hx, hy);
     }
 
   return (valid);
@@ -92,10 +75,7 @@ GraphicListener::sendHooplaData(Client* client, char* const* args) const
     LogManagerSingleton::access()->error.print("Trying to get an invalid hoopla : %d/%d.",
 					       x, y);
   else
-    this->sendHooplaData(client,
-			 map->getChunk(x / CHUNK_SIZE, y / CHUNK_SIZE)
-			 .getHoopla(x % CHUNK_SIZE, y % CHUNK_SIZE),
-			 x, y);
+    *client << map->getChunk(x / CHUNK_SIZE, y / CHUNK_SIZE).getHoopla(x % CHUNK_SIZE, y % CHUNK_SIZE);
 
   return (valid);
 }

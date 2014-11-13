@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 14:16:39 2014 
-// Last Update Mon Nov  3 15:46:33 2014 
+// Last Update Wed Nov 12 09:04:45 2014 
 //
 
 #ifndef ATERRAFORMER_HH_
@@ -34,6 +34,9 @@ protected:
 public:
   ATerraformer(const Configs::Map& configs);
   virtual ~ATerraformer();
+
+private:
+  void		copyPositions();
 
 public:
   virtual void	createMap() = 0;

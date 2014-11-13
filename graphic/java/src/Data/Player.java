@@ -41,6 +41,11 @@ public class Player
 		return (orientation);
 	}
 	
+	public EItem	getEquipement()
+	{
+		return (equipement);
+	}
+	
 	
 	public void		setPosition(int x, int y)
 	{

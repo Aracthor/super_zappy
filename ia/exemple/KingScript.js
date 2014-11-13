@@ -5,12 +5,14 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Thu Nov  6 14:00:21 2014 
-// Last Update Sun Nov  9 08:50:15 2014 
+// Last Update Thu Nov 13 16:01:35 2014 
 //
 
 function	KingCutTree()
 {
     var bush = this.search(objects.bush);
+    var items;
+    var	i;
 
     if (bush == null)
     {
@@ -18,8 +20,13 @@ function	KingCutTree()
     }
     else
     {
-	print(bush.position.x + ", " + bush.position.y);
 	this.displace(bush.position.x, bush.position.y);
+	this.destroy(bush.position.x, bush.position.y);
+	this.displace(bush.position.x, bush.position.y);
+	items = this.take();
+
+	this.displace(bush.position.x + i + 1, bush.position.y);
+	this.put(items.id, 1);
     }
 }
 
@@ -35,4 +42,3 @@ KingScript.prototype.play = function()
     print("Je suis un roi biatch");
     this.cutTree();
 }
-

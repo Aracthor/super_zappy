@@ -5,16 +5,21 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 20:20:00 2014 
-// Last Update Sun Nov  9 08:11:45 2014 
+// Last Update Wed Nov 12 17:41:50 2014 
 //
 
 #include "actions/ExecuterThread.hh"
 #include "core/Server.hh"
 #include "debug/LogManager.hh"
+#include "executors/Destroyer.hh"
+#include "executors/DestroyerCalculator.hh"
 #include "executors/Displacer.hh"
+#include "executors/Equipper.hh"
 #include "executors/Mover.hh"
+#include "executors/Putter.hh"
 #include "executors/Rotater.hh"
 #include "executors/Searcher.hh"
+#include "executors/Taker.hh"
 
 #include <unistd.h>
 
@@ -22,10 +27,15 @@ ExecuterThread::ExecuterThread() :
   AZappyThread("Executer"),
   m_loopCounter(0)
 {
-  m_executors[Action::displace]	= new Displacer;
-  m_executors[Action::move]	= new Mover;
-  m_executors[Action::rotate]	= new Rotater;
-  m_executors[Action::search]	= new Searcher;
+  m_executors[Action::displace]		= new Displacer;
+  m_executors[Action::move]		= new Mover;
+  m_executors[Action::rotate]		= new Rotater;
+  m_executors[Action::search]		= new Searcher;
+  m_executors[Action::tryToDestroy]	= new DestroyerCalculator;
+  m_executors[Action::destroy]		= new Destroyer;
+  m_executors[Action::take]		= new Taker;
+  m_executors[Action::put]		= new Putter;
+  m_executors[Action::equip]		= new Equipper;
 }
 
 ExecuterThread::~ExecuterThread()
@@ -69,16 +79,14 @@ ExecuterThread::execute()
 
   m_clock.update();
   {
+    m_server->lockClients();
     m_server->lockActions();
     {
-      m_server->lockClients();
-      {
-	this->executeActions();
-      }
-      m_server->unlockClients();
+      this->executeActions();
       this->decrementTimers();
     }
     m_server->unlockActions();
+    m_server->unlockClients();
   }
   m_clock.update();
   timeToWait = static_cast<long>(this->getServerData()->getSpeed());

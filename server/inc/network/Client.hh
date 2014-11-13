@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 17:07:49 2014 
-// Last Update Sat Nov  8 17:50:22 2014 
+// Last Update Wed Nov 12 09:07:08 2014 
 //
 
 #ifndef CLIENT_HH_
@@ -77,6 +77,7 @@ public:
   Client&	operator<<(bool data);
   void		operator<<(const Player& player);
   void		operator<<(const Team& team);
+  void		operator<<(const Hoopla& hoopla);
 
   // For numbers and enums
   template <typename T>

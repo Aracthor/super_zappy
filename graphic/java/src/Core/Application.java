@@ -22,6 +22,14 @@ import Network.NetworkThread;
 
 public class Application implements IApplication
 {
+	private static long		s_totalElapsedTime = 0;
+	
+	public static long		getTotalElapsedTime()
+	{
+		return (s_totalElapsedTime);
+	}
+	
+	
 	private Clock			clock;
 	private	Window			window;
 	private	NetworkThread	network;
@@ -123,6 +131,8 @@ public class Application implements IApplication
 		this.checkMapStatus();
 		
 		clock.update();
+		s_totalElapsedTime += clock.getElapsedTime();
+		
 		if (lastView != selectedView.getId())
 		{
 			graphics[selectedView.getId()].select();

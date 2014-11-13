@@ -7,13 +7,25 @@ public class Map
 	private	int			longer;
 	private	int			larger;
 	private	Chunk[][]	chunks;
+	private boolean[][]	chunksStatus;
 	private int			chunksNumber;
 	
 	public	Map(int longer, int larger)
 	{
+		int	x, y;
+		
 		this.longer = longer;
 		this.larger = larger;
 		chunks = new Chunk[larger][longer];
+		chunksStatus = new boolean[larger][longer];
+		for (y = 0; y < larger; ++y)
+		{
+			for (x = 0; x < longer; ++x)
+			{
+				chunksStatus[y][x] = false;
+			}
+		}
+			
 		chunksNumber = 0;
 	}
 	
@@ -72,9 +84,10 @@ public class Map
 		else
 		{
 			chunk.setHoopla(hoopla, x % Chunk.SIZE, y % Chunk.SIZE);
-			if (chunk.isReady())
+			if (chunk.isReady() && chunksStatus[y / Chunk.SIZE][x / Chunk.SIZE] == false)
 			{
 				++chunksNumber;
+				chunksStatus[y / Chunk.SIZE][x / Chunk.SIZE] = true;
 			}
 		}
 	}

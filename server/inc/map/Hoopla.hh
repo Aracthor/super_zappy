@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:28:24 2014 
-// Last Update Sun Nov  9 07:14:22 2014 
+// Last Update Wed Nov 12 09:03:08 2014 
 //
 
 #ifndef HOOPLA_HH_
@@ -57,6 +57,7 @@ struct	Hoopla
   enum	EItem
   {
     none,
+    stick,
     items_number
   };
 
@@ -73,6 +74,7 @@ struct	Hoopla
     objects_number
   };
 
+  unsigned int		x, y;
   unsigned char		ground;
   float			height;
   unsigned char		item;

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:20:41 2014 
-// Last Update Sat Nov  8 22:19:18 2014 
+// Last Update Wed Nov 12 10:25:24 2014 
 //
 
 #ifndef GRAPHIC_LISTENER_HH_
@@ -20,10 +20,6 @@ class			GraphicListener : public CommandListener
 public:
   GraphicListener();
   ~GraphicListener();
-
-private:
-  void	sendHooplaData(Client* client, const Hoopla& hoopla,
-		       unsigned int x, unsigned int y) const;
 
 private:
   bool	sendChunkData(Client* client, char* const* args) const;

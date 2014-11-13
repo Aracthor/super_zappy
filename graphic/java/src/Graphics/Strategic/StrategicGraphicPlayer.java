@@ -17,7 +17,7 @@ public class StrategicGraphicPlayer extends AGraphicPlayer
 	}
 	
 	@Override
-	public void display()
+	public void display(long elapsedTime)
 	{
 		// TODO Auto-generated method stub
 	}

@@ -5,12 +5,13 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 31 12:25:22 2014 
-// Last Update Sat Nov  8 19:13:13 2014 
+// Last Update Wed Nov 12 17:40:02 2014 
 //
 
 load("Client.js");
 load("Configs.js");
 load("Team.js");
+load("Utils.js");
 
 var		client;
 

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 14 13:07:56 2014 
-// Last Update Sat Nov  8 17:50:20 2014 
+// Last Update Wed Nov 12 14:02:43 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -258,6 +258,21 @@ Client::operator<<(const Team& team)
 	<< team.isDiscalified()
 	<< LINE_SEPARATOR;
 
-  for (i = 0; i < team.getPlayers().getSize(); ++i)
-    *this << team.getPlayers()[i];
+  if (team.isDiscalified()== false)
+    for (i = 0; i < team.getPlayers().getSize(); ++i)
+      *this << team.getPlayers()[i];
+}
+
+void
+Client::operator<<(const Hoopla& hoopla)
+{
+  *this << "CAS "
+	<< hoopla.x << ' '
+	<< hoopla.y << ' '
+	<< hoopla.ground << ' '
+	<< static_cast<int>(hoopla.height) << ' '
+	<< hoopla.item << ' '
+	<< hoopla.itemNumber << ' '
+	<< hoopla.object
+	<< LINE_SEPARATOR;
 }

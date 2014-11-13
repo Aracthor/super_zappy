@@ -5,13 +5,14 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 19:34:56 2014 
-// Last Update Sun Nov  9 08:09:38 2014 
+// Last Update Wed Nov 12 17:41:03 2014 
 //
 
 #ifndef ACTION_HH_
 # define ACTION_HH_
 
 # include "data/Player.hh"
+# include "map/Hoopla.hh"
 
 # include <SFML/System/Vector2.hpp>
 
@@ -26,21 +27,32 @@ public:
       move,
       rotate,
       search,
+      tryToDestroy,
+      destroy,
+      take,
+      put,
+      equip,
       actions_number
     };
 
-  union UData
+  union			UData
   {
     struct		Pos
     {
       unsigned int	x;
       unsigned int	y;
     };
+    struct	        Item
+    {
+      Hoopla::EItem	id;
+      unsigned int	number;
+    };
 
     UData() {}
     UData(bool boolean) {this->boolean = boolean;}
 
     Pos			position;
+    Item		item;
     unsigned int        id;
     bool		boolean;
   };

@@ -34,15 +34,31 @@ public class Mesh extends VertexArrayObject
 		matrixIsToChange = true;
 	}
 	
+	public Mesh(Mesh copy)
+	{
+		super(copy);
+		translation = new Vector3f(copy.translation);
+		rotation = new Vector3f(copy.rotation);
+		scale = new Vector3f(copy.scale);
+		modelMatrix = new Matrix4f();
+		
+		axisX = new Vector3f(1.0f, 0.0f, 0.0f);
+		axisY = new Vector3f(0.0f, 1.0f, 0.0f);
+		axisZ = new Vector3f(0.0f, 0.0f, 1.0f);
+		
+		matrixIsToChange = true;
+	}
+	
+	
 	private void	createModelMatrix()
 	{
 		MathsHelper	mathsHelper = MathsHelper.getInstance();
 		
 		modelMatrix.setIdentity();
 		modelMatrix.translate(translation);
-		modelMatrix.rotate(mathsHelper.toRadians(rotation.x), axisX);
-		modelMatrix.rotate(mathsHelper.toRadians(rotation.y), axisY);
 		modelMatrix.rotate(mathsHelper.toRadians(rotation.z), axisZ);
+		modelMatrix.rotate(mathsHelper.toRadians(rotation.y), axisY);
+		modelMatrix.rotate(mathsHelper.toRadians(rotation.x), axisX);
 		modelMatrix.scale(scale);
 		
 		matrixIsToChange = false;
@@ -84,7 +100,7 @@ public class Mesh extends VertexArrayObject
 		matrixIsToChange = true;
 	}
 	
-	public void	translate(Vector3f vector)
+	public void translate(Vector3f vector)
 	{
 		translation.x += vector.x;
 		translation.y += vector.y;

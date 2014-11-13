@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 08:48:47 2014 
-// Last Update Sun Nov  9 08:20:09 2014 
+// Last Update Wed Nov 12 15:19:16 2014 
 //
 
 #include "core/Server.hh"
@@ -21,7 +21,8 @@ Player::Player(const char* name, const Team* team, const Class* refToClass) :
   m_class(refToClass),
   m_position(this->getServerData()->getSpawnPoint(team->getSpawnPoint())),
   m_orientation(right),
-  m_equipement(Hoopla::none)
+  m_equipement(Hoopla::none),
+  m_inventory(m_class->getInventorySize())
 {
 }
 

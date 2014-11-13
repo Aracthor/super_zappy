@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Sun Nov  9 08:19:53 2014 
+## Last Update Thu Nov 13 08:48:42 2014 
 ##
 
 CC=		g++
@@ -49,6 +49,7 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)SingletonManager.cpp		\
 		$(SRCS_DIR)$(DATA_DIR)Class.cpp				\
 		$(SRCS_DIR)$(DATA_DIR)GameData.cpp			\
+		$(SRCS_DIR)$(DATA_DIR)Inventory.cpp			\
 		$(SRCS_DIR)$(DATA_DIR)Namable.cpp			\
 		$(SRCS_DIR)$(DATA_DIR)Player.cpp			\
 		$(SRCS_DIR)$(DATA_DIR)Team.cpp				\
@@ -59,17 +60,23 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(DISPLACERS_DIR)MasterDisplacer.cpp		\
 		$(SRCS_DIR)$(DEBUG_DIR)Log.cpp				\
 		$(SRCS_DIR)$(DEBUG_DIR)LogManager.cpp			\
+		$(SRCS_DIR)$(DEBUG_DIR)outputs.cpp			\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ConfigsException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)NetworkException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)SyscallException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ThreadingException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ZappyException.cpp		\
+		$(SRCS_DIR)$(EXECUTORS_DIR)Destroyer.cpp		\
+		$(SRCS_DIR)$(EXECUTORS_DIR)DestroyerCalculator.cpp	\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Displacer.cpp		\
+		$(SRCS_DIR)$(EXECUTORS_DIR)Equipper.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Mover.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Movements.cpp		\
+		$(SRCS_DIR)$(EXECUTORS_DIR)Putter.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Rotater.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Searcher.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)SpeedCalculator.cpp		\
+		$(SRCS_DIR)$(EXECUTORS_DIR)Taker.cpp			\
 		$(SRCS_DIR)$(GENERATORS_DIR)AGenerator.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)ATerraformer.cpp		\
 		$(SRCS_DIR)$(GENERATORS_DIR)GroundGenerator.cpp		\
@@ -118,6 +125,7 @@ BINARY=		$(BIN_DIR)$(NAME)
 CXXFLAGS=	-Wall -Werror -Wextra	\
 		-ansi -pedantic		\
 		-D_BSD_SOURCE		\
+		-D_BUFFER_STACK_MODE	\
 		-I $(INC_DIR)		\
 		-g3
 

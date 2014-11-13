@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 23:07:04 2014 
-// Last Update Sun Nov  9 08:11:14 2014 
+// Last Update Wed Nov 12 17:41:33 2014 
 //
 
 #include "actions/ActionFactory.hh"
@@ -25,6 +25,22 @@ ActionFactory::ActionFactory()
   m_actionNames[Action::search]		= "SRH";
   m_actionTimers[Action::search]	= 5;
   m_actionReaders[Action::search]	= &ActionFactory::readIdData;
+
+  m_actionNames[Action::tryToDestroy]	= "DES";
+  m_actionTimers[Action::tryToDestroy]	= 1;
+  m_actionReaders[Action::tryToDestroy]	= &ActionFactory::readPositionData;
+
+  m_actionNames[Action::take]		= "TAK";
+  m_actionTimers[Action::take]		= 10;
+  m_actionReaders[Action::take]		= NULL;
+
+  m_actionNames[Action::put]		= "PUT";
+  m_actionTimers[Action::put]		= 10;
+  m_actionReaders[Action::put]		= &ActionFactory::readItemData;
+
+  m_actionNames[Action::equip]		= "EQU";
+  m_actionTimers[Action::equip]		= 5;
+  m_actionReaders[Action::equip]	= &ActionFactory::readIdData;
 }
 
 ActionFactory::~ActionFactory()
@@ -65,6 +81,25 @@ ActionFactory::readIdData(Action::UData& data,
   return (valid);
 }
 
+bool
+ActionFactory::readItemData(Action::UData& data,
+			    const CommandCutter::CuttedLine& args) const
+{
+  bool	valid;
+
+  valid = (args.argsNumber == 2);
+  if (valid)
+    {
+      data.item.id = static_cast<Hoopla::EItem>(atoi(args.args[0]));
+      data.item.number = atoi(args.args[1]);
+      valid = (data.item.id < Hoopla::items_number);
+    }
+  if (!valid)
+    LogManagerSingleton::access()->error.print("Invalid action item read");
+
+  return (valid);
+}
+
 
 bool
 ActionFactory::createAction(Action& action, const char* actionName, Player* player,
@@ -82,7 +117,8 @@ ActionFactory::createAction(Action& action, const char* actionName, Player* play
   valid = (id < Action::actions_number);
   if (valid)
     {
-      valid = (this->*m_actionReaders[id])(data, args);
+      if (m_actionReaders[id] != NULL)
+	valid = (this->*m_actionReaders[id])(data, args);
       if (valid)
 	action = Action(player, static_cast<Action::EAction>(id), m_actionTimers[id], data);
     }

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 31 13:20:02 2014 
-// Last Update Sat Nov  8 19:13:27 2014 
+// Last Update Wed Nov 12 14:19:40 2014 
 //
 
 load("EAction.js");
@@ -110,15 +110,27 @@ Client.prototype.listenServer = function()
     {
 	if (this.socket.isClosed() == false)
 	{
-	    throw new Error("Error parsing data : " + error.message);
+	    print("Error parsing data : " + error.message);
+	    this.loop = false;
 	}
     }
     
     if (this.loop == true)
     {
-	throw new Error("Connection lost !");
+	print("Connection lost !");
     }
 };
+
+
+Client.prototype.interruptThreads = function()
+{
+    var	i;
+
+    for (i = 0; i < this.team.players.length; ++i)
+    {
+    	this.team.players[i].interrupt();
+    }
+}
 
 
 Client.prototype.disconnect = function()
@@ -130,4 +142,5 @@ Client.prototype.disconnect = function()
     this.output.close();
     this.buffer.close();
     this.isr.close();
+    this.interruptThreads();
 };

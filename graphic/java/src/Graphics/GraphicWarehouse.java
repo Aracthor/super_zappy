@@ -2,6 +2,8 @@ package Graphics;
 
 import java.util.HashMap;
 
+import org.lwjgl.util.vector.Vector3f;
+
 import Engine.Texture;
 import Engine.Models.Mesh;
 import Engine.Models.ObjParser;
@@ -41,6 +43,16 @@ public class		GraphicWarehouse
 		this.addTexture("objects");
 	}
 	
+	private Mesh	getStickModel()
+	{
+		Mesh		mesh = new Mesh(models.get("cube"));
+		
+		mesh.scale(0.3f, 0.3f, 1.5f);
+		mesh.setBaseColor(new Vector3f(0.4f, 0.2f, 0.0f));
+		
+		return (mesh);
+	}
+	
 	private void	createModels()
 	{
 		ObjParser	parser = new ObjParser();
@@ -53,6 +65,8 @@ public class		GraphicWarehouse
 		this.addModel("saplin", parser);
 		this.addModel("maple", parser);
 		this.addModel("pawn", parser);
+		
+		models.put("stick", this.getStickModel());
 	}
 	
 	private void	createTextureSquares()

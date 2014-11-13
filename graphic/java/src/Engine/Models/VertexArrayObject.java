@@ -23,6 +23,13 @@ public class VertexArrayObject implements IBindable
 		baseColor = new Vector3f(1.0f, 1.0f, 1.0f);
 	}
 	
+	public VertexArrayObject(VertexArrayObject copy)
+	{
+		id = copy.id;
+		vbo = copy.vbo;
+		baseColor = new Vector3f(copy.baseColor);
+	}
+	
 	public boolean	isEmpty()
 	{
 		return (vbo == null);

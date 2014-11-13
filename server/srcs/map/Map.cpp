@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:48:32 2014 
-// Last Update Sun Nov  9 04:10:18 2014 
+// Last Update Wed Nov 12 10:58:55 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -81,9 +81,13 @@ Map::createSpawnPoint(unsigned int angle) const
 {
   sf::Vector2f	pos;
   sf::Vector2f	movement;
+  float		width, height;
 
-  pos.x = (m_width / 2 + cos(RAD(angle)) * m_width / 2) * CHUNK_SIZE;
-  pos.y = (m_height / 2 + sin(RAD(angle)) * m_height / 2) * CHUNK_SIZE;
+  width = static_cast<float>(m_width);
+  height = static_cast<float>(m_height);
+
+  pos.x = (width / 2.0f + cos(RAD(angle)) * width / 2.0f) * CHUNK_SIZE;
+  pos.y = (height / 2.0f + sin(RAD(angle)) * height / 2.0f) * CHUNK_SIZE;
 
   movement.x = -cos(RAD(angle));
   movement.y = -sin(RAD(angle));
