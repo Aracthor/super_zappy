@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 14 13:07:56 2014 
-// Last Update Wed Nov 12 14:02:43 2014 
+// Last Update Sun Nov 16 16:08:49 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -43,8 +43,8 @@ Client::Client(const Client& copy) :
 Client::~Client()
 {
   if (m_socket.isCopy() == false)
-    LogManagerSingleton::access()->connection.print("Client %d disconnected.",
-						    m_socket.getFd());
+    LogManagerSingleton::access()->connection->print("Client %d disconnected.",
+						     m_socket.getFd());
 }
 
 
@@ -52,28 +52,28 @@ void
 Client::printInput(const char* packet, int id) const
 {
   if (m_isGraphic)
-    LogManagerSingleton::access()->graphicInput.print("Data from client %d :\t'%s'",
-						      id, packet);
+    LogManagerSingleton::access()->graphicInput->print("Data from client %d :\t'%s'",
+						       id, packet);
   else if (m_isPlayer)
-    LogManagerSingleton::access()->iaInput.print("Data from client %d :\t'%s'",
-						 id, packet);
+    LogManagerSingleton::access()->iaInput->print("Data from client %d :\t'%s'",
+						  id, packet);
   else
-    LogManagerSingleton::access()->input.print("Data from client %d :\t'%s'",
-					       id, packet);
+    LogManagerSingleton::access()->input->print("Data from client %d :\t'%s'",
+						id, packet);
 }
 
 void
 Client::printOutput(const char* packet, int id) const
 {
   if (m_isGraphic)
-    LogManagerSingleton::access()->graphicOutput.print("Data to client %d :\t'%s'",
-						       id, packet);
+    LogManagerSingleton::access()->graphicOutput->print("Data to client %d :\t'%s'",
+							id, packet);
   else if (m_isPlayer)
-    LogManagerSingleton::access()->iaOutput.print("Data to client %d :\t'%s'",
-						  id, packet);
+    LogManagerSingleton::access()->iaOutput->print("Data to client %d :\t'%s'",
+						   id, packet);
   else
-    LogManagerSingleton::access()->output.print("Data to client %d :\t'%s'",
-					        id, packet);
+    LogManagerSingleton::access()->output->print("Data to client %d :\t'%s'",
+						 id, packet);
 }
 
 
@@ -84,8 +84,8 @@ Client::checkError(int size, const char* word)
 
   end = (size == -1 && (errno != EAGAIN && errno != EWOULDBLOCK));
   if (end)
-    LogManagerSingleton::access()->error.print("Error %sing client %d : %s",
-					       word, m_socket.getFd(), strerror(errno));
+    LogManagerSingleton::access()->error->print("Error %sing client %d : %s",
+						word, m_socket.getFd(), strerror(errno));
 
   return (end);
 }
@@ -173,8 +173,8 @@ Client::send(const char* data)
 
   size = ::send(m_socket.getFd(), data, strlen(data), MSG_DONTWAIT);
   if (size == static_cast<int>(strlen(data)))
-    LogManagerSingleton::access()->output.print("Data to client %d :\t'%s'",
-						m_socket.getFd(), data);
+    LogManagerSingleton::access()->output->print("Data to client %d :\t'%s'",
+						 m_socket.getFd(), data);
 }
 
 
@@ -199,8 +199,8 @@ Client::operator<<(const char* data)
   size = strlen(data);
 
   if (m_output.getSize() + size >= CLIENT_BUFFER_SIZE)
-    LogManagerSingleton::access()->error.print("Client %d has a full output buffer !",
-					       m_socket.getFd());
+    LogManagerSingleton::access()->error->print("Client %d has a full output buffer !",
+						m_socket.getFd());
   else
     m_output.pushBack(data, size);
 
@@ -218,8 +218,8 @@ Client&
 Client::operator<<(char data)
 {
   if (m_output.getSize() + 1 >= CLIENT_BUFFER_SIZE)
-    LogManagerSingleton::access()->error.print("Client %d has a full output buffer !",
-					       m_socket.getFd());
+    LogManagerSingleton::access()->error->print("Client %d has a full output buffer !",
+						m_socket.getFd());
   else
     m_output.pushBack(data);
 

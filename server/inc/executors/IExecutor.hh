@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov  9 00:50:24 2014 
-// Last Update Wed Nov 12 09:31:07 2014 
+// Last Update Fri Nov 14 10:39:26 2014 
 //
 
 #ifndef IEXECUTOR_HH_
@@ -15,7 +15,7 @@
 # include "core/Server.hh"
 # include "data/Player.hh"
 
-class	IExecutor : protected LinkedToServer
+class		IExecutor : protected LinkedToServer
 {
 public:
   virtual ~IExecutor() {}

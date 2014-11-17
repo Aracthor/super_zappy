@@ -5,10 +5,13 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 23:07:04 2014 
-// Last Update Wed Nov 12 17:41:33 2014 
+// Last Update Sun Nov 16 16:05:33 2014 
 //
 
 #include "actions/ActionFactory.hh"
+#include "actions/timecalcs/CraftTimeCalculator.hh"
+#include "actions/timecalcs/DestroyerTimeCalculator.hh"
+#include "actions/timecalcs/DiggerTimeCalculator.hh"
 #include "debug/LogManager.hh"
 
 #include <cstdlib>
@@ -17,6 +20,8 @@
 ActionFactory::ActionFactory()
 {
   memset(m_actionNames, 0, sizeof(m_actionNames));
+  memset(m_actionTimers, 0, sizeof(m_actionTimers));
+  memset(m_timeCalcs, 0, sizeof(m_timeCalcs));
 
   m_actionNames[Action::displace]	= "DIS";
   m_actionTimers[Action::displace]	= 10;
@@ -26,9 +31,13 @@ ActionFactory::ActionFactory()
   m_actionTimers[Action::search]	= 5;
   m_actionReaders[Action::search]	= &ActionFactory::readIdData;
 
-  m_actionNames[Action::tryToDestroy]	= "DES";
-  m_actionTimers[Action::tryToDestroy]	= 1;
-  m_actionReaders[Action::tryToDestroy]	= &ActionFactory::readPositionData;
+  m_actionNames[Action::destroy]	= "DES";
+  m_timeCalcs[Action::destroy]		= new DestroyerTimeCalculator;
+  m_actionReaders[Action::destroy]	= &ActionFactory::readPositionData;
+
+  m_actionNames[Action::dig]		= "DIG";
+  m_timeCalcs[Action::dig]		= new DiggerTimeCalculator;
+  m_actionReaders[Action::dig]		= NULL;
 
   m_actionNames[Action::take]		= "TAK";
   m_actionTimers[Action::take]		= 10;
@@ -41,10 +50,23 @@ ActionFactory::ActionFactory()
   m_actionNames[Action::equip]		= "EQU";
   m_actionTimers[Action::equip]		= 5;
   m_actionReaders[Action::equip]	= &ActionFactory::readIdData;
+
+  m_actionNames[Action::craft]		= "CRF";
+  m_timeCalcs[Action::craft]		= new CraftTimeCalculator;
+  m_actionReaders[Action::craft]	= &ActionFactory::readIdData;
+
+  m_actionNames[Action::mail]		= "MAIL";
+  m_actionTimers[Action::mail]		= 2;
+  m_actionReaders[Action::mail]		= &ActionFactory::readTextData;
 }
 
 ActionFactory::~ActionFactory()
 {
+  unsigned int	i;
+
+  for (i = 0; i < Action::actions_number; ++i)
+    if (m_timeCalcs[i] != NULL)
+      delete (m_timeCalcs[i]);
 }
 
 
@@ -61,7 +83,7 @@ ActionFactory::readPositionData(Action::UData& data,
       data.position.y = atoi(args.args[1]);
     }
   else
-    LogManagerSingleton::access()->error.print("Invalid action position read");
+    LogManagerSingleton::access()->error->print("Invalid action position read");
 
   return (valid);
 }
@@ -76,7 +98,7 @@ ActionFactory::readIdData(Action::UData& data,
   if (valid)
     data.id = atoi(args.args[0]);
   else
-    LogManagerSingleton::access()->error.print("Invalid action id read");
+    LogManagerSingleton::access()->error->print("Invalid action id read");
 
   return (valid);
 }
@@ -95,7 +117,32 @@ ActionFactory::readItemData(Action::UData& data,
       valid = (data.item.id < Hoopla::items_number);
     }
   if (!valid)
-    LogManagerSingleton::access()->error.print("Invalid action item read");
+    LogManagerSingleton::access()->error->print("Invalid action item read");
+
+  return (valid);
+}
+
+bool
+ActionFactory::readTextData(Action::UData& data,
+			    const CommandCutter::CuttedLine& args) const
+{
+  bool		valid;
+  unsigned int	size;
+  unsigned int	i;
+
+  size = 0;
+  for (i = 0; i < args.argsNumber; ++i)
+    size += strlen(args.args[i]);
+  valid = (size < MAIL_BUFFER_SIZE);
+
+  if (valid)
+    {
+      data.text[0] = '\0';
+      for (i = 0; i < args.argsNumber; ++i)
+	strcat(data.text, args.args[i]);
+    }
+  else
+    LogManagerSingleton::access()->error->print("Too long text in action read");
 
   return (valid);
 }
@@ -106,6 +153,7 @@ ActionFactory::createAction(Action& action, const char* actionName, Player* play
 			    const CommandCutter::CuttedLine& args)
 {
   unsigned int	id;
+  unsigned int	time;
   Action::UData	data;
   bool		valid;
 
@@ -120,7 +168,12 @@ ActionFactory::createAction(Action& action, const char* actionName, Player* play
       if (m_actionReaders[id] != NULL)
 	valid = (this->*m_actionReaders[id])(data, args);
       if (valid)
-	action = Action(player, static_cast<Action::EAction>(id), m_actionTimers[id], data);
+	{
+	  time = m_actionTimers[id];
+	  if (m_timeCalcs[id] != NULL)
+	    time = m_timeCalcs[id]->calcTime(player, data);
+	  action = Action(player, static_cast<Action::EAction>(id), time, data);
+	}
     }
 
   return (valid);

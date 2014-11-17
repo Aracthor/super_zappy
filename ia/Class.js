@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 17:58:53 2014 
-// Last Update Thu Nov  6 19:06:20 2014 
+// Last Update Thu Nov 13 16:26:55 2014 
 //
 
 load("EAction.js");
@@ -21,6 +21,8 @@ function	Class(name)
     this.intuition = 0;
     this.speed = 1;
     this.orientation = 1;
+    this.crafting = 0;
+    this.building = 0;
 }
 
 Class.prototype.presentationMessage = function()
@@ -33,6 +35,8 @@ Class.prototype.presentationMessage = function()
 	    this.toughness + ' ' +
 	    this.intuition + ' ' +
 	    this.speed + ' ' +
-	    this.orientation
+	    this.orientation + ' ' +
+	    this.crafting + ' ' +
+	    this.building
 	   );
 }

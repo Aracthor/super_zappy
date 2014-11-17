@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:27:00 2014 
-// Last Update Thu Nov  6 18:42:43 2014 
+// Last Update Sun Nov 16 16:07:22 2014 
 //
 
 #include "core/Server.hh"
@@ -42,8 +42,8 @@ AuthentificationListener::graphicAuthentification(Client* client)
   for (i = 0; i < server->getTeamsNumber(); ++i)
     *client << teams[i];
 
-  LogManagerSingleton::access()->connection.print("Client %d authentified as graphic.",
-						  client->getFd());
+  LogManagerSingleton::access()->connection->print("Client %d authentified as graphic.",
+						   client->getFd());
 }
 
 void
@@ -51,8 +51,8 @@ AuthentificationListener::teamAuthentification(Client* client)
 {
   client->setTeam();
 
-  LogManagerSingleton::access()->connection.print("Client %d authentified as team.",
-						  client->getFd());
+  LogManagerSingleton::access()->connection->print("Client %d authentified as team.",
+						   client->getFd());
 }
 
 bool
@@ -69,8 +69,8 @@ AuthentificationListener::listenFromClient(Client* client, char* message)
     authentified = false;
 
   if (authentified == false)
-    LogManagerSingleton::access()->error.print("Client %d authentified as sucker.",
-					       client->getFd());
+    LogManagerSingleton::access()->error->print("Client %d authentified as sucker.",
+						client->getFd());
 
   return (authentified);
 }

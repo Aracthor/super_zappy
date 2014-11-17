@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 31 13:20:02 2014 
-// Last Update Wed Nov 12 14:19:40 2014 
+// Last Update Fri Nov 14 13:33:47 2014 
 //
 
 load("EAction.js");
@@ -129,6 +129,7 @@ Client.prototype.interruptThreads = function()
     for (i = 0; i < this.team.players.length; ++i)
     {
     	this.team.players[i].interrupt();
+    	this.team.players[i].thread.join();
     }
 }
 

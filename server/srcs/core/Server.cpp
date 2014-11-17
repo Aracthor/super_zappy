@@ -5,9 +5,10 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:42:16 2014 
-// Last Update Sat Nov  8 20:43:05 2014 
+// Last Update Mon Nov 17 13:26:56 2014 
 //
 
+#include "core/ControlPanel.hh"
 #include "core/Server.hh"
 #include "debug/LogManager.hh"
 
@@ -18,24 +19,36 @@ Server::s_server = NULL;
 
 
 Server::Server(const Configs& configs) :
-  SingletonManager(),
+  SingletonManager(configs.getLogFile()),
   ActionsManager(configs.getSpeed()),
   GameData(configs),
   Map(configs),
   Network(configs.getPort()),
-  ThreadManager()
+  ThreadManager(),
+  m_consoleMode(configs.getConsoleMode())
 {
   s_server = this;
   this->setSpawnPoints(*this);
+
+  if (m_consoleMode)
+    LogManagerSingleton::access()->setConsoleMode();
 
   this->startGame(); // TEST ONLY
 }
 
 Server::~Server()
 {
-  LogManagerSingleton::access()->intern.print("Server ending...");
+  LogManagerSingleton::access()->intern->print("Server ending...");
 }
 
+
+void
+Server::startControlPanel() const
+{
+  ControlPanel	controlPanel;
+
+  controlPanel.run();
+}
 
 void
 Server::wait() const
@@ -52,9 +65,12 @@ Server::wait() const
 void
 Server::start()
 {
-  LogManagerSingleton::access()->intern.print("Server starting...");
+  LogManagerSingleton::access()->intern->print("Server starting...");
   this->runThreads();
-  LogManagerSingleton::access()->intern.print("Server started !");
+  LogManagerSingleton::access()->intern->print("Server started !");
 
-  this->wait();
+  if (m_consoleMode)
+    this->startControlPanel();
+  else
+    this->wait();
 }

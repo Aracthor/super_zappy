@@ -8,6 +8,7 @@ import Commands.CHKCommand;
 import Commands.EmptyCommand;
 import Commands.ISLCommand;
 import Commands.KickCommand;
+import Commands.MSGCommand;
 import Commands.PDCCommand;
 import Commands.PEQCommand;
 import Commands.PPOCommand;
@@ -39,6 +40,7 @@ public class SuperZappyGraphicClient extends AClient
 		commands.put("PEQ", new PEQCommand());
 		commands.put("CHK", new CHKCommand());
 		commands.put("CAS", new CASCommand());
+		commands.put("MSG", new MSGCommand());
 		commands.put("GET", new KickCommand());
 		waitingAChunk = false;
 		inited = false;

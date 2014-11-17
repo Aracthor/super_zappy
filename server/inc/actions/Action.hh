@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 19:34:56 2014 
-// Last Update Wed Nov 12 17:41:03 2014 
+// Last Update Fri Nov 14 16:50:26 2014 
 //
 
 #ifndef ACTION_HH_
@@ -17,6 +17,7 @@
 # include <SFML/System/Vector2.hpp>
 
 # define MAX_WAITING_ACTIONS	(200)
+# define MAIL_BUFFER_SIZE	(0x100)
 
 class	Action
 {
@@ -27,11 +28,14 @@ public:
       move,
       rotate,
       search,
-      tryToDestroy,
       destroy,
+      dig,
       take,
       put,
       equip,
+      craft,
+      build,
+      mail,
       actions_number
     };
 
@@ -53,8 +57,9 @@ public:
 
     Pos			position;
     Item		item;
-    unsigned int        id;
+    unsigned int	id;
     bool		boolean;
+    char		text[MAIL_BUFFER_SIZE];
   };
 
 private:

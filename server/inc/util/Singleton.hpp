@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Jun 16 10:01:02 2014 
-// Last Update Mon Oct 20 08:46:18 2014 
+// Last Update Mon Nov 17 13:27:48 2014 
 //
 
 #include <cstddef>
@@ -14,6 +14,14 @@ template <class T>
 T*
 Singleton<T>::s_singleton = NULL;
 
+
+template <class T>
+template <class U>
+void
+Singleton<T>::create(const U& elem)
+{
+  s_singleton = new T(elem);
+}
 
 template <class T>
 void

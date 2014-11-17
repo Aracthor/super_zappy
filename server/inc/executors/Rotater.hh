@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov  9 03:10:10 2014 
-// Last Update Wed Nov 12 17:41:57 2014 
+// Last Update Fri Nov 14 17:35:53 2014 
 //
 
 #ifndef ROTATER_HH_

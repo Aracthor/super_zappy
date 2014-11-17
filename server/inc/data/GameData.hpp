@@ -5,8 +5,38 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:26:40 2014 
-// Last Update Sat Nov  8 23:54:19 2014 
+// Last Update Fri Nov 14 15:10:30 2014 
 //
+
+template <typename T>
+void
+GameData::doToPlayers(void (*function)(Player& player, const T& data), const T& data)
+{
+  unsigned int	t;
+  unsigned int	i;
+
+  for (t = 0; t < m_teamsNumber; ++t)
+    {
+      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
+	function(m_teams[t].getPlayers()[i], data);
+    }
+}
+
+template <typename T, typename U>
+void
+GameData::doToPlayers(void (*function)(Player& player, const T& data1, const U* data2),
+		      const T& data1, const U* data2)
+{
+  unsigned int	t;
+  unsigned int	i;
+
+  for (t = 0; t < m_teamsNumber; ++t)
+    {
+      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
+	function(m_teams[t].getPlayers()[i], data1, data2);
+    }
+}
+
 
 const Team*
 GameData::getTeams() const

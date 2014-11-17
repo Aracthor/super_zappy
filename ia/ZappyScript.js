@@ -5,12 +5,18 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Thu Nov  6 14:27:41 2014 
-// Last Update Wed Nov 12 17:39:01 2014 
+// Last Update Fri Nov 14 17:50:12 2014 
 //
 
 load("Items.js");
+load("Mail.js");
 load("Objects.js");
 load("Vector.js");
+
+function	ScriptExit()
+{
+}
+
 
 function	ZappyScript()
 {
@@ -42,6 +48,7 @@ ZappyScript.prototype.start = function()
     var	waiting;
     var message;
 
+    this.loop = true;
     waiting = true;
 
     while (waiting)
@@ -53,20 +60,54 @@ ZappyScript.prototype.start = function()
 	}
     }
 
-    this.play();
+    try
+    {
+	this.play();
+    }
+    catch (exception)
+    {
+    }
+}
+
+
+ZappyScript.prototype.dring = function()
+{
+    this.ring.unlock();
+    this.ring.lock();
+}
+
+ZappyScript.prototype.stop = function()
+{
+    this.loop = false;
+    this.dring();
 }
 
 
 ZappyScript.prototype.sendMessage = function(message)
 {
     this.messages.push(message);
-    this.ring.unlock();
-    this.ring.lock();
+    this.dring();
+}
+
+ZappyScript.prototype.receiveFriendMessage = function(message)
+{
+    var mail;
+
+    mail = new Mail(message);
+    this.onFriendMessage(mail);
 }
 
 ZappyScript.prototype.readUnexpectedMessage = function(message)
 {
-    print("MESSAGE : " + message[1]);
+    if (message[0] == "FRIEND_MESSAGE" && this.onFriendMessage != null)
+    {
+	message.shift();
+	this.receiveFriendMessage(message);
+    }
+    else
+    {
+	// I don't give a shit yo !
+    }
 }
 
 ZappyScript.prototype.waitForAnswer = function(wanted)
@@ -76,7 +117,7 @@ ZappyScript.prototype.waitForAnswer = function(wanted)
 
     answer = null;
 
-    while (answer == null)
+    while (this.loop == true && answer == null)
     {
 	if (this.messages.length > 0)
 	{
@@ -97,6 +138,11 @@ ZappyScript.prototype.waitForAnswer = function(wanted)
 	    this.ring.lock();
 	    this.ring.unlock();
 	}
+    }
+
+    if (this.loop == false)
+    {
+	throw new ScriptExit;
     }
 
     return (answer);
@@ -126,6 +172,40 @@ ZappyScript.prototype.waitItems = function()
     }
 
     return (items);
+}
+
+ZappyScript.prototype.waitItem = function()
+{
+    var answer = this.waitForAnswer("ITEM");
+    var	item;
+
+    if (answer[0] == "NULL")
+    {
+	item = null;
+    }
+    else
+    {
+	item = new Item(parseInt(answer[0]));
+    }
+
+    return (item);
+}
+
+
+ZappyScript.prototype.getItemId = function(item)
+{
+    var	id;
+
+    if (isInt(item))
+    {
+	id = item;
+    }
+    else
+    {
+	id = item.id;
+    }
+
+    return (id);
 }
 
 
@@ -163,6 +243,12 @@ ZappyScript.prototype.destroy = function(x, y)
     return (this.waitConfirmation());
 }
 
+ZappyScript.prototype.dig = function()
+{
+    client.send("DIG " + this.player.name);
+    return (this.waitItem());
+}
+
 ZappyScript.prototype.take = function()
 {
     client.send("TAK " + this.player.name);
@@ -177,17 +263,29 @@ ZappyScript.prototype.put = function(id, number)
 
 ZappyScript.prototype.equip = function(item)
 {
-    var	id;
+    var id;
 
-    if (isInt(item))
-    {
-	id = item;
-    }
-    else
-    {
-	id = item.id;
-    }
-
+    id = this.getItemId(item);
     client.send("EQU " + this.player.name + ' ' + id);
     return (this.waitConfirmation());
+}
+
+ZappyScript.prototype.craft = function(item)
+{
+    var	id;
+
+    id = this.getItemId(item);
+    client.send("CRF " + this.player.name + ' ' + id);
+    return (this.waitConfirmation());
+}
+
+ZappyScript.prototype.sendMail = function(message)
+{
+    client.send("MAIL " + this.player.name + ' ' + message);
+    return (true);
+}
+
+ZappyScript.prototype.wait = function()
+{
+    this.waitForAnswer("YOLO");
 }

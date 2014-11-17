@@ -5,16 +5,18 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 20:20:00 2014 
-// Last Update Wed Nov 12 17:41:50 2014 
+// Last Update Sun Nov 16 16:05:54 2014 
 //
 
 #include "actions/ExecuterThread.hh"
 #include "core/Server.hh"
 #include "debug/LogManager.hh"
+#include "executors/Crafter.hh"
 #include "executors/Destroyer.hh"
-#include "executors/DestroyerCalculator.hh"
+#include "executors/Digger.hh"
 #include "executors/Displacer.hh"
 #include "executors/Equipper.hh"
+#include "executors/Mailer.hh"
 #include "executors/Mover.hh"
 #include "executors/Putter.hh"
 #include "executors/Rotater.hh"
@@ -31,11 +33,14 @@ ExecuterThread::ExecuterThread() :
   m_executors[Action::move]		= new Mover;
   m_executors[Action::rotate]		= new Rotater;
   m_executors[Action::search]		= new Searcher;
-  m_executors[Action::tryToDestroy]	= new DestroyerCalculator;
   m_executors[Action::destroy]		= new Destroyer;
+  m_executors[Action::dig]		= new Digger;
   m_executors[Action::take]		= new Taker;
   m_executors[Action::put]		= new Putter;
   m_executors[Action::equip]		= new Equipper;
+  m_executors[Action::craft]		= new Crafter;
+  m_executors[Action::build]		= NULL;
+  m_executors[Action::mail]		= new Mailer;
 }
 
 ExecuterThread::~ExecuterThread()
@@ -59,14 +64,19 @@ void
 ExecuterThread::executeActions()
 {
   ActionsManager::ActionsList&	actions = m_server->getActions();
+  IExecutor*			executor;
 
   while (actions.isEmpty() == false && actions.front().getTimer() <= 0)
     {
-      LogManagerSingleton::access()->intern.print("Executing action %d for player %s.",
-						  actions.front().getAction(),
-						  actions.front().getPlayer()->getName());
-      m_executors[actions.front().getAction()]->execute(actions.front().getPlayer(),
-							actions.front().getData());
+      executor = m_executors[actions.front().getAction()];
+      LogManagerSingleton::access()->intern->print("Executing action %d for player %s.",
+						   actions.front().getAction(),
+						   actions.front().getPlayer()->getName());
+      if (executor == NULL)
+	LogManagerSingleton::access()->error->print("Executor for action %d is TODO !",
+						    actions.front().getAction());
+      else
+	executor->execute(actions.front().getPlayer(), actions.front().getData());
       actions.popFront();
     }
 }
@@ -93,7 +103,7 @@ ExecuterThread::execute()
   timeToWait -= static_cast<long>(m_clock.getElapsedTime());
 
   if (timeToWait < 0)
-    LogManagerSingleton::access()->error.print("Warning : loop longer than speed !");
+    LogManagerSingleton::access()->error->print("Warning : loop longer than speed !");
   else
     usleep(timeToWait);
 }
@@ -102,7 +112,7 @@ void
 ExecuterThread::incrementLoop()
 {
   if (m_loopCounter * this->getServerData()->getSpeed() / 10000 % 10 == 0)
-    LogManagerSingleton::access()->intern.print("Cycle %d.", m_loopCounter);
+    LogManagerSingleton::access()->intern->print("Cycle %d.", m_loopCounter);
   ++m_loopCounter;
 }
 

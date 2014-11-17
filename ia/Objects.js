@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov  9 07:41:29 2014 
-// Last Update Sun Nov  9 09:00:38 2014 
+// Last Update Fri Nov 14 10:33:48 2014 
 //
 
 load("Vector.js");
@@ -28,4 +28,4 @@ function	Objects()
     this.player		= new Object(7);
 }
 
-var	objects = new Objects;
+var	g_objects = new Objects;

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 20:31:48 2014 
-// Last Update Sun Nov  9 06:36:25 2014 
+// Last Update Sun Nov 16 16:05:42 2014 
 //
 
 #include "actions/ActionsManager.hh"
@@ -46,8 +46,8 @@ ActionsManager::insertAction(Action action)
     }
 
 
-  LogManagerSingleton::access()->debug.print("Action %d prepared for player %s.",
-					     action.getAction(),
-					     action.getPlayer()->getName());
+  LogManagerSingleton::access()->debug->print("Action %d prepared for player %s.",
+					      action.getAction(),
+					      action.getPlayer()->getName());
   m_actions.pushAt(action, pos);
 }

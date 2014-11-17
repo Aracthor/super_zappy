@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:55:13 2014 
-// Last Update Wed Nov 12 14:01:47 2014 
+// Last Update Sun Nov 16 16:09:02 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -42,8 +42,7 @@ Network::kickClient(Client* client, bool disconnected)
 {
   if (disconnected == false)
     {
-      LogManagerSingleton::access()->error.print("Kicking client %d.",
-						 client->getFd());
+      LogManagerSingleton::access()->error->print("Kicking client %d.", client->getFd());
       client->send(KICK_MESSAGE "\n");
       if (client->getTeam() != NULL)
 	this->discalifyTeam(client->getTeam());

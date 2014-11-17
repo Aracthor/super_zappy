@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 17:20:56 2014 
-// Last Update Wed Nov 12 14:16:04 2014 
+// Last Update Fri Nov 14 13:36:34 2014 
 //
 
 function	Execution(player, script)
@@ -43,5 +43,6 @@ Player.prototype.play = function()
 
 Player.prototype.interrupt = function()
 {
-    this.thread.interrupt();
+    this.thread.interrupt(); // USELESS POWER
+    this.script.stop();
 }

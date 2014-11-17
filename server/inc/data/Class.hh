@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 08:39:45 2014 
-// Last Update Wed Nov 12 15:43:36 2014 
+// Last Update Thu Nov 13 17:07:01 2014 
 //
 
 #ifndef CLASS_HH_
@@ -13,8 +13,6 @@
 
 # include "Namable.hh"
 
-# define CHARACTERISTICS_NUMBER	(5)
-# define SKILLS_NUMBER		(2)
 # define SKILL_LEVEL_MAX	(4)
 
 class		Class : public Namable
@@ -43,6 +41,8 @@ public:
   {
     speed,
     orientation,
+    crafting,
+    building,
     skills_number
   };
 
@@ -53,7 +53,8 @@ private:
 public:
   Class(const char* name,
 	unsigned int s, unsigned int p, unsigned int d, unsigned int t, unsigned int i,
-	unsigned int speedLevel, unsigned int orientationLevel);
+	unsigned int speedLevel, unsigned int orientationLevel,
+	unsigned int craftingLevel, unsigned int buildingLevel);
   ~Class();
 
 public:

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:26:47 2014 
-// Last Update Tue Oct 21 09:01:09 2014 
+// Last Update Sun Nov 16 16:09:09 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -90,9 +90,9 @@ Socket::accept(const Socket& serverSocket)
   if (m_fd == -1)
     throw NetworkException("Cannot accept on socket : ");
 
-  LogManagerSingleton::access()->connection.print("Client connected with domain %s, "
-						  "id attribued : %d.",
-						  inet_ntoa(infos.sin_addr), m_fd);
+  LogManagerSingleton::access()->connection->print("Client connected with domain %s, "
+						   "id attribued : %d.",
+						   inet_ntoa(infos.sin_addr), m_fd);
 }
 
 

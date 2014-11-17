@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 21 09:14:34 2014 
-// Last Update Tue Nov  4 10:30:51 2014 
+// Last Update Thu Nov 13 17:09:44 2014 
 //
 
 #ifndef PROTOCOL_HH_
@@ -25,7 +25,9 @@
 # define GRAPHIC_ARGS_SEPARATOR		(" ")
 
 # define IA_COMMANDS_NUMBER		(1)
+# define IA_MAX_ARGS_NUMBER		(15)
 
 # define MAX_COMMANDS_NUMBER	(MAX(GRAPHIC_COMMANDS_NUMBER, IA_COMMANDS_NUMBER))
+# define MAX_ARGS_NUMBER	(MAX(GRAPHIC_MAX_ARGS_NUMBER, IA_MAX_ARGS_NUMBER))
 
 #endif // !PROTOCOL_HH_

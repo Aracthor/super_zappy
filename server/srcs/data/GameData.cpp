@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:29:09 2014 
-// Last Update Sun Nov  9 03:38:15 2014 
+// Last Update Sun Nov 16 16:06:04 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -20,7 +20,7 @@ GameData::GameData(const Configs& configs) :
 {
   unsigned int	i;
 
-  LogManagerSingleton::access()->intern.print("Initialisating game data...");
+  LogManagerSingleton::access()->intern->print("Initialisating game data...");
 
   m_teams.resize(configs.getTeams().getNumber());
   for (i = 0; i < m_teamsNumber; ++i)
@@ -72,7 +72,7 @@ GameData::getPlayer(const char* name) const
 
 
 void
-GameData::preparePlayers()
+GameData::doToPlayers(void (*function)(Player& player))
 {
   unsigned int	t;
   unsigned int	i;
@@ -80,8 +80,20 @@ GameData::preparePlayers()
   for (t = 0; t < m_teamsNumber; ++t)
     {
       for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
-	m_teams[t].getPlayers()[i].setDecremented(false);
+	function(m_teams[t].getPlayers()[i]);
     }
+}
+
+
+static void     prepare(Player& player)
+{
+  player.setDecremented(false);
+}
+
+void
+GameData::preparePlayers()
+{
+  this->doToPlayers(&prepare);
 }
 
 

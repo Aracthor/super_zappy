@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 13:43:54 2014 
-// Last Update Mon Oct 20 13:44:46 2014 
+// Last Update Mon Nov 17 13:26:14 2014 
 //
 
 #ifndef SINGLETON_MANAGER_HH_
@@ -14,7 +14,7 @@
 class	SingletonManager
 {
 protected:
-  SingletonManager();
+  SingletonManager(const char* logFile);
   virtual ~SingletonManager();
 };
 

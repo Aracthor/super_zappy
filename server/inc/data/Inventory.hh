@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Nov 12 15:06:24 2014 
-// Last Update Wed Nov 12 16:07:26 2014 
+// Last Update Fri Nov 14 16:47:23 2014 
 //
 
 #ifndef INVENTORY_HH_
@@ -41,6 +41,7 @@ public:
 
 public:
   inline bool		isFull() const;
+  inline bool		canHandleMore(Hoopla::EItem item, unsigned int number) const;
   inline unsigned int	getMaxSize() const;
 };
 

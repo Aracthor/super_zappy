@@ -5,11 +5,12 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov  9 03:11:42 2014 
-// Last Update Sun Nov  9 05:28:39 2014 
+// Last Update Sun Nov 16 16:06:47 2014 
 //
 
-#include "executors/Mover.hh"
 #include "core/Server.hh"
+#include "debug/LogManager.hh"
+#include "executors/Mover.hh"
 
 Mover::Mover()
 {
@@ -39,6 +40,7 @@ Mover::execute(Player* player, const Action::UData& data)
     }
   else
     {
+      LogManagerSingleton::access()->error->print("TODO refaire le calcul");
       // TODO Refaire le calcul
     }
 }

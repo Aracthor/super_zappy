@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 08:39:41 2014 
-// Last Update Sun Nov  9 00:08:07 2014 
+// Last Update Sun Nov 16 16:07:42 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -34,8 +34,8 @@ CommandListener::errorFromClient(const Client* client, const char* message, ...)
   va_start(list, message);
   {
     vsprintf(buffer, message, list);
-    LogManagerSingleton::access()->error.print("Error from client %d : %s",
-					       client->getFd(), buffer);
+    LogManagerSingleton::access()->error->print("Error from client %d : %s",
+						client->getFd(), buffer);
   }
   va_end(list);
 }
@@ -67,8 +67,8 @@ CommandListener::tryToExecuteCommand(Client* client,
   if (valid == true)
     valid = this->executeCommand(command.execution, client, cuttedCommand.args);
   else
-    LogManagerSingleton::access()->error.print("Bad args number for command %s.",
-					       command.name);
+    LogManagerSingleton::access()->error->print("Bad args number for command %s.",
+						command.name);
 
   return (valid);
 }
@@ -97,7 +97,7 @@ CommandListener::searchAndExecuteCommand(Client* client,
     valid = this->unknowCommand(client, command);
 
   if (found == false && valid == false)
-    LogManagerSingleton::access()->error.print("Command %s doesn't exist !", command.args[0]);
+    LogManagerSingleton::access()->error->print("Command %s doesn't exist !", command.args[0]);
 
   return (valid);
 }

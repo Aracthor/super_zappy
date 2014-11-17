@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 13:40:45 2014 
-// Last Update Tue Nov  4 14:54:24 2014 
+// Last Update Thu Nov 13 17:30:23 2014 
 //
 
 #include "security/StatChecker.hh"
@@ -20,10 +20,14 @@ StatChecker::StatChecker()
   m_characteristicsMin[Class::toughness]	= 10;
   m_characteristicsMin[Class::intuition]	= 0;
 
-  m_skillsCheckers[Class::speed] = SkillChecker(Class::speed, "speed",
-						true, 10);
-  m_skillsCheckers[Class::orientation] = SkillChecker(Class::orientation, "orientation",
-						      true, 10);
+  m_skillsCheckers[Class::speed]	= SkillChecker(Class::speed, "speed",
+						       true, 10);
+  m_skillsCheckers[Class::orientation]	= SkillChecker(Class::orientation, "orientation",
+						       true, 10);
+  m_skillsCheckers[Class::crafting]	= SkillChecker(Class::crafting, "crafting",
+						       false, 10);
+  m_skillsCheckers[Class::building]	= SkillChecker(Class::building, "building",
+						       false, 10);
 }
 
 StatChecker::~StatChecker()

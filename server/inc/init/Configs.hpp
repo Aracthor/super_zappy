@@ -5,13 +5,19 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:47:15 2014 
-// Last Update Sun Oct 12 08:40:49 2014 
+// Last Update Mon Nov 17 13:15:59 2014 
 //
 
 const Teams&
 Configs::getTeams() const
 {
   return (m_teams);
+}
+
+const char*
+Configs::getLogFile() const
+{
+  return (m_logFile);
 }
 
 unsigned int
@@ -24,6 +30,12 @@ unsigned int
 Configs::getSpeed() const
 {
   return (m_speed);
+}
+
+bool
+Configs::getConsoleMode() const
+{
+  return (m_consoleMode);
 }
 
 const Configs::Map&

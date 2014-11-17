@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:32:05 2014 
-// Last Update Sun Nov  9 04:59:05 2014 
+// Last Update Mon Nov 17 13:15:42 2014 
 //
 
 #ifndef CONFIGS_HH_
@@ -13,8 +13,10 @@
 
 # include "Teams.hh"
 
+# define DEFAULT_LOG_FILE       ("zappy.log")
 # define DEFAULT_PORT		(4242)
 # define DEFAULT_SPEED		(10000)
+# define DEFAULT_CONSOLE_MODE	(false)
 # define DEFAULT_MAP_WIDTH	(4)
 # define DEFAULT_MAP_HEIGHT	(4)
 
@@ -26,9 +28,10 @@
 # define MAP_SIZE_MAX		(256)
 # define TEAMS_NUMBER_MIN	(2)
 
-# define FLAGS_NUMBER		(5)
+# define FLAGS_NUMBER		(6)
+# define CONSOLE_FLAG		('d')
 
-class	Configs
+class			Configs
 {
 public:
   struct		Map
@@ -44,9 +47,11 @@ private:
 
 private:
   Map		m_map;
+  const char*	m_logFile;
   unsigned int	m_port;
   unsigned int	m_speed;
   Teams		m_teams;
+  bool		m_consoleMode;
   ParamReader	m_paramReader;
 
 public:
@@ -54,6 +59,7 @@ public:
   ~Configs();
 
 private:
+  void	changeLogFile(char* port);
   void	changePort(char* port);
   void	changeSpeed(char* speed);
   void	changeMapWidth(char* width);
@@ -70,8 +76,10 @@ public:
 
 public:
   inline const Teams&	getTeams() const;
+  inline const char*	getLogFile() const;
   inline unsigned int	getPort() const;
   inline unsigned int	getSpeed() const;
+  inline bool		getConsoleMode() const;
   inline const Map&	getMapConfigs() const;
 };
 

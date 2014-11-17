@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:44:42 2014 
-// Last Update Mon Nov  3 10:27:05 2014 
+// Last Update Mon Nov 17 13:15:07 2014 
 //
 
 #include "exceptions/ConfigsException.hh"
@@ -23,8 +23,10 @@ Configs::Map::Map(unsigned int width, unsigned int height) :
 
 Configs::Configs() :
   m_map(DEFAULT_MAP_WIDTH, DEFAULT_MAP_HEIGHT),
+  m_logFile(DEFAULT_LOG_FILE),
   m_port(DEFAULT_PORT),
-  m_speed(DEFAULT_SPEED)
+  m_speed(DEFAULT_SPEED),
+  m_consoleMode(DEFAULT_CONSOLE_MODE)
 {
 }
 
@@ -32,6 +34,12 @@ Configs::~Configs()
 {
 }
 
+
+void
+Configs::changeLogFile(char* arg)
+{
+  m_logFile = arg;
+}
 
 void
 Configs::changePort(char* arg)
@@ -80,12 +88,14 @@ Configs::emplFlagsTabs(ParamReader* readers, char* flags)
   readers[2] = &Configs::changeMapWidth;
   readers[3] = &Configs::changeMapHeight;
   readers[4] = &Configs::addTeam;
+  readers[5] = &Configs::changeLogFile;
 
   flags[0] = 'p';
   flags[1] = 's';
   flags[2] = 'x';
   flags[3] = 'y';
   flags[4] = 'n';
+  flags[5] = 'l';
 }
 
 void
@@ -101,20 +111,21 @@ Configs::changeReader(char flag)
 
   newReader = NULL;
   for (i = 0; newReader == NULL && i < FLAGS_NUMBER; ++i)
-    {
-      if (flag == flags[i])
-	{
-	  newReader = readers[i];
-	}
-    }
+    if (flag == flags[i])
+      newReader = readers[i];
 
   if (newReader == NULL)
     {
-      sprintf(error, "Unknow flag '%c'", flag);
-      throw ConfigsException(error);
+      if (flag == CONSOLE_FLAG)
+	m_consoleMode = true;
+      else
+	{
+	  sprintf(error, "Unknow flag '%c'", flag);
+	  throw ConfigsException(error);
+	}
     }
-
-  m_paramReader = newReader;
+  else
+    m_paramReader = newReader;
 }
 
 void

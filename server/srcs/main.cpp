@@ -5,13 +5,14 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:27:44 2014 
-// Last Update Fri Oct 24 17:17:17 2014 
+// Last Update Mon Nov 17 16:47:04 2014 
 //
 
 #include <iostream>
 
 #include "core/Server.hh"
 #include "exceptions/ConfigsException.hh"
+#include "ncursesxx/NcursesException.hh"
 
 #include <cstdlib>
 #include <ctime>
@@ -24,6 +25,7 @@ static void	print_usage(char* name)
 	    << "\t[-y larger]" << std::endl
 	    << "\t[-p port]" << std::endl
 	    << "\t[-s speed]" << std::endl
+	    << "\t[-l log_file]" << std::endl
 	    << "\t-n team1 team2 {teams}" << std::endl;
 }
 
@@ -51,10 +53,22 @@ int		main(int argc, char** argv)
       return_value = 1;
     }
 
+  catch (const nc::NcursesException& exception)
+    {
+      std::cerr << "Ncurses error : " << exception.what() << std::endl;
+      return_value = 1;
+    }
+
   catch (const std::exception& exception)
     {
       std::cerr << "Fatal error : " << exception.what() << std::endl;
       return_value = 2;
+    }
+
+  catch (...)
+    {
+      std::cerr << "WTF ???" << std::endl;
+      return_value = 3;
     }
 
   return (return_value);

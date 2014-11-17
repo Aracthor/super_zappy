@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov  9 01:16:57 2014 
-// Last Update Sun Nov  9 07:25:13 2014 
+// Last Update Fri Nov 14 09:21:33 2014 
 //
 
 #include "abstractions/maths.hh"
@@ -27,6 +27,7 @@ ApprenticeDisplacer::tryHorizontalMovement(const sf::Vector2u& pos, const sf::Ve
 {
   bool	found;
 
+  found = false;
   if (static_cast<int>(pos.x - dest.x) < 0)
     found = this->tryToJoin(pos + m_movements.getMovement(Player::right), dest, false);
   else if (static_cast<int>(pos.x - dest.x) > 0)
@@ -40,6 +41,7 @@ ApprenticeDisplacer::tryVerticalMovement(const sf::Vector2u& pos, const sf::Vect
 {
   bool	found;
 
+  found = false;
   if (static_cast<int>(pos.y - dest.y) < 0)
     found = this->tryToJoin(pos + m_movements.getMovement(Player::down), dest, false);
   else if (static_cast<int>(pos.y - dest.y) > 0)

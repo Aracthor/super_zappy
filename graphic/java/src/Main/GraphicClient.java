@@ -1,4 +1,4 @@
-package Main;
+	package Main;
 
 import Core.Application;
 import Core.IApplication;
@@ -10,15 +10,15 @@ public class GraphicClient
 	{
 		IApplication	app;
 		
-		if (args.length != 3)
+		if (args.length != 2)
 		{
-			System.err.println("USAGE : " + args[0] + " host port");
+			System.err.println("USAGE : ./GraphicClient host port");
 		}
 		else
 		{
 			try
 			{
-				app = new Application(args[1], args[2]);
+				app = new Application(args[0], args[1]);
 				app.run();
 				app.exit();
 			}

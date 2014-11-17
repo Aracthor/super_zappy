@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 21 12:19:36 2014 
-// Last Update Sat Nov  8 23:39:17 2014 
+// Last Update Thu Nov 13 17:10:27 2014 
 //
 
 #ifndef COMMAND_CUTTER_HH_
@@ -18,7 +18,7 @@ class			CommandCutter
 public:
   struct		CuttedLine
   {
-    char*		args[GRAPHIC_MAX_ARGS_NUMBER];
+    char*		args[MAX_ARGS_NUMBER];
     unsigned int	argsNumber;
   };
 

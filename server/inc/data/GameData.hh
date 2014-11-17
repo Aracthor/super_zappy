@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:24:52 2014 
-// Last Update Sun Nov  9 03:29:45 2014 
+// Last Update Fri Nov 14 15:09:42 2014 
 //
 
 #ifndef GAME_DATA_HH_
@@ -30,6 +30,14 @@ protected:
 public:
   const Team*	getTeam(const char* name) const;
   const Player*	getPlayer(const char* name) const;
+
+public:
+  void		doToPlayers(void (*function)(Player& player));
+  template <typename T>
+  void		doToPlayers(void (*function)(Player& player, const T& data), const T& data);
+  template <typename T, typename U>
+  void		doToPlayers(void (*function)(Player& player, const T& data1, const U* data2),
+			    const T& data1, const U* data2);
 
 public:
   void		preparePlayers();

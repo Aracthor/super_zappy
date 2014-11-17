@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:27:00 2014 
-// Last Update Sun Nov  9 04:06:17 2014 
+// Last Update Sun Nov 16 16:08:28 2014 
 //
 
 #include "core/Server.hh"
@@ -18,7 +18,7 @@
 TeamListener::TeamListener()
 {
   this->initCommand("PRE", 7, &TeamListener::getTeamPresentation);
-  this->initCommand("CLD", 2 + CHARACTERISTICS_NUMBER + SKILLS_NUMBER,
+  this->initCommand("CLD", 2 + Class::characteristics_number + Class::skills_number,
 		    &TeamListener::getClassPresentation);
   this->initCommand("PLD", 3, &TeamListener::getPlayerPresentation);
 }
@@ -31,8 +31,8 @@ TeamListener::~TeamListener()
 void
 TeamListener::warnCheat(const Client* client, const char* cheat) const
 {
-  LogManagerSingleton::access()->error.print("Client %d tried to cheat : %s !!!",
-					     client->getFd(), cheat);
+  LogManagerSingleton::access()->error->print("Client %d tried to cheat : %s !!!",
+					      client->getFd(), cheat);
   // TODO prévenir les graphiques
 }
 
@@ -46,7 +46,7 @@ TeamListener::getClassPresentation(Client* client, char* const* args, Team* team
   error = team->addClass(args[1],
 			 atoi(args[2]), atoi(args[3]),
 			 atoi(args[4]), atoi(args[5]), atoi(args[6]),
-			 atoi(args[7]), atoi(args[8]));
+			 atoi(args[7]), atoi(args[8]), atoi(args[9]), atoi(args[10]));
   valid = (error == NULL);
   if (valid == false)
     this->warnCheat(client, error);
@@ -111,11 +111,11 @@ TeamListener::unknowCommand(Client* client,
 	    args.args[i] = const_cast<char*>(cuttedCommand.args[i + 2]);
 
 	  valid = this->createAction(action, cuttedCommand.args[0], player, args);
-	  if (valid)
+	  if (valid && action.getTimer() > 0)
 	    this->getServerData()->insertAction(action);
 	}
       else
-	LogManagerSingleton::access()->error.print("Unknow player %s", args.args[1]);
+	LogManagerSingleton::access()->error->print("Unknow player %s", args.args[1]);
     }
 
   return (valid);

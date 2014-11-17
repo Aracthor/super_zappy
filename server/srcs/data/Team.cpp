@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 15:59:55 2014 
-// Last Update Sat Nov  8 18:24:32 2014 
+// Last Update Thu Nov 13 16:30:47 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -98,10 +98,12 @@ const char*
 Team::addClass(const char* name,
 	       unsigned int s, unsigned int p,
 	       unsigned int d, unsigned int t, unsigned int i,
-	       unsigned int speedLevel, unsigned int orientationLevel)
+	       unsigned int speedLevel, unsigned int orientationLevel,
+	       unsigned int craftingLevel, unsigned int buildingLevel)
 {
-  Class		newClass(name, s, p, d, t, i, speedLevel, orientationLevel);
-  const char*   error;
+  Class		newClass(name, s, p, d, t, i,
+			 speedLevel, orientationLevel, craftingLevel, buildingLevel);
+  const char*	error;
 
   error = CheatCheckerSingleton::access()->checkClass(newClass,
 						      m_configs.geneticHardening,

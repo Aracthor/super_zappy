@@ -52,12 +52,24 @@ public class		GraphicWarehouse
 		
 		return (mesh);
 	}
+
+	private Mesh	getWoodenJavelinModel()
+	{
+		Mesh		mesh = new Mesh(models.get("obelisk"));
+		
+		mesh.scale(0.3f, 0.3f, 1.5f);
+		mesh.setBaseColor(new Vector3f(0.4f, 0.2f, 0.0f));
+		
+		return (mesh);
+	}
 	
 	private void	createModels()
 	{
 		ObjParser	parser = new ObjParser();
 		
 		this.addModel("cube", parser);
+		this.addModel("obelisk", parser);
+		
 		this.addModel("bush", parser);
 		this.addModel("shrub", parser);
 		this.addModel("ash", parser);
@@ -67,6 +79,7 @@ public class		GraphicWarehouse
 		this.addModel("pawn", parser);
 		
 		models.put("stick", this.getStickModel());
+		models.put("wooden javelin", this.getWoodenJavelinModel());
 	}
 	
 	private void	createTextureSquares()

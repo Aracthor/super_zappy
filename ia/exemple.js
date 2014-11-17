@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 14:34:12 2014 
-// Last Update Sun Nov  9 08:50:09 2014 
+// Last Update Fri Nov 14 16:21:22 2014 
 //
 
 load("exemple/KingScript.js");
@@ -16,7 +16,7 @@ load("exemple/SlaveScript.js");
 function	King()
 {
     this.script = new KingScript;
-    this.perception = 50;
+    this.perception = 80;
 }
 
 function	Soldier()
@@ -32,6 +32,9 @@ function	Ranger()
 function	Slave()
 {
     this.script = new SlaveScript;
+    this.perception = 50;
+    this.strength = 30;
+    this.crafting = 1;
 }
 
 King.prototype = new Class("king");
@@ -57,8 +60,8 @@ function	loadTeam(team)
     // team.players[2] = new Player("Gimli",	"soldier");
     // team.players[3] = new Player("Legolas",	"ranger");
     // team.players[4] = new Player("Aragorn",	"ranger");
-    // team.players[5] = new Player("Frodon",	"slave");
-    // team.players[6] = new Player("Sam",		"slave");
-    // team.players[7] = new Player("Merry",	"slave");
-    // team.players[8] = new Player("Pipin",	"slave");
+    team.players[1] = new Player("Frodon",	"slave");
+    team.players[2] = new Player("Sam",		"slave");
+    team.players[3] = new Player("Merry",	"slave");
+    team.players[4] = new Player("Pipin",	"slave");
 }

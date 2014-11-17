@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:28:24 2014 
-// Last Update Wed Nov 12 09:03:08 2014 
+// Last Update Fri Nov 14 17:25:42 2014 
 //
 
 #ifndef HOOPLA_HH_
@@ -57,7 +57,19 @@ struct	Hoopla
   enum	EItem
   {
     none,
+    snowBall,
+    pebble,
+    frost_plant,
+    mud,
+    temperate_plant,
+    grass,
+    sand,
+    tropical_plant,
+    fresh_water,
+    ice_block,
+    water,
     stick,
+    wooden_javelin,
     items_number
   };
 

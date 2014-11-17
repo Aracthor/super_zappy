@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:48:32 2014 
-// Last Update Wed Nov 12 10:58:55 2014 
+// Last Update Fri Nov 14 14:27:22 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -60,7 +60,7 @@ Map::tryToSpawn(const sf::Vector2u& origin, sf::Vector2u& pos, unsigned int dept
 	     IS_EMPTY(this->getHoopla(origin + sf::Vector2u( 0, -1))) &&
 	     IS_EMPTY(this->getHoopla(origin + sf::Vector2u( 1, -1))) &&
 	     IS_EMPTY(this->getHoopla(origin + sf::Vector2u( 1,  0))) &&
-	     IS_EMPTY(this->getHoopla(origin)));
+	     IS_EMPTY(this->getHoopla(origin)) && this->getHoopla(origin).height > 0);
 
   if (spawned)
     pos = origin;

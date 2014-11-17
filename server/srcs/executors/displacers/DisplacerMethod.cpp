@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov  9 01:32:57 2014 
-// Last Update Wed Nov 12 09:18:47 2014 
+// Last Update Fri Nov 14 09:50:19 2014 
 //
 
 #include "core/Server.hh"
@@ -71,9 +71,9 @@ DisplacerMethod::isLast(unsigned int index) const
   bool	last;
 
   if (IS_EMPTY(this->getServerData()->getHoopla(m_positions.back())))
-    last = (index == m_positions.getSize() - 2);
+    last = (index + 2 >= m_positions.getSize());
   else
-    last = (index == m_positions.getSize() - 3);
+    last = (index + 3 >= m_positions.getSize());
 
   return (last);
 }

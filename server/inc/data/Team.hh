@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 15:54:44 2014 
-// Last Update Sun Nov  9 04:04:48 2014 
+// Last Update Thu Nov 13 16:29:35 2014 
 //
 
 #ifndef TEAM_HH_
@@ -60,7 +60,8 @@ public:
   const char*	addClass(const char* name,
 			 unsigned int s, unsigned int p,
 			 unsigned int d, unsigned int t, unsigned int i,
-			 unsigned int speedLevel, unsigned int orientationLevel);
+			 unsigned int speedLevel, unsigned int orientationLevel,
+			 unsigned int craftingLevel, unsigned int buildingLevel);
 
 public:
    void		destroy();

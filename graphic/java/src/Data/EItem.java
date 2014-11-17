@@ -7,7 +7,19 @@ import Graphics.GraphicWarehouse;
 public enum EItem
 {
 	None(0, null),
-	Stick(1, "stick");
+	SnowBall(1, null),
+	Pebble(2, null),
+	FrostPlant(3, null),
+	Mud(4, null),
+	TemperatePlant(5, null),
+	Grass(6, null),
+	Sand(7, null),
+	TropicalPlant(8, null),
+	FreshWater(9, null),
+	IceBlock(10, null),
+	Water(11, null),
+	Stick(12, "stick"),
+	WoodenJavelin(13, "wooden javelin");
 	
 	private int		id;
 	private String	name;

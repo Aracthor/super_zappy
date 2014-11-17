@@ -5,13 +5,14 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:27:00 2014 
-// Last Update Wed Nov 12 10:25:49 2014 
+// Last Update Sun Nov 16 16:08:06 2014 
 //
 
 #include "core/Server.hh"
 #include "debug/LogManager.hh"
 #include "network/listeners/GraphicListener.hh"
 
+#include <cstdio>
 #include <cstdlib>
 
 GraphicListener::GraphicListener()
@@ -44,8 +45,8 @@ GraphicListener::sendChunkData(Client* client, char* const* args) const
 
   valid = IS_GOOD_CHUNK_POS(x, y, map);
   if (valid == false)
-    LogManagerSingleton::access()->error.print("Trying to get an invalid chunk : %d/%d.",
-					       x, y);
+    LogManagerSingleton::access()->error->print("Trying to get an invalid chunk : %d/%d.",
+						x, y);
   else
     {
       chunk = &map->getChunk(x, y);
@@ -72,8 +73,8 @@ GraphicListener::sendHooplaData(Client* client, char* const* args) const
 
   valid = IS_GOOD_HOOPLA_POS(x, y, map);
   if (valid == false)
-    LogManagerSingleton::access()->error.print("Trying to get an invalid hoopla : %d/%d.",
-					       x, y);
+    LogManagerSingleton::access()->error->print("Trying to get an invalid hoopla : %d/%d.",
+						x, y);
   else
     *client << map->getChunk(x / CHUNK_SIZE, y / CHUNK_SIZE).getHoopla(x % CHUNK_SIZE, y % CHUNK_SIZE);
 
@@ -91,7 +92,7 @@ GraphicListener::sendPlayerData(Client* client, char* const* args) const
   valid = (player != NULL);
 
   if (valid == false)
-    LogManagerSingleton::access()->error.print("Invalid player %s.", args[1]);
+    LogManagerSingleton::access()->error->print("Invalid player %s.", args[1]);
   else
     *client << *player;
 
@@ -109,7 +110,7 @@ GraphicListener::sendTeamData(Client* client, char* const* args) const
   valid = (team != NULL);
 
   if (valid == false)
-    LogManagerSingleton::access()->error.print("Invalid team %s.", args[1]);
+    LogManagerSingleton::access()->error->print("Invalid team %s.", args[1]);
   else
     *client << *team;
 

@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Thu Nov 13 08:48:42 2014 
+## Last Update Sun Nov 16 18:03:19 2014 
 ##
 
 CC=		g++
@@ -22,6 +22,7 @@ BIN_DIR=	bin/
 
 ABSTRACTION_DIR=abstractions/
 ACTIONS_DIR=	actions/
+CATALOGS_DIR=	catalogs/
 CORE_DIR=	core/
 DATA_DIR=	data/
 DEBUG_DIR=	debug/
@@ -29,13 +30,16 @@ EXCEPTIONS_DIR=	exceptions/
 EXECUTORS_DIR=	executors/
 INIT_DIR=	init/
 MAP_DIR=	map/
+NCURSES_DIR=	ncursesxx/
 NETWORK_DIR=	network/
 SECURITY_DIR=	security/
 THREADING_DIR=	threading/
 
+CONSOLES_DIR=	$(CORE_DIR)consoles/
 DISPLACERS_DIR=	$(EXECUTORS_DIR)displacers/
 GENERATORS_DIR=	$(MAP_DIR)generators/
 LISTENERS_DIR=	$(NETWORK_DIR)listeners/
+TIMECALCS_DIR=	$(ACTIONS_DIR)timecalcs/
 
 NAME=		server
 
@@ -44,7 +48,15 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(ACTIONS_DIR)ActionFactory.cpp		\
 		$(SRCS_DIR)$(ACTIONS_DIR)ActionsManager.cpp		\
 		$(SRCS_DIR)$(ACTIONS_DIR)ExecuterThread.cpp		\
+		$(SRCS_DIR)$(CATALOGS_DIR)Craft.cpp			\
+		$(SRCS_DIR)$(CATALOGS_DIR)CraftCatalog.cpp		\
+		$(SRCS_DIR)$(CATALOGS_DIR)Ground.cpp			\
+		$(SRCS_DIR)$(CATALOGS_DIR)GroundCatalog.cpp		\
+		$(SRCS_DIR)$(CONSOLES_DIR)Console.cpp			\
+		$(SRCS_DIR)$(CONSOLES_DIR)LogConsole.cpp		\
+		$(SRCS_DIR)$(CORE_DIR)ControlPanel.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)LinkedToServer.cpp		\
+		$(SRCS_DIR)$(CORE_DIR)LogThread.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)Server.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)SingletonManager.cpp		\
 		$(SRCS_DIR)$(DATA_DIR)Class.cpp				\
@@ -53,23 +65,27 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(DATA_DIR)Namable.cpp			\
 		$(SRCS_DIR)$(DATA_DIR)Player.cpp			\
 		$(SRCS_DIR)$(DATA_DIR)Team.cpp				\
+		$(SRCS_DIR)$(DEBUG_DIR)ConsoleLog.cpp			\
+		$(SRCS_DIR)$(DEBUG_DIR)Log.cpp				\
+		$(SRCS_DIR)$(DEBUG_DIR)LogManager.cpp			\
+		$(SRCS_DIR)$(DEBUG_DIR)StandartLog.cpp			\
+		$(SRCS_DIR)$(DEBUG_DIR)outputs.cpp			\
 		$(SRCS_DIR)$(DISPLACERS_DIR)AdeptDisplacer.cpp		\
 		$(SRCS_DIR)$(DISPLACERS_DIR)ApprenticeDisplacer.cpp	\
 		$(SRCS_DIR)$(DISPLACERS_DIR)DisplacerMethod.cpp		\
 		$(SRCS_DIR)$(DISPLACERS_DIR)ExpertDisplacer.cpp		\
 		$(SRCS_DIR)$(DISPLACERS_DIR)MasterDisplacer.cpp		\
-		$(SRCS_DIR)$(DEBUG_DIR)Log.cpp				\
-		$(SRCS_DIR)$(DEBUG_DIR)LogManager.cpp			\
-		$(SRCS_DIR)$(DEBUG_DIR)outputs.cpp			\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ConfigsException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)NetworkException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)SyscallException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ThreadingException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ZappyException.cpp		\
+		$(SRCS_DIR)$(EXECUTORS_DIR)Crafter.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Destroyer.cpp		\
-		$(SRCS_DIR)$(EXECUTORS_DIR)DestroyerCalculator.cpp	\
+		$(SRCS_DIR)$(EXECUTORS_DIR)Digger.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Displacer.cpp		\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Equipper.cpp			\
+		$(SRCS_DIR)$(EXECUTORS_DIR)Mailer.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Mover.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Movements.cpp		\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Putter.cpp			\
@@ -102,6 +118,10 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(MAP_DIR)Chunk.cpp				\
 		$(SRCS_DIR)$(MAP_DIR)Hoopla.cpp				\
 		$(SRCS_DIR)$(MAP_DIR)Map.cpp				\
+		$(SRCS_DIR)$(NCURSES_DIR)Application.cpp		\
+		$(SRCS_DIR)$(NCURSES_DIR)Color.cpp			\
+		$(SRCS_DIR)$(NCURSES_DIR)NcursesException.cpp		\
+		$(SRCS_DIR)$(NCURSES_DIR)Window.cpp			\
 		$(SRCS_DIR)$(NETWORK_DIR)Client.cpp			\
 		$(SRCS_DIR)$(NETWORK_DIR)ListenThread.cpp		\
 		$(SRCS_DIR)$(NETWORK_DIR)Network.cpp			\
@@ -115,6 +135,9 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(THREADING_DIR)CondVar.cpp			\
 		$(SRCS_DIR)$(THREADING_DIR)Mutex.cpp			\
 		$(SRCS_DIR)$(THREADING_DIR)ThreadManager.cpp		\
+		$(SRCS_DIR)$(TIMECALCS_DIR)CraftTimeCalculator.cpp	\
+		$(SRCS_DIR)$(TIMECALCS_DIR)DestroyerTimeCalculator.cpp	\
+		$(SRCS_DIR)$(TIMECALCS_DIR)DiggerTimeCalculator.cpp	\
 		$(SRCS_DIR)main.cpp					\
 
 OBJS=		$(SRCS:$(SRCS_DIR)%.cpp=$(OBJS_DIR)%.o)
@@ -129,8 +152,11 @@ CXXFLAGS=	-Wall -Werror -Wextra	\
 		-I $(INC_DIR)		\
 		-g3
 
+LIBS=		pthread	\
+		ncurses
+
 LDFLAGS=	-o $(BINARY)	\
-		-lpthread
+		$(LIBS:%=-l%)
 
 
 

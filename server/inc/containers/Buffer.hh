@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:33:16 2014 
-// Last Update Sat Oct 25 19:25:04 2014 
+// Last Update Mon Nov 17 12:26:53 2014 
 //
 
 #ifndef BUFFER_HH_
@@ -44,12 +44,19 @@ public:
   inline void	pushBack(const char* data);
 
 public:
+  template <unsigned int N>
+  void		copyFrom(const Buffer<N>& buffer);
+
+public:
   inline void	addToSize(unsigned int size);
 
 public:
   inline bool		isEmpty() const;
   inline unsigned int	getSize() const;
+  inline unsigned int	getRemainingSize() const;
   inline const char*	getData() const;
+  inline const char*	getEnd() const;
+  inline void		clear();
   inline char*		getData();
   inline char*		getEnd();
 
@@ -57,6 +64,7 @@ public:
   Buffer<SIZE>&		operator=(const Buffer<SIZE>& copy);
 };
 
+# include "Buffer.hpp"
 # ifdef _BUFFER_STACK_MODE
 #  include "BufferStack.hpp"
 # elif _BUFFER_ALLOC_MODE

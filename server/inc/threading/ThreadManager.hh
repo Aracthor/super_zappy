@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 15:52:49 2014 
-// Last Update Sat Nov  8 20:22:31 2014 
+// Last Update Mon Nov 17 13:26:04 2014 
 //
 
 #ifndef THREAD_MANAGER_HH_

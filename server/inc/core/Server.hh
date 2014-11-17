@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:36:11 2014 
-// Last Update Sat Nov  8 20:41:23 2014 
+// Last Update Mon Nov 17 13:25:08 2014 
 //
 
 #ifndef SERVER_HH_
@@ -31,11 +31,15 @@ private:
   static Server*		s_server;
 
 
+private:
+  const bool	m_consoleMode;
+
 public:
   Server(const Configs& configs);
   ~Server();
 
 private:
+  void	startControlPanel() const;
   void	wait() const;
 
 public:
