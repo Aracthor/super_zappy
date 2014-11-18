@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov 17 09:00:58 2014 
-// Last Update Mon Nov 17 12:27:11 2014 
+// Last Update Tue Nov 18 08:32:22 2014 
 //
 
 #include "abstractions/maths.hh"
@@ -18,6 +18,25 @@ Buffer<SIZE>::popFront(unsigned int size)
 {
   m_size -= size;
   memmove(m_data, &m_data[size], m_size);
+  m_data[m_size] = '\0';
+}
+
+template <unsigned int SIZE>
+void
+Buffer<SIZE>::popAt(unsigned int index)
+{
+  memmove(&m_data[index], &m_data[index + 1], m_size - index - 1);
+  --m_size;
+  m_data[m_size] = '\0';
+}
+
+template <unsigned int SIZE>
+void
+Buffer<SIZE>::insertAt(const char data, unsigned int index)
+{
+  memmove(&m_data[index + 1], &m_data[index], m_size - index);
+  m_data[index] = data;
+  ++m_size;
 }
 
 template <unsigned int SIZE>
@@ -104,6 +123,15 @@ void
 Buffer<SIZE>::clear()
 {
   m_size = 0;
+  m_data[0] = '\0';
+}
+
+template <unsigned int SIZE>
+void
+Buffer<SIZE>::reset()
+{
+  m_size = 0;
+  memset(m_data, 0, SIZE);
 }
 
 template <unsigned int SIZE>

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 15:21:08 2014 
-// Last Update Sun Nov 16 16:09:18 2014 
+// Last Update Tue Nov 18 09:55:57 2014 
 //
 
 #include <exception>
@@ -37,7 +37,7 @@ AZappyThread::run()
 {
   bool	loop;
 
-  LogManagerSingleton::access()->threading->print("Thread %s started !", m_name);
+  LogManagerSingleton::access()->events->print("Thread %s started !", m_name);
 
   try
     {
@@ -55,7 +55,7 @@ AZappyThread::run()
 						  m_name, exception.what());
     }
 
-  LogManagerSingleton::access()->threading->print("Thread %s ended !", m_name);
+  LogManagerSingleton::access()->events->print("Thread %s ended !", m_name);
 
 }
 

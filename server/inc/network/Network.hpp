@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 14 12:58:45 2014 
-// Last Update Sun Nov  9 04:26:41 2014 
+// Last Update Tue Nov 18 08:23:15 2014 
 //
 
 template <typename T>
@@ -48,6 +48,12 @@ CondVar&
 Network::getSpeakRing()
 {
   return (m_speakRing);
+}
+
+const Pipe&
+Network::getListenPipe() const
+{
+  return (m_listenPipe);
 }
 
 

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 08:47:07 2014 
-// Last Update Mon Nov 17 16:43:33 2014 
+// Last Update Tue Nov 18 10:48:30 2014 
 //
 
 #ifndef LOG_MANAGER_HH_
@@ -32,6 +32,9 @@ private:
   FILE*			m_stream;
   bool			m_consoleMode;
 
+  const char*		m_names[LOGS_NUMBER];
+  Log**			m_logs[LOGS_NUMBER];
+
 private:
   LogManager(const char* file);
   ~LogManager();
@@ -45,7 +48,7 @@ public:
   Log*	iaInput;
   Log*	iaOutput;
   Log*	intern;
-  Log*	threading;
+  Log*  events;
   Log*	connection;
   Log*	error;
 
@@ -57,6 +60,9 @@ private:
 
 public:
   void	setConsoleMode();
+
+public:
+  Log*	getLogFromName(const char* name);
 
 public:
   inline void		lock();

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:38:52 2014 
-// Last Update Sun Nov  9 04:23:31 2014 
+// Last Update Tue Nov 18 08:22:31 2014 
 //
 
 #ifndef NETWORK_HH_
@@ -13,6 +13,7 @@
 
 # include "Client.hh"
 # include "Socket.hh"
+# include "abstractions/Pipe.hh"
 # include "containers/Pool.hh"
 # include "data/Team.hh"
 # include "threading/CondVar.hh"
@@ -27,6 +28,7 @@ private:
   ClientsPool	m_clients;
   Mutex		m_clientsMutex;
   CondVar	m_speakRing;
+  Pipe		m_listenPipe;
 
 public:
   Network(unsigned int port);
@@ -47,6 +49,7 @@ public:
   inline const ClientsPool&	getClients() const;
   inline ClientsPool&		getClients();
   inline CondVar&		getSpeakRing();
+  inline const Pipe&		getListenPipe() const;
 
 public:
   inline void	lockClients();

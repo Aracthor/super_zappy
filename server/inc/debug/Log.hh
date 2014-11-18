@@ -5,11 +5,11 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 10:12:16 2014 
-// Last Update Mon Nov 17 13:45:32 2014 
+// Last Update Tue Nov 18 10:51:26 2014 
 //
 
-#ifndef ALOG_HH_
-# define ALOG_HH_
+#ifndef LOG_HH_
+# define LOG_HH_
 
 # include <ostream>
 
@@ -66,6 +66,11 @@ public:
 public:
   void		print(const char* message, ...);
   virtual void	print(const char* message, va_list list) = 0;
+
+public:
+  inline void	setActive(bool active);
 };
 
-#endif // !ALOG_HH_
+# include "Log.hpp"
+
+#endif // !LOG_HH_

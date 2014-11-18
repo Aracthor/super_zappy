@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:33:16 2014 
-// Last Update Mon Nov 17 12:26:53 2014 
+// Last Update Tue Nov 18 08:31:17 2014 
 //
 
 #ifndef BUFFER_HH_
@@ -39,6 +39,8 @@ public:
 
 public:
   void		popFront(unsigned int size);
+  void		popAt(unsigned int index);
+  void		insertAt(const char data, unsigned int index);
   void		pushBack(const char data);
   void		pushBack(const char* data, unsigned int size);
   inline void	pushBack(const char* data);
@@ -57,6 +59,7 @@ public:
   inline const char*	getData() const;
   inline const char*	getEnd() const;
   inline void		clear();
+  inline void		reset();
   inline char*		getData();
   inline char*		getEnd();
 

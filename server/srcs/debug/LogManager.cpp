@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 08:48:33 2014 
-// Last Update Mon Nov 17 16:45:36 2014 
+// Last Update Tue Nov 18 10:53:00 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -23,6 +23,7 @@ LogManager::LogManager(const char* file) :
     throw SyscallException("Cannot create log file");
 
   this->initStandartLogs();
+  this->initTabs();
 }
 
 LogManager::~LogManager()
@@ -47,7 +48,7 @@ LogManager::initStandartLogs()
   iaInput = new StandartLog(stdout, IA_INPUT_COLOR, IA_INPUT_BOLD, true);
   iaOutput = new StandartLog(stdout, IA_OUTPUT_COLOR, IA_OUTPUT_BOLD, true);
   intern = new StandartLog(stdout, INTERN_COLOR, INTERN_BOLD, true);
-  threading = new StandartLog(stdout, THREADING_COLOR, THREADING_BOLD, true);
+  events = new StandartLog(stdout, THREADING_COLOR, THREADING_BOLD, true);
   connection = new StandartLog(stdout, CONNECTION_COLOR, CONNECTION_BOLD, true);
   error = new StandartLog(stderr, ERROR_COLOR, ERROR_BOLD, true);
 }
@@ -63,9 +64,25 @@ LogManager::initConsoleLogs()
   iaInput = new ConsoleLog(IA_INPUT_COLOR, IA_INPUT_BOLD, true);
   iaOutput = new ConsoleLog(IA_OUTPUT_COLOR, IA_OUTPUT_BOLD, true);
   intern = new ConsoleLog(INTERN_COLOR, INTERN_BOLD, true);
-  threading = new ConsoleLog(THREADING_COLOR, THREADING_BOLD, true);
+  events = new ConsoleLog(THREADING_COLOR, THREADING_BOLD, true);
   connection = new ConsoleLog(CONNECTION_COLOR, CONNECTION_BOLD, true);
   error = new ConsoleLog(ERROR_COLOR, ERROR_BOLD, true);
+}
+
+void
+LogManager::initTabs()
+{
+  m_names[ 0] = "debug";		m_logs[ 0] = &debug;
+  m_names[ 1] = "input";		m_logs[ 1] = &input;
+  m_names[ 2] = "output";		m_logs[ 2] = &output;
+  m_names[ 3] = "graphicInput";		m_logs[ 3] = &graphicInput;
+  m_names[ 4] = "graphicOutput";	m_logs[ 4] = &graphicOutput;
+  m_names[ 5] = "iaInput";		m_logs[ 5] = &iaInput;
+  m_names[ 6] = "iaOutput";		m_logs[ 6] = &iaOutput;
+  m_names[ 7] = "intern";		m_logs[ 7] = &intern;
+  m_names[ 8] = "events";		m_logs[ 8] = &events;
+  m_names[ 9] = "connection";		m_logs[ 9] = &connection;
+  m_names[10] = "error";		m_logs[10] = &error;
 }
 
 
@@ -80,7 +97,7 @@ LogManager::deleteLogs()
   delete (iaInput);
   delete (iaOutput);
   delete (intern);
-  delete (threading);
+  delete (events);
   delete (connection);
   delete (error);
 }
@@ -93,4 +110,19 @@ LogManager::setConsoleMode()
   this->deleteLogs();
   this->initConsoleLogs();
   m_buffer = new ConsoleBuffer;
+}
+
+
+Log*
+LogManager::getLogFromName(const char* name)
+{
+  Log*		log;
+  unsigned int	index;
+
+  log = NULL;
+  for (index = 0; log == NULL && index < LOGS_NUMBER; ++index)
+    if (!strcmp(m_names[index], name))
+      log = *m_logs[index];
+
+  return (log);
 }

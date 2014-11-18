@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:42:16 2014 
-// Last Update Mon Nov 17 13:26:56 2014 
+// Last Update Mon Nov 17 17:50:26 2014 
 //
 
 #include "core/ControlPanel.hh"
@@ -32,8 +32,6 @@ Server::Server(const Configs& configs) :
 
   if (m_consoleMode)
     LogManagerSingleton::access()->setConsoleMode();
-
-  this->startGame(); // TEST ONLY
 }
 
 Server::~Server()

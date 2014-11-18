@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 16:40:27 2014 
-// Last Update Sun Nov  9 04:34:12 2014 
+// Last Update Tue Nov 18 08:24:55 2014 
 //
 
 #include "abstractions/maths.hh"
@@ -99,7 +99,7 @@ ListenThread::listClients(fd_set* clients) const
 
   maxfd = m_server->getFd();
   FD_ZERO(clients);
-  FD_SET(STDIN_FILENO, clients);
+  FD_SET(m_server->getListenPipe().getInput(), clients);
   FD_SET(m_server->getFd(), clients);
 
   FOREACH_OF_POOL(m_server->getClients(), i)
@@ -156,5 +156,12 @@ ListenThread::loopCycle()
 
   m_server->getSpeakRing().signal();
 
-  return (!FD_ISSET(STDIN_FILENO, &clientsToListen));
+  return (FD_ISSET(m_server->getListenPipe().getInput(), &clientsToListen));
+}
+
+void
+ListenThread::interrupt()
+{
+  AZappyThread::interrupt();
+  m_server->getListenPipe() << "YOLO";
 }

@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Sun Nov 16 18:03:19 2014 
+## Last Update Tue Nov 18 10:43:08 2014 
 ##
 
 CC=		g++
@@ -44,6 +44,7 @@ TIMECALCS_DIR=	$(ACTIONS_DIR)timecalcs/
 NAME=		server
 
 SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
+		$(SRCS_DIR)$(ABSTRACTION_DIR)Pipe.cpp			\
 		$(SRCS_DIR)$(ACTIONS_DIR)Action.cpp			\
 		$(SRCS_DIR)$(ACTIONS_DIR)ActionFactory.cpp		\
 		$(SRCS_DIR)$(ACTIONS_DIR)ActionsManager.cpp		\
@@ -54,9 +55,11 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(CATALOGS_DIR)GroundCatalog.cpp		\
 		$(SRCS_DIR)$(CONSOLES_DIR)Console.cpp			\
 		$(SRCS_DIR)$(CONSOLES_DIR)LogConsole.cpp		\
+		$(SRCS_DIR)$(CONSOLES_DIR)PromptConsole.cpp		\
+		$(SRCS_DIR)$(CORE_DIR)AExecuter.cpp			\
+		$(SRCS_DIR)$(CORE_DIR)CommandExecuter.cpp		\
 		$(SRCS_DIR)$(CORE_DIR)ControlPanel.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)LinkedToServer.cpp		\
-		$(SRCS_DIR)$(CORE_DIR)LogThread.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)Server.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)SingletonManager.cpp		\
 		$(SRCS_DIR)$(DATA_DIR)Class.cpp				\
@@ -68,6 +71,7 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(DEBUG_DIR)ConsoleLog.cpp			\
 		$(SRCS_DIR)$(DEBUG_DIR)Log.cpp				\
 		$(SRCS_DIR)$(DEBUG_DIR)LogManager.cpp			\
+		$(SRCS_DIR)$(DEBUG_DIR)LogParameter.cpp			\
 		$(SRCS_DIR)$(DEBUG_DIR)StandartLog.cpp			\
 		$(SRCS_DIR)$(DEBUG_DIR)outputs.cpp			\
 		$(SRCS_DIR)$(DISPLACERS_DIR)AdeptDisplacer.cpp		\
@@ -77,6 +81,7 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(DISPLACERS_DIR)MasterDisplacer.cpp		\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ConfigsException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)NetworkException.cpp	\
+		$(SRCS_DIR)$(EXCEPTIONS_DIR)StartException.cpp		\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)SyscallException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ThreadingException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ZappyException.cpp		\

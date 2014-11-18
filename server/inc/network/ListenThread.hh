@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 16:46:26 2014 
-// Last Update Mon Nov  3 13:27:58 2014 
+// Last Update Tue Nov 18 08:21:14 2014 
 //
 
 #ifndef LISTEN_THREAD_HH_
@@ -43,6 +43,7 @@ private:
 
 public:
   bool  loopCycle();
+  void	interrupt();
 };
 
 #endif // !LISTEN_THREAD_HH_

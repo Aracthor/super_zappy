@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:26:40 2014 
-// Last Update Fri Nov 14 15:10:30 2014 
+// Last Update Mon Nov 17 17:53:33 2014 
 //
 
 template <typename T>
@@ -66,10 +66,4 @@ Player*
 GameData::getPlayerFromName(const char* name)
 {
   return (const_cast<Player*>(this->getPlayer(name)));
-}
-
-void
-GameData::startGame()
-{
-  m_started = true;
 }

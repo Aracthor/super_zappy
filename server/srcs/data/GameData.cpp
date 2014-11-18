@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:29:09 2014 
-// Last Update Sun Nov 16 16:06:04 2014 
+// Last Update Tue Nov 18 10:01:10 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -105,4 +105,24 @@ GameData::setSpawnPoints(const Map& map)
 
   for (i = 0; i < m_teamsNumber; ++i)
     m_teams[i].setSpawnPoint(map.createSpawnPoint(360 * i / m_teamsNumber));
+}
+
+
+static void
+sayStart(Player& player)
+{
+  player.send("START true");
+}
+
+void
+GameData::startGame()
+{
+  if (m_started == false)
+    {
+      m_started = true;
+      LogManagerSingleton::access()->events->print("Game started !");
+      this->doToPlayers(&sayStart);
+    }
+  else
+    LogManagerSingleton::access()->error->print("Game already started !");
 }

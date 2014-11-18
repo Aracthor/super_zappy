@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:24:52 2014 
-// Last Update Fri Nov 14 15:09:42 2014 
+// Last Update Mon Nov 17 17:53:46 2014 
 //
 
 #ifndef GAME_DATA_HH_
@@ -46,14 +46,14 @@ protected:
   void		setSpawnPoints(const Map& map);
 
 public:
+  void		startGame();
+
+public:
   inline const Team*	getTeams() const;
   inline Team*		getTeamFromName(const char* name);
   inline unsigned int	getTeamsNumber() const;
   inline bool		isStarted() const;
   inline Player*	getPlayerFromName(const char* name);
-
-public:
-  inline void		startGame();
 };
 
 # include "GameData.hpp"

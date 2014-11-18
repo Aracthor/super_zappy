@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:05:27 2014 
-// Last Update Sun Oct 12 06:10:34 2014 
+// Last Update Tue Nov 18 10:28:25 2014 
 //
 
 #ifndef CONFIGS_EXCEPTION_HH_
