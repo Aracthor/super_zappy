@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov 16 17:14:40 2014 
-// Last Update Mon Nov 17 16:39:58 2014 
+// Last Update Wed Nov 19 09:08:14 2014 
 //
 
 #include "core/consoles/LogConsole.hh"
@@ -62,6 +62,11 @@ LogConsole::printLine(const char* buffer, const char* line) const
 	this->activeAttr(A_BOLD);
 
       this->print(buffer, &line[2]);
+
+      if (line[1] > '0')
+	this->unsetColor(m_colors[line[1] - '0']);
+      if (line[0] == '1')
+	this->disactiveAttr(A_BOLD);
     }
 }
 

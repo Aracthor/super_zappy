@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov 17 17:37:57 2014 
-// Last Update Tue Nov 18 10:23:54 2014 
+// Last Update Tue Nov 18 14:42:50 2014 
 //
 
 #ifndef COMMAND_EXECUTER_HH_
@@ -28,6 +28,7 @@ public:
 private:
   void	startGame(const char* params);
   void  logAction(const char* params);
+  void  resetGame(const char* params);
 };
 
 #endif // !COMMAND_EXECUTER_HH_

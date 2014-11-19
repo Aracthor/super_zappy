@@ -5,12 +5,26 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:26:40 2014 
-// Last Update Mon Nov 17 17:53:33 2014 
+// Last Update Wed Nov 19 10:27:33 2014 
 //
 
 template <typename T>
 void
 GameData::doToPlayers(void (*function)(Player& player, const T& data), const T& data)
+{
+  unsigned int	t;
+  unsigned int	i;
+
+  for (t = 0; t < m_teamsNumber; ++t)
+    {
+      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
+	function(m_teams[t].getPlayers()[i], data);
+    }
+}
+
+template <typename T>
+void
+GameData::doToPlayers(void (*function)(const Player& player, const T& data), const T& data) const
 {
   unsigned int	t;
   unsigned int	i;

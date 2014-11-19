@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 16:40:27 2014 
-// Last Update Tue Nov 18 08:24:55 2014 
+// Last Update Tue Nov 18 12:02:22 2014 
 //
 
 #include "abstractions/maths.hh"
@@ -156,7 +156,7 @@ ListenThread::loopCycle()
 
   m_server->getSpeakRing().signal();
 
-  return (FD_ISSET(m_server->getListenPipe().getInput(), &clientsToListen));
+  return (!FD_ISSET(m_server->getListenPipe().getInput(), &clientsToListen));
 }
 
 void

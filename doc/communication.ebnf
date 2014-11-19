@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 15:57:56 2014 
-## Last Update Wed Nov 12 13:53:38 2014 
+** Last Update Tue Nov 18 12:54:56 2014 
 *)
 
 
@@ -51,8 +51,7 @@ case_description	= "CAS ", pos_x, ' ', pos_y, ' ', ground_enum, ' ', height, ' '
 player_description	= "PDC ", player_name, ' ', pos_x, ' ', pos_y, ' ', orientation, ' ', class_name, ' ', team_name, ' ', equipement, inventory, '\n' ;
 player_position		= "PPO ", player_name, ' ', pos_x, ' ', pos_y, ' ', orientation, '\n' ;
 player_equipement	= "PEQ ", player_name, ' ', equipement, '\n' ;
-player_taking		= "PTK ", player_name, ' ', item_enum, '\n' ;
-player_putting		= "PPT ", player_name, ' ', item_enum, '\n' ;
+player_digging		= "PDG ", player_name, ' ', time, '\n' ;
 team_description	= "TDC ", team_name, ' ', team_discalified, '\n' ;
 
 

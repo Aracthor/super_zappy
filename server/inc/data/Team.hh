@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 15:54:44 2014 
-// Last Update Thu Nov 13 16:29:35 2014 
+// Last Update Tue Nov 18 15:18:16 2014 
 //
 
 #ifndef TEAM_HH_
@@ -15,6 +15,7 @@
 # include "Namable.hh"
 # include "Player.hh"
 # include "containers/Array.hh"
+# include "core/LinkedToServer.hh"
 # include "network/Client.hh"
 
 # define MAX_TEAM_CONFIGS_TOTAL	(500)
@@ -22,8 +23,10 @@
 # define MAX_CLASSES_BY_TEAM	(10)
 
 class			Client;
+class			Server;
 
-class			Team : public Namable
+class			Team : public Namable,
+			       private LinkedToServer
 {
 public:
   struct		Configs
@@ -64,7 +67,8 @@ public:
 			 unsigned int craftingLevel, unsigned int buildingLevel);
 
 public:
-   void		destroy();
+  void		destroy();
+  void		reset();
 
 public:
   inline Client*		getClient() const;

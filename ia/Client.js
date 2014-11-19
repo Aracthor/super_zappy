@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 31 13:20:02 2014 
-// Last Update Fri Nov 14 13:33:47 2014 
+// Last Update Tue Nov 18 14:56:51 2014 
 //
 
 load("EAction.js");
@@ -13,6 +13,7 @@ load("ECommand.js");
 
 WELCOME_MESSAGE=	"WELCOME";
 KICK_MESSAGE=		"GET THE FUCK OUT";
+REBOOT_MESSAGE=		"GAME REBOOT";
 
 function	Client(host, port)
 {
@@ -86,6 +87,11 @@ Client.prototype.recvPacket = function(packet)
     else if (packet == KICK_MESSAGE)
     {
 	throw new Error("Server kicked me :(");
+	this.loop = false;
+    }
+    else if (packet == REBOOT_MESSAGE)
+    {
+	throw new Error("Server rebooted !");
 	this.loop = false;
     }
     else

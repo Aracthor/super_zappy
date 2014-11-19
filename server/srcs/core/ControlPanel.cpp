@@ -5,10 +5,12 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov 16 16:43:06 2014 
-// Last Update Tue Nov 18 10:06:11 2014 
+// Last Update Wed Nov 19 10:47:33 2014 
 //
 
 #include "core/ControlPanel.hh"
+#include "core/consoles/ClientsConsole.hh"
+#include "core/consoles/PlayersConsole.hh"
 
 #include <cstring>
 #include <sys/select.h>
@@ -16,21 +18,31 @@
 #include <unistd.h>
 
 ControlPanel::ControlPanel() :
-  m_remainingTime(0)
+  m_remainingTime(0),
+  m_dataIndex(0)
 {
   memset(m_methods, 0, sizeof(m_methods));
   m_methods[nc::Window::Escape]	= &ControlPanel::exit;
   m_methods[nc::Window::Resize]	= &ControlPanel::resize;
   m_methods[nc::Window::Right]	= &ControlPanel::incrementIndex;
   m_methods[nc::Window::Left]	= &ControlPanel::decrementIndex;
+  m_methods[nc::Window::CRight]	= &ControlPanel::incrementConsoleIndex;
+  m_methods[nc::Window::CLeft]	= &ControlPanel::decrementConsoleIndex;
   m_methods[nc::Window::Del]	= &ControlPanel::deleteCharFromPrompt;
   m_methods[nc::Window::Enter]	= &ControlPanel::confirmCommand;
+
+  m_dataConsoles[0] = new ClientsConsole;
+  m_dataConsoles[1] = new PlayersConsole;
 
   this->resize();
 }
 
 ControlPanel::~ControlPanel()
 {
+  unsigned int	i;
+
+  for (i = 0; i < DATA_CONSOLES_NUMBER; ++i)
+    delete (m_dataConsoles[i]);
 }
 
 
@@ -48,6 +60,25 @@ ControlPanel::getHandler(nc::Window::Event event) const
 
 
 void
+ControlPanel::doToDataConsoles(DataConsoleMethod method) const
+{
+  unsigned int	i;
+
+  for (i = 0; i < DATA_CONSOLES_NUMBER; ++i)
+    (this->*method)(m_dataConsoles[i]);
+}
+
+void
+ControlPanel::resizeDataConsole(Console* dataConsole) const
+{
+  int	width, height;
+
+  this->getWidthAndHeight(width, height);
+  dataConsole->resize(width / 4, height - 3);
+}
+
+
+void
 ControlPanel::exit()
 {
   m_loop = false;
@@ -59,6 +90,7 @@ ControlPanel::resize()
   int	width, height;
 
   this->getWidthAndHeight(width, height);
+  this->doToDataConsoles(&ControlPanel::resizeDataConsole);
   m_logs.resize(width - width / 4, height - 3);
   m_logs.displace(width / 4, 0);
   m_prompt.resize(width, 3);
@@ -75,6 +107,22 @@ void
 ControlPanel::decrementIndex()
 {
   m_prompt.decrementIndex();
+}
+
+void
+ControlPanel::incrementConsoleIndex()
+{
+  ++m_dataIndex;
+  if (m_dataIndex == DATA_CONSOLES_NUMBER)
+    m_dataIndex = 0;
+}
+
+void
+ControlPanel::decrementConsoleIndex()
+{
+  if (m_dataIndex == 0)
+    m_dataIndex = DATA_CONSOLES_NUMBER;
+  --m_dataIndex;
 }
 
 void
@@ -98,6 +146,7 @@ ControlPanel::confirmCommand()
 void
 ControlPanel::manageDisplay() const
 {
+  m_dataConsoles[m_dataIndex]->draw();
   m_logs.draw();
   m_prompt.draw();
 }
@@ -113,12 +162,14 @@ ControlPanel::manageData()
   if (mustDraw)
     m_remainingTime += 1000000 / CONSOLE_FRAMERATE;
 
+  m_dataConsoles[m_dataIndex]->update();
   m_logs.update();
   m_prompt.update();
 
   return (mustDraw);
 }
 
+#include <iostream> // DEBUG
 void
 ControlPanel::catchInput()
 {
@@ -131,6 +182,8 @@ ControlPanel::catchInput()
     (this->*method)();
   else if (IS_PRINTABLE(event))
     m_prompt.addChar(event);
+  else
+    std::cerr << event << std::endl;
 }
 
 void

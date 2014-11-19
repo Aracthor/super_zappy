@@ -2,8 +2,6 @@ package Data;
 
 import java.util.Iterator;
 import java.util.Vector;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class DataManager
 {
@@ -21,7 +19,6 @@ public class DataManager
 	private int				speed;
 	private Vector<Team>	teams;
 	private Vector<Player>	players;
-	private Lock			lock;
 	
 	private	DataManager()
 	{
@@ -29,7 +26,6 @@ public class DataManager
 		speed = 0;
 		teams = new Vector<Team>();
 		players = new Vector<Player>();
-		lock = new ReentrantLock();
 	}
 	
 	
@@ -39,18 +35,30 @@ public class DataManager
 		this.map = new Map(map_longer, map_larger);
 	}
 	
+	public void	reset()
+	{
+		this.players.clear();
+	}
+	
+	public void	update(long elapsedTime)
+	{
+		Iterator<Player>	it;
+		
+		for (it = players.iterator(); it.hasNext();)
+		{
+			it.next().getAction().retireTime(elapsedTime);
+		}
+	}
+	
+	
 	public void	addTeam(Team team)
 	{
-		lock.lock();
 		teams.add(team);
-		lock.unlock();
 	}
 	
 	public void	addPlayer(Player player)
 	{
-		lock.lock();
 		players.add(player);
-		lock.unlock();
 	}
 	
 	
@@ -106,10 +114,5 @@ public class DataManager
 	public int	getSpeed()
 	{
 		return (speed);
-	}
-	
-	public Lock	getLock()
-	{
-		return (lock);
 	}
 }

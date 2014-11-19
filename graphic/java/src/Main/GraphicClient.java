@@ -1,4 +1,4 @@
-	package Main;
+package Main;
 
 import Core.Application;
 import Core.IApplication;

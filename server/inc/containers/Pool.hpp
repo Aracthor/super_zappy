@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 17:33:17 2014 
-// Last Update Sun Nov  9 03:42:31 2014 
+// Last Update Tue Nov 18 16:05:50 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -97,7 +97,8 @@ Pool<T>::popAt(unsigned int pos)
     throw ZappyException("popAt too far.");
 
   m_data[pos].~T();
-  memmove(&m_data[pos], &m_data[pos + 1], (m_size - pos - 1) * sizeof(T));
+  if (pos < m_size - 1)
+    memmove(&m_data[pos], &m_data[pos + 1], (m_size - pos - 1) * sizeof(T));
   --m_size;
 }
 
@@ -112,7 +113,8 @@ Pool<T>::popElem(const T* elem)
     throw ZappyException("Invalid pool popElem.");
 
   m_data[pos].~T();
-  memmove(&m_data[pos], &m_data[pos + 1], (m_size - pos - 1) * sizeof(T));
+  if (pos < m_size - 1)
+    memmove(&m_data[pos], &m_data[pos + 1], (m_size - pos - 1) * sizeof(T));
   --m_size;
 }
 

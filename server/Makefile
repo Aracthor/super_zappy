@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Tue Nov 18 10:43:08 2014 
+## Last Update Wed Nov 19 10:39:35 2014 
 ##
 
 CC=		g++
@@ -53,8 +53,11 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(CATALOGS_DIR)CraftCatalog.cpp		\
 		$(SRCS_DIR)$(CATALOGS_DIR)Ground.cpp			\
 		$(SRCS_DIR)$(CATALOGS_DIR)GroundCatalog.cpp		\
+		$(SRCS_DIR)$(CONSOLES_DIR)ClientsConsole.cpp		\
+		$(SRCS_DIR)$(CONSOLES_DIR)ColorFactory.cpp		\
 		$(SRCS_DIR)$(CONSOLES_DIR)Console.cpp			\
 		$(SRCS_DIR)$(CONSOLES_DIR)LogConsole.cpp		\
+		$(SRCS_DIR)$(CONSOLES_DIR)PlayersConsole.cpp		\
 		$(SRCS_DIR)$(CONSOLES_DIR)PromptConsole.cpp		\
 		$(SRCS_DIR)$(CORE_DIR)AExecuter.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)CommandExecuter.cpp		\

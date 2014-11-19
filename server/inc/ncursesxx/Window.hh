@@ -5,7 +5,7 @@
 // Login   <bonnet_v@epitech.net>
 // 
 // Started on  Tue Apr 15 11:15:10 2014 Bonnet Vivien
-// Last Update Mon Nov 17 11:09:51 2014 
+// Last Update Wed Nov 19 10:23:50 2014 
 //
 
 #ifndef WINDOW_HH_
@@ -15,7 +15,7 @@
 
 # include "Color.hh"
 
-# include <ncursesw/curses.h>
+# include <ncurses/curses.h>
 
 # define DEFAULT_BORDER_STYLE	("||--####")
 
@@ -43,6 +43,8 @@ public:
     Down	= KEY_DOWN,
     Right	= KEY_RIGHT,
     Left	= KEY_LEFT,
+    CRight	= 0x22F,
+    CLeft	= 0x220,
     Del		= 0x107
   };
 

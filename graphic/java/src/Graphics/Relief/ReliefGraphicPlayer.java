@@ -1,26 +1,34 @@
 package Graphics.Relief;
 
+import java.util.HashMap;
+
 import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 import Core.Application;
 import Data.DataManager;
+import Data.EAction;
 import Data.Player;
 import Data.Team;
 import Engine.Models.Mesh;
 import Graphics.AGraphicPlayer;
 import Graphics.GraphicWarehouse;
+import Graphics.Relief.ActionRenderers.DigRenderer;
+import Graphics.Relief.ActionRenderers.IReliefActionRenderer;
 
 public class ReliefGraphicPlayer extends AGraphicPlayer
 {
 	private	Mesh		mesh;
 	private	Mesh		equipementMesh;
 	private Vector3f	color;
+	private HashMap<EAction, IReliefActionRenderer>	actionRenderers;
 	
 	public ReliefGraphicPlayer(Player data)
 	{
 		mesh = GraphicWarehouse.getInstance().getModel("pawn");
 		color = this.getPlayerColor(data.getTeam());
+		actionRenderers = new HashMap<EAction, IReliefActionRenderer>();
+		actionRenderers.put(EAction.Digging, new DigRenderer());
 		this.update(data);
 	}
 	
@@ -42,16 +50,23 @@ public class ReliefGraphicPlayer extends AGraphicPlayer
 	
 	
 	@Override
-	public void 	update(Player data)
+	public void 				update(Player data)
 	{
-		Vector2f	position;
-		float		z;
+		IReliefActionRenderer	actionRenderer;
+		Vector2f				position;
+		float					z;
 		
 		position = data.getPosition();
 		z = DataManager.getInstance().getMap().getHoopla(position.x, position.y).getHeight();
 		
 		mesh.setPosition(position.x, position.y, z / 10.0f);
 		mesh.setRotation(0.0f, 0.0f, data.getOrientation() * 90.0f);
+		
+		actionRenderer = actionRenderers.get(data.getAction().getId());
+		if (actionRenderer != null && data.getAction().getPercentage() < 100.0f)
+		{
+			actionRenderer.render(this, data.getAction().getPercentage());
+		}
 		
 		equipementMesh = data.getEquipement().get3DModel();
 		if (equipementMesh != null)
@@ -71,5 +86,10 @@ public class ReliefGraphicPlayer extends AGraphicPlayer
 		{
 			equipementMesh.draw();
 		}
+	}
+	
+	public Mesh	getMesh()
+	{
+		return (mesh);
 	}
 }

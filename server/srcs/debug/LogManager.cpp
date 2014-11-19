@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 08:48:33 2014 
-// Last Update Tue Nov 18 10:53:00 2014 
+// Last Update Tue Nov 18 11:59:35 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -40,14 +40,14 @@ LogManager::~LogManager()
 void
 LogManager::initStandartLogs()
 {
-  debug = new StandartLog(stdout, DEBUG_COLOR, DEBUG_BOLD, true);
+  debug = new StandartLog(stdout, DEBUG_COLOR, DEBUG_BOLD, false);
   input = new StandartLog(stdout, INPUT_COLOR, INPUT_BOLD, true);
   output = new StandartLog(stdout, OUTPUT_COLOR, OUTPUT_BOLD, true);
   graphicInput = new StandartLog(stdout, GRAPHIC_INPUT_COLOR, GRAPHIC_INPUT_BOLD, true);
   graphicOutput = new StandartLog(stdout, GRAPHIC_OUTPUT_COLOR, GRAPHIC_OUTPUT_BOLD, false);
   iaInput = new StandartLog(stdout, IA_INPUT_COLOR, IA_INPUT_BOLD, true);
   iaOutput = new StandartLog(stdout, IA_OUTPUT_COLOR, IA_OUTPUT_BOLD, true);
-  intern = new StandartLog(stdout, INTERN_COLOR, INTERN_BOLD, true);
+  intern = new StandartLog(stdout, INTERN_COLOR, INTERN_BOLD, false);
   events = new StandartLog(stdout, THREADING_COLOR, THREADING_BOLD, true);
   connection = new StandartLog(stdout, CONNECTION_COLOR, CONNECTION_BOLD, true);
   error = new StandartLog(stderr, ERROR_COLOR, ERROR_BOLD, true);
@@ -56,14 +56,14 @@ LogManager::initStandartLogs()
 void
 LogManager::initConsoleLogs()
 {
-  debug = new ConsoleLog(DEBUG_COLOR, DEBUG_BOLD, true);
+  debug = new ConsoleLog(DEBUG_COLOR, DEBUG_BOLD, false);
   input = new ConsoleLog(INPUT_COLOR, INPUT_BOLD, true);
   output = new ConsoleLog(OUTPUT_COLOR, OUTPUT_BOLD, true);
   graphicInput = new ConsoleLog(GRAPHIC_INPUT_COLOR, GRAPHIC_INPUT_BOLD, true);
   graphicOutput = new ConsoleLog(GRAPHIC_OUTPUT_COLOR, GRAPHIC_OUTPUT_BOLD, false);
   iaInput = new ConsoleLog(IA_INPUT_COLOR, IA_INPUT_BOLD, true);
   iaOutput = new ConsoleLog(IA_OUTPUT_COLOR, IA_OUTPUT_BOLD, true);
-  intern = new ConsoleLog(INTERN_COLOR, INTERN_BOLD, true);
+  intern = new ConsoleLog(INTERN_COLOR, INTERN_BOLD, false);
   events = new ConsoleLog(THREADING_COLOR, THREADING_BOLD, true);
   connection = new ConsoleLog(CONNECTION_COLOR, CONNECTION_BOLD, true);
   error = new ConsoleLog(ERROR_COLOR, ERROR_BOLD, true);

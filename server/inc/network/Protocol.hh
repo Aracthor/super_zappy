@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 21 09:14:34 2014 
-// Last Update Thu Nov 13 17:09:44 2014 
+// Last Update Tue Nov 18 14:53:48 2014 
 //
 
 #ifndef PROTOCOL_HH_
@@ -13,12 +13,14 @@
 
 # include "abstractions/maths.hh"
 
-# define LINE_SEPARATOR	('\n')
+# define LINE_SEPARATOR		('\n')
+# define LINE_SEPARATOR_STR	"\n"
 
 # define WELCOME_MESSAGE		"WELCOME\n"
 # define AUTHENTIFICATION_IA		"TEAM"
 # define AUTHENTIFICATION_GRAPHICAL	"GRAPHIC"
 # define KICK_MESSAGE			"GET THE FUCK OUT"
+# define REBOOT_MESSAGE			"GAME REBOOT"
 
 # define GRAPHIC_COMMANDS_NUMBER	(4)
 # define GRAPHIC_MAX_ARGS_NUMBER	(10)

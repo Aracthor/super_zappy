@@ -12,7 +12,7 @@ import Engine.GlControlPanel;
 import Engine.Camera.ACamera;
 import Events.EventsHandler;
 
-public abstract class AView
+public abstract class	AView
 {
 	public static int	VIEWS_NUMBER = 2;
 	
@@ -165,14 +165,10 @@ public abstract class AView
 		GlControlPanel.getInstance().initFrame(camera);
 		{
 			this.displayChunks(elapsedTime);
-			DataManager.getInstance().getLock().lock();
+			for (playerIt = players.iterator(); playerIt.hasNext();)
 			{
-				for (playerIt = players.iterator(); playerIt.hasNext();)
-				{
-					this.displayPlayer(playerIt.next(), elapsedTime);
-				}
+				this.displayPlayer(playerIt.next(), elapsedTime);
 			}
-			DataManager.getInstance().getLock().unlock();
 		}
 		GlControlPanel.getInstance().endFrame();
 	}

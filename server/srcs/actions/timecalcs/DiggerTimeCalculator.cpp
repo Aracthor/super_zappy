@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Nov 14 16:52:06 2014 
-// Last Update Fri Nov 14 17:51:04 2014 
+// Last Update Tue Nov 18 12:45:05 2014 
 //
 
 #include "actions/timecalcs/DiggerTimeCalculator.hh"
@@ -34,6 +34,8 @@ DiggerTimeCalculator::calcTime(Player* player,
     {
       time = (m_catalog[this->getServerData()->getHoopla(player->getPosition()).ground]
 	      .getDigTime());
+      this->getServerData()->vsayToGraphicClients("PDG %s %d\n",
+						  player->getName(), time);
     }
   else
     {

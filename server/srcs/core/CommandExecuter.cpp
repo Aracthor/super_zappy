@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov 17 17:38:43 2014 
-// Last Update Tue Nov 18 10:58:43 2014 
+// Last Update Tue Nov 18 14:43:09 2014 
 //
 
 #include "core/CommandExecuter.hh"
@@ -18,6 +18,7 @@ CommandExecuter::CommandExecuter()
 {
   this->addCommand("start",	&CommandExecuter::startGame);
   this->addCommand("log",	&CommandExecuter::logAction);
+  this->addCommand("reset",	&CommandExecuter::resetGame);
 }
 
 CommandExecuter::~CommandExecuter()
@@ -47,4 +48,10 @@ CommandExecuter::logAction(const char* params)
 
   if (valid == false)
     LogManagerSingleton::access()->error->print("Invalid syntax for log command.");
+}
+
+void
+CommandExecuter::resetGame(const char* params __attribute__ ((unused)))
+{
+  this->getServerData()->resetGame();
 }

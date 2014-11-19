@@ -133,6 +133,8 @@ public class Application implements IApplication
 		clock.update();
 		s_totalElapsedTime += clock.getElapsedTime();
 		
+		DataManager.getInstance().update(clock.getElapsedTime());
+		
 		if (lastView != selectedView.getId())
 		{
 			graphics[selectedView.getId()].select();

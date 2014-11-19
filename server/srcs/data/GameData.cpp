@@ -5,11 +5,11 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:29:09 2014 
-// Last Update Tue Nov 18 10:01:10 2014 
+// Last Update Wed Nov 19 10:41:58 2014 
 //
 
 #include "abstractions/allocs.hh"
-#include "data/GameData.hh"
+#include "core/Server.hh"
 #include "debug/LogManager.hh"
 
 #include <cstring>
@@ -70,9 +70,43 @@ GameData::getPlayer(const char* name) const
   return (player);
 }
 
+unsigned int
+GameData::getTeamId(const Team& team) const
+{
+  unsigned int	index;
+
+  index = 0;
+  while (team.getName() != m_teams[index].getName())
+    ++index;
+
+  return (index);
+}
+
+
+void
+GameData::doToTeams(void (*function)(Team& team))
+{
+  unsigned int	i;
+
+  for (i = 0; i < m_teamsNumber; ++i)
+    function(m_teams[i]);
+}
 
 void
 GameData::doToPlayers(void (*function)(Player& player))
+{
+  unsigned int	t;
+  unsigned int	i;
+
+  for (t = 0; t < m_teamsNumber; ++t)
+    {
+      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
+	function(m_teams[t].getPlayers()[i]);
+    }
+}
+
+void
+GameData::doToPlayers(void (*function)(const Player& player)) const
 {
   unsigned int	t;
   unsigned int	i;
@@ -97,7 +131,6 @@ GameData::preparePlayers()
 }
 
 
-
 void
 GameData::setSpawnPoints(const Map& map)
 {
@@ -106,7 +139,6 @@ GameData::setSpawnPoints(const Map& map)
   for (i = 0; i < m_teamsNumber; ++i)
     m_teams[i].setSpawnPoint(map.createSpawnPoint(360 * i / m_teamsNumber));
 }
-
 
 static void
 sayStart(Player& player)
@@ -120,9 +152,31 @@ GameData::startGame()
   if (m_started == false)
     {
       m_started = true;
-      LogManagerSingleton::access()->events->print("Game started !");
+      LogManagerSingleton::access()->events->print("Game started.");
       this->doToPlayers(&sayStart);
     }
   else
     LogManagerSingleton::access()->error->print("Game already started !");
+}
+
+void
+GameData::resetGame()
+{
+  this->reset();
+  this->getServerData()->sayToGraphicClients("RES\n");
+  LogManagerSingleton::access()->events->print("Game rebooted.");
+}
+
+
+static void
+resetTeam(Team& team)
+{
+  team.reset();
+}
+
+void
+GameData::reset()
+{
+  this->doToTeams(&resetTeam);
+  m_started = false;
 }

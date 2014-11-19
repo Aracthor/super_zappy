@@ -5,29 +5,31 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 15:59:55 2014 
-// Last Update Thu Nov 13 16:30:47 2014 
+// Last Update Tue Nov 18 15:17:16 2014 
 //
 
 #include "abstractions/allocs.hh"
+#include "core/Server.hh"
 #include "data/Team.hh"
 #include "security/CheatChecker.hh"
 
 #include <cstddef>
 #include <cstring>
-#include <cstdio> // DEBUG
 
 Team::Team(const char* name) :
   Namable(name),
+  m_client(NULL),
   m_discalified(false)
 {
-  m_configs.ready = false;
+  this->reset();
 }
 
 Team::Team(const Team& copy) :
   Namable(copy),
+  m_client(NULL),
   m_discalified(false)
 {
-  m_configs.ready = false;
+  this->reset();
 }
 
 Team::~Team()
@@ -127,4 +129,18 @@ Team::destroy()
       m_classes.free();
     }
   Namable::destroy();
+}
+
+void
+Team::reset()
+{
+  m_configs.ready = false;
+  m_players.free();
+  m_classes.free();
+  if (m_client != NULL)
+    {
+      m_client->send(REBOOT_MESSAGE LINE_SEPARATOR_STR);
+      this->getServerData()->kickClient(m_client, true);
+      m_client = NULL;
+    }
 }
