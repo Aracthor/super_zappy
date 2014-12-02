@@ -11,7 +11,6 @@ import Data.Player;
 import Engine.GlControlPanel;
 import Engine.Camera.HelicopterCamera;
 import Engine.Models.Mesh;
-import Events.BooleanSwitchListener;
 import Events.EventsHandler;
 import Events.HelicopterCamera.HelicopterCameraMoveBackListener;
 import Events.HelicopterCamera.HelicopterCameraMoveFrontListener;
@@ -20,20 +19,17 @@ import Events.HelicopterCamera.HelicopterCameraRotateRightListener;
 import Graphics.AGraphicChunk;
 import Graphics.AGraphicPlayer;
 import Graphics.AView;
-import Usefull.Pointer;
 
 
 public class ReliefView extends AView
 {
 	private Mesh				chunksBorders;
-	private Pointer<Boolean>	grid;
 	
 	public	ReliefView()
 	{
 		super();
 		camera = new HelicopterCamera();
 		camera.setPosition(0.0f, 0.0f, 20.0f);
-		grid = new Pointer<Boolean>(false);
 		this.prepareEventsHandler();
 	}
 	
@@ -43,6 +39,7 @@ public class ReliefView extends AView
 		super.initData(longer, larger);
 		
 		camera.setPosition(longer / 2 * Chunk.SIZE, larger / 2 * Chunk.SIZE);
+		chunksBorders = null;
 	}
 	
 	public	void	select()
@@ -263,6 +260,5 @@ public class ReliefView extends AView
 		eventsHandler.addKeyboardEvent(Keyboard.KEY_DOWN,	new HelicopterCameraMoveBackListener(camera));
 		eventsHandler.addKeyboardEvent(Keyboard.KEY_RIGHT,	new HelicopterCameraRotateRightListener(camera));
 		eventsHandler.addKeyboardEvent(Keyboard.KEY_LEFT,	new HelicopterCameraRotateLeftListener(camera));
-		eventsHandler.addKeyboardEvent(Keyboard.KEY_F3,		new BooleanSwitchListener(grid)); // useless now
 	}
 }

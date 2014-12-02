@@ -11,6 +11,7 @@ import Data.Player;
 import Engine.GlControlPanel;
 import Engine.Camera.ACamera;
 import Events.EventsHandler;
+import Usefull.LockedVector;
 
 public abstract class	AView
 {
@@ -41,6 +42,7 @@ public abstract class	AView
 		
 		this.longer = longer;
 		this.larger = larger;
+		chunks.clear();
 		chunks.setSize(longer * larger);
 		chunksPos = new boolean[larger][longer];
 		
@@ -119,7 +121,7 @@ public abstract class	AView
 
 	public void	manageData(long elapsedTime)
 	{
-		Map		map = DataManager.getInstance().getMap();
+		Map				map = DataManager.getInstance().getMap();
 		
 		if (map != null)
 		{
@@ -155,9 +157,9 @@ public abstract class	AView
 	
 	public void				display(long elapsedTime)
 	{
-		DataManager			dataManager;
-		Vector<Player>		players;
-		Iterator<Player>	playerIt;
+		DataManager				dataManager;
+		LockedVector<Player>	players;
+		Iterator<Player>		playerIt;
 		
 		dataManager = DataManager.getInstance();
 		players = dataManager.getPlayers();
@@ -165,10 +167,14 @@ public abstract class	AView
 		GlControlPanel.getInstance().initFrame(camera);
 		{
 			this.displayChunks(elapsedTime);
-			for (playerIt = players.iterator(); playerIt.hasNext();)
+			players.lock();
 			{
-				this.displayPlayer(playerIt.next(), elapsedTime);
+				for (playerIt = players.iterator(); playerIt.hasNext();)
+				{
+					this.displayPlayer(playerIt.next(), elapsedTime);
+				}
 			}
+			players.unlock();
 		}
 		GlControlPanel.getInstance().endFrame();
 	}

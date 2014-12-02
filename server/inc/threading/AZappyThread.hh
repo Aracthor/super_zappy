@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 15:18:03 2014 
-// Last Update Sat Nov  8 21:00:21 2014 
+// Last Update Thu Nov 20 11:26:08 2014 
 //
 
 #ifndef AZAPPY_THREAD_HH_

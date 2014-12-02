@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 15:57:56 2014 
-** Last Update Tue Nov 18 12:54:56 2014 
+** Last Update Wed Nov 19 12:00:23 2014 
 *)
 
 
@@ -46,6 +46,7 @@ inventory	= { ' ', item_enum, ' ', number } ;
 
 (* Server to graphical clients *)
 Server to graphical clients =
+new_map			= "MAP ", map_longer, ' ', map_larger, '\n'
 chunk_description	= "CHK ", pos_x, ' ', pos_y, '\n', { case_description };
 case_description	= "CAS ", pos_x, ' ', pos_y, ' ', ground_enum, ' ', height, ' ', item_enum, ' ', item_number, ' ', object_enum, ' ', player_id, '\n' ;
 player_description	= "PDC ", player_name, ' ', pos_x, ' ', pos_y, ' ', orientation, ' ', class_name, ' ', team_name, ' ', equipement, inventory, '\n' ;

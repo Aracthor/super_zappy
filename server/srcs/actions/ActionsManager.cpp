@@ -5,10 +5,11 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 20:31:48 2014 
-// Last Update Sun Nov 16 16:05:42 2014 
+// Last Update Fri Nov 21 12:44:29 2014 
 //
 
 #include "actions/ActionsManager.hh"
+#include "core/Server.hh"
 #include "debug/LogManager.hh"
 
 ActionsManager::ActionsManager(unsigned int speed) :
@@ -50,4 +51,11 @@ ActionsManager::insertAction(Action action)
 					      action.getAction(),
 					      action.getPlayer()->getName());
   m_actions.pushAt(action, pos);
+}
+
+void
+ActionsManager::changeSpeed(unsigned int speed)
+{
+  m_executionSpeed = speed;
+  this->getServerData()->vsayToGraphicClients("TIM %d\n", speed);
 }

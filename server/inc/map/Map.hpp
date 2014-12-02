@@ -5,19 +5,19 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:48:07 2014 
-// Last Update Sat Nov  8 18:46:08 2014 
+// Last Update Wed Nov 19 13:41:20 2014 
 //
 
 const Chunk&
 Map::getChunk(unsigned int x, unsigned int y) const
 {
-  return (m_chunks[y * m_width + x]);
+  return (m_chunks[y * m_configs.width + x]);
 }
 
 Chunk&
 Map::getChunk(unsigned int x, unsigned int y)
 {
-  return (m_chunks[y * m_width + x]);
+  return (m_chunks[y * m_configs.width + x]);
 }
 
 const Hoopla&
@@ -37,13 +37,13 @@ Map::getHoopla(unsigned int x, unsigned int y)
 unsigned int
 Map::getWidth() const
 {
-  return (m_width);
+  return (m_configs.width);
 }
 
 unsigned int
 Map::getHeight() const
 {
-  return (m_height);
+  return (m_configs.height);
 }
 
 

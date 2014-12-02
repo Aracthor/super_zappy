@@ -2,19 +2,7 @@ package Network;
 
 import java.util.HashMap;
 
-import Commands.ACommand;
-import Commands.CASCommand;
-import Commands.CHKCommand;
-import Commands.EmptyCommand;
-import Commands.ISLCommand;
-import Commands.KickCommand;
-import Commands.MSGCommand;
-import Commands.PDCCommand;
-import Commands.PDGCommand;
-import Commands.PEQCommand;
-import Commands.PPOCommand;
-import Commands.RESCommand;
-import Commands.TDCCommand;
+import Commands.*;
 import Data.Chunk;
 import Data.DataManager;
 import Data.Map;
@@ -38,6 +26,7 @@ public class SuperZappyGraphicClient extends AClient
 		commands.put("CAS", new CASCommand());
 		commands.put("CHK", new CHKCommand());
 		commands.put("ISL", new ISLCommand());
+		commands.put("MAP", new MAPCommand());
 		commands.put("MSG", new MSGCommand());
 		commands.put("PDC", new PDCCommand());
 		commands.put("PDG", new PDGCommand());
@@ -45,10 +34,11 @@ public class SuperZappyGraphicClient extends AClient
 		commands.put("PPO", new PPOCommand());
 		commands.put("RES", new RESCommand());
 		commands.put("TDC", new TDCCommand());
+		commands.put("TIM", new TIMCommand());
 		commands.put("GET", new KickCommand());
 		waitingAChunk = false;
-		inited = false;
 		chunksPos = null;
+		inited = false;
 		
 		this.send("GRAPHIC");
 	}
@@ -70,6 +60,7 @@ public class SuperZappyGraphicClient extends AClient
 		}
 		
 		inited = true;
+		waitingAChunk = false;
 	}
 	
 	private void	askForChunk()
@@ -165,6 +156,10 @@ public class SuperZappyGraphicClient extends AClient
 		}
 		else
 		{
+			if (args[0].equals("MAP"))
+			{
+				inited = false;
+			}
 			loop = command.tryToExecute(args);
 			this.tryToInit();
 			this.lookForChunks();

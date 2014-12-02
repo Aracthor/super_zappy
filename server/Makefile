@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Wed Nov 19 10:39:35 2014 
+## Last Update Fri Nov 21 12:26:32 2014 
 ##
 
 CC=		g++
@@ -45,6 +45,7 @@ NAME=		server
 
 SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(ABSTRACTION_DIR)Pipe.cpp			\
+		$(SRCS_DIR)$(ABSTRACTION_DIR)SigsegvHandler.cpp		\
 		$(SRCS_DIR)$(ACTIONS_DIR)Action.cpp			\
 		$(SRCS_DIR)$(ACTIONS_DIR)ActionFactory.cpp		\
 		$(SRCS_DIR)$(ACTIONS_DIR)ActionsManager.cpp		\
@@ -57,12 +58,14 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(CONSOLES_DIR)ColorFactory.cpp		\
 		$(SRCS_DIR)$(CONSOLES_DIR)Console.cpp			\
 		$(SRCS_DIR)$(CONSOLES_DIR)LogConsole.cpp		\
+		$(SRCS_DIR)$(CONSOLES_DIR)LogsConsole.cpp		\
 		$(SRCS_DIR)$(CONSOLES_DIR)PlayersConsole.cpp		\
 		$(SRCS_DIR)$(CONSOLES_DIR)PromptConsole.cpp		\
 		$(SRCS_DIR)$(CORE_DIR)AExecuter.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)CommandExecuter.cpp		\
 		$(SRCS_DIR)$(CORE_DIR)ControlPanel.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)LinkedToServer.cpp		\
+		$(SRCS_DIR)$(CORE_DIR)LogThread.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)Server.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)SingletonManager.cpp		\
 		$(SRCS_DIR)$(DATA_DIR)Class.cpp				\
@@ -84,6 +87,7 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(DISPLACERS_DIR)MasterDisplacer.cpp		\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ConfigsException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)NetworkException.cpp	\
+		$(SRCS_DIR)$(EXCEPTIONS_DIR)SignalException.cpp		\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)StartException.cpp		\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)SyscallException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ThreadingException.cpp	\

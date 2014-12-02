@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:44:42 2014 
-// Last Update Mon Nov 17 13:15:07 2014 
+// Last Update Wed Nov 19 11:41:33 2014 
 //
 
 #include "exceptions/ConfigsException.hh"
@@ -13,6 +13,10 @@
 
 #include <cstdio>
 #include <cstdlib>
+
+Configs::Map::Map()
+{
+}
 
 Configs::Map::Map(unsigned int width, unsigned int height) :
   width(width),

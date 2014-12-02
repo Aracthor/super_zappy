@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 20:29:37 2014 
-// Last Update Sat Nov  8 21:53:00 2014 
+// Last Update Fri Nov 21 12:41:33 2014 
 //
 
 const ActionsManager::ActionsList&
@@ -37,4 +37,10 @@ void
 ActionsManager::unlockActions()
 {
   m_lock.unlock();
+}
+
+void
+ActionsManager::resetActions()
+{
+  m_actions.clear();
 }

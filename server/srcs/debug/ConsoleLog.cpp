@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov 16 16:30:20 2014 
-// Last Update Mon Nov 17 16:45:47 2014 
+// Last Update Thu Nov 20 11:33:35 2014 
 //
 
 #include "debug/ConsoleLog.hh"
@@ -13,8 +13,8 @@
 
 #include <cstdio>
 
-ConsoleLog::ConsoleLog(EColor color, bool bold, bool active) :
-  Log(color, bold, active)
+ConsoleLog::ConsoleLog(const char* name, EColor color, bool bold, bool active) :
+  Log(name, color, bold, active)
 {
 }
 
@@ -51,11 +51,6 @@ ConsoleLog::print(const char* message, va_list list)
       size = vsprintf(data, message, list);
 
       LogManagerSingleton::access()->addToFile(data);
-
-      // LogManagerSingleton::access()->lock();
-      // {
-	this->addToLogs(data, size);
-      // }
-      // LogManagerSingleton::access()->unlock();
+      this->addToLogs(data, size);
     }
 }

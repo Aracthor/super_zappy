@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:32:05 2014 
-// Last Update Mon Nov 17 13:15:42 2014 
+// Last Update Wed Nov 19 11:41:24 2014 
 //
 
 #ifndef CONFIGS_HH_
@@ -36,6 +36,7 @@ class			Configs
 public:
   struct		Map
   {
+    Map();
     Map(unsigned int width, unsigned int height);
 
     unsigned int	width;

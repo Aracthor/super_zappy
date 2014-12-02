@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov 16 15:59:19 2014 
-// Last Update Mon Nov 17 12:38:10 2014 
+// Last Update Thu Nov 20 10:51:38 2014 
 //
 
 #ifndef STANDART_LOG_HH_
@@ -21,7 +21,7 @@ private:
   FILE*		m_stream;
 
 public:
-  StandartLog(FILE* stream, EColor color, bool bold, bool active);
+  StandartLog(const char* name, FILE* stream, EColor color, bool bold, bool active);
   ~StandartLog();
 
 public:

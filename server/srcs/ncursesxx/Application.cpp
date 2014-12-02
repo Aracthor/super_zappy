@@ -5,7 +5,7 @@
 // Login   <bonnet_v@epitech.net>
 // 
 // Started on  Tue Apr 15 10:46:07 2014 Bonnet Vivien
-// Last Update Sun Nov 16 17:36:45 2014 
+// Last Update Thu Nov 20 13:00:52 2014 
 //
 
 #include "ncursesxx/Application.hh"
@@ -87,6 +87,20 @@ Application::clear()
 {
   if (erase() == ERR)
     throw NcursesException("Cannot clear application");
+}
+
+void
+Application::move(int x, int y)
+{
+  if (::move(x, y))
+    throw NcursesException("Cannot move in application");
+}
+
+void
+Application::print(const char* message)
+{
+  if (printw("%s", message))
+    throw NcursesException("Cannot print in application");
 }
 
 void

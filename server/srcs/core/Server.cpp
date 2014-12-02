@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:42:16 2014 
-// Last Update Mon Nov 17 17:50:26 2014 
+// Last Update Fri Nov 21 12:22:03 2014 
 //
 
 #include "core/ControlPanel.hh"
@@ -25,7 +25,8 @@ Server::Server(const Configs& configs) :
   Map(configs),
   Network(configs.getPort()),
   ThreadManager(),
-  m_consoleMode(configs.getConsoleMode())
+  m_consoleMode(configs.getConsoleMode()),
+  m_pid(getpid())
 {
   s_server = this;
   this->setSpawnPoints(*this);
@@ -41,11 +42,13 @@ Server::~Server()
 
 
 void
-Server::startControlPanel() const
+Server::startControlPanel()
 {
-  ControlPanel	controlPanel;
+  m_controlPanel = new ControlPanel;
 
-  controlPanel.run();
+  m_controlPanel->run();
+
+  delete (m_controlPanel);
 }
 
 void
@@ -54,7 +57,7 @@ Server::wait() const
   fd_set	set;
 
   FD_ZERO(&set);
-  FD_SET(0, &set);
+  FD_SET(STDIN_FILENO, &set);
 
   select(1, &set, NULL, NULL, NULL);
 }
@@ -71,4 +74,17 @@ Server::start()
     this->startControlPanel();
   else
     this->wait();
+}
+
+void
+Server::stop()
+{
+  if (m_consoleMode)
+    {
+    }
+  else
+    {
+      if (close(STDIN_FILENO) == -1)
+	throw SyscallException("Error closing stdin : ");
+    }
 }

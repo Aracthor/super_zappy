@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:24:52 2014 
-// Last Update Wed Nov 19 10:38:50 2014 
+// Last Update Thu Nov 20 10:45:43 2014 
 //
 
 #ifndef GAME_DATA_HH_
@@ -35,6 +35,9 @@ public:
 
 public:
   void		doToTeams(void (*function)(Team& team));
+  template <typename T>
+  T		doToTeams(T (*function)(const Team& team)) const;
+
   void		doToPlayers(void (*function)(Player& player));
   void		doToPlayers(void (*function)(const Player& player)) const;
   template <typename T>
@@ -47,8 +50,6 @@ public:
 
 public:
   void		preparePlayers();
-
-protected:
   void		setSpawnPoints(const Map& map);
 
 public:
@@ -62,7 +63,9 @@ public:
   inline const Team*	getTeams() const;
   inline Team*		getTeamFromName(const char* name);
   inline unsigned int	getTeamsNumber() const;
+  inline unsigned int	getPlayersNumber() const;
   inline bool		isStarted() const;
+  inline bool		isAnyPlayer() const;
   inline Player*	getPlayerFromName(const char* name);
 };
 

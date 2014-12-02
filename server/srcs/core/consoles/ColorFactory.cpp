@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Nov 19 10:34:23 2014 
-// Last Update Wed Nov 19 10:44:15 2014 
+// Last Update Thu Nov 20 11:23:16 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -21,9 +21,9 @@ ColorFactory::ColorFactory(unsigned int number)
   if (number > 1)
     m_colors[1] = nc::Color(COLOR_GREEN, COLOR_BLACK);
   if (number > 2)
-    m_colors[2] = nc::Color(COLOR_BLUE, COLOR_BLACK);
+    m_colors[2] = nc::Color(COLOR_YELLOW, COLOR_BLACK);
   if (number > 3)
-    m_colors[3] = nc::Color(COLOR_YELLOW, COLOR_BLACK);
+    m_colors[3] = nc::Color(COLOR_BLUE, COLOR_BLACK);
   if (number > 4)
     m_colors[4] = nc::Color(COLOR_MAGENTA, COLOR_BLACK);
   if (number > 5)

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 20:24:10 2014 
-// Last Update Sun Nov  9 03:19:28 2014 
+// Last Update Fri Nov 21 12:43:54 2014 
 //
 
 #ifndef ACTIONS_MANAGER_HH_
@@ -13,9 +13,10 @@
 
 # include "Action.hh"
 # include "containers/Pool.hh"
+# include "core/LinkedToServer.hh"
 # include "threading/Mutex.hh"
 
-class	ActionsManager
+class	ActionsManager : private LinkedToServer
 {
 public:
   typedef Pool<Action>	ActionsList;
@@ -31,6 +32,7 @@ public:
 
 public:
   void	insertAction(Action action);
+  void	changeSpeed(unsigned int speed);
 
 public:
   inline const ActionsList&	getActions() const;
@@ -39,6 +41,7 @@ public:
 
   inline void			lockActions();
   inline void			unlockActions();
+  inline void			resetActions();
 };
 
 # include "ActionsManager.hpp"

@@ -9,6 +9,7 @@ public class Map
 	private	Chunk[][]	chunks;
 	private boolean[][]	chunksStatus;
 	private int			chunksNumber;
+	private boolean		reseted;
 	
 	public	Map(int longer, int larger)
 	{
@@ -16,6 +17,7 @@ public class Map
 		
 		this.longer = longer;
 		this.larger = larger;
+		this.reseted = true;
 		chunks = new Chunk[larger][longer];
 		chunksStatus = new boolean[larger][longer];
 		for (y = 0; y < larger; ++y)
@@ -38,6 +40,11 @@ public class Map
 	public int	getLarger()
 	{
 		return (larger);
+	}
+	
+	public boolean	isReseted()
+	{
+		return (reseted);
 	}
 	
 	public Chunk	getChunk(int x, int y)
@@ -90,5 +97,10 @@ public class Map
 				chunksStatus[y / Chunk.SIZE][x / Chunk.SIZE] = true;
 			}
 		}
+	}
+	
+	public void	stopReset()
+	{
+		reseted = false;
 	}
 }

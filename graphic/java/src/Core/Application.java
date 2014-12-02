@@ -39,7 +39,6 @@ public class Application implements IApplication
 	private	IncrementableEnum	selectedView;
 	private int					lastView;
 	private boolean				running;
-	private boolean				mapReceived;
 	
 	public Application(String host, String port) throws LaunchException
 	{
@@ -51,7 +50,6 @@ public class Application implements IApplication
 		this.compileShaders();
 		this.initGraphicsModes();
 		this.prepareEventsHandler();
-		mapReceived = false;
 	}
 	
 	private void			compileShaders()
@@ -116,13 +114,13 @@ public class Application implements IApplication
 		
 		map = DataManager.getInstance().getMap();
 		
-		if (map != null && mapReceived == false)
+		if (map != null && map.isReseted())
 		{
 			for (i = 0; i < AView.VIEWS_NUMBER; ++i)
 			{
 				graphics[i].initData(map.getLonger(), map.getLarger());
 			}
-			mapReceived = true;
+			map.stopReset();
 		}
 	}
 	

@@ -5,12 +5,17 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:03:46 2014 
-// Last Update Sun Oct 12 06:04:48 2014 
+// Last Update Fri Nov 21 12:25:59 2014 
 //
 
 #include "exceptions/ZappyException.hh"
 
 ZappyException::ZappyException(const char* message) :
+  m_message(message)
+{
+}
+
+ZappyException::ZappyException(const std::string& message) :
   m_message(message)
 {
 }

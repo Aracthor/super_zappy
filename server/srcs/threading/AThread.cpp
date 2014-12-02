@@ -5,13 +5,11 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 10:44:50 2014 
-// Last Update Mon Oct 13 16:22:31 2014 
+// Last Update Thu Nov 20 12:51:00 2014 
 //
 
 #include "exceptions/ThreadingException.hh"
 #include "threading/AThread.hh"
-
-#include <iostream>
 
 static void*	action(AThread* thread)
 {

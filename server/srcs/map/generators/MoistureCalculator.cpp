@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 28 14:03:38 2014 
-// Last Update Tue Oct 28 14:59:41 2014 
+// Last Update Fri Nov 21 12:59:53 2014 
 //
 
 #include "abstractions/maths.hh"
@@ -17,9 +17,9 @@ MoistureCalculator::MoistureCalculator(unsigned int width, unsigned int height) 
   m_width(width),
   m_height(height)
 {
-  m_moistureBonus[Hoopla::river] = 0.05f;
-  m_moistureBonus[Hoopla::lake] = 0.02f;
-  m_moistureBonus[Hoopla::ice] = 0.01f;
+  m_moistureBonus[Hoopla::river]	= 0.03f;
+  m_moistureBonus[Hoopla::lake]		= 0.02f;
+  m_moistureBonus[Hoopla::ice]		= 0.01f;
 }
 
 MoistureCalculator::~MoistureCalculator()

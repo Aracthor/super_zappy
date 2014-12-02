@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 20:20:00 2014 
-// Last Update Sun Nov 16 16:05:54 2014 
+// Last Update Wed Nov 19 14:59:15 2014 
 //
 
 #include "actions/ExecuterThread.hh"
@@ -111,7 +111,7 @@ ExecuterThread::execute()
 void
 ExecuterThread::incrementLoop()
 {
-  if (m_loopCounter * this->getServerData()->getSpeed() / 10000 % 10 == 0)
+  if (m_loopCounter * (this->getServerData()->getSpeed() / 100) % 1000 == 0)
     LogManagerSingleton::access()->intern->print("Cycle %d.", m_loopCounter);
   ++m_loopCounter;
 }

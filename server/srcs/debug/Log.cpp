@@ -5,12 +5,13 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 10:15:01 2014 
-// Last Update Mon Nov 17 13:45:41 2014 
+// Last Update Thu Nov 20 10:49:29 2014 
 //
 
 #include "debug/Log.hh"
 
-Log::Log(EColor color, bool bold, bool active) :
+Log::Log(const char* name, EColor color, bool bold, bool active) :
+  m_name(name),
   m_color(color),
   m_bold(bold),
   m_active(active)

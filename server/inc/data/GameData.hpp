@@ -5,8 +5,24 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:26:40 2014 
-// Last Update Wed Nov 19 10:27:33 2014 
+// Last Update Wed Nov 19 14:03:38 2014 
 //
+
+
+template <typename T>
+T
+GameData::doToTeams(T (*function)(const Team& team)) const
+{
+  T		total;
+  unsigned int	i;
+
+  total = 0;
+  for (i = 0; i < m_teamsNumber; ++i)
+    total += function(m_teams[i]);
+
+  return (total);
+}
+
 
 template <typename T>
 void
@@ -70,10 +86,28 @@ GameData::getTeamsNumber() const
   return (m_teamsNumber);
 }
 
+static unsigned int
+countPlayers(const Team& team)
+{
+  return (team.getPlayers().getSize());
+}
+
+unsigned int
+GameData::getPlayersNumber() const
+{
+  return (this->doToTeams(&countPlayers));
+}
+
 bool
 GameData::isStarted() const
 {
   return (m_started);
+}
+
+bool
+GameData::isAnyPlayer() const
+{
+  return (this->getPlayersNumber() > 0);
 }
 
 Player*

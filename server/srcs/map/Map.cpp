@@ -5,18 +5,17 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:48:32 2014 
-// Last Update Fri Nov 14 14:27:22 2014 
+// Last Update Wed Nov 19 13:40:48 2014 
 //
 
 #include "abstractions/allocs.hh"
 #include "abstractions/maths.hh"
+#include "debug/LogManager.hh"
 #include "map/Map.hh"
 #include "map/generators/Terraformer.hh"
 
 Map::Map(const Configs& configs) :
-  m_chunks(NULL),
-  m_width(configs.getMapConfigs().width),
-  m_height(configs.getMapConfigs().height)
+  m_chunks(NULL)
 {
   this->terraform(configs.getMapConfigs());
 }
@@ -30,20 +29,8 @@ Map::~Map()
 void
 Map::terraform(const Configs::Map& configs)
 {
-  Terraformer	terraformer(configs);
-  Chunk*	chunk;
-  unsigned int	x, y;
-
-  REALLOC(m_chunks, m_width * m_height, Chunk);
-
-  terraformer.createMap();
-  for (x = 0; x < m_width * CHUNK_SIZE; ++x)
-    for (y = 0; y < m_height * CHUNK_SIZE; ++y)
-      {
-	chunk = &m_chunks[y / CHUNK_SIZE * m_width + x / CHUNK_SIZE];
-	chunk->setHoopla(terraformer.getHoopla(x, y),
-			 x % CHUNK_SIZE, y % CHUNK_SIZE);
-      }
+  m_configs = configs;
+  this->terraform();
 }
 
 
@@ -76,6 +63,35 @@ Map::tryToSpawn(const sf::Vector2u& origin, sf::Vector2u& pos, unsigned int dept
 }
 
 
+void
+Map::terraform()
+{
+  Terraformer	terraformer(m_configs);
+  Chunk*	chunk;
+  unsigned int	x, y;
+
+  REALLOC(m_chunks, m_configs.width * m_configs.height, Chunk);
+
+  terraformer.createMap();
+  for (x = 0; x < m_configs.width * CHUNK_SIZE; ++x)
+    for (y = 0; y < m_configs.height * CHUNK_SIZE; ++y)
+      {
+	chunk = &m_chunks[y / CHUNK_SIZE * m_configs.width + x / CHUNK_SIZE];
+	chunk->setHoopla(terraformer.getHoopla(x, y),
+			 x % CHUNK_SIZE, y % CHUNK_SIZE);
+      }
+
+  LogManagerSingleton::access()->events->print("New map created : %d/%d.", m_configs.width, m_configs.height);
+}
+
+void
+Map::resize(unsigned int width, unsigned int height)
+{
+  m_configs.width = width;
+  m_configs.height = height;
+}
+
+
 sf::Vector2u
 Map::createSpawnPoint(unsigned int angle) const
 {
@@ -83,8 +99,8 @@ Map::createSpawnPoint(unsigned int angle) const
   sf::Vector2f	movement;
   float		width, height;
 
-  width = static_cast<float>(m_width);
-  height = static_cast<float>(m_height);
+  width = static_cast<float>(m_configs.width);
+  height = static_cast<float>(m_configs.height);
 
   pos.x = (width / 2.0f + cos(RAD(angle)) * width / 2.0f) * CHUNK_SIZE;
   pos.y = (height / 2.0f + sin(RAD(angle)) * height / 2.0f) * CHUNK_SIZE;

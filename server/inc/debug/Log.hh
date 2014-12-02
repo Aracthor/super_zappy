@@ -5,13 +5,11 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 10:12:16 2014 
-// Last Update Tue Nov 18 10:51:26 2014 
+// Last Update Thu Nov 20 11:16:36 2014 
 //
 
 #ifndef LOG_HH_
 # define LOG_HH_
-
-# include <ostream>
 
 # include <cstdarg>
 
@@ -55,12 +53,13 @@ public:
   };
 
 protected:
+  const char*	m_name;
   EColor	m_color;
   bool		m_bold;
   bool		m_active;
 
 public:
-  Log(EColor color, bool bold, bool active);
+  Log(const char* name, EColor color, bool bold, bool active);
   virtual ~Log();
 
 public:
@@ -69,6 +68,12 @@ public:
 
 public:
   inline void	setActive(bool active);
+
+public:
+  inline const char*	getName() const;
+  inline EColor		getColor() const;
+  inline bool		isBold() const;
+  inline bool		isActive() const;
 };
 
 # include "Log.hpp"

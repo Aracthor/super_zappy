@@ -5,14 +5,14 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov 16 16:03:09 2014 
-// Last Update Mon Nov 17 13:56:55 2014 
+// Last Update Thu Nov 20 10:51:17 2014 
 //
 
 #include "debug/LogManager.hh"
 #include "debug/StandartLog.hh"
 
-StandartLog::StandartLog(FILE* stream, StandartLog::EColor color, bool bold, bool active) :
-  Log(color, bold, active),
+StandartLog::StandartLog(const char* name, FILE* stream, StandartLog::EColor color, bool bold, bool active) :
+  Log(name, color, bold, active),
   m_stream(stream)
 {
 }

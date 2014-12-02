@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:46:24 2014 
-// Last Update Sun Nov  9 08:39:39 2014 
+// Last Update Wed Nov 19 13:41:03 2014 
 //
 
 #ifndef MAP_HH_
@@ -23,8 +23,7 @@ class		Map
 {
 private:
   Chunk*	m_chunks;
-  unsigned int	m_width;
-  unsigned int	m_height;
+  Configs::Map	m_configs;
 
 public:
   Map(const Configs& configs);
@@ -34,8 +33,12 @@ private:
   void	terraform(const Configs::Map& configs);
 
 private:
-  bool		tryToSpawn(const sf::Vector2u& origin, sf::Vector2u& pos,
-			   unsigned int depth) const;
+  bool	tryToSpawn(const sf::Vector2u& origin, sf::Vector2u& pos,
+		   unsigned int depth) const;
+
+public:
+  void	resize(unsigned int width, unsigned int height);
+  void	terraform();
 
 public:
   sf::Vector2u	createSpawnPoint(unsigned int angle) const;

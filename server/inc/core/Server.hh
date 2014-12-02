@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:36:11 2014 
-// Last Update Mon Nov 17 13:25:08 2014 
+// Last Update Fri Nov 21 12:27:05 2014 
 //
 
 #ifndef SERVER_HH_
@@ -20,6 +20,8 @@
 # include "network/Network.hh"
 # include "threading/ThreadManager.hh"
 
+class		ControlPanel;
+
 class		Server : public SingletonManager,
 			 public ActionsManager,
 			 public GameData,
@@ -33,19 +35,27 @@ private:
 
 private:
   const bool	m_consoleMode;
+  ControlPanel*	m_controlPanel;
+  const pid_t	m_pid;
 
 public:
   Server(const Configs& configs);
   ~Server();
 
 private:
-  void	startControlPanel() const;
+  void	startControlPanel();
   void	wait() const;
 
 public:
   void	start();
+  void	stop();
+
+public:
+  inline pid_t	getServerPid() const;
 
   friend class	LinkedToServer;
 };
+
+# include "Server.hpp"
 
 #endif // !SERVER_HH_

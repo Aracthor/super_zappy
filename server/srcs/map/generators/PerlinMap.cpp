@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 24 17:14:09 2014 
-// Last Update Mon Oct 27 13:37:39 2014 
+// Last Update Thu Nov 20 14:11:25 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -22,7 +22,8 @@ PerlinMap::PerlinMap(unsigned int longer, unsigned int larger,
   m_maxLonger(ceilf((float)(longer * 10) / step)),
   m_maxLarger(ceilf((float)(larger * 10) / step))
 {
-  m_step = 20 + (longer + larger) / CHUNK_SIZE;
+  // m_step = 20 + (longer + larger) / CHUNK_SIZE;
+  m_step = 42;
   MALLOC(m_numbers, m_maxLonger * m_maxLarger, float);
   this->randomiseNumbers();
 }

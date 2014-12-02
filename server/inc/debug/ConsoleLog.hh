@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov 16 16:24:50 2014 
-// Last Update Mon Nov 17 16:42:52 2014 
+// Last Update Thu Nov 20 10:51:45 2014 
 //
 
 #ifndef CONSOLE_LOG_HH_
@@ -18,7 +18,7 @@
 class				ConsoleLog : public Log
 {
 public:
-  ConsoleLog(EColor color, bool bold, bool active);
+  ConsoleLog(const char* name, EColor color, bool bold, bool active);
   ~ConsoleLog();
 
 private:

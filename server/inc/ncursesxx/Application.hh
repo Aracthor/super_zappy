@@ -5,7 +5,7 @@
 // Login   <bonnet_v@epitech.net>
 // 
 // Started on  Tue Apr 15 10:43:14 2014 Bonnet Vivien
-// Last Update Sun Nov 16 17:09:51 2014 
+// Last Update Thu Nov 20 13:00:08 2014 
 //
 
 #ifndef APPLICATION_HH_
@@ -35,6 +35,8 @@ public:
 
 public:
   void	clear();
+  void	move(int x, int y);
+  void	print(const char* message);
   void	display();
 
 public:

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:29:09 2014 
-// Last Update Wed Nov 19 10:41:58 2014 
+// Last Update Fri Nov 21 12:20:22 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -164,6 +164,7 @@ GameData::resetGame()
 {
   this->reset();
   this->getServerData()->sayToGraphicClients("RES\n");
+  this->getServerData()->resetActions();
   LogManagerSingleton::access()->events->print("Game rebooted.");
 }
 

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:55:13 2014 
-// Last Update Tue Nov 18 14:54:58 2014 
+// Last Update Fri Nov 21 10:43:12 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -20,6 +20,7 @@ Network::Network(unsigned int port) :
   m_clients(MAX_LISTEN_CLIENTS),
   m_clientsMutex()
 {
+  LogManagerSingleton::access()->intern->print("Network creation...");
   m_socket.createSocket();
   m_socket.bind(port);
   m_socket.listen(MAX_LISTEN_CLIENTS);
@@ -27,6 +28,7 @@ Network::Network(unsigned int port) :
 
 Network::~Network()
 {
+  LogManagerSingleton::access()->intern->print("Network destruction...");
 }
 
 

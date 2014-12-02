@@ -1,7 +1,9 @@
 package Data;
 
 import java.util.Iterator;
-import java.util.Vector;
+
+import Debug.DebugLog;
+import Usefull.LockedVector;
 
 public class DataManager
 {
@@ -15,17 +17,17 @@ public class DataManager
 	}
 	
 	
-	private	Map				map;
-	private int				speed;
-	private Vector<Team>	teams;
-	private Vector<Player>	players;
+	private	Map						map;
+	private int						speed;
+	private LockedVector<Team>		teams;
+	private LockedVector<Player>	players;
 	
 	private	DataManager()
 	{
 		map = null;
 		speed = 0;
-		teams = new Vector<Team>();
-		players = new Vector<Player>();
+		teams = new LockedVector<Team>();
+		players = new LockedVector<Player>();
 	}
 	
 	
@@ -61,20 +63,35 @@ public class DataManager
 		players.add(player);
 	}
 	
+	public void	setNewMap(Map map)
+	{
+		this.map = map;
+		DebugLog.getInstance().events.print("New map : " + map.getLonger() + "|" + map.getLarger() + ".");
+	}
+	
+	public void	setSpeed(int speed)
+	{
+		this.speed = speed;
+	}
+	
 	
 	public Team	getTeam(String name)
 	{
 		Team	team;
 		
 		team = null;
-		for (Iterator<Team> it = teams.iterator(); team == null && it.hasNext();)
+		teams.lock();
 		{
-			team = it.next();
-			if (team.getName().equals(name) == false)
+			for (Iterator<Team> it = teams.iterator(); team == null && it.hasNext();)
 			{
-				team = null;
+				team = it.next();
+				if (team.getName().equals(name) == false)
+				{
+					team = null;
+				}
 			}
 		}
+		teams.unlock();
 		
 		return (team);
 	}
@@ -89,23 +106,27 @@ public class DataManager
 		Player	player;
 		
 		player = null;
-		for (Iterator<Player> it = players.iterator(); player == null && it.hasNext();)
+		players.lock();
 		{
-			player = it.next();
-			if (player.getName().equals(name) == false)
+			for (Iterator<Player> it = players.iterator(); player == null && it.hasNext();)
 			{
-				player = null;
+				player = it.next();
+				if (player.getName().equals(name) == false)
+				{
+					player = null;
+				}
 			}
 		}
+		players.unlock();
 		
 		return (player);
 	}
 	
-	public Vector<Player>	getPlayers()
+	public LockedVector<Player>	getPlayers()
 	{
 		return (players);
 	}
-	
+		
 	public Map	getMap()
 	{
 		return (map);

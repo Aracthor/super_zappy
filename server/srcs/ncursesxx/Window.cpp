@@ -5,7 +5,7 @@
 // Login   <bonnet_v@epitech.net>
 // 
 // Started on  Tue Apr 15 11:18:12 2014 Bonnet Vivien
-// Last Update Mon Nov 17 11:09:41 2014 
+// Last Update Thu Nov 20 13:45:35 2014 
 //
 
 #include "ncursesxx/NcursesException.hh"
@@ -176,6 +176,8 @@ Window::clear() const
 void
 Window::drawBorder() const
 {
+  int	x;
+
   if (wborder(m_win,
 	      m_borderStyle[0], m_borderStyle[1], m_borderStyle[2], m_borderStyle[3],
 	      m_borderStyle[4], m_borderStyle[5], m_borderStyle[6], m_borderStyle[7]) == ERR)
@@ -183,7 +185,10 @@ Window::drawBorder() const
 
   if (m_name.empty() == false)
     {
-      this->move(m_width / 2 - m_name.size() / 2, 0);
+      x = m_width / 2 - m_name.size() / 2;
+      if (x < 0)
+	x = 0;
+      this->move(x, 0);
       this->print(m_name);
     }
 }
