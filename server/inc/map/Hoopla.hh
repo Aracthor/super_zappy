@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:28:24 2014 
-// Last Update Fri Nov 14 17:25:42 2014 
+// Last Update Fri Dec  5 15:10:47 2014 
 //
 
 #ifndef HOOPLA_HH_
@@ -57,7 +57,7 @@ struct	Hoopla
   enum	EItem
   {
     none,
-    snowBall,
+    snow_ball,
     pebble,
     frost_plant,
     mud,
@@ -69,6 +69,7 @@ struct	Hoopla
     ice_block,
     water,
     stick,
+    log,		// Cet item à quand même un nom de merde, admettons-le.
     wooden_javelin,
     items_number
   };
@@ -82,7 +83,6 @@ struct	Hoopla
     ash,
     saplin,
     maple,
-    player,
     objects_number
   };
 

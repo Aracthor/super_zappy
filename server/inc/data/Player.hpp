@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Thu Nov  6 18:16:49 2014 
-// Last Update Thu Nov 13 08:17:22 2014 
+// Last Update Fri Dec  5 09:11:09 2014 
 //
 
 #include "map/Map.hh"
@@ -50,6 +50,12 @@ Inventory&
 Player::getInventory()
 {
   return (m_inventory);
+}
+
+const Action::UData&
+Player::getObjective() const
+{
+  return (m_currentObjective);
 }
 
 bool

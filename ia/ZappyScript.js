@@ -5,12 +5,13 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Thu Nov  6 14:27:41 2014 
-// Last Update Fri Nov 14 17:50:12 2014 
+// Last Update Tue Dec  9 12:36:14 2014 
 //
 
 load("Items.js");
 load("Mail.js");
 load("Objects.js");
+load("Target.js")
 load("Vector.js");
 
 function	ScriptExit()
@@ -284,6 +285,40 @@ ZappyScript.prototype.sendMail = function(message)
     client.send("MAIL " + this.player.name + ' ' + message);
     return (true);
 }
+
+ZappyScript.prototype.locateEnnemy = function(name)
+{
+    var	string;
+    var	answer;
+    var	found;
+
+    string = "LEN " + this.player.name;
+    if (name != null)
+    {
+	string += ' ' + name;
+    }
+    client.send(string);
+    answer = this.waitForAnswer("PLAYER");
+
+    if (answer[0] == "NULL")
+    {
+	found = null;
+    }
+    else
+    {
+	found = new Target(parseInt(answer[0]));
+	found.position.x = parseInt(answer[1]);
+	found.position.y = parseInt(answer[2]);
+    }
+
+    return (found);
+}
+
+ZappyScript.prototype.locateClosestEnnemy = function()
+{
+    return (this.locateEnnemy(null));
+}
+
 
 ZappyScript.prototype.wait = function()
 {

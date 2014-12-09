@@ -5,14 +5,14 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 13:22:41 2014 
-// Last Update Tue Nov  4 13:58:20 2014 
+// Last Update Fri Dec  5 14:27:21 2014 
 //
 
 #ifndef CHEAT_CHECKER_HH_
 # define CHEAT_CHECKER_HH_
 
 # include "StatChecker.hh"
-# include "util/Singleton.hh"
+# include "usefull/Singleton.hh"
 
 class	CheatChecker;
 

@@ -1,0 +1,101 @@
+##
+## progression.txt for super_zappy in /home/aracthor/programs/projects/hub/super_zappy
+## 
+## Made by 
+## Login   <aracthor@epitech.net>
+## 
+## Started on  Tue Dec  9 08:12:19 2014 
+## Last Update Tue Dec  9 08:52:26 2014 
+##
+
+
+SERVER (C++):
+Configuration:	[#####                                             ] 10%
+  CSV Parsing:	[                    ] 0%
+  Parameters:	[####################] 100%
+
+Console:	[###################################               ] 70%
+  Commands:	[#####               ] 25%
+  Debug:	[####################] 100%
+  Prompt:	[####################] 100%
+  Segfault-when-you-resize-like-a-madman:	[#####               ] 25%
+
+Execution:	[####################                              ] 40%
+  Commands list:	[######              ] 30%
+  Commands queue:	[####################] 100%
+  Cheats check:		[######              ] 30%
+
+Map generation:	[########################################          ] 80%
+  Configuration file:	[                    ] 0%
+  Grounds Types:	[####################] 100%
+  Height map:		[####################] 100%
+  Lakes: 		[####################] 100%
+  Objects:		[####################] 100%
+  Rivers:		[####################] 100%
+
+Network:	[#############################################     ] 90%
+  Admin clients:		[                    ] 0%
+  Clients classification:	[################    ] 80%
+  Error handling:		[####################] 100%
+  Graphical clients:		[####################] 100%
+  IA clients:			[####################] 100%
+  Package cut:			[####################] 100%
+
+Threading:	[##################################################] 100%
+  Abstraction:		[####################] 100%
+  Listen thread:	[####################] 100%
+  Executer thread:	[####################] 100%
+  Speak thread:		[####################] 100%
+
+
+
+GRAPHICAL (Java):
+Network:	[##################################################] 100%
+  Connection:	[####################] 100%
+  Packages:	[####################] 100%
+
+2D display:	[##########                                        ] 20%
+  Actions:	[                    ] 0%
+  Items:	[                    ] 0%
+  Map:		[############        ] 60%
+  Optimisation:	[                    ] 0%
+  Players:	[                    ] 0%
+
+3D display:	[##############################                    ] 60%
+  Actions:	[##########          ] 50%
+  Items:	[####                ] 20%
+  Map:		[####################] 100%
+  Optimisation:	[##########          ] 50%
+  Players:	[###############     ] 75%
+
+
+
+IA (Javascript)
+Network:	[##################################################] 100%
+  Connection:	[####################] 100%
+  Packages:	[####################] 100%
+
+Exemples:	[#####                                             ] 10%
+  Simples:	[#####               ] 25%
+  Complexes:	[                    ] 0%
+
+Players:	[####################] 100%
+  Initialisation:	[####################] 100%
+  Script execution:	[####################] 100%
+  Threading:		[####################] 100%
+
+
+
+IA (Python)
+Network:	[                                                  ] 0%
+  Connection:	[                    ] 0%
+  Packages:	[                    ] 0%
+
+Exemples:	[                                                  ] 0%
+  Simples:	[                    ] 0%
+  Complexes:	[                    ] 0%
+
+Players:	[                    ] 0%
+  Initialisation:	[                    ] 0%
+  Script execution:	[                    ] 0%
+  Threading:		[                    ] 0%

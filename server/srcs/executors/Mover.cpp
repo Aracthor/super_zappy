@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov  9 03:11:42 2014 
-// Last Update Sun Nov 16 16:06:47 2014 
+// Last Update Fri Dec  5 09:13:55 2014 
 //
 
 #include "core/Server.hh"
@@ -40,7 +40,7 @@ Mover::execute(Player* player, const Action::UData& data)
     }
   else
     {
-      LogManagerSingleton::access()->error->print("TODO refaire le calcul");
-      // TODO Refaire le calcul
+      this->getServerData()->clearForPlayer(player);
+      this->getServerData()->insertAction(Action(player, Action::displace, 0, player->getObjective()));
     }
 }

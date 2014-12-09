@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Nov 14 10:17:20 2014 
-// Last Update Fri Nov 14 16:29:35 2014 
+// Last Update Thu Dec  4 09:38:55 2014 
 //
 
 #include "actions/timecalcs/CraftTimeCalculator.hh"
@@ -18,7 +18,6 @@ CraftTimeCalculator::~CraftTimeCalculator()
 {
 }
 
-#include <cstdio> // DEBUG
 
 bool
 CraftTimeCalculator::checkRequires(const Player* player, const unsigned int* requires) const

@@ -5,12 +5,13 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:27:00 2014 
-// Last Update Sun Nov 16 16:08:28 2014 
+// Last Update Thu Dec  4 09:25:57 2014 
 //
 
 #include "core/Server.hh"
 #include "data/Class.hh"
 #include "debug/LogManager.hh"
+#include "debug/usefull.hh"
 #include "network/listeners/TeamListener.hh"
 
 #include <cstdlib>
@@ -29,11 +30,11 @@ TeamListener::~TeamListener()
 
 
 void
-TeamListener::warnCheat(const Client* client, const char* cheat) const
+TeamListener::warnCheat(const Client* client, const char* cheat)
 {
   LogManagerSingleton::access()->error->print("Client %d tried to cheat : %s !!!",
 					      client->getFd(), cheat);
-  // TODO prévenir les graphiques
+  this->getServerData()->vsayToGraphicClients("CHT %s %s\n", client->getTeam()->getName(), cheat);
 }
 
 
@@ -89,33 +90,41 @@ TeamListener::executeTeamCommand(Client* client, char* const* args,
 
 
 bool
-TeamListener::unknowCommand(Client* client,
-			    const CommandCutter::CuttedLine& cuttedCommand)
+TeamListener::executeUnknowCommand(Player* player, const CommandCutter::CuttedLine& cuttedCommand)
 {
-  CommandCutter::CuttedLine	args;
   Action			action;
-  Player*			player;
+  CommandCutter::CuttedLine	args;
   unsigned int			i;
   bool				valid;
 
-  (void)(client); // TODO check if player is member of this client team
+  args.argsNumber = cuttedCommand.argsNumber - 2;
+  for (i = 0; i < cuttedCommand.argsNumber - 2; ++i)
+    args.args[i] = const_cast<char*>(cuttedCommand.args[i + 2]);
+
+  valid = this->createAction(action, cuttedCommand.args[0], player, args);
+  if (valid && action.getTimer() > 0)
+    this->getServerData()->insertAction(action);
+
+  return (valid);
+}
+
+bool
+TeamListener::unknowCommand(Client* client,
+			    const CommandCutter::CuttedLine& cuttedCommand)
+{
+  Player*	player;
+  bool		valid;
+
   valid = (cuttedCommand.argsNumber >= 2);
   if (valid)
     {
       player = this->getServerData()->getPlayerFromName(cuttedCommand.args[1]);
       valid = (player != NULL);
+      valid = (checkOrPrint(player != NULL, "Unknow player %s", cuttedCommand.args[1]) &&
+	       checkOrPrint(player->getTeam() == client->getTeam(), "Client %d is not client of player %s",
+			    client->getFd(), cuttedCommand.args[1]));
       if (valid)
-	{
-	  args.argsNumber = cuttedCommand.argsNumber - 2;
-	  for (i = 0; i < cuttedCommand.argsNumber - 2; ++i)
-	    args.args[i] = const_cast<char*>(cuttedCommand.args[i + 2]);
-
-	  valid = this->createAction(action, cuttedCommand.args[0], player, args);
-	  if (valid && action.getTimer() > 0)
-	    this->getServerData()->insertAction(action);
-	}
-      else
-	LogManagerSingleton::access()->error->print("Unknow player %s", args.args[1]);
+	valid = this->executeUnknowCommand(player, cuttedCommand);
     }
 
   return (valid);

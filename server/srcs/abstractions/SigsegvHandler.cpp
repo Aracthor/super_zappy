@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Nov 21 09:59:05 2014 
-// Last Update Fri Nov 21 12:23:46 2014 
+// Last Update Fri Dec  5 17:49:41 2014 
 //
 
 #include <iostream>
@@ -28,11 +28,7 @@ void
 SigsegvHandler::onCatch()
 {
   LogManagerSingleton::access()->error->print("Fatal server error : Segmentation fault :(");
-  if (getpid() != this->getServerData()->getServerPid())
-    {
-      this->getServerData()->stop();
-      exit(0x80 + SIGSEGV);
-    }
-  else
-    throw SignalException(SIGSEGV);
+  if (this->getServerData() != NULL && getpid() != this->getServerData()->getServerPid())
+    this->getServerData()->stop();
+  exit(0x80 + SIGSEGV);
 }

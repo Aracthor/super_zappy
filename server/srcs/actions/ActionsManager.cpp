@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 20:31:48 2014 
-// Last Update Fri Nov 21 12:44:29 2014 
+// Last Update Fri Dec  5 08:59:35 2014 
 //
 
 #include "actions/ActionsManager.hh"
@@ -22,6 +22,21 @@ ActionsManager::~ActionsManager()
 {
 }
 
+
+void
+ActionsManager::clearForPlayer(const Player* player)
+{
+  unsigned int	pos;
+
+  pos = 0;
+  while (pos < m_actions.getSize())
+    {
+      if (m_actions[pos].getPlayer() == player)
+	m_actions.popAt(pos);
+      else
+	++pos;
+    }
+}
 
 void
 ActionsManager::insertAction(Action action)

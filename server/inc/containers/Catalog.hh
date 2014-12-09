@@ -5,22 +5,29 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Nov 14 11:05:49 2014 
-// Last Update Fri Nov 14 17:10:43 2014 
+// Last Update Fri Dec  5 16:59:38 2014 
 //
 
 #ifndef CATALOG_HH_
 # define CATALOG_HH_
 
+# define CONFIGURATION_FOLDER	"configurations"
+
+# include "catalogs/ReadableFromZCSV.hh"
+
 template <class T, unsigned int N>
-class		Catalog
+class	Catalog
 {
 private:
-  T		m_data[N];
-  bool		m_exist[N];
+  T	m_data[N];
+  bool	m_exist[N];
 
 public:
-  Catalog();
+  Catalog(const char* file);
   virtual ~Catalog();
+
+private:
+  void			readFile(const char* file);
 
 protected:
   void			insert(const T& elem, unsigned int pos);

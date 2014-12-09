@@ -25,6 +25,7 @@ public class SuperZappyGraphicClient extends AClient
 		commands.put("WELCOME", new EmptyCommand());
 		commands.put("CAS", new CASCommand());
 		commands.put("CHK", new CHKCommand());
+		commands.put("CHT", new CHTCommand());
 		commands.put("ISL", new ISLCommand());
 		commands.put("MAP", new MAPCommand());
 		commands.put("MSG", new MSGCommand());

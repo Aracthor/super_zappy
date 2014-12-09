@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Nov 14 10:57:42 2014 
-// Last Update Fri Nov 14 17:08:49 2014 
+// Last Update Thu Dec  4 09:41:41 2014 
 //
 
 #ifndef CRAFT_CATALOG_HH_

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 08:37:23 2014 
-// Last Update Thu Nov 13 08:16:56 2014 
+// Last Update Fri Dec  5 09:00:28 2014 
 //
 
 #ifndef PLAYER_HH_
@@ -16,6 +16,7 @@
 # include "Class.hh"
 # include "Inventory.hh"
 # include "Namable.hh"
+# include "actions/Action.hh"
 # include "core/LinkedToServer.hh"
 
 class		Team;
@@ -39,6 +40,7 @@ private:
   EOrientation	m_orientation;
   Hoopla::EItem	m_equipement;
   Inventory	m_inventory;
+  Action::UData	m_currentObjective;
   bool		m_decremented; // Used by ExecuterThread for decrementing
 
 public:
@@ -59,6 +61,7 @@ public:
   inline Hoopla::EItem		getEquipement() const;
   inline const Inventory&	getInventory() const;
   inline Inventory&		getInventory();
+  inline const Action::UData&	getObjective() const;
   inline bool			isDecremented() const;
 
   inline unsigned int		getSpeedCoef() const;

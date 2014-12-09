@@ -82,7 +82,7 @@ public class StrategicView extends AView
 		eventsHandler.addKeyboardEvent(Keyboard.KEY_DOWN,	new Camera2DMoveDownListener(camera));
 		eventsHandler.addKeyboardEvent(Keyboard.KEY_RIGHT,	new Camera2DMoveRightListener(camera));
 		eventsHandler.addKeyboardEvent(Keyboard.KEY_LEFT,	new Camera2DMoveLeftListener(camera));
-		eventsHandler.addKeyboardEvent(Keyboard.KEY_Z,		new Camera2DZoomFrontListener(camera));
+		eventsHandler.addKeyboardEvent(Keyboard.KEY_W,		new Camera2DZoomFrontListener(camera));
 		eventsHandler.addKeyboardEvent(Keyboard.KEY_S,		new Camera2DZoomBackListener(camera));
 	}
 }

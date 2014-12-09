@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:27:44 2014 
-// Last Update Mon Nov 17 16:47:04 2014 
+// Last Update Thu Dec  4 08:49:50 2014 
 //
 
 #include <iostream>
@@ -26,6 +26,7 @@ static void	print_usage(char* name)
 	    << "\t[-p port]" << std::endl
 	    << "\t[-s speed]" << std::endl
 	    << "\t[-l log_file]" << std::endl
+	    << "\t[-d]" << std::endl
 	    << "\t-n team1 team2 {teams}" << std::endl;
 }
 

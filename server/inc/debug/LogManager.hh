@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 08:47:07 2014 
-// Last Update Fri Nov 21 10:02:56 2014 
+// Last Update Fri Dec  5 14:26:59 2014 
 //
 
 #ifndef LOG_MANAGER_HH_
@@ -14,7 +14,7 @@
 # include "ConsoleLog.hh"
 # include "abstractions/SigsegvHandler.hh"
 # include "threading/Mutex.hh"
-# include "util/Singleton.hh"
+# include "usefull/Singleton.hh"
 
 # include <cstdarg>
 

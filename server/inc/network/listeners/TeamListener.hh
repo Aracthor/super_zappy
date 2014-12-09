@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:20:41 2014 
-// Last Update Sat Nov  8 23:44:08 2014 
+// Last Update Thu Dec  4 09:12:16 2014 
 //
 
 #ifndef TEAM_LISTENER_HH_
@@ -27,7 +27,7 @@ public:
   ~TeamListener();
 
 private:
-  void	warnCheat(const Client* client, const char* cheat) const;
+  void	warnCheat(const Client* client, const char* cheat);
 
 private:
   bool	getClassPresentation(Client* client, char* const* args, Team* team);
@@ -37,6 +37,7 @@ private:
   bool	executeTeamCommand(Client* client, char* const* args,TeamCommandExecution execution);
 
 private:
+  bool	executeUnknowCommand(Player* player, const CommandCutter::CuttedLine& cuttedLine);
   bool	unknowCommand(Client* client,
 		      const CommandCutter::CuttedLine& cuttedCommand);
 

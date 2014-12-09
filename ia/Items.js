@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Nov 12 13:46:06 2014 
-// Last Update Fri Nov 14 17:49:40 2014 
+// Last Update Thu Dec  4 10:04:54 2014 
 //
 
 function	Items(id, number)
@@ -35,7 +35,8 @@ function		ItemList()
     this.iceBlock	= new Item(10, "ice block");
     this.water		= new Item(11, "water");
     this.stick		= new Item(12, "stick");
-    this.wooden_javelin	= new Item(13, "wooden javelin");
+    this.log		= new Item(13, "log");
+    this.wooden_javelin	= new Item(14, "wooden javelin");
     this.number = 14;
 }
 

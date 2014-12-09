@@ -5,25 +5,28 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Nov 14 11:01:14 2014 
-// Last Update Fri Nov 14 12:03:49 2014 
+// Last Update Tue Dec  9 10:24:13 2014 
 //
 
 #ifndef CRAFT_HH_
 # define CRAFT_HH_
 
+# include "ReadableFromZCSV.hh"
 # include "map/Hoopla.hh"
 
-class	Craft
+class		Craft : public ReadableFromZCSV
 {
 private:
-  unsigned int	m_requires[Hoopla::items_number];
   unsigned int	m_time;
   unsigned int	m_level;
+  unsigned int	m_requires[Hoopla::items_number];
 
 public:
   Craft();
-  Craft(unsigned int time, unsigned int level);
   ~Craft();
+
+public:
+  unsigned int	readFromString(const std::string& string, unsigned int pos);
 
 public:
   inline void	addRequire(Hoopla::EItem item, unsigned int number);

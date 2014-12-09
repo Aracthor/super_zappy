@@ -5,19 +5,20 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 19:34:56 2014 
-// Last Update Fri Nov 14 16:50:26 2014 
+// Last Update Fri Dec  5 08:57:33 2014 
 //
 
 #ifndef ACTION_HH_
 # define ACTION_HH_
 
-# include "data/Player.hh"
 # include "map/Hoopla.hh"
 
 # include <SFML/System/Vector2.hpp>
 
 # define MAX_WAITING_ACTIONS	(200)
 # define MAIL_BUFFER_SIZE	(0x100)
+
+class	Player;
 
 class	Action
 {

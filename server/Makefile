@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Fri Nov 21 12:26:32 2014 
+## Last Update Fri Dec  5 14:25:49 2014 
 ##
 
 CC=		g++
@@ -54,6 +54,10 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(CATALOGS_DIR)CraftCatalog.cpp		\
 		$(SRCS_DIR)$(CATALOGS_DIR)Ground.cpp			\
 		$(SRCS_DIR)$(CATALOGS_DIR)GroundCatalog.cpp		\
+		$(SRCS_DIR)$(CATALOGS_DIR)Object.cpp			\
+		$(SRCS_DIR)$(CATALOGS_DIR)ObjectCatalog.cpp		\
+		$(SRCS_DIR)$(CATALOGS_DIR)Production.cpp		\
+		$(SRCS_DIR)$(CATALOGS_DIR)ReadableFromZCSV.cpp		\
 		$(SRCS_DIR)$(CONSOLES_DIR)ClientsConsole.cpp		\
 		$(SRCS_DIR)$(CONSOLES_DIR)ColorFactory.cpp		\
 		$(SRCS_DIR)$(CONSOLES_DIR)Console.cpp			\
@@ -80,12 +84,14 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(DEBUG_DIR)LogParameter.cpp			\
 		$(SRCS_DIR)$(DEBUG_DIR)StandartLog.cpp			\
 		$(SRCS_DIR)$(DEBUG_DIR)outputs.cpp			\
+		$(SRCS_DIR)$(DEBUG_DIR)usefull.cpp			\
 		$(SRCS_DIR)$(DISPLACERS_DIR)AdeptDisplacer.cpp		\
 		$(SRCS_DIR)$(DISPLACERS_DIR)ApprenticeDisplacer.cpp	\
 		$(SRCS_DIR)$(DISPLACERS_DIR)DisplacerMethod.cpp		\
 		$(SRCS_DIR)$(DISPLACERS_DIR)ExpertDisplacer.cpp		\
 		$(SRCS_DIR)$(DISPLACERS_DIR)MasterDisplacer.cpp		\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ConfigsException.cpp	\
+		$(SRCS_DIR)$(EXCEPTIONS_DIR)FileException.cpp		\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)NetworkException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)SignalException.cpp		\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)StartException.cpp		\
@@ -130,6 +136,7 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(MAP_DIR)Chunk.cpp				\
 		$(SRCS_DIR)$(MAP_DIR)Hoopla.cpp				\
 		$(SRCS_DIR)$(MAP_DIR)Map.cpp				\
+		$(SRCS_DIR)$(MAP_DIR)NamesRegister.cpp			\
 		$(SRCS_DIR)$(NCURSES_DIR)Application.cpp		\
 		$(SRCS_DIR)$(NCURSES_DIR)Color.cpp			\
 		$(SRCS_DIR)$(NCURSES_DIR)NcursesException.cpp		\

@@ -19,7 +19,8 @@ public enum EItem
 	IceBlock(10, null),
 	Water(11, null),
 	Stick(12, "stick"),
-	WoodenJavelin(13, "wooden javelin");
+	Log(13, "log"),
+	WoodenJavelin(14, "wooden javelin");
 	
 	private int		id;
 	private String	name;

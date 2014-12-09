@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 20:24:10 2014 
-// Last Update Fri Nov 21 12:43:54 2014 
+// Last Update Fri Dec  5 08:59:33 2014 
 //
 
 #ifndef ACTIONS_MANAGER_HH_
@@ -16,7 +16,7 @@
 # include "core/LinkedToServer.hh"
 # include "threading/Mutex.hh"
 
-class	ActionsManager : private LinkedToServer
+class		ActionsManager : private LinkedToServer
 {
 public:
   typedef Pool<Action>	ActionsList;
@@ -31,6 +31,7 @@ public:
   virtual ~ActionsManager();
 
 public:
+  void	clearForPlayer(const Player* player);
   void	insertAction(Action action);
   void	changeSpeed(unsigned int speed);
 
