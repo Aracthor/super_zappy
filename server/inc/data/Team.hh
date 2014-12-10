@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 15:54:44 2014 
-// Last Update Tue Nov 18 15:18:16 2014 
+// Last Update Wed Dec 10 12:59:15 2014 
 //
 
 #ifndef TEAM_HH_
@@ -64,7 +64,7 @@ public:
 			 unsigned int s, unsigned int p,
 			 unsigned int d, unsigned int t, unsigned int i,
 			 unsigned int speedLevel, unsigned int orientationLevel,
-			 unsigned int craftingLevel, unsigned int buildingLevel);
+			 unsigned int craftingLevel, unsigned int buildingLevel, unsigned int shootLevel);
 
 public:
   void		destroy();

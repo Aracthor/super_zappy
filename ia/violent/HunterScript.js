@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Thu Nov  6 14:00:21 2014 
-// Last Update Tue Dec  9 12:34:57 2014 
+// Last Update Wed Dec 10 11:37:32 2014 
 //
 
 function	HunterScript()
@@ -56,6 +56,7 @@ function	makeWeapons(player)
 function	hunt(player)
 {
     var		ennemy;
+    var		hit;
 
     ennemy = player.locateEnnemy();
     if (ennemy == null)
@@ -64,7 +65,17 @@ function	hunt(player)
     }
     else
     {
-	print("Je sais pas tirer putain !");
+	player.equip(g_items.wooden_javelin);
+	hit = player.attack(ennemy.position.x, ennemy.position.y);
+	--player.javelins;
+	if (hit)
+	{
+	    print("TOUCHE !");
+	}
+	else
+	{
+	    print("ET MERDEUH ! RATE !");
+	}
     }
 }
 

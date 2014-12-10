@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 15:59:55 2014 
-// Last Update Tue Nov 18 15:17:16 2014 
+// Last Update Wed Dec 10 12:57:47 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -101,10 +101,10 @@ Team::addClass(const char* name,
 	       unsigned int s, unsigned int p,
 	       unsigned int d, unsigned int t, unsigned int i,
 	       unsigned int speedLevel, unsigned int orientationLevel,
-	       unsigned int craftingLevel, unsigned int buildingLevel)
+	       unsigned int craftingLevel, unsigned int buildingLevel, unsigned int shootLevel)
 {
   Class		newClass(name, s, p, d, t, i,
-			 speedLevel, orientationLevel, craftingLevel, buildingLevel);
+			 speedLevel, orientationLevel, craftingLevel, buildingLevel, shootLevel);
   const char*	error;
 
   error = CheatCheckerSingleton::access()->checkClass(newClass,

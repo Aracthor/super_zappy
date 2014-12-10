@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:26:40 2014 
-// Last Update Wed Nov 19 14:03:38 2014 
+// Last Update Wed Dec 10 10:46:57 2014 
 //
 
 
@@ -65,6 +65,65 @@ GameData::doToPlayers(void (*function)(Player& player, const T& data1, const U* 
       for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
 	function(m_teams[t].getPlayers()[i], data1, data2);
     }
+}
+
+
+template <typename T>
+const Player*
+GameData::findPlayer(int (*function)(const Player& player, const T& data), const T& data) const
+{
+  const Player*	player;
+  int		bestScore;
+  int		score;
+  unsigned int	t;
+  unsigned int	i;
+
+  bestScore = 0;
+  player = NULL;
+
+  for (t = 0; t < m_teamsNumber; ++t)
+    {
+      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
+	{
+	  score = function(m_teams[t].getPlayers()[i], data);
+	  if (score > bestScore)
+	    {
+	      score = bestScore;
+	      player = &m_teams[t].getPlayers()[i];
+	    }
+	}
+    }
+
+  return (player);
+}
+
+template <typename T>
+Player*
+GameData::findPlayer(int (*function)(const Player& player, const T& data), const T& data)
+{
+  Player*	player;
+  int		bestScore;
+  int		score;
+  unsigned int	t;
+  unsigned int	i;
+
+  bestScore = 0;
+  player = NULL;
+
+  for (t = 0; t < m_teamsNumber; ++t)
+    {
+      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
+	{
+	  score = function(m_teams[t].getPlayers()[i], data);
+	  if (score > bestScore)
+	    {
+	      score = bestScore;
+	      player = &m_teams[t].getPlayers()[i];
+	    }
+	}
+    }
+
+  return (player);
 }
 
 

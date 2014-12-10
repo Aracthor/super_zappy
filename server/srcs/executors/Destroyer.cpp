@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov  9 09:48:40 2014 
-// Last Update Thu Dec  4 10:45:08 2014 
+// Last Update Tue Dec  9 16:34:18 2014 
 //
 
 #include "abstractions/strings.hh"

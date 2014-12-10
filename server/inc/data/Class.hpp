@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 13:25:30 2014 
-// Last Update Wed Nov 12 16:50:07 2014 
+// Last Update Tue Dec  9 12:58:08 2014 
 //
 
 unsigned int
@@ -20,6 +20,12 @@ Class::getSkillLevel(ESkill skill) const
   return (m_skills[skill]);
 }
 
+
+unsigned int
+Class::getMaxLife() const
+{
+  return (m_characteristics[toughness]);
+}
 
 unsigned int
 Class::getInventorySize() const

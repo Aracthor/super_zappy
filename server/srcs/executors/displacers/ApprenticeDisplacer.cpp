@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov  9 01:16:57 2014 
-// Last Update Fri Nov 14 09:21:33 2014 
+// Last Update Wed Dec 10 13:59:28 2014 
 //
 
 #include "abstractions/maths.hh"

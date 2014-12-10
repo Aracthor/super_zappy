@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:27:00 2014 
-// Last Update Thu Dec  4 09:25:57 2014 
+// Last Update Wed Dec 10 12:59:39 2014 
 //
 
 #include "core/Server.hh"
@@ -47,7 +47,7 @@ TeamListener::getClassPresentation(Client* client, char* const* args, Team* team
   error = team->addClass(args[1],
 			 atoi(args[2]), atoi(args[3]),
 			 atoi(args[4]), atoi(args[5]), atoi(args[6]),
-			 atoi(args[7]), atoi(args[8]), atoi(args[9]), atoi(args[10]));
+			 atoi(args[7]), atoi(args[8]), atoi(args[9]), atoi(args[10]), atoi(args[11]));
   valid = (error == NULL);
   if (valid == false)
     this->warnCheat(client, error);

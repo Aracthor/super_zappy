@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Nov 14 11:05:49 2014 
-// Last Update Fri Dec  5 16:59:38 2014 
+// Last Update Tue Dec  9 15:55:31 2014 
 //
 
 #ifndef CATALOG_HH_
@@ -37,6 +37,7 @@ public:
   bool			getSecureElem(T& ref, unsigned int index) const;
 
 public:
+  inline bool		elemExists(unsigned int index) const;
   inline const T&	getElem(unsigned int index) const;
   inline unsigned int	getSize() const;
 

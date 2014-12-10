@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:24:52 2014 
-// Last Update Thu Nov 20 10:45:43 2014 
+// Last Update Wed Dec 10 10:21:32 2014 
 //
 
 #ifndef GAME_DATA_HH_
@@ -47,6 +47,11 @@ public:
   template <typename T, typename U>
   void		doToPlayers(void (*function)(Player& player, const T& data1, const U* data2),
 			    const T& data1, const U* data2);
+
+  template <typename T>
+  const Player*	findPlayer(int (*function)(const Player& player, const T& data), const T& data) const;
+  template <typename T>
+  Player*	findPlayer(int (*function)(const Player& player, const T& data), const T& data);
 
 public:
   void		preparePlayers();

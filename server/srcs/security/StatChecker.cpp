@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 13:40:45 2014 
-// Last Update Thu Nov 13 17:30:23 2014 
+// Last Update Wed Dec 10 13:42:00 2014 
 //
 
 #include "security/StatChecker.hh"
@@ -27,6 +27,8 @@ StatChecker::StatChecker()
   m_skillsCheckers[Class::crafting]	= SkillChecker(Class::crafting, "crafting",
 						       false, 10);
   m_skillsCheckers[Class::building]	= SkillChecker(Class::building, "building",
+						       false, 10);
+  m_skillsCheckers[Class::shoot]	= SkillChecker(Class::building, "shoot",
 						       false, 10);
 }
 

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 07:28:24 2014 
-// Last Update Fri Dec  5 15:10:47 2014 
+// Last Update Wed Dec 10 13:43:54 2014 
 //
 
 #ifndef HOOPLA_HH_
@@ -92,7 +92,7 @@ struct	Hoopla
   unsigned char		item;
   unsigned char		itemNumber;
   unsigned char		object;
-  bool		        hasPlayer;
+  bool			hasPlayer;
 
   Hoopla();
   ~Hoopla();

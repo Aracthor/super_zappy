@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Fri Dec  5 14:25:49 2014 
+## Last Update Wed Dec 10 13:36:04 2014 
 ##
 
 CC=		g++
@@ -58,6 +58,8 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(CATALOGS_DIR)ObjectCatalog.cpp		\
 		$(SRCS_DIR)$(CATALOGS_DIR)Production.cpp		\
 		$(SRCS_DIR)$(CATALOGS_DIR)ReadableFromZCSV.cpp		\
+		$(SRCS_DIR)$(CATALOGS_DIR)WeaponPlan.cpp		\
+		$(SRCS_DIR)$(CATALOGS_DIR)WeaponCatalog.cpp		\
 		$(SRCS_DIR)$(CONSOLES_DIR)ClientsConsole.cpp		\
 		$(SRCS_DIR)$(CONSOLES_DIR)ColorFactory.cpp		\
 		$(SRCS_DIR)$(CONSOLES_DIR)Console.cpp			\
@@ -73,11 +75,14 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)Server.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)SingletonManager.cpp		\
 		$(SRCS_DIR)$(DATA_DIR)Class.cpp				\
+		$(SRCS_DIR)$(DATA_DIR)Equipement.cpp			\
 		$(SRCS_DIR)$(DATA_DIR)GameData.cpp			\
+		$(SRCS_DIR)$(DATA_DIR)Hurtable.cpp			\
 		$(SRCS_DIR)$(DATA_DIR)Inventory.cpp			\
 		$(SRCS_DIR)$(DATA_DIR)Namable.cpp			\
 		$(SRCS_DIR)$(DATA_DIR)Player.cpp			\
 		$(SRCS_DIR)$(DATA_DIR)Team.cpp				\
+		$(SRCS_DIR)$(DATA_DIR)Weapon.cpp			\
 		$(SRCS_DIR)$(DEBUG_DIR)ConsoleLog.cpp			\
 		$(SRCS_DIR)$(DEBUG_DIR)Log.cpp				\
 		$(SRCS_DIR)$(DEBUG_DIR)LogManager.cpp			\
@@ -98,6 +103,7 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)SyscallException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ThreadingException.cpp	\
 		$(SRCS_DIR)$(EXCEPTIONS_DIR)ZappyException.cpp		\
+		$(SRCS_DIR)$(EXECUTORS_DIR)Attacker.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Crafter.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Destroyer.cpp		\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Digger.cpp			\
@@ -106,6 +112,7 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Mailer.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Mover.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Movements.cpp		\
+		$(SRCS_DIR)$(EXECUTORS_DIR)PlayerLocater.cpp		\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Putter.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Rotater.cpp			\
 		$(SRCS_DIR)$(EXECUTORS_DIR)Searcher.cpp			\

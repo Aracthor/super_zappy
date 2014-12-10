@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 14 13:07:56 2014 
-// Last Update Sun Nov 16 16:08:49 2014 
+// Last Update Tue Dec  9 16:06:40 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -244,7 +244,7 @@ Client::operator<<(const Player& player)
 	<< player.getOrientation() << ' '
 	<< player.getTeam()->getName() << ' '
 	<< player.getClass()->getName() << ' '
-	<< player.getEquipement()
+	<< (player.getEquipement() ? player.getEquipement()->getItem() : 0)
 	<< LINE_SEPARATOR;
 }
 

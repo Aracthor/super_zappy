@@ -5,12 +5,13 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 20:20:00 2014 
-// Last Update Wed Nov 19 14:59:15 2014 
+// Last Update Tue Dec  9 16:26:04 2014 
 //
 
 #include "actions/ExecuterThread.hh"
 #include "core/Server.hh"
 #include "debug/LogManager.hh"
+#include "executors/Attacker.hh"
 #include "executors/Crafter.hh"
 #include "executors/Destroyer.hh"
 #include "executors/Digger.hh"
@@ -18,6 +19,7 @@
 #include "executors/Equipper.hh"
 #include "executors/Mailer.hh"
 #include "executors/Mover.hh"
+#include "executors/PlayerLocater.hh"
 #include "executors/Putter.hh"
 #include "executors/Rotater.hh"
 #include "executors/Searcher.hh"
@@ -39,8 +41,10 @@ ExecuterThread::ExecuterThread() :
   m_executors[Action::put]		= new Putter;
   m_executors[Action::equip]		= new Equipper;
   m_executors[Action::craft]		= new Crafter;
-  m_executors[Action::build]		= NULL;
+  m_executors[Action::build]		= NULL; // TODO
   m_executors[Action::mail]		= new Mailer;
+  m_executors[Action::locateEnnemy]	= new PlayerLocater;
+  m_executors[Action::attack]		= new Attacker;
 }
 
 ExecuterThread::~ExecuterThread()

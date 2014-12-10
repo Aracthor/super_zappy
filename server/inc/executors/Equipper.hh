@@ -5,19 +5,26 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Nov 12 17:42:04 2014 
-// Last Update Thu Nov 13 08:38:31 2014 
+// Last Update Wed Dec 10 10:54:10 2014 
 //
 
 #ifndef EQUIPPER_HH_
 # define EQUIPPER_HH_
 
 # include "IExecutor.hh"
+# include "catalogs/WeaponCatalog.hh"
 
-class	Equipper : public IExecutor
+class		Equipper : public IExecutor
 {
+private:
+  WeaponCatalog	m_catalog;
+
 public:
   Equipper();
   ~Equipper();
+
+private:
+  Equipement*	createEquipement(Hoopla::EItem item) const;
 
 private:
   bool	unequipe(Player* player);

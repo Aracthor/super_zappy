@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 23:07:04 2014 
-// Last Update Sun Nov 16 16:05:33 2014 
+// Last Update Tue Dec  9 16:25:27 2014 
 //
 
 #include "actions/ActionFactory.hh"
@@ -58,6 +58,14 @@ ActionFactory::ActionFactory()
   m_actionNames[Action::mail]		= "MAIL";
   m_actionTimers[Action::mail]		= 2;
   m_actionReaders[Action::mail]		= &ActionFactory::readTextData;
+
+  m_actionNames[Action::locateEnnemy]	= "LEN";
+  m_actionTimers[Action::locateEnnemy]	= 5;
+  m_actionReaders[Action::locateEnnemy]	= &ActionFactory::readTextData;
+
+  m_actionNames[Action::attack]		= "ATT";
+  m_actionTimers[Action::attack]	= 1;
+  m_actionReaders[Action::attack]	= &ActionFactory::readPositionData;
 }
 
 ActionFactory::~ActionFactory()

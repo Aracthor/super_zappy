@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Nov 14 11:07:21 2014 
-// Last Update Tue Dec  9 09:41:04 2014 
+// Last Update Tue Dec  9 15:55:38 2014 
 //
 
 #include <fstream>
@@ -78,6 +78,13 @@ Catalog<T, N>::getSecureElem(T& ref, unsigned int index) const
   return (m_exist[index]);
 }
 
+
+template <class T, unsigned int N>
+bool
+Catalog<T, N>::elemExists(unsigned int index) const
+{
+  return (m_exist[index]);
+}
 
 template <class T, unsigned int N>
 const T&

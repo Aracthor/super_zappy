@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 14:34:12 2014 
-// Last Update Tue Dec  9 12:18:43 2014 
+// Last Update Wed Dec 10 13:28:43 2014 
 //
 
 load("violent/HunterScript.js");
@@ -16,6 +16,7 @@ function	Hunter()
     this.perception = 80;
     this.strength = 60;
     this.crafting = 1;
+    this.shoot = 4;
 }
 
 Hunter.prototype = new Class("hunter");

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 08:43:05 2014 
-// Last Update Thu Nov 13 16:29:56 2014 
+// Last Update Wed Dec 10 12:57:19 2014 
 //
 
 #include "data/Class.hh"
@@ -13,7 +13,7 @@
 Class::Class(const char* name,
 	     unsigned int s, unsigned int p, unsigned int d, unsigned int t, unsigned int i,
 	     unsigned int speedLevel, unsigned int orientationLevel,
-	     unsigned int craftingLevel, unsigned int buildingLevel) :
+	     unsigned int craftingLevel, unsigned int buildingLevel, unsigned int shootLevel) :
   Namable(name)
 {
   m_characteristics[strength]	= s;
@@ -26,6 +26,7 @@ Class::Class(const char* name,
   m_skills[orientation]		= orientationLevel;
   m_skills[crafting]		= craftingLevel;
   m_skills[building]		= buildingLevel;
+  m_skills[shoot]		= shootLevel;
 }
 
 Class::~Class()

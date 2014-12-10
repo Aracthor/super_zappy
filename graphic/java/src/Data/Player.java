@@ -2,7 +2,7 @@ package Data;
 
 import org.lwjgl.util.vector.Vector2f;
 
-public class		Player
+public class		Player extends Hurtable
 {
 	String			name;
 	String			className;
@@ -14,6 +14,7 @@ public class		Player
 	
 	public	Player(String name, int posX, int posY, Team team, String className, EItem equipement)
 	{
+		super();
 		this.name = name;
 		this.className = className;
 		this.position = new Vector2f(posX, posY);

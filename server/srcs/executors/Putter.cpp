@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Nov 12 16:02:02 2014 
-// Last Update Fri Nov 14 10:40:21 2014 
+// Last Update Wed Dec 10 10:38:48 2014 
 //
 
 #include "abstractions/strings.hh"
@@ -26,14 +26,14 @@ Putter::execute(Player* player, const Action::UData& data)
   Hoopla&	hoopla = this->getServerData()->getHoopla(player->getPosition());
   bool		valid;
 
-  valid = (hoopla.item == Hoopla::nothing &&
+  valid = ((hoopla.item == Hoopla::nothing || hoopla.item == data.item.id) &&
 	   data.item.number > 0 &&
 	   player->getInventory().getItemNumber(data.item.id) >= data.item.number);
 
   if (valid)
     {
       hoopla.item = data.item.id;
-      hoopla.itemNumber = data.item.number;
+      hoopla.itemNumber += data.item.number;
       player->getInventory().sub(data.item.id, data.item.number);
       this->getServerData()->sayToGraphicClients(hoopla);
     }

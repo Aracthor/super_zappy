@@ -5,10 +5,11 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Nov 12 17:43:04 2014 
-// Last Update Thu Nov 13 09:36:36 2014 
+// Last Update Wed Dec 10 11:27:21 2014 
 //
 
 #include "abstractions/strings.hh"
+#include "data/Weapon.hh"
 #include "debug/outputs.hh"
 #include "executors/Equipper.hh"
 
@@ -21,22 +22,38 @@ Equipper::~Equipper()
 }
 
 
+Equipement*
+Equipper::createEquipement(Hoopla::EItem item) const
+{
+  Equipement*	equipement;
+
+  if (m_catalog.elemExists(item))
+    equipement = new Weapon(item, m_catalog[item]); // TODO rechargeable weapons
+  else
+    equipement = new Equipement(item);
+
+  return (equipement);
+}
+
+
 bool
 Equipper::unequipe(Player* player)
 {
-  bool	valid;
+  Hoopla::EItem	item;
+  bool		valid;
 
+  item = player->getEquipementItem();
   valid = true;
 
-  if (player->getEquipement() != Hoopla::none)
+  if (item != Hoopla::none)
     {
       valid = (!player->getInventory().isFull() &&
 	       (!player->getInventory().hasNoMoreSlot() ||
-		player->getInventory().getItemNumber(player->getEquipement()) > 0));
+		player->getInventory().getItemNumber(item) > 0));
       if (valid)
 	{
-	  player->getInventory().add(player->getEquipement(), 1);
-	  player->setEquipement(Hoopla::none);
+	  player->getInventory().add(item, 1);
+	  player->unequip();
 	}
     }
 
@@ -55,13 +72,13 @@ Equipper::changeEquipement(Player* player, Hoopla::EItem item)
 
   if (valid)
     {
-      equipement = player->getEquipement();
+      equipement = player->getEquipementItem();
       if (equipement != Hoopla::none)
 	valid = (!player->getInventory().hasNoMoreSlot() || number == 1);
       if (valid)
 	{
 	  player->getInventory().sub(item, 1);
-	  player->setEquipement(item);
+	  player->setEquipement(this->createEquipement(item));
 	  if (equipement != Hoopla::none)
 	    player->getInventory().add(equipement, 1);
 	}
@@ -85,7 +102,4 @@ Equipper::execute(Player* player, const Action::UData& data)
     valid = this->changeEquipement(player, item);
   
   player->vsend("END %s", BOOLEAN_TO_STRING(valid));
-  if (valid)
-    this->getServerData()->vsayToGraphicClients("PEQ %s %d\n",
-						player->getName(), player->getEquipement());
 }

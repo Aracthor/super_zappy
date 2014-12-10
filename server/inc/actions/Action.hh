@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 19:34:56 2014 
-// Last Update Fri Dec  5 08:57:33 2014 
+// Last Update Tue Dec  9 16:24:33 2014 
 //
 
 #ifndef ACTION_HH_
@@ -37,6 +37,8 @@ public:
       craft,
       build,
       mail,
+      locateEnnemy,
+      attack,
       actions_number
     };
 
