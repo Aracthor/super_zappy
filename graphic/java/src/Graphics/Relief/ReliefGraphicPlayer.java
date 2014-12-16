@@ -13,6 +13,7 @@ import Data.Team;
 import Engine.Models.Mesh;
 import Graphics.AGraphicPlayer;
 import Graphics.GraphicWarehouse;
+import Graphics.Relief.ActionRenderers.AttackRenderer;
 import Graphics.Relief.ActionRenderers.DigRenderer;
 import Graphics.Relief.ActionRenderers.IReliefActionRenderer;
 
@@ -29,6 +30,7 @@ public class ReliefGraphicPlayer extends AGraphicPlayer
 		color = this.getPlayerColor(data.getTeam());
 		actionRenderers = new HashMap<EAction, IReliefActionRenderer>();
 		actionRenderers.put(EAction.Digging, new DigRenderer());
+		actionRenderers.put(EAction.Attacking, new AttackRenderer());
 		this.update(data);
 	}
 	
@@ -65,7 +67,8 @@ public class ReliefGraphicPlayer extends AGraphicPlayer
 		actionRenderer = actionRenderers.get(data.getAction().getId());
 		if (actionRenderer != null && data.getAction().getPercentage() < 100.0f)
 		{
-			actionRenderer.render(this, data.getAction().getPercentage());
+			actionRenderer.render(this, data.getAction().getPercentage(),
+								  data.getAction().getParam(), data.getAction().getX(), data.getAction().getY());
 		}
 		
 		equipementMesh = data.getEquipement().get3DModel();

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:44:42 2014 
-// Last Update Wed Nov 19 11:41:33 2014 
+// Last Update Tue Dec 16 10:31:44 2014 
 //
 
 #include "exceptions/ConfigsException.hh"
@@ -14,13 +14,15 @@
 #include <cstdio>
 #include <cstdlib>
 
-Configs::Map::Map()
+Configs::Map::Map() :
+  seed(0)
 {
 }
 
 Configs::Map::Map(unsigned int width, unsigned int height) :
   width(width),
-  height(height)
+  height(height),
+  seed(0)
 {
 }
 
@@ -78,6 +80,12 @@ Configs::changeMapHeight(char* arg)
 }
 
 void
+Configs::changeMapSeed(char* arg)
+{
+  m_map.seed = atol(arg);
+}
+
+void
 Configs::addTeam(char* team)
 {
   m_teams.addTeam(team);
@@ -93,6 +101,7 @@ Configs::emplFlagsTabs(ParamReader* readers, char* flags)
   readers[3] = &Configs::changeMapHeight;
   readers[4] = &Configs::addTeam;
   readers[5] = &Configs::changeLogFile;
+  readers[6] = &Configs::changeMapSeed;
 
   flags[0] = 'p';
   flags[1] = 's';
@@ -100,6 +109,7 @@ Configs::emplFlagsTabs(ParamReader* readers, char* flags)
   flags[3] = 'y';
   flags[4] = 'n';
   flags[5] = 'l';
+  flags[6] = 'g';
 }
 
 void

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 08:51:34 2014 
-// Last Update Tue Nov  4 15:57:24 2014 
+// Last Update Thu Dec 11 09:14:44 2014 
 //
 
 #include "data/Namable.hh"
@@ -13,14 +13,18 @@
 #include <cstdlib>
 #include <cstring>
 
-#include <cstdio> // DEBUG
+Namable::Namable() :
+  m_name(NULL)
+{
+}
+
 Namable::Namable(const char* name) :
   m_name(strdup(name))
 {
 }
 
 Namable::Namable(const Namable& copy) :
-  m_name(strdup(copy.getName()))
+  m_name(copy.getName() ? strdup(copy.getName()) : NULL)
 {
 }
 

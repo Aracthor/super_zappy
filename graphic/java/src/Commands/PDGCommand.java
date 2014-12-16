@@ -1,10 +1,9 @@
 package Commands;
 
 import Data.EAction;
-import Data.Player;
 import Data.PlayerAction;
 
-public class PDGCommand extends APlayerCommand
+public class PDGCommand extends APlayerActionCommand
 {
 	public	PDGCommand()
 	{
@@ -12,12 +11,8 @@ public class PDGCommand extends APlayerCommand
 	}
 
 	@Override
-	protected boolean applyOnPlayer(Player player, String[] args)
+	protected PlayerAction createAction(int time, String[] args)
 	{
-		int		time = Integer.parseInt(args[2]);
-		
-		player.setAction(new PlayerAction(EAction.Digging, time));
-		
-		return true;
+		return (new PlayerAction(EAction.Digging, time));
 	}
 }

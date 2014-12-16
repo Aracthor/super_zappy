@@ -4,41 +4,34 @@
 // Made by 
 // Login   <aracthor@epitech.net>
 // 
-// Started on  Tue Nov  4 10:40:19 2014 
-// Last Update Tue Nov  4 15:07:12 2014 
+// Started on  Thu Dec 11 09:42:17 2014 
+// Last Update Thu Dec 11 10:18:30 2014 
 //
 
 #ifndef ARRAY_HH_
 # define ARRAY_HH_
 
-template <typename T>
-class		Array
-{
-private:
-  unsigned int	m_maxSize;
-  unsigned int	m_size;
-  T*		m_data;
+# include <vector>
 
+template <class T>
+class	Array : public std::vector<T*>
+{
 public:
   Array();
+  Array(unsigned int size);
+  Array(const Array<T>& ref);
   ~Array();
 
 public:
-  void	resize(unsigned int size);
-  void	free();
-
-public:
-  void	push(const T& elem);
-  bool	securePush(const T& elem);
+  inline void		resize(unsigned int number);
 
 public:
   inline bool		isFull() const;
-  inline unsigned int	getSize() const;
-  inline const T*	getData() const;
-  inline T*		getData();
 
 public:
-  inline void		operator<<(const T& elem);
+  inline Array<T>&	operator<<(const T& elem);
+
+public:
   inline const T&	operator[](unsigned int id) const;
   inline T&		operator[](unsigned int id);
 };

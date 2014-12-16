@@ -9,7 +9,7 @@ public class DigRenderer implements IReliefActionRenderer
 	}
 	
 	@Override
-	public void render(ReliefGraphicPlayer player, float percentage)
+	public void render(ReliefGraphicPlayer player, float percentage, int param, int x, int y)
 	{
 		float	translation;
 		

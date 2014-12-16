@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Dec  9 14:09:38 2014 
-// Last Update Tue Dec  9 16:12:33 2014 
+// Last Update Tue Dec 16 08:51:37 2014 
 //
 
 #ifndef WEAPON_PLAN_HH_
@@ -18,6 +18,7 @@ class		WeaponPlan : public ReadableFromZCSV
 private:
   unsigned int	m_damages;
   unsigned int	m_range;
+  unsigned int	m_projectileSpeed;
   Hoopla::EItem	m_ammo;
   unsigned int	m_reloadTime;
 
@@ -31,6 +32,7 @@ public:
 public:
   inline unsigned int	getDamages() const;
   inline unsigned int	getRange() const;
+  inline unsigned int	getProjectileSpeed() const;
   inline Hoopla::EItem	getAmmo() const;
   inline unsigned int	getReloadTime() const;
 };

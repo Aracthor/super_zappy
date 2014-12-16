@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:55:13 2014 
-// Last Update Fri Nov 21 10:43:12 2014 
+// Last Update Thu Dec 11 17:48:28 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -42,6 +42,8 @@ Network::discalifyTeam(Team* team)
 void
 Network::kickClient(Client* client, bool disconnected)
 {
+  // unsigned int	index;
+
   if (disconnected == false)
     {
       LogManagerSingleton::access()->error->print("Kicking client %d.", client->getFd());
@@ -50,6 +52,13 @@ Network::kickClient(Client* client, bool disconnected)
 	this->discalifyTeam(client->getTeam());
     }
 
+  // index = m_clients.indexOf(client);
+  // while (++index < m_clients.getSize())
+  //   if (m_clients[index].isPlayer())
+  //     {
+  // 	m_clients[index].getTeam()->setClient(&m_clients[index - 1]);
+  // 	m_clients[index - 1].giveTeam(m_clients[index].getTeam());
+  //     }
   m_clients.popElem(client);
 }
 

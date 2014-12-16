@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 31 13:31:13 2014 
-// Last Update Sat Nov  8 20:39:39 2014 
+// Last Update Tue Dec 16 10:48:56 2014 
 //
 
 load("Class.js");
@@ -15,6 +15,12 @@ load("ZappyScript.js");
 
 function	Team(name)
 {
+    this.classes = new Array;
+    this.players = new Array;
+    this.wealth = 0;
+    this.genetic_hardening = 0;
+    this.skill_capacity = 0;
+
     if (name.substr(name.length - 3, 3) != ".js")
     {
 	name += ".js";

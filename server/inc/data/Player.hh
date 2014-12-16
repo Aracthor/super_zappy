@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 08:37:23 2014 
-// Last Update Wed Dec 10 11:27:11 2014 
+// Last Update Thu Dec 11 12:46:54 2014 
 //
 
 #ifndef PLAYER_HH_
@@ -47,8 +47,15 @@ private:
   bool		m_decremented; // Used by ExecuterThread for decrementing
 
 public:
+  Player(); // For containers-confrmity
   Player(const char* name, const Team* team, const Class* refToClass);
   ~Player();
+
+// From Hurtable
+public:
+  void	die();
+  void	hurt(unsigned int damages);
+  void	heal(unsigned int healing);
 
 public:
   void	unequip();

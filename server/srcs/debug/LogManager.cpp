@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 08:48:33 2014 
-// Last Update Sun Nov 23 10:33:46 2014 
+// Last Update Thu Dec 11 10:13:07 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -49,7 +49,7 @@ LogManager::initStandartLogs()
   graphicOutput = new StandartLog("graphicOutput", stdout, GRAPHIC_OUTPUT_COLOR, GRAPHIC_OUTPUT_BOLD, false);
   iaInput = new StandartLog("iaInput", stdout, IA_INPUT_COLOR, IA_INPUT_BOLD, true);
   iaOutput = new StandartLog("iaOutput", stdout, IA_OUTPUT_COLOR, IA_OUTPUT_BOLD, true);
-  intern = new StandartLog("intern", stdout, INTERN_COLOR, INTERN_BOLD, false);
+  intern = new StandartLog("intern", stdout, INTERN_COLOR, INTERN_BOLD, true);
   events = new StandartLog("events", stdout, THREADING_COLOR, THREADING_BOLD, true);
   connection = new StandartLog("connection", stdout, CONNECTION_COLOR, CONNECTION_BOLD, true);
   error = new StandartLog("error", stderr, ERROR_COLOR, ERROR_BOLD, true);

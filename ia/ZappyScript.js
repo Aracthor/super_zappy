@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Thu Nov  6 14:27:41 2014 
-// Last Update Tue Dec  9 16:29:17 2014 
+// Last Update Thu Dec 11 14:52:59 2014 
 //
 
 load("Items.js");
@@ -64,6 +64,10 @@ ZappyScript.prototype.start = function()
     try
     {
 	this.play();
+	while (42)
+	{
+	    this.wait();
+	}
     }
     catch (exception)
     {
@@ -100,7 +104,12 @@ ZappyScript.prototype.receiveFriendMessage = function(message)
 
 ZappyScript.prototype.readUnexpectedMessage = function(message)
 {
-    if (message[0] == "FRIEND_MESSAGE" && this.onFriendMessage != null)
+    if (message[0] == "YOU_ARE_DEAD_BITCH")
+    {
+	this.loop = false;
+	print(this.player.name + " is deceased...");
+    }
+    else if (message[0] == "FRIEND_MESSAGE" && this.onFriendMessage != null)
     {
 	message.shift();
 	this.receiveFriendMessage(message);

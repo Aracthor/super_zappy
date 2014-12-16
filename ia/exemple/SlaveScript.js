@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Thu Nov  6 14:00:21 2014 
-// Last Update Fri Nov 14 18:02:24 2014 
+// Last Update Thu Dec 11 14:40:19 2014 
 //
 
 function	SlaveScript()
@@ -45,7 +45,6 @@ SlaveScript.prototype.play = function()
 	    item = this.dig();
 	    if (item != null)
 	    {
-		print(item.id);
 	    }
 	}
     }

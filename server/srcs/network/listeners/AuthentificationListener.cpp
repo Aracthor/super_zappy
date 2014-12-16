@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 14:27:00 2014 
-// Last Update Sun Nov 16 16:07:22 2014 
+// Last Update Thu Dec 11 10:02:49 2014 
 //
 
 #include "core/Server.hh"
@@ -25,12 +25,16 @@ AuthentificationListener::~AuthentificationListener()
 }
 
 
+static void
+sendTeam(const Team& team, Client& client)
+{
+  client << team;
+}
+
 void
 AuthentificationListener::graphicAuthentification(Client* client)
 {
   const Server*	server = this->getServerData();
-  const Team*	teams = server->getTeams();
-  unsigned int	i;
   char		buffer[0x1000];
 
   client->setGraphic();
@@ -39,8 +43,7 @@ AuthentificationListener::graphicAuthentification(Client* client)
 	  server->getSpeed(), server->getWidth(), server->getHeight());
   *client << buffer;
 
-  for (i = 0; i < server->getTeamsNumber(); ++i)
-    *client << teams[i];
+  this->getServerData()->doToTeams(&sendTeam, *client);
 
   LogManagerSingleton::access()->connection->print("Client %d authentified as graphic.",
 						   client->getFd());

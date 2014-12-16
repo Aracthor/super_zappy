@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 15:59:55 2014 
-// Last Update Wed Dec 10 12:57:47 2014 
+// Last Update Thu Dec 11 16:06:21 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -15,6 +15,10 @@
 
 #include <cstddef>
 #include <cstring>
+
+Team::Team()
+{
+}
 
 Team::Team(const char* name) :
   Namable(name),
@@ -27,6 +31,8 @@ Team::Team(const char* name) :
 Team::Team(const Team& copy) :
   Namable(copy),
   m_client(NULL),
+  m_classes(copy.m_classes),
+  m_players(copy.m_players),
   m_discalified(false)
 {
   this->reset();
@@ -88,10 +94,10 @@ Team::addPlayer(const char* name, const char* className)
   bool		valid;
 
   classRef = this->getClassFromName(className);
-  valid = (classRef != NULL);
+  valid = (classRef != NULL && m_players.isFull() == false);
 
   if (valid)
-    valid = m_players.securePush(Player(name, this, classRef));
+    m_players << Player(name, this, classRef);
 
   return (valid);
 }
@@ -112,8 +118,10 @@ Team::addClass(const char* name,
 						      m_configs.skillsCapacity);
   if (error == NULL)
     {
-      if (m_classes.securePush(newClass) == false)
+      if (m_classes.isFull())
 	error = "Too many classes";
+      else
+	m_classes << newClass;
     }
 
   return (error);
@@ -123,11 +131,6 @@ Team::addClass(const char* name,
 void
 Team::destroy()
 {
-  if (m_configs.ready)
-    {
-      m_players.free();
-      m_classes.free();
-    }
   Namable::destroy();
 }
 
@@ -135,8 +138,8 @@ void
 Team::reset()
 {
   m_configs.ready = false;
-  m_players.free();
-  m_classes.free();
+  m_players.clear();
+  m_classes.clear();
   if (m_client != NULL)
     {
       m_client->send(REBOOT_MESSAGE LINE_SEPARATOR_STR);
@@ -144,3 +147,17 @@ Team::reset()
       m_client = NULL;
     }
 }
+
+
+static int
+isAliveAndOfMe(const Player& player, const Team& team)
+{
+  return (player.getTeam() == &team && player.isAlive());
+}
+
+bool
+Team::hasAnyoneAlive() const
+{
+  return (this->getServerData()->findPlayer(&isAliveAndOfMe, *this) != NULL);
+}
+

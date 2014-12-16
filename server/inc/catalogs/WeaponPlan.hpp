@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Dec  9 14:17:46 2014 
-// Last Update Tue Dec  9 16:12:46 2014 
+// Last Update Tue Dec 16 08:52:01 2014 
 //
 
 unsigned int
@@ -18,6 +18,12 @@ unsigned int
 WeaponPlan::getRange() const
 {
   return (m_range);
+}
+
+unsigned int
+WeaponPlan::getProjectileSpeed() const
+{
+  return (m_projectileSpeed);
 }
 
 Hoopla::EItem

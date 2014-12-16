@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Nov 12 15:08:21 2014 
-// Last Update Wed Nov 12 16:52:04 2014 
+// Last Update Thu Dec 11 09:01:35 2014 
 //
 
 #include "abstractions/maths.hh"
@@ -13,6 +13,10 @@
 #include "exceptions/ZappyException.hh"
 
 #include <cstring>
+
+Inventory::Inventory()
+{
+}
 
 Inventory::Inventory(unsigned int maxSize) :
   m_maxSize(maxSize)

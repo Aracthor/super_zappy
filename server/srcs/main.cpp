@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:27:44 2014 
-// Last Update Thu Dec  4 08:49:50 2014 
+// Last Update Tue Dec 16 10:31:51 2014 
 //
 
 #include <iostream>
@@ -13,10 +13,6 @@
 #include "core/Server.hh"
 #include "exceptions/ConfigsException.hh"
 #include "ncursesxx/NcursesException.hh"
-
-#include <cstdlib>
-#include <ctime>
-#include <unistd.h>
 
 static void	print_usage(char* name)
 {
@@ -26,6 +22,7 @@ static void	print_usage(char* name)
 	    << "\t[-p port]" << std::endl
 	    << "\t[-s speed]" << std::endl
 	    << "\t[-l log_file]" << std::endl
+	    << "\t[-g seed]" << std::endl
 	    << "\t[-d]" << std::endl
 	    << "\t-n team1 team2 {teams}" << std::endl;
 }
@@ -35,8 +32,6 @@ int		main(int argc, char** argv)
   Configs	configs;
   Server*	server;
   int		return_value;
-
-  srandom(time(NULL) * getpid());
 
   try
     {

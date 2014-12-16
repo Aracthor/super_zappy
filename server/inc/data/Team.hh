@@ -5,11 +5,13 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 15:54:44 2014 
-// Last Update Wed Dec 10 12:59:15 2014 
+// Last Update Thu Dec 11 16:05:35 2014 
 //
 
 #ifndef TEAM_HH_
 # define TEAM_HH_
+
+# include <vector>
 
 # include "Class.hh"
 # include "Namable.hh"
@@ -48,6 +50,7 @@ private:
   bool	        	m_discalified;
 
 public:
+  Team(); // For containers-confrmity
   Team(const char* name);
   Team(const Team& copy);
   ~Team();
@@ -80,6 +83,7 @@ public:
   inline bool			hasReadyConfig() const;
   inline const Configs&		getConfigs() const;
   inline bool			isDiscalified() const;
+  bool				hasAnyoneAlive() const;
 
 public:
   inline void			setClient(Client* client);

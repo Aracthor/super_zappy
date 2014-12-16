@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 31 13:20:02 2014 
-// Last Update Tue Nov 18 14:56:51 2014 
+// Last Update Thu Dec 11 15:35:15 2014 
 //
 
 load("EAction.js");
@@ -14,6 +14,7 @@ load("ECommand.js");
 WELCOME_MESSAGE=	"WELCOME";
 KICK_MESSAGE=		"GET THE FUCK OUT";
 REBOOT_MESSAGE=		"GAME REBOOT";
+WIN_MESSAGE=		"FUCKING SUCCEED";
 
 function	Client(host, port)
 {
@@ -94,6 +95,11 @@ Client.prototype.recvPacket = function(packet)
 	throw new Error("Server rebooted !");
 	this.loop = false;
     }
+    else if (packet == WIN_MESSAGE)
+    {
+	throw new Error("FUCKING SUCCEED !!!");
+	this.loop = false;
+    }
     else
     {
 	this.interprete(packet);
@@ -116,7 +122,7 @@ Client.prototype.listenServer = function()
     {
 	if (this.socket.isClosed() == false)
 	{
-	    print("Error parsing data : " + error.message);
+	    print(error.message);
 	    this.loop = false;
 	}
     }

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Dec  9 14:10:31 2014 
-// Last Update Tue Dec  9 16:11:01 2014 
+// Last Update Thu Dec 11 14:04:42 2014 
 //
 
 #include "catalogs/WeaponPlan.hh"
@@ -25,6 +25,7 @@ WeaponPlan::readFromString(const std::string& string, unsigned int pos)
 {
   pos = this->read(string, pos, m_damages);
   pos = this->read(string, pos, m_range);
+  pos = this->read(string, pos, m_projectileSpeed);
   pos = this->read(string, pos, m_ammo);
   if (m_ammo != Hoopla::none)
     pos = this->read(string, pos, m_reloadTime);

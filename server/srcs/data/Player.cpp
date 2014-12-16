@@ -5,15 +5,20 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 08:48:47 2014 
-// Last Update Wed Dec 10 10:53:43 2014 
+// Last Update Thu Dec 11 14:45:01 2014 
 //
 
 #include "core/Server.hh"
 #include "data/Player.hh"
 #include "data/Team.hh"
+#include "debug/LogManager.hh"
 
 #include <cstdarg>
 #include <cstdio>
+
+Player::Player()
+{
+}
 
 Player::Player(const char* name, const Team* team, const Class* refToClass) :
   Namable(name),
@@ -31,6 +36,35 @@ Player::~Player()
 {
   if (m_equipement != NULL)
     delete (m_equipement);
+}
+
+
+void
+Player::die()
+{
+  this->getServerData()->getHoopla(m_position).hasPlayer = false;
+  this->getServerData()->vsayToGraphicClients("PDD %s\n", this->getName());
+  this->send(DEAD_MESSAGE);
+  LogManagerSingleton::access()->intern->print("Player %s die at %d/%d.",
+					       this->getName(), m_position.x, m_position.y);
+}
+
+void
+Player::hurt(unsigned int damages)
+{
+  LogManagerSingleton::access()->intern->print("Player %s get %d damages.", this->getName(), damages);
+  Hurtable::hurt(damages);
+  this->getServerData()->vsayToGraphicClients("PCL %s %d\n", this->getName(), m_currentLife);
+  if (this->isDead())
+    this->die();
+}
+
+void
+Player::heal(unsigned int healing)
+{
+  LogManagerSingleton::access()->intern->print("Player %s heal %d damages.", this->getName(), healing);
+  Hurtable::heal(healing);
+  this->getServerData()->vsayToGraphicClients("PCL %s %d\n", this->getName(), m_currentLife);
 }
 
 

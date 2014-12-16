@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 20:18:40 2014 
-// Last Update Sun Nov  9 03:24:57 2014 
+// Last Update Mon Dec 15 13:27:14 2014 
 //
 
 #ifndef EXECUTER_THREAD_HH_
@@ -32,6 +32,8 @@ private:
   void	executeActions();
   void	execute();
   void	incrementLoop();
+  void	checkVictory();
+  void	wait() const;
 
 protected:
   bool	loopCycle();

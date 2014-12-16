@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 08:21:23 2014 
-// Last Update Sun Nov 16 16:07:08 2014 
+// Last Update Tue Dec 16 10:24:27 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -29,7 +29,7 @@ Terraformer::createMap()
 
   MALLOC(moistures, m_hooplasNumber, float);
 
-  LogManagerSingleton::access()->intern->print("Map generation started.");
+  LogManagerSingleton::access()->intern->print("Map generation started with seed %u.", m_seed);
   {
     LogManagerSingleton::access()->intern->print("Height calc...");
     this->calcHeights(m_hooplas, m_configs.width, m_configs.height);

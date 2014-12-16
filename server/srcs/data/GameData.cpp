@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:29:09 2014 
-// Last Update Fri Nov 21 12:20:22 2014 
+// Last Update Thu Dec 11 15:47:52 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -62,7 +62,7 @@ GameData::getPlayer(const char* name) const
 
   for (t = 0; player == NULL && t < m_teamsNumber; ++t)
     {
-      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
+      for (i = 0; i < m_teams[t].getPlayers().size(); ++i)
 	if (!strcmp(m_teams[t].getPlayers()[i].getName(), name))
 	  player = &m_teams[t].getPlayers()[i];
     }
@@ -92,6 +92,54 @@ GameData::doToTeams(void (*function)(Team& team))
     function(m_teams[i]);
 }
 
+const Team*
+GameData::findTeam(int (*function)(const Team& team)) const
+{
+  const Team*	team;
+  unsigned int	i;
+  int		bestScore;
+  int		score;
+
+  team = NULL;
+  bestScore = 0;
+
+  for (i = 0; i < m_teamsNumber; ++i)
+    {
+      score = function(m_teams[i]);
+      if (score > bestScore)
+	{
+	  score = bestScore;
+	  team = &m_teams[i];
+	}
+    }
+
+  return (team);
+}
+
+Team*
+GameData::findTeam(int (*function)(const Team& team))
+{
+  Team*		team;
+  unsigned int	i;
+  int		bestScore;
+  int		score;
+
+  team = NULL;
+  bestScore = 0;
+
+  for (i = 0; i < m_teamsNumber; ++i)
+    {
+      score = function(m_teams[i]);
+      if (score > bestScore)
+	{
+	  score = bestScore;
+	  team = &m_teams[i];
+	}
+    }
+
+  return (team);
+}
+
 void
 GameData::doToPlayers(void (*function)(Player& player))
 {
@@ -100,8 +148,9 @@ GameData::doToPlayers(void (*function)(Player& player))
 
   for (t = 0; t < m_teamsNumber; ++t)
     {
-      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
-	function(m_teams[t].getPlayers()[i]);
+      for (i = 0; i < m_teams[t].getPlayers().size(); ++i)
+	if (m_teams[t].getPlayers()[i].isAlive())
+	  function(m_teams[t].getPlayers()[i]);
     }
 }
 
@@ -113,8 +162,9 @@ GameData::doToPlayers(void (*function)(const Player& player)) const
 
   for (t = 0; t < m_teamsNumber; ++t)
     {
-      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
-	function(m_teams[t].getPlayers()[i]);
+      for (i = 0; i < m_teams[t].getPlayers().size(); ++i)
+	if (m_teams[t].getPlayers()[i].isAlive())
+	  function(m_teams[t].getPlayers()[i]);
     }
 }
 
@@ -166,6 +216,15 @@ GameData::resetGame()
   this->getServerData()->sayToGraphicClients("RES\n");
   this->getServerData()->resetActions();
   LogManagerSingleton::access()->events->print("Game rebooted.");
+}
+
+void
+GameData::haveAWinner(const Team* winner, const char* type)
+{
+  winner->getClient()->send(WIN_MESSAGE LINE_SEPARATOR_STR);
+  this->getServerData()->vsayToGraphicClients("VIC %s %s", winner->getName(), type);
+  this->reset();
+  this->getServerData()->resetActions();
 }
 
 

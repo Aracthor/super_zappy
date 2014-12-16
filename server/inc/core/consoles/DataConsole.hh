@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Nov 19 09:11:23 2014 
-// Last Update Thu Nov 20 11:09:02 2014 
+// Last Update Thu Dec 11 09:27:20 2014 
 //
 
 #ifndef DATA_CONSOLE_HH_
@@ -14,7 +14,7 @@
 # include "Console.hh"
 # include "core/LinkedToServer.hh"
 
-# define DATA_CONSOLES_NUMBER	(3)
+# define DATA_CONSOLES_NUMBER	(4)
 
 template <typename T>
 class		DataConsole : public Console,

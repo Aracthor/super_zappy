@@ -5,11 +5,13 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:24:52 2014 
-// Last Update Wed Dec 10 10:21:32 2014 
+// Last Update Thu Dec 11 15:43:40 2014 
 //
 
 #ifndef GAME_DATA_HH_
 # define GAME_DATA_HH_
+
+# include <vector>
 
 # include "Team.hh"
 # include "containers/Array.hh"
@@ -17,7 +19,7 @@
 # include "init/Configs.hh"
 # include "map/Map.hh"
 
-class		GameData : private LinkedToServer
+class	        GameData : private LinkedToServer
 {
 protected:
   Array<Team>	m_teams;
@@ -35,6 +37,10 @@ public:
 
 public:
   void		doToTeams(void (*function)(Team& team));
+  const Team*	findTeam(int (*function)(const Team& team)) const;
+  Team*		findTeam(int (*function)(const Team& team));
+  template <typename T>
+  void		doToTeams(void (*function)(const Team& team, T& data), T& data) const;
   template <typename T>
   T		doToTeams(T (*function)(const Team& team)) const;
 
@@ -59,13 +65,13 @@ public:
 
 public:
   void		startGame();
+  void		haveAWinner(const Team* winner, const char* type);
   void		resetGame();
 
-public:
+private:
   void		reset();
 
 public:
-  inline const Team*	getTeams() const;
   inline Team*		getTeamFromName(const char* name);
   inline unsigned int	getTeamsNumber() const;
   inline unsigned int	getPlayersNumber() const;

@@ -160,6 +160,7 @@ public abstract class	AView
 		DataManager				dataManager;
 		LockedVector<Player>	players;
 		Iterator<Player>		playerIt;
+		Player					player;
 		
 		dataManager = DataManager.getInstance();
 		players = dataManager.getPlayers();
@@ -171,7 +172,11 @@ public abstract class	AView
 			{
 				for (playerIt = players.iterator(); playerIt.hasNext();)
 				{
-					this.displayPlayer(playerIt.next(), elapsedTime);
+					player = playerIt.next();
+					if (player.isAlive())
+					{
+						this.displayPlayer(player, elapsedTime);
+					}
 				}
 			}
 			players.unlock();

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov 17 17:37:57 2014 
-// Last Update Wed Nov 19 14:01:10 2014 
+// Last Update Mon Dec 15 13:33:35 2014 
 //
 
 #ifndef COMMAND_EXECUTER_HH_
@@ -35,6 +35,10 @@ private:
   void  resetGame(const char* params);
   void	rebuildMap(const char* params);
   void	changeSpeed(const char* params);
+
+public:
+  void	executeCommand(const char* command);
+  void	executeCommand(const char* name, const char* param);
 };
 
 #endif // !COMMAND_EXECUTER_HH_

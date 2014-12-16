@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Nov 14 14:43:23 2014 
-// Last Update Fri Nov 14 16:40:02 2014 
+// Last Update Thu Dec 11 13:32:43 2014 
 //
 
 #include "abstractions/maths.hh"
@@ -27,7 +27,7 @@ static void	sendMail(Player& dest, const Player& from, const char* message)
       dest.getTeam() == from.getTeam() &&
       DISTANCE(dest.getPosition(), from.getPosition()) <
       dest.getClass()->getCharacteristicLevel(Class::perception))
-    dest.vsend("FRIEND_MESSAGE %s %s", from.getName(), message);
+    dest.vsend("%s %s %s", MAIL_MESSAGE, from.getName(), message);
 }
 
 void

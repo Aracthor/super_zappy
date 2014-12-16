@@ -29,13 +29,17 @@ public class SuperZappyGraphicClient extends AClient
 		commands.put("ISL", new ISLCommand());
 		commands.put("MAP", new MAPCommand());
 		commands.put("MSG", new MSGCommand());
+		commands.put("PAT", new PATCommand());
+		commands.put("PCL", new PCLCommand());
 		commands.put("PDC", new PDCCommand());
+		commands.put("PDD", new PDDCommand());
 		commands.put("PDG", new PDGCommand());
 		commands.put("PEQ", new PEQCommand());
 		commands.put("PPO", new PPOCommand());
 		commands.put("RES", new RESCommand());
 		commands.put("TDC", new TDCCommand());
 		commands.put("TIM", new TIMCommand());
+		commands.put("VIC", new VICCommand());
 		commands.put("GET", new KickCommand());
 		waitingAChunk = false;
 		chunksPos = null;

@@ -5,13 +5,14 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov 16 16:43:06 2014 
-// Last Update Thu Nov 20 13:37:24 2014 
+// Last Update Thu Dec 11 09:27:00 2014 
 //
 
 #include "core/ControlPanel.hh"
 #include "core/consoles/ClientsConsole.hh"
 #include "core/consoles/LogsConsole.hh"
 #include "core/consoles/PlayersConsole.hh"
+#include "core/consoles/TeamsConsole.hh"
 
 #include <cstring>
 
@@ -31,8 +32,9 @@ ControlPanel::ControlPanel() :
   m_methods[nc::Window::Enter]	= &ControlPanel::confirmCommand;
 
   m_dataConsoles[0] = new ClientsConsole;
-  m_dataConsoles[1] = new PlayersConsole;
-  m_dataConsoles[2] = new LogsConsole;
+  m_dataConsoles[1] = new TeamsConsole;
+  m_dataConsoles[2] = new PlayersConsole;
+  m_dataConsoles[3] = new LogsConsole;
 
   this->resize();
 }

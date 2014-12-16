@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 05:32:05 2014 
-// Last Update Wed Nov 19 11:41:24 2014 
+// Last Update Tue Dec 16 10:21:28 2014 
 //
 
 #ifndef CONFIGS_HH_
@@ -28,7 +28,7 @@
 # define MAP_SIZE_MAX		(256)
 # define TEAMS_NUMBER_MIN	(2)
 
-# define FLAGS_NUMBER		(6)
+# define FLAGS_NUMBER		(7)
 # define CONSOLE_FLAG		('d')
 
 class			Configs
@@ -41,6 +41,7 @@ public:
 
     unsigned int	width;
     unsigned int	height;
+    unsigned int	seed;
   };
 
 private:
@@ -65,6 +66,7 @@ private:
   void	changeSpeed(char* speed);
   void	changeMapWidth(char* width);
   void	changeMapHeight(char* height);
+  void	changeMapSeed(char* seed);
   void	addTeam(char* team);
 
 private:

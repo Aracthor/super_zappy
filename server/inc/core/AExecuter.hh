@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov 18 10:20:05 2014 
-// Last Update Wed Nov 19 14:00:39 2014 
+// Last Update Mon Dec 15 13:33:22 2014 
 //
 
 #ifndef AEXECUTER_HH_
@@ -39,8 +39,8 @@ private:
   unsigned int	calcCommandSize(const char* command) const;
 
 public:
-  void		executeCommand(const char* command);
-  void		executeCommand(const char* name, const char* param);
+  virtual void	executeCommand(const char* command);
+  virtual void	executeCommand(const char* name, const char* param);
 };
 
 # include "AExecuter.hpp"

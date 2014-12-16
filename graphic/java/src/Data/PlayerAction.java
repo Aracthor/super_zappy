@@ -5,20 +5,35 @@ public class PlayerAction
 	private final EAction	action;
 	private final long		totalTime;
 	private long			remainingTime;
-	
-	public	PlayerAction(EAction action)
-	{
-		this.action = action;
-		this.totalTime = 42;
-		this.remainingTime = 42;
-	}
+	private int				param;
+	private int				x;
+	private int				y;
 	
 	public	PlayerAction(EAction action, long time)
+	{
+		this(action, time, 0);
+	}
+	
+	public	PlayerAction(EAction action, long time, int param)
 	{
 		time *= DataManager.getInstance().getSpeed();
 		this.action = action;
 		this.totalTime = time;
 		this.remainingTime = time;
+		this.param = param;
+		this.x = 0;
+		this.y = 0;
+	}
+	
+	public void	setParam(int param)
+	{
+		this.param = param;
+	}
+	
+	public void	setCoords(int x, int y)
+	{
+		this.x = x;
+		this.y = y;
 	}
 	
 	public	EAction	getId()
@@ -34,6 +49,21 @@ public class PlayerAction
 	public long	getRemainingTime()
 	{
 		return (remainingTime);
+	}
+	
+	public int	getParam()
+	{
+		return (param);
+	}
+	
+	public int	getX()
+	{
+		return (x);
+	}
+	
+	public int	getY()
+	{
+		return (y);
 	}
 	
 	public	float	getPercentage()

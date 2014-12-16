@@ -5,7 +5,7 @@
 ** Login   <aracthor@epitech.net>
 ** 
 ** Started on  Sat Oct  4 15:57:56 2014 
-** Last Update Thu Dec  4 08:53:48 2014 
+** Last Update Tue Dec 16 09:33:09 2014 
 *)
 
 
@@ -38,6 +38,7 @@ Strings values	=
 team_name	= string ;
 player_name	= string ;
 message		= string ;
+victory_type	= string ;
 
 
 (* Group values *)
@@ -55,7 +56,11 @@ player_description	= "PDC ", player_name, ' ', pos_x, ' ', pos_y, ' ', orientati
 player_position		= "PPO ", player_name, ' ', pos_x, ' ', pos_y, ' ', orientation, '\n' ;
 player_equipement	= "PEQ ", player_name, ' ', equipement, '\n' ;
 player_digging		= "PDG ", player_name, ' ', time, '\n' ;
+player_attacking	= "PAT ", player_name, ' ', time, ' ' item_enum, ' ', pos_x. ' ', pos_y, '\n' ;
+player_change_life	= "PCL ", player_name, ' ', life, '\n' ;
+player_dead		= "PDD ", player_name, '\n' ;
 team_description	= "TDC ", team_name, ' ', team_discalified, '\n' ;
+team_victory		= "VIC ", team_name. ' ', victory_type, '\n' ;
 
 
 (* Graphical client questions *)

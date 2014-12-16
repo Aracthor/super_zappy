@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 17:23:02 2014 
-// Last Update Sun Nov  9 03:41:26 2014 
+// Last Update Thu Dec 11 17:00:50 2014 
 //
 
 #ifndef POOL_HH_
@@ -39,6 +39,10 @@ public:
   void	popAt(unsigned int pos);
   void	popElem(const T* elem);
   void	popBack();
+
+public:
+  unsigned int	indexOf(const T& elem) const;
+  unsigned int	indexOf(const T* elem) const;
 
 public:
   void	clear();

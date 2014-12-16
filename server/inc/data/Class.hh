@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 08:39:45 2014 
-// Last Update Wed Dec 10 12:57:00 2014 
+// Last Update Thu Dec 11 09:00:42 2014 
 //
 
 #ifndef CLASS_HH_
@@ -52,6 +52,7 @@ private:
   unsigned int	m_skills[skills_number];
 
 public:
+  Class(); // For containers-confrmity
   Class(const char* name,
 	unsigned int s, unsigned int p, unsigned int d, unsigned int t, unsigned int i,
 	unsigned int speedLevel, unsigned int orientationLevel,

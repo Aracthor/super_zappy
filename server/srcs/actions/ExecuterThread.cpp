@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 20:20:00 2014 
-// Last Update Tue Dec  9 16:26:04 2014 
+// Last Update Tue Dec 16 10:36:30 2014 
 //
 
 #include "actions/ExecuterThread.hh"
@@ -24,6 +24,7 @@
 #include "executors/Rotater.hh"
 #include "executors/Searcher.hh"
 #include "executors/Taker.hh"
+#include "network/Protocol.hh"
 
 #include <unistd.h>
 
@@ -85,24 +86,52 @@ ExecuterThread::executeActions()
     }
 }
 
-
 void
 ExecuterThread::execute()
 {
+  m_server->lockClients();
+  m_server->lockActions();
+  {
+    this->executeActions();
+    this->decrementTimers();
+  }
+  m_server->unlockActions();
+  m_server->unlockClients();
+}
+
+void
+ExecuterThread::incrementLoop()
+{
+  if (m_loopCounter * (m_server->getSpeed() / 100) % 1000 == 0)
+    LogManagerSingleton::access()->intern->print("Cycle %d.", m_loopCounter);
+  ++m_loopCounter;
+}
+
+static int
+isAnyPlayer(const Team& team)
+{
+  return (team.hasAnyoneAlive());
+}
+
+void
+ExecuterThread::checkVictory()
+{
+  const Team*	winner;
+  int		teamsAlive;
+
+  teamsAlive = m_server->doToTeams(&isAnyPlayer);
+  if (teamsAlive == 1)
+    {
+      winner = m_server->findTeam(&isAnyPlayer);
+      m_server->haveAWinner(winner, "military");
+    }
+}
+
+void
+ExecuterThread::wait() const
+{
   long	timeToWait;
 
-  m_clock.update();
-  {
-    m_server->lockClients();
-    m_server->lockActions();
-    {
-      this->executeActions();
-      this->decrementTimers();
-    }
-    m_server->unlockActions();
-    m_server->unlockClients();
-  }
-  m_clock.update();
   timeToWait = static_cast<long>(this->getServerData()->getSpeed());
   timeToWait -= static_cast<long>(m_clock.getElapsedTime());
 
@@ -112,21 +141,22 @@ ExecuterThread::execute()
     usleep(timeToWait);
 }
 
-void
-ExecuterThread::incrementLoop()
-{
-  if (m_loopCounter * (this->getServerData()->getSpeed() / 100) % 1000 == 0)
-    LogManagerSingleton::access()->intern->print("Cycle %d.", m_loopCounter);
-  ++m_loopCounter;
-}
-
 
 bool
 ExecuterThread::loopCycle()
 {
-  this->execute();
-  this->incrementLoop();
-  m_server->getSpeakRing().signal();
+  m_clock.update();
+  {
+    if (m_server->isStarted())
+      {
+	this->execute();
+	this->incrementLoop();
+	this->checkVictory();
+	m_server->getSpeakRing().signal();
+      }
+  }
+  m_clock.update();
+  this->wait();
 
   return (true);
 }

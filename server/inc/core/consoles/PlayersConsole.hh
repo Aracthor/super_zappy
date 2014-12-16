@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Nov 19 10:19:09 2014 
-// Last Update Wed Nov 19 10:31:59 2014 
+// Last Update Thu Dec 11 09:22:12 2014 
 //
 
 #ifndef PLAYERS_CONSOLE_HH_

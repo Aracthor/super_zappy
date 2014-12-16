@@ -5,10 +5,14 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov  4 08:43:05 2014 
-// Last Update Wed Dec 10 12:57:19 2014 
+// Last Update Thu Dec 11 08:48:48 2014 
 //
 
 #include "data/Class.hh"
+
+Class::Class()
+{
+}
 
 Class::Class(const char* name,
 	     unsigned int s, unsigned int p, unsigned int d, unsigned int t, unsigned int i,

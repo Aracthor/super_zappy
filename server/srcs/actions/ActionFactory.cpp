@@ -5,10 +5,11 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 23:07:04 2014 
-// Last Update Tue Dec  9 16:25:27 2014 
+// Last Update Tue Dec 16 09:57:17 2014 
 //
 
 #include "actions/ActionFactory.hh"
+#include "actions/timecalcs/AttackTimeCalculator.hh"
 #include "actions/timecalcs/CraftTimeCalculator.hh"
 #include "actions/timecalcs/DestroyerTimeCalculator.hh"
 #include "actions/timecalcs/DiggerTimeCalculator.hh"
@@ -64,7 +65,7 @@ ActionFactory::ActionFactory()
   m_actionReaders[Action::locateEnnemy]	= &ActionFactory::readTextData;
 
   m_actionNames[Action::attack]		= "ATT";
-  m_actionTimers[Action::attack]	= 1;
+  m_timeCalcs[Action::attack]		= new AttackTimeCalculator;
   m_actionReaders[Action::attack]	= &ActionFactory::readPositionData;
 }
 

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov 17 17:38:43 2014 
-// Last Update Fri Nov 21 12:45:08 2014 
+// Last Update Mon Dec 15 13:34:50 2014 
 //
 
 #include "core/CommandExecuter.hh"
@@ -119,4 +119,19 @@ CommandExecuter::changeSpeed(const char* params)
   else
     this->getServerData()->changeSpeed(newSpeed);
     
+}
+
+
+void
+CommandExecuter::executeCommand(const char* command)
+{
+  AExecuter::executeCommand(command);
+  this->getServerData()->getSpeakRing().signal();
+}
+
+void
+CommandExecuter::executeCommand(const char* name, const char* param)
+{
+  AExecuter::executeCommand(name, param);
+  this->getServerData()->getSpeakRing().signal();
 }

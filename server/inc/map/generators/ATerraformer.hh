@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 14:16:39 2014 
-// Last Update Wed Nov 12 09:04:45 2014 
+// Last Update Tue Dec 16 10:22:40 2014 
 //
 
 #ifndef ATERRAFORMER_HH_
@@ -30,12 +30,14 @@ protected:
 protected:
   Hoopla*	m_hooplas;
   unsigned int	m_hooplasNumber;
+  unsigned int	m_seed;
 
 public:
   ATerraformer(const Configs::Map& configs);
   virtual ~ATerraformer();
 
 private:
+  void		initSeed(unsigned int seed);
   void		copyPositions();
 
 public:

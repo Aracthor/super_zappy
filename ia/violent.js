@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 14:34:12 2014 
-// Last Update Wed Dec 10 13:28:43 2014 
+// Last Update Tue Dec 16 10:48:29 2014 
 //
 
 load("violent/HunterScript.js");
@@ -27,10 +27,8 @@ function	loadTeam(team)
     team.genetic_hardening = 160;
     team.skill_capacity = 50;
 
-    team.classes = new Array
     team.classes[0] = new Hunter;
 
-    team.players = new Array;
     team.players[0] = new Player("Hunter1",	"hunter");
     // team.players[1] = new Player("Hunter2",	"hunter");
     // team.players[2] = new Player("Hunter3",	"hunter");

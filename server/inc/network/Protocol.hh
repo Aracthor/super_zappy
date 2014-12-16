@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 21 09:14:34 2014 
-// Last Update Tue Nov 18 14:53:48 2014 
+// Last Update Thu Dec 11 15:35:24 2014 
 //
 
 #ifndef PROTOCOL_HH_
@@ -21,6 +21,10 @@
 # define AUTHENTIFICATION_GRAPHICAL	"GRAPHIC"
 # define KICK_MESSAGE			"GET THE FUCK OUT"
 # define REBOOT_MESSAGE			"GAME REBOOT"
+# define WIN_MESSAGE			"FUCKING SUCCEED"
+
+# define MAIL_MESSAGE			"FRIEND_MESSAGE"
+# define DEAD_MESSAGE			"YOU_ARE_DEAD_BITCH"
 
 # define GRAPHIC_COMMANDS_NUMBER	(4)
 # define GRAPHIC_MAX_ARGS_NUMBER	(10)

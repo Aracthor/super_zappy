@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov  3 15:59:35 2014 
-// Last Update Sun Nov  9 04:04:43 2014 
+// Last Update Thu Dec 11 16:05:14 2014 
 //
 
 Client*
@@ -35,7 +35,7 @@ Team::getPlayers()
 const Player&
 Team::getLastPlayer() const
 {
-  return (m_players[m_players.getSize() - 1]);
+  return (m_players[m_players.size() - 1]);
 }
 
 const sf::Vector2u&

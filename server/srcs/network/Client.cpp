@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Oct 14 13:07:56 2014 
-// Last Update Tue Dec  9 16:06:40 2014 
+// Last Update Thu Dec 11 09:18:24 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -259,7 +259,7 @@ Client::operator<<(const Team& team)
 	<< LINE_SEPARATOR;
 
   if (team.isDiscalified()== false)
-    for (i = 0; i < team.getPlayers().getSize(); ++i)
+    for (i = 0; i < team.getPlayers().size(); ++i)
       *this << team.getPlayers()[i];
 }
 

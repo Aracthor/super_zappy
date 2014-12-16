@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:26:40 2014 
-// Last Update Wed Dec 10 10:46:57 2014 
+// Last Update Thu Dec 11 11:03:59 2014 
 //
 
 
@@ -23,6 +23,16 @@ GameData::doToTeams(T (*function)(const Team& team)) const
   return (total);
 }
 
+template <typename T>
+void
+GameData::doToTeams(void (*function)(const Team& team, T& data), T& data) const
+{
+  unsigned int	i;
+
+  for (i = 0; i < m_teamsNumber; ++i)
+    function(m_teams[i], data);
+}
+
 
 template <typename T>
 void
@@ -33,8 +43,9 @@ GameData::doToPlayers(void (*function)(Player& player, const T& data), const T& 
 
   for (t = 0; t < m_teamsNumber; ++t)
     {
-      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
-	function(m_teams[t].getPlayers()[i], data);
+      for (i = 0; i < m_teams[t].getPlayers().size(); ++i)
+	if (m_teams[t].getPlayers()[i].isAlive())
+	  function(m_teams[t].getPlayers()[i], data);
     }
 }
 
@@ -47,7 +58,7 @@ GameData::doToPlayers(void (*function)(const Player& player, const T& data), con
 
   for (t = 0; t < m_teamsNumber; ++t)
     {
-      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
+      for (i = 0; i < m_teams[t].getPlayers().size(); ++i)
 	function(m_teams[t].getPlayers()[i], data);
     }
 }
@@ -62,8 +73,9 @@ GameData::doToPlayers(void (*function)(Player& player, const T& data1, const U* 
 
   for (t = 0; t < m_teamsNumber; ++t)
     {
-      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
-	function(m_teams[t].getPlayers()[i], data1, data2);
+      for (i = 0; i < m_teams[t].getPlayers().size(); ++i)
+	if (m_teams[t].getPlayers()[i].isAlive())
+	  function(m_teams[t].getPlayers()[i], data1, data2);
     }
 }
 
@@ -83,15 +95,16 @@ GameData::findPlayer(int (*function)(const Player& player, const T& data), const
 
   for (t = 0; t < m_teamsNumber; ++t)
     {
-      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
-	{
-	  score = function(m_teams[t].getPlayers()[i], data);
-	  if (score > bestScore)
-	    {
-	      score = bestScore;
-	      player = &m_teams[t].getPlayers()[i];
-	    }
-	}
+      for (i = 0; i < m_teams[t].getPlayers().size(); ++i)
+	if (m_teams[t].getPlayers()[i].isAlive())
+	  {
+	    score = function(m_teams[t].getPlayers()[i], data);
+	    if (score > bestScore)
+	      {
+		score = bestScore;
+		player = &m_teams[t].getPlayers()[i];
+	      }
+	  }
     }
 
   return (player);
@@ -112,31 +125,26 @@ GameData::findPlayer(int (*function)(const Player& player, const T& data), const
 
   for (t = 0; t < m_teamsNumber; ++t)
     {
-      for (i = 0; i < m_teams[t].getPlayers().getSize(); ++i)
-	{
-	  score = function(m_teams[t].getPlayers()[i], data);
-	  if (score > bestScore)
-	    {
-	      score = bestScore;
-	      player = &m_teams[t].getPlayers()[i];
-	    }
-	}
+      for (i = 0; i < m_teams[t].getPlayers().size(); ++i)
+	if (m_teams[t].getPlayers()[i].isAlive())
+	  {
+	    score = function(m_teams[t].getPlayers()[i], data);
+	    if (score > bestScore)
+	      {
+		score = bestScore;
+		player = &m_teams[t].getPlayers()[i];
+	      }
+	  }
     }
 
   return (player);
 }
 
 
-const Team*
-GameData::getTeams() const
-{
-  return (m_teams.getData());
-}
-
 Team*
 GameData::getTeamFromName(const char* name)
 {
-  return ((Team*)this->getTeam(name));
+  return ((Team*)(this->getTeam(name)));
 }
 
 unsigned int
@@ -148,7 +156,7 @@ GameData::getTeamsNumber() const
 static unsigned int
 countPlayers(const Team& team)
 {
-  return (team.getPlayers().getSize());
+  return (team.getPlayers().size());
 }
 
 unsigned int

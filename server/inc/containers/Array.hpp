@@ -4,73 +4,47 @@
 // Made by 
 // Login   <aracthor@epitech.net>
 // 
-// Started on  Tue Nov  4 10:40:17 2014 
-// Last Update Tue Nov 18 15:17:20 2014 
+// Started on  Thu Dec 11 09:42:11 2014 
+// Last Update Thu Dec 11 10:19:10 2014 
 //
-
-#include "abstractions/allocs.hh"
 
 template <typename T>
 Array<T>::Array() :
-  m_maxSize(0),
-  m_size(0),
-  m_data(NULL)
+  std::vector<T*>()
 {
+}
+
+template <typename T>
+Array<T>::Array(unsigned int size) :
+  std::vector<T*>(size)
+{
+}
+
+template <typename T>
+Array<T>::Array(const Array<T>& ref) :
+  std::vector<T*>(ref.capacity())
+{
+  unsigned int	i;
+
+  for (i = 0; i < ref.size(); ++i)
+    *this << ref[i];
 }
 
 template <typename T>
 Array<T>::~Array()
 {
-  this->free();
-}
-
-
-template <typename T>
-void
-Array<T>::resize(unsigned int size)
-{
-  REALLOC(m_data, size, T);
-  m_maxSize = size;
-}
-
-template <typename T>
-void
-Array<T>::free()
-{
   unsigned int	i;
 
-  if (m_data != NULL)
-    {
-      for (i = 0; i < m_size; ++i)
-	m_data[i].destroy();
-
-      ::free(m_data);
-    }
-      
-  m_data = NULL;
-  m_size = 0;
+  for (i = 0; i < this->size(); ++i)
+    delete (this->at(i));
 }
 
 
 template <typename T>
 void
-Array<T>::push(const T& elem)
+Array<T>::resize(unsigned int number)
 {
-  m_data[m_size] = elem;
-  ++m_size;
-}
-
-template <typename T>
-bool
-Array<T>::securePush(const T& elem)
-{
-  bool	secure;
-
-  secure = !this->isFull();
-  if (secure)
-    this->push(elem);
-
-  return (secure);
+  this->reserve(number);
 }
 
 
@@ -78,48 +52,29 @@ template <typename T>
 bool
 Array<T>::isFull() const
 {
-  return (m_size == m_maxSize);
-}
-
-template <typename T>
-unsigned int
-Array<T>::getSize() const
-{
-  return (m_size);
-}
-
-template <typename T>
-const T*
-Array<T>::getData() const
-{
-  return (m_data);
-}
-
-template <typename T>
-T*
-Array<T>::getData()
-{
-  return (m_data);
+  return (this->size() == this->capacity());
 }
 
 
 template <typename T>
-void
+Array<T>&
 Array<T>::operator<<(const T& elem)
 {
-  this->push(elem);
+  this->push_back(new T(elem));
+  return *this;
 }
+
 
 template <typename T>
 const T&
 Array<T>::operator[](unsigned int id) const
 {
-  return (m_data[id]);
+  return (*this->at(id));
 }
 
 template <typename T>
 T&
 Array<T>::operator[](unsigned int id)
 {
-  return (m_data[id]);
+  return (*this->at(id));
 }

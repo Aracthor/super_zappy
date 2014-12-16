@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Wed Dec 10 13:36:04 2014 
+## Last Update Tue Dec 16 09:56:57 2014 
 ##
 
 CC=		g++
@@ -67,6 +67,7 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(CONSOLES_DIR)LogsConsole.cpp		\
 		$(SRCS_DIR)$(CONSOLES_DIR)PlayersConsole.cpp		\
 		$(SRCS_DIR)$(CONSOLES_DIR)PromptConsole.cpp		\
+		$(SRCS_DIR)$(CONSOLES_DIR)TeamsConsole.cpp		\
 		$(SRCS_DIR)$(CORE_DIR)AExecuter.cpp			\
 		$(SRCS_DIR)$(CORE_DIR)CommandExecuter.cpp		\
 		$(SRCS_DIR)$(CORE_DIR)ControlPanel.cpp			\
@@ -161,6 +162,7 @@ SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(THREADING_DIR)CondVar.cpp			\
 		$(SRCS_DIR)$(THREADING_DIR)Mutex.cpp			\
 		$(SRCS_DIR)$(THREADING_DIR)ThreadManager.cpp		\
+		$(SRCS_DIR)$(TIMECALCS_DIR)AttackTimeCalculator.cpp	\
 		$(SRCS_DIR)$(TIMECALCS_DIR)CraftTimeCalculator.cpp	\
 		$(SRCS_DIR)$(TIMECALCS_DIR)DestroyerTimeCalculator.cpp	\
 		$(SRCS_DIR)$(TIMECALCS_DIR)DiggerTimeCalculator.cpp	\

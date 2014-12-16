@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 17:33:17 2014 
-// Last Update Tue Nov 18 16:05:50 2014 
+// Last Update Mon Dec 15 13:21:20 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -108,9 +108,7 @@ Pool<T>::popElem(const T* elem)
 {
   unsigned int	pos;
 
-  pos = static_cast<unsigned int>(elem - m_data);
-  if (pos > m_maxSize)
-    throw ZappyException("Invalid pool popElem.");
+  pos = this->indexOf(elem);
 
   m_data[pos].~T();
   if (pos < m_size - 1)
@@ -127,6 +125,37 @@ Pool<T>::popBack()
 
   m_data[m_size - 1].~T();
   --m_size;
+}
+
+
+template <typename T>
+unsigned int
+Pool<T>::indexOf(const T& elem) const
+{
+  unsigned int	pos;
+
+  pos = 0;
+  while (pos < m_size && m_data[pos] != elem)
+    ++pos;
+  if (pos == m_size)
+    throw ZappyException("Invalid pool indexOf&.");
+
+  return (pos);
+}
+
+template <typename T>
+unsigned int
+Pool<T>::indexOf(const T* elem) const
+{
+  unsigned int	pos;
+
+  pos = 0;
+  while (pos < m_size && &m_data[pos] != elem)
+    ++pos;
+  if (pos == m_size)
+    throw ZappyException("Invalid pool indexOf*.");
+
+  return (pos);
 }
 
 

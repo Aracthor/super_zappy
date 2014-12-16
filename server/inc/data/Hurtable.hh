@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Dec  9 12:50:35 2014 
-// Last Update Wed Dec 10 10:42:47 2014 
+// Last Update Thu Dec 11 12:38:33 2014 
 //
 
 #ifndef HURTABLE_HH_
@@ -18,6 +18,7 @@ protected:
   int	m_currentLife;
 
 public:
+  Hurtable(); // For containers-confrmity
   Hurtable(unsigned int life);
   virtual ~Hurtable();
 

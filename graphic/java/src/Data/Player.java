@@ -2,6 +2,8 @@ package Data;
 
 import org.lwjgl.util.vector.Vector2f;
 
+import Debug.DebugLog;
+
 public class		Player extends Hurtable
 {
 	String			name;
@@ -11,6 +13,7 @@ public class		Player extends Hurtable
 	int				orientation;
 	EItem			equipement;
 	PlayerAction	currentAction;
+	boolean			alive;
 	
 	public	Player(String name, int posX, int posY, Team team, String className, EItem equipement)
 	{
@@ -20,7 +23,8 @@ public class		Player extends Hurtable
 		this.position = new Vector2f(posX, posY);
 		this.team = team;
 		this.equipement = equipement;
-		this.currentAction = new PlayerAction(EAction.None);
+		this.currentAction = new PlayerAction(EAction.None, 0);
+		this.alive = true;
 	}
 	
 	
@@ -54,6 +58,11 @@ public class		Player extends Hurtable
 		return (currentAction);
 	}
 	
+	public boolean		isAlive()
+	{
+		return (alive);
+	}
+
 	
 	public void		setPosition(int x, int y)
 	{
@@ -74,5 +83,11 @@ public class		Player extends Hurtable
 	public void		setAction(PlayerAction action)
 	{
 		this.currentAction = action;
+	}
+	
+	public void		kill()
+	{
+		DebugLog.getInstance().events.print("A player DIIIIE : " + name);
+		this.alive = false;
 	}
 }

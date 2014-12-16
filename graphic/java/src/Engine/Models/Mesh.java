@@ -73,6 +73,13 @@ public class Mesh extends VertexArrayObject
 		matrixIsToChange = true;
 	}
 	
+	public void	setPosition(Vector3f position)
+	{
+		this.translation = position;
+		
+		matrixIsToChange = true;
+	}
+	
 	public void	setRotation(float x, float y, float z)
 	{
 		rotation.x = x;
@@ -82,11 +89,25 @@ public class Mesh extends VertexArrayObject
 		matrixIsToChange = true;
 	}
 	
+	public void	setRotation(Vector3f rotation)
+	{
+		this.rotation = rotation;
+		
+		matrixIsToChange = true;
+	}
+	
 	public void	setScale(float x, float y, float z)
 	{
 		scale.x = x;
 		scale.y = y;
 		scale.z = z;
+		
+		matrixIsToChange = true;
+	}
+	
+	public void	setScale(Vector3f scale)
+	{
+		this.scale = scale;
 		
 		matrixIsToChange = true;
 	}
@@ -143,6 +164,22 @@ public class Mesh extends VertexArrayObject
 		scale.z *= vector.z;
 		
 		matrixIsToChange = true;
+	}
+	
+	
+	public Vector3f	getPosition()
+	{
+		return (translation);
+	}
+	
+	public Vector3f	getRotation()
+	{
+		return (rotation);
+	}
+	
+	public Vector3f	getScale()
+	{
+		return (scale);
 	}
 	
 	

@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Nov 12 15:06:24 2014 
-// Last Update Fri Nov 14 16:47:23 2014 
+// Last Update Thu Dec 11 09:01:17 2014 
 //
 
 #ifndef INVENTORY_HH_
@@ -23,6 +23,7 @@ private:
   unsigned int	m_maxSize;
 
 public:
+  Inventory(); // For container-conformity
   Inventory(unsigned int maxSize);
   ~Inventory();
 
