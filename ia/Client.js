@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Oct 31 13:20:02 2014 
-// Last Update Thu Dec 11 15:35:15 2014 
+// Last Update Wed Dec 17 13:43:15 2014 
 //
 
 load("EAction.js");
@@ -115,6 +115,7 @@ Client.prototype.listenServer = function()
 	this.loop = true;
 	while (this.loop == true && (line = this.buffer.readLine()) != null)
 	{
+	    // print(line);
 	    this.recvPacket(line);
 	}
     }

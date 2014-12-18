@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Thu Nov  6 14:00:21 2014 
-// Last Update Thu Dec 11 14:40:19 2014 
+// Last Update Wed Dec 17 12:57:09 2014 
 //
 
 function	SlaveScript()
@@ -20,31 +20,37 @@ SlaveScript.prototype.play = function()
     var items;
     var destroyed;
 
-    bush = this.search(g_objects.bush);
+    bush = search(g_objects.bush);
     if (bush == null)
     {
 	print("Not found :(");
     }
     else
     {
-	this.displace(bush.position.x, bush.position.y);
-	this.destroy(bush.position.x, bush.position.y);
-	this.displace(bush.position.x, bush.position.y);
-	items = this.take();
+	print(this.player.name + ' ' + "Found ! 1");
+	displace(bush.position.x, bush.position.y);
+	print(this.player.name + ' ' + "Found ! 2");
+	destroy(bush.position.x, bush.position.y);
+	print(this.player.name + ' ' + "Found ! 3");
+	displace(bush.position.x, bush.position.y);
+	print(this.player.name + ' ' + "Found ! 4");
+	items = take();
+	print(this.player.name + ' ' + "Found ! 5");
 
 	if (items == null)
 	{
-	    this.sendMail("SALAUD !!!");
+	    sendMail("SALAUD !!!");
 	}
 	else
 	{
-	    this.displace(bush.position.x + 3, bush.position.y);
-	    this.craft(g_items.wooden_javelin);
-	    this.equip(g_items.wooden_javelin);
-	    this.sendMail("J'ai !");
-	    item = this.dig();
+	    displace(bush.position.x + 3, bush.position.y);
+	    craft(g_items.wooden_javelin);
+	    equip(g_items.wooden_javelin);
+	    sendMail("J'ai !");
+	    item = dig();
 	    if (item != null)
 	    {
+		print(item.id);
 	    }
 	}
     }

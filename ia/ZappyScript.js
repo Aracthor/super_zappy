@@ -5,14 +5,21 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Thu Nov  6 14:27:41 2014 
-// Last Update Thu Dec 11 14:52:59 2014 
+// Last Update Wed Dec 17 13:40:42 2014 
 //
 
 load("Items.js");
 load("Mail.js");
 load("Objects.js");
-load("Target.js")
+load("Target.js");
 load("Vector.js");
+
+var		g_script = new Array();
+
+function	getScript()
+{
+    return (g_script[java.lang.Thread.currentThread().getId()]);
+}
 
 function	ScriptExit()
 {
@@ -60,6 +67,8 @@ ZappyScript.prototype.start = function()
 	    waiting = false;
 	}
     }
+
+    g_script[java.lang.Thread.currentThread().getId()] = this;
 
     try
     {
@@ -219,19 +228,19 @@ ZappyScript.prototype.getItemId = function(item)
 }
 
 
-ZappyScript.prototype.displace = function(x, y)
+function	displace(x, y)
 {
-    client.send("DIS " + this.player.name + ' ' + x + ' ' + y);
-    return (this.waitConfirmation());
+    client.send("DIS " + getScript().player.name + ' ' + x + ' ' + y);
+    return (getScript().waitConfirmation());
 }
 
-ZappyScript.prototype.search = function(object)
+function	search(object)
 {
     var	answer;
     var	found;
 
-    client.send("SRH " + this.player.name + ' ' + object.id);
-    answer = this.waitForAnswer("OBJECT");
+    client.send("SRH " + getScript().player.name + ' ' + object.id);
+    answer = getScript().waitForAnswer("OBJECT");
 
     if (answer[0] == "NULL")
     {
@@ -247,67 +256,67 @@ ZappyScript.prototype.search = function(object)
     return (found);
 }
 
-ZappyScript.prototype.destroy = function(x, y)
+function	destroy(x, y)
 {
-    client.send("DES " + this.player.name + ' ' + x + ' ' + y);
-    return (this.waitConfirmation());
+    client.send("DES " + getScript().player.name + ' ' + x + ' ' + y);
+    return (getScript().waitConfirmation());
 }
 
-ZappyScript.prototype.dig = function()
+function	dig()
 {
-    client.send("DIG " + this.player.name);
-    return (this.waitItem());
+    client.send("DIG " + getScript().player.name);
+    return (getScript().waitItem());
 }
 
-ZappyScript.prototype.take = function()
+function	take()
 {
-    client.send("TAK " + this.player.name);
-    return (this.waitItems());
+    client.send("TAK " + getScript().player.name);
+    return (getScript().waitItems());
 }
 
-ZappyScript.prototype.put = function(id, number)
+function	put(id, number)
 {
-    client.send("PUT " + this.player.name + ' ' + id + ' ' + number);
-    return (this.waitConfirmation());
+    client.send("PUT " + getScript().player.name + ' ' + id + ' ' + number);
+    return (getScript().waitConfirmation());
 }
 
-ZappyScript.prototype.equip = function(item)
+function	equip(item)
 {
     var id;
 
-    id = this.getItemId(item);
-    client.send("EQU " + this.player.name + ' ' + id);
-    return (this.waitConfirmation());
+    id = getScript().getItemId(item);
+    client.send("EQU " + getScript().player.name + ' ' + id);
+    return (getScript().waitConfirmation());
 }
 
-ZappyScript.prototype.craft = function(item)
+function	craft(item)
 {
     var	id;
 
-    id = this.getItemId(item);
-    client.send("CRF " + this.player.name + ' ' + id);
-    return (this.waitConfirmation());
+    id = getScript().getItemId(item);
+    client.send("CRF " + getScript().player.name + ' ' + id);
+    return (getScript().waitConfirmation());
 }
 
-ZappyScript.prototype.sendMail = function(message)
+function	sendMail(message)
 {
-    client.send("MAIL " + this.player.name + ' ' + message);
+    client.send("MAIL " + getScript().player.name + ' ' + message);
     return (true);
 }
 
-ZappyScript.prototype.locateEnnemy = function(name)
+function	locateEnnemy(name)
 {
     var	string;
     var	answer;
     var	found;
 
-    string = "LEN " + this.player.name + ' ';
+    string = "LEN " + getScript().player.name + ' ';
     if (name != null)
     {
 	string += name;
     }
     client.send(string);
-    answer = this.waitForAnswer("PLAYER");
+    answer = getScript().waitForAnswer("PLAYER");
 
     if (answer[0] == "NULL")
     {
@@ -323,19 +332,19 @@ ZappyScript.prototype.locateEnnemy = function(name)
     return (found);
 }
 
-ZappyScript.prototype.locateClosestEnnemy = function()
+function	locateClosestEnnemy()
 {
-    return (this.locateEnnemy(null));
+    return (getScript().locateEnnemy(null));
 }
 
-ZappyScript.prototype.attack = function(x, y)
+function	attack(x, y)
 {
-    client.send("ATT " + this.player.name + ' ' + x + ' ' + y);
-    return (this.waitConfirmation());
+    client.send("ATT " + getScript().player.name + ' ' + x + ' ' + y);
+    return (getScript().waitConfirmation());
 }
 
 
-ZappyScript.prototype.wait = function()
+function	wait()
 {
-    this.waitForAnswer("YOLO");
+    getScript().waitForAnswer("YOLO");
 }

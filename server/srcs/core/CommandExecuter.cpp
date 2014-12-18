@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Nov 17 17:38:43 2014 
-// Last Update Mon Dec 15 13:34:50 2014 
+// Last Update Tue Dec 16 11:59:49 2014 
 //
 
 #include "core/CommandExecuter.hh"
@@ -18,6 +18,7 @@
 CommandExecuter::CommandExecuter()
 {
   this->addCommand("start",	&CommandExecuter::startGame);
+  this->addCommand("stop",	&CommandExecuter::stopGame);
   this->addCommand("log",	&CommandExecuter::logAction);
   this->addCommand("reset",	&CommandExecuter::resetGame);
   this->addCommand("rebuild",	&CommandExecuter::rebuildMap);
@@ -53,6 +54,12 @@ void
 CommandExecuter::startGame(const char* params __attribute__ ((unused)))
 {
   this->getServerData()->startGame();
+}
+
+void
+CommandExecuter::stopGame(const char* params __attribute__ ((unused)))
+{
+  this->getServerData()->pauseGame();
 }
 
 void

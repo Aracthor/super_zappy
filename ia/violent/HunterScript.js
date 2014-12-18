@@ -5,22 +5,21 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Thu Nov  6 14:00:21 2014 
-// Last Update Wed Dec 10 11:37:32 2014 
+// Last Update Tue Dec 16 11:03:44 2014 
 //
 
 function	HunterScript()
 {
-    this.javelins = 0;
 }
 
 HunterScript.prototype = new ZappyScript;
 
-function	makeWeapons(player)
+function	makeWeapons(javelins)
 {
     var		bush
     var		items;
 
-    bush = player.search(g_objects.bush);
+    bush = search(g_objects.bush);
     if (bush == null)
     {
 	print("Not found :(");
@@ -28,18 +27,18 @@ function	makeWeapons(player)
 
     else
     {
-	if (player.displace(bush.position.x, bush.position.y) == true &&
-	    player.destroy(bush.position.x, bush.position.y) == true &&
-	    player.displace(bush.position.x, bush.position.y) == true)
+	if (displace(bush.position.x, bush.position.y) == true &&
+	    destroy(bush.position.x, bush.position.y) == true &&
+	    displace(bush.position.x, bush.position.y) == true)
 	{
-	    items = player.take();
+	    items = take();
 	    if (items != null)
 	    {
 		for (var i = 0; i < items.number; ++i)
 		{
-		    player.craft(g_items.wooden_javelin);
+		    craft(g_items.wooden_javelin);
 		}
-		player.javelins += items.number;
+		javelins += items.number;
 	    }
 	    else
 	    {
@@ -51,23 +50,25 @@ function	makeWeapons(player)
 	    print("BLOQUED !");
 	}
     }
+
+    return (javelins);
 }
 
-function	hunt(player)
+function	hunt(javelins)
 {
     var		ennemy;
     var		hit;
 
-    ennemy = player.locateEnnemy();
+    ennemy = locateEnnemy();
     if (ennemy == null)
     {
 	print("Y'a personne putain !");
     }
     else
     {
-	player.equip(g_items.wooden_javelin);
-	hit = player.attack(ennemy.position.x, ennemy.position.y);
-	--player.javelins;
+	equip(g_items.wooden_javelin);
+	hit = attack(ennemy.position.x, ennemy.position.y);
+	--javelins;
 	if (hit)
 	{
 	    print("TOUCHE !");
@@ -77,19 +78,24 @@ function	hunt(player)
 	    print("ET MERDEUH ! RATE !");
 	}
     }
+
+    return (javelins);
 }
 
 HunterScript.prototype.play = function()
 {
+    var	javelins;
+
+    javelins = 0;
     while (42)
     {
-	if (this.javelins < 5)
+	if (javelins < 5)
 	{
-	    makeWeapons(this);
+	    javelins = makeWeapons(javelins);
 	}
 	else
 	{
-	    hunt(this);
+	    javelins = hunt(javelins);
 	}
     }
 }

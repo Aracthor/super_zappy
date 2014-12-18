@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:24:52 2014 
-// Last Update Thu Dec 11 15:43:40 2014 
+// Last Update Tue Dec 16 11:59:46 2014 
 //
 
 #ifndef GAME_DATA_HH_
@@ -65,6 +65,7 @@ public:
 
 public:
   void		startGame();
+  void		pauseGame();
   void		haveAWinner(const Team* winner, const char* type);
   void		resetGame();
 

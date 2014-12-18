@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Oct 12 06:02:07 2014 
-// Last Update Fri Nov 21 12:25:44 2014 
+// Last Update Wed Dec 17 12:22:54 2014 
 //
 
 #ifndef ZAPPY_EXCEPTION_HH_
@@ -21,7 +21,9 @@ protected:
 
 public:
   ZappyException(const char* message);
+  ZappyException(const char* message, const char* arg);
   ZappyException(const std::string& message);
+  ZappyException(const std::string& message, const char* arg);
   virtual ~ZappyException() throw();
 
 public:

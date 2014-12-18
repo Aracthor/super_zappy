@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sun Nov  9 03:11:42 2014 
-// Last Update Fri Dec  5 09:13:55 2014 
+// Last Update Wed Dec 17 11:12:09 2014 
 //
 
 #include "core/Server.hh"
@@ -41,6 +41,6 @@ Mover::execute(Player* player, const Action::UData& data)
   else
     {
       this->getServerData()->clearForPlayer(player);
-      this->getServerData()->insertAction(Action(player, Action::displace, 0, player->getObjective()));
+      this->getServerData()->insertAction(Action(player, Action::displace, 1, player->getObjective()));
     }
 }

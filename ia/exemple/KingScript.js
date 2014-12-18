@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Thu Nov  6 14:00:21 2014 
-// Last Update Fri Nov 14 16:41:03 2014 
+// Last Update Wed Dec 17 12:38:06 2014 
 //
 
 function	KingScript()
@@ -23,5 +23,5 @@ function	gueulerPourRien(mail)
 KingScript.prototype.play = function()
 {
     this.onFriendMessage = gueulerPourRien;
-    this.wait();
+    wait();
 }

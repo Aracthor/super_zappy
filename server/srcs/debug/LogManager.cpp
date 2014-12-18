@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 20 08:48:33 2014 
-// Last Update Thu Dec 11 10:13:07 2014 
+// Last Update Wed Dec 17 13:42:36 2014 
 //
 
 #include "debug/LogManager.hh"
@@ -59,14 +59,14 @@ LogManager::initStandartLogs()
 void
 LogManager::initConsoleLogs()
 {
-  debug = new ConsoleLog("debug", DEBUG_COLOR, DEBUG_BOLD, false);
+  debug = new ConsoleLog("debug", DEBUG_COLOR, DEBUG_BOLD, true);
   input = new ConsoleLog("input", INPUT_COLOR, INPUT_BOLD, true);
   output = new ConsoleLog("output", OUTPUT_COLOR, OUTPUT_BOLD, true);
   graphicInput = new ConsoleLog("graphicInput", GRAPHIC_INPUT_COLOR, GRAPHIC_INPUT_BOLD, false);
   graphicOutput = new ConsoleLog("graphicOutput", GRAPHIC_OUTPUT_COLOR, GRAPHIC_OUTPUT_BOLD, false);
   iaInput = new ConsoleLog("iaInput", IA_INPUT_COLOR, IA_INPUT_BOLD, true);
   iaOutput = new ConsoleLog("iaOutput", IA_OUTPUT_COLOR, IA_OUTPUT_BOLD, true);
-  intern = new ConsoleLog("intern", INTERN_COLOR, INTERN_BOLD, false);
+  intern = new ConsoleLog("intern", INTERN_COLOR, INTERN_BOLD, true);
   events = new ConsoleLog("events", THREADING_COLOR, THREADING_BOLD, true);
   connection = new ConsoleLog("connection", CONNECTION_COLOR, CONNECTION_BOLD, true);
   error = new ConsoleLog("error", ERROR_COLOR, ERROR_BOLD, true);

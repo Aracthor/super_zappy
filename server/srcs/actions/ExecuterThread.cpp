@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Sat Nov  8 20:20:00 2014 
-// Last Update Tue Dec 16 10:36:30 2014 
+// Last Update Tue Dec 16 11:53:23 2014 
 //
 
 #include "actions/ExecuterThread.hh"
@@ -60,9 +60,7 @@ ExecuterThread::~ExecuterThread()
 void
 ExecuterThread::decrementTimers()
 {
-  ActionsManager::ActionsList&	actions = m_server->getActions();
-
-  actions.forEach(&Action::decrementTimer);
+  m_server->getActions().forEach(&Action::decrementTimer);
 }
 
 void
@@ -156,6 +154,7 @@ ExecuterThread::loopCycle()
       }
   }
   m_clock.update();
+
   this->wait();
 
   return (true);

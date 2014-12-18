@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Wed Oct 22 13:29:09 2014 
-// Last Update Thu Dec 11 15:47:52 2014 
+// Last Update Tue Dec 16 12:02:52 2014 
 //
 
 #include "abstractions/allocs.hh"
@@ -207,6 +207,18 @@ GameData::startGame()
     }
   else
     LogManagerSingleton::access()->error->print("Game already started !");
+}
+
+void
+GameData::pauseGame()
+{
+  if (m_started == true)
+    {
+      m_started = false;
+      LogManagerSingleton::access()->events->print("Game paused");
+    }
+  else
+    LogManagerSingleton::access()->error->print("Game already stopped !");
 }
 
 void

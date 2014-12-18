@@ -5,13 +5,14 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Mon Oct 13 17:33:17 2014 
-// Last Update Mon Dec 15 13:21:20 2014 
+// Last Update Wed Dec 17 12:26:13 2014 
 //
 
 #include "abstractions/allocs.hh"
 #include "exceptions/ZappyException.hh"
 
 #include <cstring>
+#include <typeinfo>
 
 template <typename T>
 Pool<T>::Pool(unsigned int maxSize) :
@@ -35,7 +36,7 @@ void
 Pool<T>::tryToPush() const
 {
   if (m_size == m_maxSize)
-    throw ZappyException("Trying to push into a full pool.");
+    throw ZappyException("Trying to push into a full pool.", typeid(m_data).name());
 }
 
 
@@ -82,7 +83,7 @@ void
 Pool<T>::popFront()
 {
   if (this->isEmpty())
-    throw ZappyException("popFront in an empty pool.");
+    throw ZappyException("popFront in an empty pool", typeid(m_data).name());
 
   m_data[0].~T();
   memmove(&m_data[0], &m_data[1], (m_size - 1) * sizeof(T));
@@ -121,7 +122,7 @@ void
 Pool<T>::popBack()
 {
   if (this->isEmpty())
-    throw ZappyException("popBack in an empty pool.");
+    throw ZappyException("popBack in an empty pool", typeid(m_data).name());
 
   m_data[m_size - 1].~T();
   --m_size;
@@ -138,7 +139,7 @@ Pool<T>::indexOf(const T& elem) const
   while (pos < m_size && m_data[pos] != elem)
     ++pos;
   if (pos == m_size)
-    throw ZappyException("Invalid pool indexOf&.");
+    throw ZappyException("Invalid pool indexOf&", typeid(m_data).name());
 
   return (pos);
 }
@@ -153,7 +154,7 @@ Pool<T>::indexOf(const T* elem) const
   while (pos < m_size && &m_data[pos] != elem)
     ++pos;
   if (pos == m_size)
-    throw ZappyException("Invalid pool indexOf*.");
+    throw ZappyException("Invalid pool indexOf*", typeid(m_data).name());
 
   return (pos);
 }

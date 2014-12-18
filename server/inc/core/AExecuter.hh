@@ -5,13 +5,13 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Tue Nov 18 10:20:05 2014 
-// Last Update Mon Dec 15 13:33:22 2014 
+// Last Update Tue Dec 16 12:02:05 2014 
 //
 
 #ifndef AEXECUTER_HH_
 # define AEXECUTER_HH_
 
-# define MAX_EXECUTIONS_NUMBER	(5)
+# define MAX_EXECUTIONS_NUMBER	(6)
 
 class		AExecuter
 {
