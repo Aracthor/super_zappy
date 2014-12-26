@@ -5,13 +5,11 @@
 // Login   <bonnet_v@epitech.net>
 // 
 // Started on  Tue Apr 15 10:46:07 2014 Bonnet Vivien
-// Last Update Thu Nov 20 13:00:52 2014 
+// Last Update Fri Dec 26 16:29:19 2014 aracthor
 //
 
 #include "ncursesxx/Application.hh"
 #include "ncursesxx/NcursesException.hh"
-
-#include <ncurses/curses.h>
 
 namespace nc
 {
