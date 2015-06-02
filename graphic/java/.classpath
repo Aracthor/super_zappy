@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/home/aracthor/programs/projects/hub/super_zappy/graphic/java/libs/lwjgl-2.9.1/native/linux"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aracthor/past/perso/super_zappy/graphic/java/libs/lwjgl-2.9.1/jar/lwjgl_util.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/home/aracthor/past/perso/super_zappy/graphic/java/libs/lwjgl-2.9.1/native/linux"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aracthor/past/perso/super_zappy/graphic/java/libs/lwjgl-2.9.1/jar/lwjgl.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/home/aracthor/past/perso/super_zappy/graphic/java/libs/lwjgl-2.9.1/native/linux"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/aracthor/past/perso/super_zappy/graphic/java/libs/PNGDecoder/PNGDecoder.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
