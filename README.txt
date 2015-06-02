@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:38:33 2014 
-## Last Update Tue Jun  2 12:19:15 2015 aracthor
+## Last Update Tue Jun  2 12:49:27 2015 aracthor
 ##
 
 SERVER:
@@ -23,7 +23,7 @@ rebuid X Y: make new island with X width and Y height
 
 GRAPHIC:
 I use Eclipse to launch it.
-Switch to workspace super_zappy. Eclipse should use .metadata folder already present. Go into Main/GraphicClient.java and try to launch application.
+Switch to workspace super_zappy. Go into graphic/java/src/Main/GraphicClient.java and try to launch application.
 If an error message "Invalid arguments" appear, go into "run configurations", "arguments" and set them to "localhost 4242".
 If it cannot reach LWJGL, good luck with native locations library in build path.
 
