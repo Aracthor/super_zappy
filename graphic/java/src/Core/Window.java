@@ -78,7 +78,7 @@ public class	Window
 	{
 		System.out.println("Creating window...");
 		PixelFormat pixelFormat = new PixelFormat();
-		ContextAttribs contextAttributes = new ContextAttribs(4, 3)
+		ContextAttribs contextAttributes = new ContextAttribs(3, 3)
 		.withForwardCompatible(true)
 		.withProfileCore(true);
 		

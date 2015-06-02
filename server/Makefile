@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Tue Dec 16 09:56:57 2014 
+## Last Update Tue Feb 24 15:31:04 2015 aracthor
 ##
 
 CC=		g++
@@ -45,6 +45,7 @@ NAME=		server
 
 SRCS=		$(SRCS_DIR)$(ABSTRACTION_DIR)Clock.cpp			\
 		$(SRCS_DIR)$(ABSTRACTION_DIR)Pipe.cpp			\
+		$(SRCS_DIR)$(ABSTRACTION_DIR)SigpipeHandler.cpp		\
 		$(SRCS_DIR)$(ABSTRACTION_DIR)SigsegvHandler.cpp		\
 		$(SRCS_DIR)$(ACTIONS_DIR)Action.cpp			\
 		$(SRCS_DIR)$(ACTIONS_DIR)ActionFactory.cpp		\

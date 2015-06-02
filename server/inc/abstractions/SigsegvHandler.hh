@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Fri Nov 21 09:58:01 2014 
-// Last Update Fri Nov 21 10:24:41 2014 
+// Last Update Tue Feb 24 15:30:27 2015 aracthor
 //
 
 #ifndef SIGSEGV_HANDLER_HH_
