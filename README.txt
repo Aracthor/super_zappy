@@ -5,10 +5,13 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:38:33 2014 
-## Last Update Tue Jun  2 12:49:27 2015 aracthor
+## Last Update Mon Jun  8 09:55:31 2015 Aracthor
 ##
 
 SERVER:
+
+You must have SFML installed. (I use 2D vector class for calcs. I shouldn't.)
+sudo apt-get install libsfml-dev
 
 Go into the server folder.
 ./bin/server -d -n toto titi -x 10 -y 10
