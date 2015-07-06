@@ -5,7 +5,7 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sat Oct  4 19:07:52 2014 
-## Last Update Tue Feb 24 15:31:04 2015 aracthor
+## Last Update Tue Jun  2 12:24:03 2015 aracthor
 ##
 
 CC=		g++
@@ -179,7 +179,7 @@ CXXFLAGS=	-Wall -Werror -Wextra	\
 		-D_BSD_SOURCE		\
 		-D_BUFFER_STACK_MODE	\
 		-I $(INC_DIR)		\
-		-g3
+#		-g3
 
 LIBS=		pthread	\
 		ncurses

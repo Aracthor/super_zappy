@@ -5,18 +5,12 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sun Nov  9 09:13:09 2014 
-## Last Update Thu Dec 18 15:32:58 2014 
+## Last Update Mon Jul  6 22:10:22 2015 Aracthor
 ##
 
 *.o
 *.log
 *~
-*#
 */bin
 */objs
 */log
-*/draft
-/draft
-/old_server
-/server/code_qui_fait_segfault_valgrind
-/videos
