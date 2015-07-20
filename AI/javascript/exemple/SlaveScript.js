@@ -5,7 +5,7 @@
 // Login   <aracthor@epitech.net>
 // 
 // Started on  Thu Nov  6 14:00:21 2014 
-// Last Update Thu Dec 18 17:01:08 2014 
+// Last Update Mon Jul 20 13:06:54 2015 Aracthor
 //
 
 function	SlaveScript()
@@ -34,14 +34,15 @@ SlaveScript.prototype.play = function()
 
 	if (items == null)
 	{
-	    sendMail("SALAUD !!!");
+	    sendMail("BASTARD !!!");
 	}
 	else
 	{
 	    displace(bush.position.x + 3, bush.position.y);
 	    craft(g_items.wooden_javelin);
 	    equip(g_items.wooden_javelin);
-	    sendMail("J'ai !");
+	    sendMail("I got !");
+
 	    item = dig();
 	    if (item != null)
 	    {
