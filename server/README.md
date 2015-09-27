@@ -35,7 +35,7 @@ There are several arguments possible to add, in order that you want:
  - **-p** *port*: set server port. Default value is **4242**.
  - **-s** *speed*: set execution speed, which is microseconds number between each cycle. So the lower you set, the faster it will be. Values are from 1000 to 10000000. Default value is **10000**.
  - **-l** *log_file*: set log file path, which is the file where every log shall be recorded. Default file is **./zappy.log**.
- - **-g** *seed*: set random seed for island generation. Wihtout explicit value, it would be generated from unix time and process PID.
+ - **-g** *seed*: set random seed for island generation. Wihtout explicit value, it would be generated from unix time and process ID.
 
 So here is a simple server launch with minimal configuration:
 
