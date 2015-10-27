@@ -4,7 +4,17 @@ The initial goal of this project is to provide a programming game, with teams of
 
 AIs would have different actions and capabilities, that could be chose at start of the game. They would be able to dig, destroy objects like trees, pick or put items, use them to craft other items or build something on the ground, etc.
 
-**This project is abandonned.** Because there are too many network bugs on server side, but mainly because of complicated personal reasons.  
+For now, the island generator is perfectly functional. It can creates pseudo-random islands using perlin noise for heightmap, and homemade algorithms for rivers, lakes and vegetation. It usually results as the following
+
+![Screenshot](./screenshots/island.png?raw=true "Screenshot")
+
+Note that the randomness of the program can make a very dry island as well as a very wet one:
+
+![Wetness](./screenshots/wetness.png?raw=true "Wetness")
+
+### This project is abandonned.
+
+Because there are too many network bugs on server side, but mainly because of complicated personal reasons.  
 But there is still some functional parts.
 
 The actual project is composed of:
