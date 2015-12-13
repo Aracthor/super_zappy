@@ -23,4 +23,4 @@ The actual project is composed of:
  - A Java graphic client that can show the island and the action on it.
  - A JavaScript AI client that can execute some actions on different players in the same team.
 
-All those parts have their own readme file. I suggest you to start by the server one.
+All those parts have their own readme file. I suggest you to start by [the server one](server/README.md).

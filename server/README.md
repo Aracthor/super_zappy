@@ -70,4 +70,4 @@ In console mode, there are several commands that you can use:
 
 ### Test it
 
-Start a simple server as explained in the `Launch the server` part, and go to the graphic folder readme file to the next part.
+Start a simple server as explained in the `Launch the server` part, and go to the [graphic folder readme file](../graphic/java/README.md) to the next part.

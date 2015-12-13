@@ -30,4 +30,4 @@ You can turn the camera with **right and left arrows**.
 
 If you succeed to display an island with it, I suggest you to use and abuse of *rebuild* server command to see many islands. This is definitly the funnest part of this project, because players gameplay is incomplete.
 
-Once you launched it, see you on the AI client (the javascript one) readme to the last - and incomplete - part.
+Once you launched it, see you on the [AI client readme](../../AI/javascript/README.md) for the last - and incomplete - part.
