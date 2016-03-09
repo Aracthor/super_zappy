@@ -5,12 +5,10 @@
 ## Login   <aracthor@epitech.net>
 ## 
 ## Started on  Sun Nov  9 09:13:09 2014 
-## Last Update Mon Jul  6 22:10:22 2015 Aracthor
+## Last Update Wed Mar  9 10:52:32 2016 Vivien Bonnet
 ##
 
 *.o
 *.log
 *~
-*/bin
-*/objs
 */log
