@@ -12,7 +12,7 @@ Note that the randomness of the program can make a very dry island as well as a 
 
 ![Wetness](./screenshots/wetness.png?raw=true "Wetness")
 
-### This project is abandonned.
+### This project is abandoned.
 
 Because there are too many network bugs on server side, but mainly because of complicated personal reasons.  
 But there is still some functional parts.
